@@ -9,8 +9,8 @@
 }
 
 @font-face {
-  font-family: "SF Pro Text";
-  src: url(../fonts/SFPRODISPLAYBOLD.OTF) format("truetype");
+  /* font-family: "SF Pro Text"; */
+  /* src: url(../fonts/SFPRODISPLAYBOLD.OTF) format("truetype"); */
 }
 
 body::-webkit-scrollbar {

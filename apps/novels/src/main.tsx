@@ -2,14 +2,14 @@ import { IAppWithRoute, ReactApplicationManager } from "@core-ui/react-core";
 import buildinFeatures from "@/features/index";
 import allProviders from "./providers/index";
 import { App } from "./App";
-import { singleRoutes } from "./appRoute";
+import { router } from "./appRoute";
 import { disabledStrictMode } from "@core-ui/react-mobx-state"
 
 let reactApp = ReactApplicationManager.getInstance({
   rootId: "root",
   providers: [],
   strictMode: false,
-  router: singleRoutes,
+  router: router,
 } as unknown as IAppWithRoute);
 
 // App feature area
