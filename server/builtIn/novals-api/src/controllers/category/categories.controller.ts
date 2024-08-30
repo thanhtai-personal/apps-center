@@ -1,28 +1,28 @@
 
 
 import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Req, Res, UseGuards } from '@nestjs/common';
-import { NovalsService } from '@/services/novals/novals.service';
+import { CategoriesService } from '@/services/categories/categories.service';
 import { Response } from "express"
 import { AuthGuard } from '@/guards/auth.guard';
-import { UpdateNovalDto } from '@/dtos/novals/noval.update.dto';
-import { IPagination, IPagingFilter, INovalFilter, INovalResponse } from "@core-ui/novals-types";
+import { UpdateCategoryDto } from '@/dtos/categories/category.update.dto';
+import { IPagination, IPagingFilter, ICategoryFilter, ICategoryResponse } from "@core-ui/novals-types";
 
-@Controller("/novals")
+@Controller("/categories")
 @UseGuards(AuthGuard)
-export class NovalsController {
-  constructor(private readonly novalService: NovalsService) { }
+export class CategoriesController {
+  constructor(private readonly categoryService: CategoriesService) { }
 
-  @Get("/:novalId")
+  @Get("/:categoryId")
   async getOne(
-    @Param("novalId")
-    novalId: number,
+    @Param("categoryId")
+    categoryId: number,
     @Res()
     res: Response
   ) {
     try {
-      if (!novalId) throw new HttpException("No noval Id", HttpStatus.INTERNAL_SERVER_ERROR);
-      const noval = await this.novalService.findOne(novalId);
-      return res.status(HttpStatus.OK).send(noval)
+      if (!categoryId) throw new HttpException("No category Id", HttpStatus.INTERNAL_SERVER_ERROR);
+      const category = await this.categoryService.findOne(categoryId);
+      return res.status(HttpStatus.OK).send(category)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -30,55 +30,55 @@ export class NovalsController {
 
   @Get()
   async getMany(
-    @Query() query: IPagingFilter & INovalFilter,
+    @Query() query: IPagingFilter & ICategoryFilter,
     @Res()
     res: Response
   ) {
     try {
-      const data: IPagination<INovalResponse> = await this.novalService.findAll({
+      const data: IPagination<ICategoryResponse> = await this.categoryService.findAll({
         ...(query || []),
         limit: query.limit || 10,
         offset: query.offset || 0,
-      }) as IPagination<INovalResponse>;
+      }) as IPagination<ICategoryResponse>;
       return res.status(HttpStatus.OK).send(data)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
-  @Put("/:novalId")
-  async updateNoval(
+  @Put("/:categoryId")
+  async updateCategory(
     @Req()
     req: Request,
-    @Param('novalId')
-    novalId: string | number,
+    @Param('categoryId')
+    categoryId: string | number,
     @Body()
-    updateNovalDto: UpdateNovalDto,
+    updateCategoryDto: UpdateCategoryDto,
     @Res()
     res: Response
   ) {
     try {
-      const noval = await this.novalService.update(Number(novalId), updateNovalDto);
-      return res.status(HttpStatus.OK).send(noval);
+      const category = await this.categoryService.update(Number(categoryId), updateCategoryDto);
+      return res.status(HttpStatus.OK).send(category);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
-  @Patch("/:novalId")
+  @Patch("/:categoryId")
   async patchUpdate(
     @Req()
     req: Request,
-    @Param('novalId')
-    novalId: string | number,
+    @Param('categoryId')
+    categoryId: string | number,
     @Body()
-    patchUpdateDto: Partial<UpdateNovalDto>,
+    patchUpdateDto: Partial<UpdateCategoryDto>,
     @Res()
     res: Response
   ) {
     try {
-      const noval = await this.novalService.patchUpdate(Number(novalId), patchUpdateDto);
-      return res.status(HttpStatus.OK).send(noval);
+      const category = await this.categoryService.patchUpdate(Number(categoryId), patchUpdateDto);
+      return res.status(HttpStatus.OK).send(category);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
