@@ -1,8 +1,15 @@
-import { IPagingFilter } from "../common/IPagingFilter";
-
-export interface IUserFilter extends Partial<IPagingFilter> {
-  id?: number | string;
+export interface IUserFilter {
   username?: string;
+  password?: string;
+  email?: string;
   avatar?: string;
+  token?: number;
   points?: number;
+  level?: number;
+  role?: string;
+  roleId?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
 }
+  

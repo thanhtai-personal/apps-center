@@ -1,0 +1,5 @@
+export * from "./INoval"
+export * from "./INovalCreation"
+export * from "./INovalUpdating"
+export * from "./INovalResponse"
+export * from "./INovalFilter"
