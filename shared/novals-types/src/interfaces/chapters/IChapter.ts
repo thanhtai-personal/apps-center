@@ -1,6 +1,7 @@
 export interface IChapter {
   id: number;
   name?: string;
+  chapterIndex?: number;
   shortDescription?: string;
   fullDescription?: string;
   shortContent?: string;

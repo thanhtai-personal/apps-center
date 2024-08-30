@@ -9,6 +9,7 @@ export interface IChapterUpdating {
   referrence?: string;
   thumb?: string;
   view?: number;
+  chapterIndex?: number;
   novalId?: number;
   createdAt?: Date;
   updatedAt?: Date;

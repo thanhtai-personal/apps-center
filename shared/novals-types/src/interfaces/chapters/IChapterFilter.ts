@@ -3,6 +3,7 @@ export interface IChapterFilter {
   shortDescription?: string;
   fullDescription?: string;
   shortContent?: string;
+  chapterIndex?: number;
   content?: string;
   htmlContent?: string;
   referrence?: string;
