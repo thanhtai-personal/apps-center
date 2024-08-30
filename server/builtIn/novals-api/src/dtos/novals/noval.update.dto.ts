@@ -1,4 +1,11 @@
-export interface INovalCreation {
+import { INovalUpdating } from '@core-ui/novals-types';
+import { IsNotEmpty, IsNumber } from 'class-validator';
+
+export class UpdateNovalDto implements INovalUpdating {
+  @IsNotEmpty()
+  @IsNumber()
+  id!: number;
+  
   name?: string;
   shortDescription?: string;
   fullDescription?: string;
@@ -14,4 +21,3 @@ export interface INovalCreation {
   chaptersNumber?: number;
   authorId?: number;
 }
-  

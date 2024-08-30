@@ -1,4 +1,6 @@
-export interface INovalCreation {
+import { INovalCreation } from "@core-ui/novals-types"
+
+export class CreateNovalDto implements INovalCreation {
   name?: string;
   shortDescription?: string;
   fullDescription?: string;
@@ -14,4 +16,3 @@ export interface INovalCreation {
   chaptersNumber?: number;
   authorId?: number;
 }
-  

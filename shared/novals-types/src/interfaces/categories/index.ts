@@ -1,5 +1,5 @@
 export * from "./ICategory"
 export * from "./ICategoryCreation"
-export * from "./ICategeryUpdating"
+export * from "./ICategoryUpdating"
 export * from "./ICategoryResponse"
 export * from "./ICategoryFilter"

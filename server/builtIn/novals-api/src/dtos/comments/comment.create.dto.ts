@@ -1,4 +1,6 @@
-export interface ICommentCreation {
+import { ICommentCreation } from "@core-ui/novals-types"
+
+export class CreateCommentDto implements ICommentCreation {
   username?: string;
   email?: string;
   avatar?: string;
@@ -8,4 +10,3 @@ export interface ICommentCreation {
   content?: string;
   htmlContent?: string;
 }
-  

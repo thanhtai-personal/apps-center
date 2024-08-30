@@ -1,5 +1,11 @@
-export interface IChapterUpdating {
-  id: number;
+import { IChapterUpdating } from '@core-ui/novals-types';
+import { IsNotEmpty, IsNumber } from 'class-validator';
+
+export class UpdateChapterDto implements IChapterUpdating {
+  @IsNotEmpty()
+  @IsNumber()
+  id!: number;
+  
   name?: string;
   shortDescription?: string;
   fullDescription?: string;
@@ -12,4 +18,3 @@ export interface IChapterUpdating {
   chapterIndex?: number;
   novalId?: number;
 }
-  

@@ -8,8 +8,5 @@ export interface IUserCreation {
   level?: number;
   role?: string;
   roleId?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
 }
   

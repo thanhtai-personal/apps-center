@@ -3,8 +3,5 @@ export interface IAuthorCreation {
   description?: string;
   avatar?: string;
   userId?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
 }
   

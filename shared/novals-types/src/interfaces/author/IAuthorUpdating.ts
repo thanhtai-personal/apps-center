@@ -4,8 +4,5 @@ export interface IAuthorUpdating {
   description?: string;
   avatar?: string;
   userId?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
 }
   

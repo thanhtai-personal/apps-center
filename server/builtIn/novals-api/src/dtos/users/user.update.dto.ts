@@ -6,8 +6,22 @@ export class UpdateUserDto implements IUserUpdating {
   @IsNumber()
   id!: number;
 
+  username?: string;
+  password?: string;
+  email?: string;
+  avatar?: string;
+
   @IsNumber()
   points?: number;
+  
+  @IsNumber()
+  token?: number;
 
-  username?: string;
+  @IsNumber()
+  level?: number;
+
+  role?: string;
+
+  @IsNumber()
+  roleId?: number;
 }

@@ -1,4 +1,4 @@
-export interface ICategeryUpdating {
+export interface ICategoryUpdating {
   id: number;
   name?: string;
   description?: string;

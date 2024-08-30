@@ -14,8 +14,5 @@ export interface INovalUpdating {
   isFull?: boolean;
   chaptersNumber?: number;
   authorId?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
 }
   

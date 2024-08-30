@@ -10,8 +10,5 @@ export interface IChapterCreation {
   thumb?: string;
   view?: number;
   novalId?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
 }
   
