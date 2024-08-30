@@ -8,7 +8,7 @@ import { IPagination, IPagingFilter, ICategoryFilter, ICategoryResponse } from '
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 
 @Injectable()
-export class CategorysService {
+export class CategoriesService {
   constructor(
     @InjectRepository(CategoryEntity)
     private categoryRepos: Repository<CategoryEntity>,
