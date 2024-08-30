@@ -1,7 +1,9 @@
 import { AuthorEntity, CategoryEntity, ChapterEntity, CommentEntity, NovalEntity, UserEntity } from '@/entities';
-import { InjectRepository, LessThan, MoreThan, Repository } from '@core-api/nest-typeorm-postgres';
+import { InjectRepository, Repository } from '@core-api/nest-typeorm-postgres';
 import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import axios from 'axios';
+import { JSDOM  } from "jsdom"
 
 @Injectable()
 export class ScheduleService {
@@ -21,13 +23,30 @@ export class ScheduleService {
   ) { }
 
   // @Cron("0 */2 * * * *") //2 mins
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_10_SECONDS)
   updateEveryNight() {
     this.crawlData();
   }
 
   async crawlData() {
+    try {
+      await this.crawlTangThuVien()
+    } catch (error) {
+      console.error('Error crawl data:', error);
+    }
+  }
 
+  async crawlTangThuVien() {
+    const origin = 'https://truyen.tangthuvien.vn';
+    const htmlString: string = (await axios.get(origin))?.data;
+    const dom = new JSDOM(htmlString);
+    const document = dom.window.document;
+
+    const classifies = document.querySelectorAll('#classify-list a span.info');
+
+    if (classifies) {
+      console.log("classifies", classifies)
+    }
   }
 
 }
