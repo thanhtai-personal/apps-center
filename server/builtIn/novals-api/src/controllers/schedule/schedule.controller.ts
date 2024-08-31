@@ -1,14 +1,12 @@
 
 
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Req, Res, UseGuards } from '@nestjs/common';
+import {  Controller, Get, HttpException, HttpStatus, Res, UseGuards } from '@nestjs/common';
 import { ScheduleService } from '@/services/schedule/schedule.service';
 import { Response } from "express"
-import { AuthGuard } from '@/guards/auth.guard';
-import { UpdateChapterDto } from '@/dtos/chapters/chapter.update.dto';
-import { IPagination, IPagingFilter, IChapterFilter, IChapterResponse } from "@core-ui/novals-types";
+// import { AuthGuard } from '@/guards/auth.guard';
 
 @Controller("/crawler")
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) { }
 
