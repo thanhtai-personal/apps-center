@@ -17,13 +17,13 @@ export class CategoryEntity extends BaseEntity implements ICategory {
   @Column({ name: "icon", type: 'varchar', nullable: true })
   icon?: string;
 
-  @ManyToOne(() => CategoryEntity, (cate) => cate.categories)
+  @ManyToOne(() => CategoryEntity, (cate) => cate.categories, { cascade: false })
   category?: CategoryEntity;
 
   @OneToMany(() => CategoryEntity, (cate) => cate.category, { cascade: true })
   categories?: CategoryEntity[];
   
-  @ManyToMany(() => NovalEntity, (noval) => noval.categoriesData, { eager: false })
+  @OneToMany(() => NovalEntity, (noval) => noval.categoryData, { eager: false, cascade: false })
   novalsData?: NovalEntity[];
 
 }

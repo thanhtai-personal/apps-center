@@ -29,12 +29,12 @@ export class UserEntity extends BaseEntity implements IUser {
   @Column({ name: "level", type: 'numeric', nullable: true, default: 1 })
   level?: number;
   
-  @ManyToOne(() => RoleEntity, (role) => role.users)
+  @ManyToOne(() => RoleEntity, (role) => role.users, { cascade: true })
   roleData?: string;
 
-  @OneToOne(() => UserEntity)
+  @OneToOne(() => UserEntity, { cascade: false })
   author?: AuthorEntity;
 
-  @OneToMany(() => CommentEntity, (comment) => comment.userData, { cascade: true })
+  @OneToMany(() => CommentEntity, (comment) => comment.userData, { cascade: false })
   comments?: CommentEntity;
 }

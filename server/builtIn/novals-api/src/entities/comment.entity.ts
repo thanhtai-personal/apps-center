@@ -22,12 +22,12 @@ export class CommentEntity extends BaseEntity implements IComment {
   @Column({ name: "avatar", type: 'varchar', nullable: true })
   avatar?: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.comments, { cascade: false })
+  @ManyToOne(() => UserEntity, (user) => user.comments, { cascade: true })
   userData?: UserEntity;
 
-  @ManyToOne(() => NovalEntity, (noval) => noval.comments, { cascade: false })
-  novalData?: number;
+  @ManyToOne(() => NovalEntity, (noval) => noval.comments, { cascade: true })
+  novalData?: NovalEntity;
 
-  @ManyToOne(() => ChapterEntity, (chapter) => chapter.comments, { cascade: false })
-  chapterData?: number;
+  @ManyToOne(() => ChapterEntity, (chapter) => chapter.comments, { cascade: true })
+  chapterData?: ChapterEntity;
 }

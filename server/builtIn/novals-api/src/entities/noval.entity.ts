@@ -35,15 +35,15 @@ export class NovalEntity extends BaseEntity implements INoval {
   @Column({ name: "chaptersNumber", type: 'numeric', nullable: true, default: 0 })
   chaptersNumber?: number;
   
-  @ManyToOne(() => AuthorEntity, (auth) => auth.novalsData)
+  @ManyToOne(() => AuthorEntity, (auth) => auth.novalsData, { cascade: true })
   authorData?: AuthorEntity;
   
-  @ManyToMany(() => CategoryEntity, (cate) => cate.novalsData, { eager: false })
-  categoriesData?: CategoryEntity[];
+  @ManyToOne(() => AuthorEntity, (auth) => auth.novalsData, { cascade: true })
+  categoryData?: CategoryEntity;
 
-  @OneToMany(() => ChapterEntity, (chapter) => chapter.novalData, { cascade: true })
+  @OneToMany(() => ChapterEntity, (chapter) => chapter.novalData, { cascade: false })
   chaptersData?: ChapterEntity[];
 
-  @OneToMany(() => CommentEntity, (comment) => comment.novalData, { cascade: true })
+  @OneToMany(() => CommentEntity, (comment) => comment.novalData, { cascade: false })
   comments?: CommentEntity;
 }

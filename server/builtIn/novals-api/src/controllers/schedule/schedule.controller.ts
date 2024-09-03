@@ -16,7 +16,7 @@ export class ScheduleController {
     res: Response
   ) {
     try {
-      await this.scheduleService.crawlTangThuVien();
+      this.scheduleService.crawlTangThuVien();
       return res.status(HttpStatus.OK).send(true)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);

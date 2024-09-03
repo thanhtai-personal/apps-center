@@ -15,9 +15,9 @@ export class AuthorEntity extends BaseEntity implements IAuthor {
   @Column({ name: "avatar", type: 'varchar', nullable: true })
   avatar?: string;
 
-  @OneToOne(() => UserEntity)
+  @OneToOne(() => UserEntity, { cascade: true })
   user?: UserEntity;
 
-  @OneToMany(() => NovalEntity, (noval) => noval.authorData, { cascade: true })
+  @OneToMany(() => NovalEntity, (noval) => noval.authorData, { cascade: false })
   novalsData?: NovalEntity[];
 }

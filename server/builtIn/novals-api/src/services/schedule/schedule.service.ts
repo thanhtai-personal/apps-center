@@ -110,12 +110,12 @@ export class ScheduleService {
             existingAuthor = await this.authorRepo.save(existingAuthor);
           }
 
-          let existingCategory = await this.authorRepo.findOne({ where: { name: category } });
+          let existingCategory = await this.categoryRepo.findOne({ where: { name: category } });
           if (!existingCategory) {
-            existingCategory = this.authorRepo.create({
+            existingCategory = this.categoryRepo.create({
               name: category,
             })
-            existingCategory = await this.authorRepo.save(existingAuthor);
+            existingCategory = await this.categoryRepo.save(existingCategory);
           }
 
           const existingNoval = await this.novalRepo.findOne({ where: { name } });
@@ -127,8 +127,7 @@ export class ScheduleService {
                 thumb,
                 referrence: url,
                 authorData: existingAuthor,
-                categoriesData: [existingCategory],
-                // updatedTime: new Date(updatedTime),
+                categoryData: existingCategory,
               });
               await this.novalRepo.save(newNoval);
               console.log("Saved Noval", name)

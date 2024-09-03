@@ -11,6 +11,6 @@ export class RoleEntity extends BaseEntity implements IRole {
   @Column({ name: "description", type: 'varchar', nullable: true })
   description?: string;
   
-  @OneToMany(() => UserEntity, (user) => user.roleData, { cascade: true })
+  @OneToMany(() => UserEntity, (user) => user.roleData, { cascade: false })
   users?: UserEntity[];
 }
