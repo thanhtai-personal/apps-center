@@ -7,6 +7,9 @@ export interface INoval {
   thumb?: string;
   star?: number;
   view?: number;
+  like?: number;
+  follow?: number;
+  suggest?: number;
   categories?: string[];
   categoryIds?: number[];
   tags?: string[];

@@ -100,7 +100,6 @@ export class ScheduleService {
         const $page = cheerio.load(pageHtmlString);
         const novalElements: any = $page("div.book-img-text ul li");
         for (const element of novalElements) {
-          //https://truyen.tangthuvien.vn/doc-truyen/cuu-thien-tien-toc
           const name = $page(element).find('h4 a').text().trim();
           const author = $page(element).find('p.author a.name').text().trim();
           const category = ($page(element).find('p.author a')?.[1] as any)?.children?.[0]?.data;
@@ -157,14 +156,29 @@ export class ScheduleService {
           console.log("Noval is full, skip crawl chapters: ", noval.name);
           continue;
         }
+        //https://truyen.tangthuvien.vn/doc-truyen/tien-nhan-bien-mat-ve-sau
         console.log("CRAWL CHAPTERS OF: ", noval.name);
         const pageHtmlString: string = (await axios.get(noval.referrence!)).data;
         const $noval = cheerio.load(pageHtmlString);
-        const novalId = $noval('meta[name="book_detail"]')?.attr('content')?.trim()
+        const novalId = $noval('meta[name="book_detail"]')?.attr('content')?.trim();
         console.log("novalId", novalId)
         if (!novalId) {
           console.log("Noval id not found")
           continue;
+        }
+        try {
+          const fullIntro = $noval('.book-info-detail .book-intro p').text().trim();
+          noval.originalNovalId = novalId;
+          noval.fullDescription = fullIntro;
+          const bookIntro = $noval('.book-info');
+          const contentElements: any = $noval(bookIntro).find('p em span'); 
+          noval.view = contentElements?.at(1)?.data ? Number(contentElements?.at(1)?.data) : 0;
+          noval.like = contentElements?.at(1)?.data ? Number(contentElements?.at(0)?.data) : 0;
+          noval.follow = contentElements?.at(1)?.data ? Number(contentElements?.at(2)?.data) : 0;
+          noval.suggest = contentElements?.at(1)?.data ? Number(contentElements?.at(3)?.data) : 0;
+          await this.novalRepo.save(noval);
+        } catch (error: any) {
+          console.log("save noval id error", error.message)
         }
         const chapterUrl = `https://truyen.tangthuvien.vn/doc-truyen/page/${novalId}?page=0&limit=99999999999&web=1`
         const chaptersHtmlString: string = (await axios.get(chapterUrl)).data;

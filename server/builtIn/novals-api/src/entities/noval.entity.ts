@@ -29,6 +29,18 @@ export class NovalEntity extends BaseEntity implements INoval {
   @Column({ name: "view", type: 'varchar', nullable: true })
   view?: number;
   
+  @Column({ name: "like", type: 'varchar', nullable: true })
+  like?: number;
+  
+  @Column({ name: "follow", type: 'varchar', nullable: true })
+  follow?: number;
+  
+  @Column({ name: "suggest", type: 'varchar', nullable: true })
+  suggest?: number;
+  
+  @Column({ name: "original_noval_id", type: 'varchar', nullable: true })
+  originalNovalId?: string;
+  
   @Column({ name: "is_full", type: 'boolean', nullable: true, default: false })
   isFull?: boolean;
   
