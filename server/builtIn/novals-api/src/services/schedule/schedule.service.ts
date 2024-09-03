@@ -5,6 +5,14 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
+const waitMs = (msDuration: number) => {
+  return new Promise((resolve, _reject) => {
+    setTimeout(() => {
+      resolve(null);
+    }, msDuration);
+  });
+};
+
 @Injectable()
 export class ScheduleService {
   constructor(
@@ -81,6 +89,7 @@ export class ScheduleService {
       const pageNumberElements: any = $novals("ul.pagination li a");
       const totalPages = parseInt(pageNumberElements[pageNumberElements.length - 2]?.children?.[0]?.data, 10);
       const pageUrls = [];
+      const listNovals = [];
       for (let page = 1; page <= totalPages; page++) {
         pageUrls.push(`${novalsPage}&page=${page}`);
       }
@@ -91,6 +100,7 @@ export class ScheduleService {
         const $page = cheerio.load(pageHtmlString);
         const novalElements: any = $page("div.book-img-text ul li");
         for (const element of novalElements) {
+          //https://truyen.tangthuvien.vn/doc-truyen/cuu-thien-tien-toc
           const name = $page(element).find('h4 a').text().trim();
           const author = $page(element).find('p.author a.name').text().trim();
           const category = ($page(element).find('p.author a')?.[1] as any)?.children?.[0]?.data;
@@ -98,10 +108,8 @@ export class ScheduleService {
           const updatedTime = $page(element).find('p.update span').text().trim();
           const thumb = ($page(element).find('img.lazy')?.[0] as any)?.attribs?.src;
           const url = ($page(element).find('h4 a')?.[0] as any)?.attribs?.href;
-          console.log("===HANDLE Noval", {
-            name, author, category, intro, updatedTime, thumb, url
-          });
-          
+          console.log("===HANDLE Noval", name);
+
           let existingAuthor = await this.authorRepo.findOne({ where: { name: author } });
           if (!existingAuthor) {
             existingAuthor = await this.authorRepo.create({
@@ -118,10 +126,10 @@ export class ScheduleService {
             existingCategory = await this.categoryRepo.save(existingCategory);
           }
 
-          const existingNoval = await this.novalRepo.findOne({ where: { name } });
+          let existingNoval = await this.novalRepo.findOne({ where: { name } });
           if (!existingNoval) {
             try {
-              const newNoval = this.novalRepo.create({
+              existingNoval = this.novalRepo.create({
                 name,
                 shortDescription: intro,
                 thumb,
@@ -129,17 +137,77 @@ export class ScheduleService {
                 authorData: existingAuthor,
                 categoryData: existingCategory,
               });
-              await this.novalRepo.save(newNoval);
+              existingNoval = await this.novalRepo.save(existingNoval);
               console.log("Saved Noval", name)
-            } catch (error) {
-              console.log("FAILED", error)
+            } catch (error: any) {
+              console.log("FAILED", error.message)
             }
           } else {
             console.log("IGNORE - Exist noval name")
           }
+          listNovals.push(existingNoval);
+        }
+      }
+      console.log("SUCCESS - FINISHED CRAWLS NOVALS DATA");
+      console.log("====START CRAWL CHAPTERS");
+
+      for (const noval of listNovals) {
+        if (!noval || !noval.referrence) continue;
+        if (noval.isFull) {
+          console.log("Noval is full, skip crawl chapters: ", noval.name);
+          continue;
+        }
+        console.log("CRAWL CHAPTERS OF: ", noval.name);
+        const pageHtmlString: string = (await axios.get(noval.referrence!)).data;
+        const $noval = cheerio.load(pageHtmlString);
+        const novalId = $noval('meta[name="book_detail"]')?.attr('content')?.trim()
+        console.log("novalId", novalId)
+        if (!novalId) {
+          console.log("Noval id not found")
+          continue;
+        }
+        const chapterUrl = `https://truyen.tangthuvien.vn/doc-truyen/page/${novalId}?page=0&limit=99999999999&web=1`
+        const chaptersHtmlString: string = (await axios.get(chapterUrl)).data;
+        const $chapters = cheerio.load(chaptersHtmlString);
+        const listChapterElements = $chapters("ul li");
+        for (const chapterElementIdx in listChapterElements) {
+          try {
+            const chapterElement = listChapterElements[chapterElementIdx];
+            const chapterUrl2 = $chapters(chapterElement).find("a").attr("href");
+            if (!chapterUrl2) {
+              console.log("No chapter url found")
+              continue;
+            }
+            const chapterName = $chapters(chapterElement).find("a").attr("title");
+            let existingChapter = await this.chapterRepo.findOne({
+              where: {
+                referrence: chapterUrl2,
+                name: chapterName
+              }
+            })
+            if (!existingChapter) {
+              existingChapter = await this.chapterRepo.create({
+                referrence: chapterUrl2,
+                name: chapterName,
+                novalData: noval,
+                chapterIndex: Number(chapterElementIdx) + 1,
+              })
+            }
+
+            const chaptersHtmlString: string = (await axios.get(chapterUrl2)).data;
+            waitMs(500);
+            const $chapterContent = cheerio.load(chaptersHtmlString);
+            const chapterContent = $chapterContent("div.box-chap").text().trim();
+            existingChapter.content = chapterContent;
+            await this.chapterRepo.save(existingChapter);
+            console.log("save chapter success", existingChapter.name);
+          } catch (error: any) {
+            console.log("save chapter error", chapterElementIdx, error.message);
+          }
         }
       }
 
+      console.log("SUCCESS - FINISHED CRAWLS DATA")
     } catch (error) {
       console.error('Error fetching data:', error);
       return [];

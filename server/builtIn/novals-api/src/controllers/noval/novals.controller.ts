@@ -3,12 +3,10 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { NovalsService } from '@/services/novals/novals.service';
 import { Response } from "express"
-import { AuthGuard } from '@/guards/auth.guard';
 import { UpdateNovalDto } from '@/dtos/novals/noval.update.dto';
 import { IPagination, IPagingFilter, INovalFilter, INovalResponse } from "@core-ui/novals-types";
 
 @Controller("/novals")
-@UseGuards(AuthGuard)
 export class NovalsController {
   constructor(private readonly novalService: NovalsService) { }
 

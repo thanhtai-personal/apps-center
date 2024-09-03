@@ -16,11 +16,19 @@ export class NovalsService {
 
 
   async findAll(filter: IPagingFilter & INovalFilter): Promise<IPagination<INovalResponse>> {
-    throw new Error('Error finding noval');
+    const novals = await this.novalsRepository.find();
+    return {
+      data: NovalEntityToNovalResponse.maps(novals),
+      limit: 99999999,
+      offset: 0,
+      total: novals.length,
+    } as IPagination<INovalResponse>;
   }
 
   async findOne(id: number): Promise<INovalResponse | null> {
-    throw new Error('Error finding noval');
+    const noval = await this.novalsRepository.findOne({ where: { id: id } });
+
+    return noval ? NovalEntityToNovalResponse.map(noval) : noval;
   }
 
   async update(novalId: number, updateNovalDto: UpdateNovalDto) {
