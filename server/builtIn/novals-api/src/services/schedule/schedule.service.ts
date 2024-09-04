@@ -45,47 +45,87 @@ export class ScheduleService {
   }
 
   async crawlTTV() {
-    const origin = 'https://truyen.tangthuvien.vn';
-    const novalsPage = 'https://truyen.tangthuvien.vn/tong-hop?ctg=1'
     try {
-      // Fetch the HTML content of the page
-      const htmlString: string = (await axios.get(origin)).data;
-      const $ = cheerio.load(htmlString);
+      await this.ttvClassifies();
 
-      // Select the anchor tags inside the classify list
-      const classifies = $('div.classify-list a');
-      const categories: { name: string; url: string; count?: number; icon: string; }[] = [];
-      const savedCategories: any = []
+      // const { listNovals } = await this.crawlTTVNovals();
+      const listNovals = await this.novalRepo.find();
 
-      // Iterate over each anchor element to extract data
-      for (const element of classifies) {
-        const name = $(element).find('i').text().trim();
-        const url = $(element).attr('href') || '';
-        const icon = $(element).find('.iconfont').text();
-        const countText = $(element).find('b').text().trim();
-        const count = countText ? parseInt(countText, 10) : 0;
-
-        // Push the extracted data into the categories array
-        categories.push({ name, url, count, icon });
-        console.log("===HANDLE CATEGORY", name);
-        try {
-          const findExisting = await this.categoryRepo.findOne({ where: { name: name }, relations: ['categories'] })
-          if (!findExisting) {
-            const savedCategory = await this.categoryRepo.create({
-              name,
-              icon,
-              description: url,
-            })
-            await this.categoryRepo.save(savedCategory)
-            savedCategories.push(savedCategory)
-          }
-        } catch (error) {
-          console.log("===SAVE CATEGORY FAILED", name);
+      console.log("====START CRAWL CHAPTERS");
+      for (const noval of listNovals) {
+        if (!noval || !noval.referrence) continue;
+        if (noval.isFull) {
+          console.log("Noval is full, skip crawl chapters: ", noval.name);
+          continue;
         }
+        console.log("CRAWL CHAPTERS OF: ", noval.name);
+        const pageHtmlString: string = (await axios.get(noval.referrence!)).data;
+        const $noval = cheerio.load(pageHtmlString);
+        const novalId = $noval('meta[name="book_detail"]')?.attr('content')?.trim();
+        console.log("novalId", novalId)
+        if (!novalId) {
+          console.log("Noval id not found")
+          continue;
+        }
+        noval.originalNovalId = novalId;
+        await this.crawlTTVNovalData($noval, noval)
       }
 
-      const novalsgoryHtmlString: string = (await axios.get(novalsPage)).data;
-      const $novals = cheerio.load(novalsgoryHtmlString);
+      console.log("SUCCESS - FINISHED CRAWLS DATA")
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return [];
+    }
+  }
+
+  async ttvClassifies() {
+    const origin = 'https://truyen.tangthuvien.vn';
+    const htmlString: string = (await axios.get(origin)).data;
+    const $ = cheerio.load(htmlString);
+
+    // Select the anchor tags inside the classify list
+    const classifies = $('div.classify-list a');
+    const categories: { name: string; url: string; count?: number; icon: string; }[] = [];
+    const savedCategories: any = []
+
+    // Iterate over each anchor element to extract data
+    for (const element of classifies) {
+      const name = $(element).find('i').text().trim();
+      const url = $(element).attr('href') || '';
+      const icon = $(element).find('.iconfont').text();
+      const countText = $(element).find('b').text().trim();
+      const count = countText ? parseInt(countText, 10) : 0;
+
+      // Push the extracted data into the categories array
+      categories.push({ name, url, count, icon });
+      console.log("===HANDLE CATEGORY", name);
+      try {
+        const findExisting = await this.categoryRepo.findOne({ where: { name: name }, relations: ['categories'] })
+        if (!findExisting) {
+          const savedCategory = await this.categoryRepo.create({
+            name,
+            icon,
+            description: url,
+          })
+          await this.categoryRepo.save(savedCategory)
+          savedCategories.push(savedCategory)
+        }
+      } catch (error) {
+        console.log("===SAVE CATEGORY FAILED", name);
+      }
+    }
+
+    return {
+      savedCategories,
+      categories
+    }
+  }
+
+  async crawlTTVNovals(): Promise<any> {
+    const novalsPage = 'https://truyen.tangthuvien.vn/tong-hop?ctg=1'
+    try {
+      const novalsHtmlString: string = (await axios.get(novalsPage)).data;
+      const $novals = cheerio.load(novalsHtmlString);
       const pageNumberElements: any = $novals("ul.pagination li a");
       const totalPages = parseInt(pageNumberElements[pageNumberElements.length - 2]?.children?.[0]?.data, 10);
       const pageUrls = [];
@@ -125,7 +165,7 @@ export class ScheduleService {
             existingCategory = await this.categoryRepo.save(existingCategory);
           }
 
-          let existingNoval = await this.novalRepo.findOne({ where: { name }, relations: ['authorData', 'categoryData'] });
+          let existingNoval = await this.novalRepo.findOne({ where: { name }, relations: ['authorData', 'categoryData', 'chaptersData'] });
           if (!existingNoval) {
             try {
               existingNoval = this.novalRepo.create({
@@ -148,32 +188,11 @@ export class ScheduleService {
         }
       }
       console.log("SUCCESS - FINISHED CRAWLS NOVALS DATA");
-      console.log("====START CRAWL CHAPTERS");
-
-      for (const noval of listNovals) {
-        if (!noval || !noval.referrence) continue;
-        if (noval.isFull) {
-          console.log("Noval is full, skip crawl chapters: ", noval.name);
-          continue;
-        }
-        //https://truyen.tangthuvien.vn/doc-truyen/tien-nhan-bien-mat-ve-sau
-        console.log("CRAWL CHAPTERS OF: ", noval.name);
-        const pageHtmlString: string = (await axios.get(noval.referrence!)).data;
-        const $noval = cheerio.load(pageHtmlString);
-        const novalId = $noval('meta[name="book_detail"]')?.attr('content')?.trim();
-        console.log("novalId", novalId)
-        if (!novalId) {
-          console.log("Noval id not found")
-          continue;
-        }
-        noval.originalNovalId = novalId;
-        await this.crawlTTVNovalData($noval, noval)
+      return {
+        listNovals
       }
-
-      console.log("SUCCESS - FINISHED CRAWLS DATA")
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return [];
+    } catch (error: any) {
+      console.log("====Get list novals error =====", error.message);
     }
   }
 
@@ -183,14 +202,18 @@ export class ScheduleService {
       noval.fullDescription = fullIntro;
       const bookIntro = $noval('.book-info');
       const contentElements: any = $noval(bookIntro).find('p em span');
-      noval.view = contentElements?.at(1)?.data ? Number(contentElements?.at(1)?.data) : 0;
-      noval.like = contentElements?.at(1)?.data ? Number(contentElements?.at(0)?.data) : 0;
-      noval.follow = contentElements?.at(1)?.data ? Number(contentElements?.at(2)?.data) : 0;
-      noval.suggest = contentElements?.at(1)?.data ? Number(contentElements?.at(3)?.data) : 0;
+      noval.view = Number(contentElements?.at(0)?.children?.[0]?.data);
+      noval.like = Number(contentElements?.at(1)?.children?.[0]?.data)
+      noval.follow = Number(contentElements?.at(2)?.children?.[0]?.data)
+      noval.suggest = Number(contentElements?.at(3)?.children?.[0]?.data)
       await this.novalRepo.save(noval);
+      await this.crawlTTVChapters(noval);
     } catch (error: any) {
       console.log("save noval id error", error.message)
     }
+  }
+
+  async crawlTTVChapters(noval: NovalEntity) {
     const chapterUrl = `https://truyen.tangthuvien.vn/doc-truyen/page/${noval.originalNovalId}?page=0&limit=99999999999&web=1`
     const chaptersHtmlString: string = (await axios.get(chapterUrl)).data;
     const $chapters = cheerio.load(chaptersHtmlString);
@@ -199,6 +222,10 @@ export class ScheduleService {
       try {
         const chapterElement = listChapterElements[chapterElementIdx];
         const chapterUrl2 = $chapters(chapterElement).find("a").attr("href");
+        if (!chapterUrl2) {
+          console.log("No chapter url found")
+          continue;
+        }
         const existingChapter = this.chapterRepo.findOne({
           where: {
             referrence: chapterUrl2,
@@ -206,10 +233,6 @@ export class ScheduleService {
         })
         if (!!existingChapter) {
           console.log("Existed chapter: ", chapterUrl2)
-          continue;
-        }
-        if (!chapterUrl2) {
-          console.log("No chapter url found")
           continue;
         }
         await this.crawlTTVChapterData($chapters, chapterElement, noval, chapterElementIdx, chapterUrl2)
