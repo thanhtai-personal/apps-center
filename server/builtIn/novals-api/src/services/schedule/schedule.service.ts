@@ -48,8 +48,8 @@ export class ScheduleService {
     try {
       await this.ttvClassifies();
 
-      // const { listNovals } = await this.crawlTTVNovals();
-      const listNovals = await this.novalRepo.find();
+      const { listNovals } = await this.crawlTTVNovals(); // use for get new novals
+      // const listNovals = await this.novalRepo.find(); // use for update crawled novals
 
       console.log("====START CRAWL CHAPTERS");
       for (const noval of listNovals) {
