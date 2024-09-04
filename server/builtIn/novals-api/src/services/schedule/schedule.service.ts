@@ -202,10 +202,10 @@ export class ScheduleService {
       noval.fullDescription = fullIntro;
       const bookIntro = $noval('.book-info');
       const contentElements: any = $noval(bookIntro).find('p em span');
-      noval.view = Number(contentElements?.at(0)?.children?.[0]?.data);
-      noval.like = Number(contentElements?.at(1)?.children?.[0]?.data)
-      noval.follow = Number(contentElements?.at(2)?.children?.[0]?.data)
-      noval.suggest = Number(contentElements?.at(3)?.children?.[0]?.data)
+      noval.view = Number(contentElements?.[0]?.children?.[0]?.data);
+      noval.like = Number(contentElements?.[1]?.children?.[0]?.data)
+      noval.follow = Number(contentElements?.[2]?.children?.[0]?.data)
+      noval.suggest = Number(contentElements?.[3].children?.[0]?.data)
       await this.novalRepo.save(noval);
       await this.crawlTTVChapters(noval);
     } catch (error: any) {
