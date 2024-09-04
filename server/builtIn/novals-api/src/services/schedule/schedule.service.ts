@@ -168,7 +168,7 @@ export class ScheduleService {
           let existingNoval = await this.novalRepo.findOne({ where: { name }, relations: ['authorData', 'categoryData', 'chaptersData'] });
           if (!existingNoval) {
             try {
-              existingNoval = this.novalRepo.create({
+              existingNoval = await this.novalRepo.create({
                 name,
                 shortDescription: intro,
                 thumb,
@@ -226,7 +226,7 @@ export class ScheduleService {
           console.log("No chapter url found")
           continue;
         }
-        const existingChapter = this.chapterRepo.findOne({
+        const existingChapter = await this.chapterRepo.findOne({
           where: {
             referrence: chapterUrl2,
           }
