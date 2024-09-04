@@ -191,7 +191,7 @@ export class ScheduleService {
     } catch (error: any) {
       console.log("save noval id error", error.message)
     }
-    const chapterUrl = `https://truyen.tangthuvien.vn/doc-truyen/page/${novalId}?page=0&limit=99999999999&web=1`
+    const chapterUrl = `https://truyen.tangthuvien.vn/doc-truyen/page/${noval.originalNovalId}?page=0&limit=99999999999&web=1`
     const chaptersHtmlString: string = (await axios.get(chapterUrl)).data;
     const $chapters = cheerio.load(chaptersHtmlString);
     const listChapterElements = $chapters("ul li");
@@ -199,6 +199,15 @@ export class ScheduleService {
       try {
         const chapterElement = listChapterElements[chapterElementIdx];
         const chapterUrl2 = $chapters(chapterElement).find("a").attr("href");
+        const existingChapter = this.chapterRepo.findOne({
+          where: {
+            referrence: chapterUrl2,
+          }
+        })
+        if (!!existingChapter) {
+          console.log("Existed chapter: ", chapterUrl2)
+          continue;
+        }
         if (!chapterUrl2) {
           console.log("No chapter url found")
           continue;
@@ -214,31 +223,31 @@ export class ScheduleService {
     , noval: NovalEntity, chapterElementIdx: string | number, chapterUrl2: string,
   ) {
     const chapterName = $chapters(chapterElement).find("a").attr("title");
-        let existingChapter = await this.chapterRepo.findOne({
-          where: {
-            referrence: chapterUrl2,
-            name: chapterName
-          },
-          relations: ['novalData', 'comments']
-        })
-        if (!existingChapter) {
-          existingChapter = await this.chapterRepo.create({
-            referrence: chapterUrl2,
-            name: chapterName,
-            novalData: noval,
-            chapterIndex: Number(chapterElementIdx) + 1,
-          })
-        }
+    let existingChapter = await this.chapterRepo.findOne({
+      where: {
+        referrence: chapterUrl2,
+        name: chapterName
+      },
+      relations: ['novalData', 'comments']
+    })
+    if (!existingChapter) {
+      existingChapter = await this.chapterRepo.create({
+        referrence: chapterUrl2,
+        name: chapterName,
+        novalData: noval,
+        chapterIndex: Number(chapterElementIdx) + 1,
+      })
+    }
 
-        if (!existingChapter.content) {
-          const chaptersHtmlString: string = (await axios.get(chapterUrl2)).data;
-          waitMs(10);
-          const $chapterContent = cheerio.load(chaptersHtmlString);
-          const chapterContent = $chapterContent("div.box-chap").text().trim();
-          existingChapter.content = chapterContent;
-        }
-        await this.chapterRepo.save(existingChapter);
-        console.log("save chapter success", existingChapter.name);
+    if (!existingChapter.content) {
+      const chaptersHtmlString: string = (await axios.get(chapterUrl2)).data;
+      waitMs(10);
+      const $chapterContent = cheerio.load(chaptersHtmlString);
+      const chapterContent = $chapterContent("div.box-chap").text().trim();
+      existingChapter.content = chapterContent;
+    }
+    await this.chapterRepo.save(existingChapter);
+    console.log("save chapter success", existingChapter.name);
   }
 
 }

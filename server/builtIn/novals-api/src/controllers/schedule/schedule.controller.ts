@@ -16,7 +16,7 @@ export class ScheduleController {
     res: Response
   ) {
     try {
-      this.scheduleService.crawlTangThuVien();
+      this.scheduleService.crawlTTV();
       return res.status(HttpStatus.OK).send(true)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
