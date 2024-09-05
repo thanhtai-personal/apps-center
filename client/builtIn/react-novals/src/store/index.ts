@@ -7,6 +7,7 @@ import { CommentStore } from "./CommentStore"
 import { RoleStore } from "./RoleStore"
 import { AuthorStore } from "./AuthorStore"
 import { CategoryStore } from "./CategoryStore"
+import { NotifyStore } from "./NotifyStore"
 
 export class NovalsStore {
   public accountStore: AccountStore;
@@ -17,6 +18,7 @@ export class NovalsStore {
   public roleStore: RoleStore;
   public authorStore: AuthorStore;
   public categoryStore: CategoryStore;
+  public notiStore: NotifyStore;
 
   public constructor() {
     this.accountStore = new AccountStore();
@@ -27,6 +29,7 @@ export class NovalsStore {
     this.roleStore = new RoleStore();
     this.authorStore = new AuthorStore();
     this.categoryStore = new CategoryStore();
+    this.notiStore = new NotifyStore();
   }
 }
 
@@ -42,3 +45,4 @@ export * from "./CommentStore"
 export * from "./RoleStore"
 export * from "./AuthorStore"
 export * from "./CategoryStore"
+export * from "./NotifyStore"

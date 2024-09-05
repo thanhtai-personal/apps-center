@@ -1,16 +1,18 @@
-import { ICommentResponse, IPagination } from "@core-ui/novals-types";
+import { ICommentFilter, ICommentResponse, IPagination, IPagingFilter } from "@core-ui/novals-types";
 import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state";
 
 export interface ICommentStore {
   error?: any;
   comments?: IPagination<ICommentResponse>;
   comment?: ICommentResponse;
+  filterData?: ICommentFilter & IPagingFilter;
 }
 
 export class CommentStore extends BaseStore implements ICommentStore {
   public error?: any = null;
   public comments?: IPagination<ICommentResponse>;
   public comment?: ICommentResponse;
+  public filterData?: ICommentFilter & IPagingFilter;
 
   constructor() {
     super();
@@ -18,6 +20,7 @@ export class CommentStore extends BaseStore implements ICommentStore {
       error: observable,
       comments: observable,
       comment: observable,
+      filterData: observable,
     });
   }
 }

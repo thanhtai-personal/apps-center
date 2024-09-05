@@ -1,16 +1,18 @@
-import { IUserResponse, IPagination } from "@core-ui/novals-types";
+import { IUserFilter, IUserResponse, IPagination, IPagingFilter } from "@core-ui/novals-types";
 import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state";
 
 export interface IUserStore {
   error?: any;
   users?: IPagination<IUserResponse>;
   user?: IUserResponse;
+  filterData?: IUserFilter & IPagingFilter;
 }
 
 export class UserStore extends BaseStore implements IUserStore {
   public error?: any = null;
   public users?: IPagination<IUserResponse>;
   public user?: IUserResponse;
+  public filterData?: IUserFilter & IPagingFilter;
 
   constructor() {
     super();
@@ -18,6 +20,7 @@ export class UserStore extends BaseStore implements IUserStore {
       error: observable,
       users: observable,
       user: observable,
+      filterData: observable,
     });
   }
 }
