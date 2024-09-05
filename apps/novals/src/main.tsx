@@ -29,4 +29,5 @@ reactApp.addProvider(App);
 
 // Render your app into root element here!
 disabledStrictMode();
+console.log("APPP START-----------")
 reactApp.start();

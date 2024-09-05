@@ -1,6 +1,5 @@
 import { ReactNode, useEffect } from "react";
 import { CreateApiConfig, NovalsSDK } from "@core-sdk/novals"
-import { useDeviceDetection } from "../hooks";
 
 export const NovalsProvider = ({ children, config }: {
   children: ReactNode; config: {
@@ -8,11 +7,11 @@ export const NovalsProvider = ({ children, config }: {
   }
 }) => {
 
-  const { isIOS } = useDeviceDetection();
-
   useEffect(() => {
     NovalsSDK.getInstance(config.apiConfig)
   }, [])
 
-  return children
+  return <>
+    {children}
+  </>
 }

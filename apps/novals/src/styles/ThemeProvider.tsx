@@ -1,14 +1,15 @@
 import { MuiActionType, MuiContext, MuiProvider } from "@core-ui/react-mui-core";
 import { ReactNode, useEffect } from "react"
 import { appTheme } from "./appTheme";
+import { observer } from "@core-ui/react-mobx-state";
+import { useStore } from "../store";
 
-
-
-export const ThemeWrapper = ({ children }: {
+export const ThemeWrapper = observer(({ children }: {
   children: ReactNode;
 }) => {
-
+  const { uiStore } = useStore();
   const themeDispatcher = MuiContext.useDataDispatchContext();
+  
 
   useEffect(() => {
     themeDispatcher && themeDispatcher({
@@ -24,12 +25,13 @@ export const ThemeWrapper = ({ children }: {
         themeKey: "appTheme",
       }
     })
-  }, [])
+    uiStore.colors = appTheme.colors;
+  }, [appTheme])
 
   return children
-}
+})
 
-export const ThemeProvider = ({ children }: {
+export const ThemeProvider = observer(({ children }: {
   children: ReactNode;
 }) => {
 
@@ -38,4 +40,4 @@ export const ThemeProvider = ({ children }: {
       {children}
     </ThemeWrapper>
   </MuiProvider>
-}
+})

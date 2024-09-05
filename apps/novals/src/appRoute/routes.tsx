@@ -27,6 +27,10 @@ export const router: IRouter[] = [
     path: '/'
   },
   {
+    element: makeSuspense(Home),
+    path: '/home'
+  },
+  {
     path: "*",
     element: makeSuspense(NotFoundPage),
   },
