@@ -36,7 +36,7 @@ export class ChapterEntity extends BaseEntity implements IChapter {
   @Column({ name: "chapter_index", type: 'numeric', nullable: true, default: 0 })
   chapterIndex?: number;
 
-  @ManyToOne(() => NovalEntity, (noval) => noval.chaptersData, { cascade: true })
+  @ManyToOne(() => NovalEntity, (noval) => noval.chaptersData, { cascade: false })
   novalData?: NovalEntity;
 
   @OneToMany(() => CommentEntity, (comment) => comment.chapterData, { cascade: false })

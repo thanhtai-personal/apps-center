@@ -1,7 +1,7 @@
 import { AuthorEntity, CategoryEntity, ChapterEntity, CommentEntity, NovalEntity, UserEntity } from '@/entities';
 import { InjectRepository, Repository } from '@core-api/nest-typeorm-postgres';
 import { Injectable } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
+// import { Cron, CronExpression } from '@nestjs/schedule';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
@@ -14,7 +14,7 @@ const waitMs = (msDuration: number) => {
 };
 
 @Injectable()
-export class ScheduleService {
+export class TTVCrawlerService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepo: Repository<UserEntity>,
@@ -38,27 +38,32 @@ export class ScheduleService {
 
   async crawlData() {
     try {
-      await this.crawlTTV()
+      await this.crawlTTV(true)
     } catch (error) {
       console.error('Error crawl data:', error);
     }
   }
 
-  async crawlTTV() {
+  async crawlTTV(isUpdateOnly: boolean = false) {
     try {
-      await this.ttvClassifies();
+      if (isUpdateOnly) {
+        console.log("========Crawl update only=====");
+      }
+      if (!isUpdateOnly) await this.ttvClassifies();
 
-      const { listNovals } = await this.crawlTTVNovals(); // use for get new novals
-      // const listNovals = await this.novalRepo.find(); // use for update crawled novals
+      let listNovals = await this.novalRepo.find({ relations: ['authorData', 'categoryData', 'chaptersData'] });
+      if (!isUpdateOnly) {
+        listNovals = (await this.crawlTTVNovals()).listNovals
+      }
 
-      console.log("====START CRAWL CHAPTERS");
+      console.log("====START CRAWL NOVALS DETAIL");
       for (const noval of listNovals) {
         if (!noval || !noval.referrence) continue;
         if (noval.isFull) {
           console.log("Noval is full, skip crawl chapters: ", noval.name);
           continue;
         }
-        console.log("CRAWL CHAPTERS OF: ", noval.name);
+        console.log("Current noval is: ", noval.name);
         const pageHtmlString: string = (await axios.get(noval.referrence!)).data;
         const $noval = cheerio.load(pageHtmlString);
         const novalId = $noval('meta[name="book_detail"]')?.attr('content')?.trim();
@@ -218,7 +223,20 @@ export class ScheduleService {
     const chaptersHtmlString: string = (await axios.get(chapterUrl)).data;
     const $chapters = cheerio.load(chaptersHtmlString);
     const listChapterElements = $chapters("ul li");
+    let currentIndex = 0;
+    console.log("noval.chaptersData", noval.chaptersData)
+    if ((noval.chaptersData?.length || 0) > 0) {
+      console.log("Chapters already exist for Noval", noval.name);
+      if (listChapterElements.length <= (noval.chaptersData?.length || 0)) {
+        console.log("All chapters existed");
+        return;
+      } else {
+        currentIndex = noval.chaptersData?.length || 0;
+      }
+    }
+    console.log("currentIndex", currentIndex)
     for (const chapterElementIdx in listChapterElements) {
+      if (Number(chapterElementIdx) < currentIndex) continue;
       try {
         const chapterElement = listChapterElements[chapterElementIdx];
         const chapterUrl2 = $chapters(chapterElement).find("a").attr("href");
@@ -262,12 +280,16 @@ export class ScheduleService {
       })
     }
 
-    if (!existingChapter.content) {
+    if (!existingChapter.content && chapterUrl2) {
       const chaptersHtmlString: string = (await axios.get(chapterUrl2)).data;
       waitMs(10);
       const $chapterContent = cheerio.load(chaptersHtmlString);
       const chapterContent = $chapterContent("div.box-chap").text().trim();
       existingChapter.content = chapterContent;
+    }
+    if (!existingChapter.novalData?.id) {
+      console.log("Failed. Update chapter without noval id", chapterUrl2);
+      return;
     }
     await this.chapterRepo.save(existingChapter);
     console.log("save chapter success", existingChapter.name);

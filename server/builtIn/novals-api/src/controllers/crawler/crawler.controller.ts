@@ -1,22 +1,23 @@
 
 
-import {  Controller, Get, HttpException, HttpStatus, Res, UseGuards } from '@nestjs/common';
-import { ScheduleService } from '@/services/schedule/schedule.service';
+import {  Controller, Get, HttpException, HttpStatus, Param, Res, UseGuards } from '@nestjs/common';
+import { TTVCrawlerService } from '@/services/ttvCrawler/ttvCrawler.service';
 import { Response } from "express"
 // import { AuthGuard } from '@/guards/auth.guard';
 
 @Controller("/crawler")
 // @UseGuards(AuthGuard)
-export class ScheduleController {
-  constructor(private readonly scheduleService: ScheduleService) { }
+export class CrawlerController {
+  constructor(private readonly ttvCrawlerService: TTVCrawlerService) { }
 
   @Get("/tangthuvien")
   async crawnTangThuVien(
+    @Param("isUpdateOnly") isUpdateOnly: boolean,
     @Res()
     res: Response
   ) {
     try {
-      this.scheduleService.crawlTTV();
+      this.ttvCrawlerService.crawlTTV(!isUpdateOnly);
       return res.status(HttpStatus.OK).send(true)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -29,7 +30,7 @@ export class ScheduleController {
     res: Response
   ) {
     try {
-      await this.scheduleService.crawlData();
+      await this.ttvCrawlerService.crawlData();
       return res.status(HttpStatus.OK).send(true)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);

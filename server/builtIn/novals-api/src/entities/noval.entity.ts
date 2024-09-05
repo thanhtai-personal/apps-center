@@ -57,5 +57,5 @@ export class NovalEntity extends BaseEntity implements INoval {
   chaptersData?: ChapterEntity[];
 
   @OneToMany(() => CommentEntity, (comment) => comment.novalData, { cascade: false })
-  comments?: CommentEntity;
+  comments?: CommentEntity[];
 }

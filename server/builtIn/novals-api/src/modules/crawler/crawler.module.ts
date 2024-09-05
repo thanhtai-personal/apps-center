@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ScheduleService } from '@/services/schedule/schedule.service';
 import { AuthorEntity, CategoryEntity, ChapterEntity, CommentEntity, NovalEntity, UserEntity } from '@/entities';
 import { TypeOrmModule } from '@core-api/nest-typeorm-postgres';
-import { ScheduleController } from "@/controllers/schedule/schedule.controller";
+import { CrawlerController } from "@/controllers/crawler/crawler.controller";
 import { ScheduleModule } from "@nestjs/schedule";
+import { TTVCrawlerService } from "@/services/ttvCrawler/ttvCrawler.service";
 
 @Module({
   imports: [
@@ -12,8 +12,8 @@ import { ScheduleModule } from "@nestjs/schedule";
     ]),
     ScheduleModule.forRoot(),
   ],
-  providers: [ScheduleService],
-  controllers: [ScheduleController],
-  exports: [ScheduleService],
+  providers: [TTVCrawlerService],
+  controllers: [CrawlerController],
+  exports: [TTVCrawlerService],
 })
-export class AppScheduleModule { }
+export class CrawlerModule { }

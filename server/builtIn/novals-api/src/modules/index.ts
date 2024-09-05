@@ -7,7 +7,7 @@ import { AuthorsModule } from "./author/authors.module";
 import { CommentsModule } from "./comment/comments.module";
 import { ChaptersModule } from "./chapter/chapters.module";
 import { CategoriesModule } from "./category/categories.module";
-import { AppScheduleModule } from "./schedule/schedule.module";
+import { CrawlerModule } from "./crawler/crawler.module";
 
 export const allModule = [
   DbModule,
@@ -19,5 +19,5 @@ export const allModule = [
   CommentsModule,
   ChaptersModule,
   CategoriesModule,
-  AppScheduleModule
+  CrawlerModule
 ]
