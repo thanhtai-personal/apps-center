@@ -1,8 +1,8 @@
 import { ReactNode, useEffect } from "react";
-import { CreateApiConfig, NovalSDK } from "@core-sdk/novals"
+import { CreateApiConfig, NovalsSDK } from "@core-sdk/novals"
 import { useDeviceDetection } from "../hooks";
 
-export const GoatTapProvider = ({ children, config }: {
+export const NovalsProvider = ({ children, config }: {
   children: ReactNode; config: {
     apiConfig: CreateApiConfig;
   }
@@ -11,7 +11,7 @@ export const GoatTapProvider = ({ children, config }: {
   const { isIOS } = useDeviceDetection();
 
   useEffect(() => {
-    NovalSDK.getInstance(config.apiConfig)
+    NovalsSDK.getInstance(config.apiConfig)
   }, [])
 
   return children

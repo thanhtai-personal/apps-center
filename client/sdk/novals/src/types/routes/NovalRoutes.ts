@@ -1,54 +1,54 @@
 import { BaseRoutes, Pagination, IResponse } from "@core-sdk/core";
 import {
-  IUserCreation, IUserFilter
-  , IUserResponse, IUserUpdating,
+  INovalCreation, INovalFilter
+  , INovalResponse, INovalUpdating,
 } from "@core-ui/novals-types";
 
-export interface UserRoutes extends BaseRoutes {
-  "/users": {
+export interface NovalRoutes extends BaseRoutes {
+  "/novals": {
     get: {
       request: {
-        query: IUserFilter;
+        query: INovalFilter;
       };
       responses: {
-        "200": IResponse<Pagination<IUserResponse>>;
+        "200": IResponse<Pagination<INovalResponse>>;
       };
     };
     post: {
       request: {
-        query: IUserCreation;
+        query: INovalCreation;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<INovalResponse>;
       };
     };
   };
-  "/users/{userId}": {
+  "/novals/{novalId}": {
     get: {
       request: {
         params: {
-          userId: string | number;
+          novalId: string | number;
         };
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<INovalResponse>;
       };
     };
     put: {
       request: {
         params: {
-          userId: string | number;
+          novalId: string | number;
         };
-        body: IUserUpdating;
+        body: INovalUpdating;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<INovalResponse>;
       };
     };
     delete: {
       request: {
         params: {
-          userId: string | number;
+          novalId: string | number;
         };
       };
       responses: {
@@ -58,12 +58,12 @@ export interface UserRoutes extends BaseRoutes {
     patch: {
       request: {
         params: {
-          userId: string | number;
+          novalId: string | number;
         };
-        body: Partial<IUserUpdating>;
+        body: Partial<INovalUpdating>;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<INovalResponse>;
       };
     };
   };

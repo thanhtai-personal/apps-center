@@ -3,7 +3,7 @@ import { IAbstractService, IPagingFilter, IResponse, Pagination } from "@core-sd
 import {
   UserRoutes,
 } from "../types";
-import { IPagination, IUserCreation, IUserFilter, IUserResponse, IUserUpdating } from "@core-ui/goat-tap-types";
+import { IUserCreation, IUserFilter, IUserResponse, IUserUpdating } from "@core-ui/novals-types";
 
 export class UserService
   extends BaseService<UserRoutes>
@@ -30,24 +30,6 @@ export class UserService
     updateData: Partial<IUserUpdating>
   ): Promise<APIResult<IResponse<IUserResponse>>> {
     return this.api.patch("/users/{userId}", { userId }, updateData) as Promise<
-      APIResult<IResponse<IUserResponse>>
-    >;
-  }
-
-  updatePoints(
-    userId: string | number,
-    points: number,
-  ): Promise<APIResult<IResponse<IUserResponse>>> {
-    return this.api.patch("/users/{userId}/points", { userId }, { points: Number(points) }) as Promise<
-      APIResult<IResponse<IUserResponse>>
-    >;
-  }
-  
-  updateEnergy(
-    userId: string | number,
-    energy: number,
-  ): Promise<APIResult<IResponse<IUserResponse>>> {
-    return this.api.patch("/users/{userId}/energy", { userId }, { energy }) as Promise<
       APIResult<IResponse<IUserResponse>>
     >;
   }

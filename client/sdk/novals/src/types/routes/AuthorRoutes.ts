@@ -1,54 +1,54 @@
 import { BaseRoutes, Pagination, IResponse } from "@core-sdk/core";
 import {
-  IUserCreation, IUserFilter
-  , IUserResponse, IUserUpdating,
+  IAuthorCreation, IAuthorFilter
+  , IAuthorResponse, IAuthorUpdating,
 } from "@core-ui/novals-types";
 
-export interface UserRoutes extends BaseRoutes {
-  "/users": {
+export interface AuthorRoutes extends BaseRoutes {
+  "/authors": {
     get: {
       request: {
-        query: IUserFilter;
+        query: IAuthorFilter;
       };
       responses: {
-        "200": IResponse<Pagination<IUserResponse>>;
+        "200": IResponse<Pagination<IAuthorResponse>>;
       };
     };
     post: {
       request: {
-        query: IUserCreation;
+        query: IAuthorCreation;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IAuthorResponse>;
       };
     };
   };
-  "/users/{userId}": {
+  "/authors/{authorId}": {
     get: {
       request: {
         params: {
-          userId: string | number;
+          authorId: string | number;
         };
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IAuthorResponse>;
       };
     };
     put: {
       request: {
         params: {
-          userId: string | number;
+          authorId: string | number;
         };
-        body: IUserUpdating;
+        body: IAuthorUpdating;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IAuthorResponse>;
       };
     };
     delete: {
       request: {
         params: {
-          userId: string | number;
+          authorId: string | number;
         };
       };
       responses: {
@@ -58,12 +58,12 @@ export interface UserRoutes extends BaseRoutes {
     patch: {
       request: {
         params: {
-          userId: string | number;
+          authorId: string | number;
         };
-        body: Partial<IUserUpdating>;
+        body: Partial<IAuthorUpdating>;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IAuthorResponse>;
       };
     };
   };

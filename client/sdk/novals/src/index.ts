@@ -1,6 +1,5 @@
 import { BaseSDK, IPagingFilter, IResponse, Pagination as PaginationCore } from "@core-sdk/core";
 import {
-  AuthService,
   UserService,
 } from "./services";
 import {
@@ -12,23 +11,20 @@ import {
   IUserCreation,
   IUserUpdating,
   IUserFilter,
-  IAuthResponse,
 } from "@core-ui/novals-types"
 
-export class GoatTapSDK extends BaseSDK {
-  private static instance: GoatTapSDK | null = null;
+export class NovalsSDK extends BaseSDK {
+  private static instance: NovalsSDK | null = null;
   private userService: UserService;
-  private authService: AuthService;
-
 
   private constructor(config: CreateApiConfig) {
     super(config);
-    this.authService = new AuthService(this.api);
+    this.userService = new UserService(this.api);
   }
 
   public static getInstance = (config?: CreateApiConfig) => {
     if (!this.instance) {
-      this.instance = new GoatTapSDK(config || { apiEndpoint: "no-api-end-point" })
+      this.instance = new NovalsSDK(config || { apiEndpoint: "no-api-end-point" })
     }
     return this.instance;
   }
@@ -44,30 +40,9 @@ export class GoatTapSDK extends BaseSDK {
       >(this.userService),
     };
   }
-  async login(telegramId: string | number, referralParams?: string) {
-    try {
-      const rs: APIResult<IResponse<IAuthResponse>> = await this.authService.login({
-        telegramId,
-        referralParams
-      });
-      return this.handleApiResult(rs);
-    } catch (error) {
-      return this.handleErrorResult?.(error);
-    }
-  }
-
-  async getAuth() {
-    try {
-      const rs: APIResult<IResponse<IAuthResponse>> = await this.authService.auth();
-      return this.handleApiResult(rs);
-    } catch (error) {
-      return this.handleErrorResult?.(error);
-    }
-  }
-
 }
 
 export type Pagination<T> = PaginationCore<T>;
 
 export * from "./types";
-export default GoatTapSDK;
+export default NovalsSDK;

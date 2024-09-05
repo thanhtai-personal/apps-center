@@ -1,54 +1,54 @@
 import { BaseRoutes, Pagination, IResponse } from "@core-sdk/core";
 import {
-  IUserCreation, IUserFilter
-  , IUserResponse, IUserUpdating,
+  IChapterCreation, IChapterFilter
+  , IChapterResponse, IChapterUpdating,
 } from "@core-ui/novals-types";
 
-export interface UserRoutes extends BaseRoutes {
-  "/users": {
+export interface ChapterRoutes extends BaseRoutes {
+  "/chapters": {
     get: {
       request: {
-        query: IUserFilter;
+        query: IChapterFilter;
       };
       responses: {
-        "200": IResponse<Pagination<IUserResponse>>;
+        "200": IResponse<Pagination<IChapterResponse>>;
       };
     };
     post: {
       request: {
-        query: IUserCreation;
+        query: IChapterCreation;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IChapterResponse>;
       };
     };
   };
-  "/users/{userId}": {
+  "/chapters/{chapterId}": {
     get: {
       request: {
         params: {
-          userId: string | number;
+          chapterId: string | number;
         };
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IChapterResponse>;
       };
     };
     put: {
       request: {
         params: {
-          userId: string | number;
+          chapterId: string | number;
         };
-        body: IUserUpdating;
+        body: IChapterUpdating;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IChapterResponse>;
       };
     };
     delete: {
       request: {
         params: {
-          userId: string | number;
+          chapterId: string | number;
         };
       };
       responses: {
@@ -58,12 +58,12 @@ export interface UserRoutes extends BaseRoutes {
     patch: {
       request: {
         params: {
-          userId: string | number;
+          chapterId: string | number;
         };
-        body: Partial<IUserUpdating>;
+        body: Partial<IChapterUpdating>;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IChapterResponse>;
       };
     };
   };

@@ -1,54 +1,54 @@
 import { BaseRoutes, Pagination, IResponse } from "@core-sdk/core";
 import {
-  IUserCreation, IUserFilter
-  , IUserResponse, IUserUpdating,
+  ICommentCreation, ICommentFilter
+  , ICommentResponse, ICommentUpdating,
 } from "@core-ui/novals-types";
 
-export interface UserRoutes extends BaseRoutes {
-  "/users": {
+export interface CommentRoutes extends BaseRoutes {
+  "/comments": {
     get: {
       request: {
-        query: IUserFilter;
+        query: ICommentFilter;
       };
       responses: {
-        "200": IResponse<Pagination<IUserResponse>>;
+        "200": IResponse<Pagination<ICommentResponse>>;
       };
     };
     post: {
       request: {
-        query: IUserCreation;
+        query: ICommentCreation;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<ICommentResponse>;
       };
     };
   };
-  "/users/{userId}": {
+  "/comments/{commentId}": {
     get: {
       request: {
         params: {
-          userId: string | number;
+          commentId: string | number;
         };
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<ICommentResponse>;
       };
     };
     put: {
       request: {
         params: {
-          userId: string | number;
+          commentId: string | number;
         };
-        body: IUserUpdating;
+        body: ICommentUpdating;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<ICommentResponse>;
       };
     };
     delete: {
       request: {
         params: {
-          userId: string | number;
+          commentId: string | number;
         };
       };
       responses: {
@@ -58,12 +58,12 @@ export interface UserRoutes extends BaseRoutes {
     patch: {
       request: {
         params: {
-          userId: string | number;
+          commentId: string | number;
         };
-        body: Partial<IUserUpdating>;
+        body: Partial<ICommentUpdating>;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<ICommentResponse>;
       };
     };
   };

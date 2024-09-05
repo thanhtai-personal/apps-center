@@ -224,7 +224,6 @@ export class TTVCrawlerService {
     const $chapters = cheerio.load(chaptersHtmlString);
     const listChapterElements = $chapters("ul li");
     let currentIndex = 0;
-    console.log("noval.chaptersData", noval.chaptersData)
     if ((noval.chaptersData?.length || 0) > 0) {
       console.log("Chapters already exist for Noval", noval.name);
       if (listChapterElements.length <= (noval.chaptersData?.length || 0)) {

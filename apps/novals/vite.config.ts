@@ -9,7 +9,7 @@ import basicSsl from '@vitejs/plugin-basic-ssl'
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
+export default defineConfig(({ command }) => {
   const config = {
     plugins: [
       react(),
@@ -20,11 +20,6 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       outDir: "dist",
       chunkSizeWarningLimit: 10240,
       sourcemap: true,
-    },
-    server: {
-      hmr: {
-        host: '172.27.80.1',
-      },
     },
     css: {
       postcss: {

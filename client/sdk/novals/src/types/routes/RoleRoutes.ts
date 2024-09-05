@@ -1,54 +1,54 @@
 import { BaseRoutes, Pagination, IResponse } from "@core-sdk/core";
 import {
-  IUserCreation, IUserFilter
-  , IUserResponse, IUserUpdating,
+  IRoleCreation, IRoleFilter
+  , IRoleResponse, IRoleUpdating,
 } from "@core-ui/novals-types";
 
-export interface UserRoutes extends BaseRoutes {
-  "/users": {
+export interface RoleRoutes extends BaseRoutes {
+  "/roles": {
     get: {
       request: {
-        query: IUserFilter;
+        query: IRoleFilter;
       };
       responses: {
-        "200": IResponse<Pagination<IUserResponse>>;
+        "200": IResponse<Pagination<IRoleResponse>>;
       };
     };
     post: {
       request: {
-        query: IUserCreation;
+        query: IRoleCreation;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IRoleResponse>;
       };
     };
   };
-  "/users/{userId}": {
+  "/roles/{roleId}": {
     get: {
       request: {
         params: {
-          userId: string | number;
+          roleId: string | number;
         };
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IRoleResponse>;
       };
     };
     put: {
       request: {
         params: {
-          userId: string | number;
+          roleId: string | number;
         };
-        body: IUserUpdating;
+        body: IRoleUpdating;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IRoleResponse>;
       };
     };
     delete: {
       request: {
         params: {
-          userId: string | number;
+          roleId: string | number;
         };
       };
       responses: {
@@ -58,12 +58,12 @@ export interface UserRoutes extends BaseRoutes {
     patch: {
       request: {
         params: {
-          userId: string | number;
+          roleId: string | number;
         };
-        body: Partial<IUserUpdating>;
+        body: Partial<IRoleUpdating>;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IResponse<IRoleResponse>;
       };
     };
   };
