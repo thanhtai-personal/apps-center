@@ -477,7 +477,7 @@ a:hover {
 }
 
 /* button:not('.box') { breaking for some reason in codepen? */
-button {
+.gsap-button {
   display: inline-block;
   outline: none;
   padding: 8px 14px;

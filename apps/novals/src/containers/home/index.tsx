@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <PageLayout>
       <Flex fullWidth>
-        <Text color={uiStore.colors.black}>
+        <Text color={uiStore.colors.white}>
         </Text>
       </Flex>
     </PageLayout>

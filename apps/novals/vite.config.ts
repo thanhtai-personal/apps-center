@@ -61,9 +61,9 @@ export default defineConfig(({ command }) => {
     }
   }
 
-  if (command === "serve") {
-    config.plugins.push(basicSsl({}))
-  }
+  // if (command === "serve") {
+  //   config.plugins.push(basicSsl({}))
+  // }
 
   return config;
 })

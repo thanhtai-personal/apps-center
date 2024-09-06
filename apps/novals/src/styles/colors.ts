@@ -10,4 +10,5 @@ export const Colors = {
   link: "#3493FE",
   dangerColor: "#ED4E1C",
   appBgColor: "#000000",
+  background1: "rgba(255,255,255, 0.05)",
 };

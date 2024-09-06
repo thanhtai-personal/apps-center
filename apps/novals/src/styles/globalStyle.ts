@@ -10,6 +10,13 @@ export const useGlobalStyles = makeStyles((_theme: AppTheme) =>
         textDecoration: "underline"
       }
     },
+    hoverTransition: {
+      cursor: "pointer",
+      transitionDuration: 250,
+      "&:hover": {
+        transform: "translateY(-5%)"
+      }
+    },
     borderTopBox: {
       boxShadow: "0px -4px 0px #305AE8",
       borderRadius: "24px"

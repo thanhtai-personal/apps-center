@@ -45,3 +45,4 @@ export const MOBILE_SIZE = 1028 //390
 export const HEADER_HEIGHT = 78
 export const MIN_CONTENT_HEIGHT = "calc(100vh - 80px)";
 export const BOTTOM_MENU_HEIGHT = 80
+export const PAGE_MAX_WIDTH = 1500

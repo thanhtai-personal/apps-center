@@ -28,8 +28,10 @@ import { SlideLeftAppear as SlideLeftAppearComponent } from "./SlideLeftAppear";
 import { ZoomInAppear as ZoomInAppearComponent } from "./ZoomInAppear";
 import { ZoomOutAppear as ZoomOutAppearComponent } from "./ZoomOutAppear";
 import { ExpandDown as ExpandDownComponent } from "./ExpandDown";
+import { RotateFromLeft as RotateFromLeftComponent } from "./RotateFromLeft";
 import { ExpandUp as ExpandUpComponent } from "./ExpandUp";
 import { Tornado as TornadoComponent } from "./Tornado";
+import { FadeAppear as FadeAppearComponent } from "./FadeAppear";
 import { Wind as WindComponent } from "./Wind";
 import { ASecondBounce as ASecondBounceComponent } from "./ASecondBounce";
 import FireflyNightBgComponent from "./FireflyNightBg"
@@ -67,7 +69,9 @@ export namespace Animates {
   export const ZoomOutAppear = ZoomOutAppearComponent
   export const ExpandDown = ExpandDownComponent
   export const ExpandUp = ExpandUpComponent
+  export const RotateFromLeft = RotateFromLeftComponent
   export const Tornado = TornadoComponent
+  export const FadeAppear = FadeAppearComponent
   export const Wind = WindComponent
   export const ASecondBounce = ASecondBounceComponent
   export const FireflyNightBg = FireflyNightBgComponent

@@ -5,8 +5,9 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --build && npm run copy:css",
+    "build": "tsc --build && npm run build:tailwindcss && npm run copy:css",
     "copy:css": "copyfiles -u 1 src/**/*.css dist",
+    "build:tailwindcss": "tailwindcss build src/tailwind.css -o ./dist/styles.css",
     "docs": "typedoc --out docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
