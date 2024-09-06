@@ -5,7 +5,6 @@ import { libInjectCss } from "vite-plugin-lib-inject-css";
 import autoprefixer from 'autoprefixer';
 import tailwindcss from 'tailwindcss';
 import svgr from "vite-plugin-svgr"
-import basicSsl from '@vitejs/plugin-basic-ssl'
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 
 // https://vitejs.dev/config/

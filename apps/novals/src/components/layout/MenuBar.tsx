@@ -35,17 +35,17 @@ export const MenuBar = observer(() => {
           <Flex p={1} centerY cursorPointer
             className={clsx(globalStyles.hoverUnderLine, globalStyles.hoverTransition)}
           >
-            <Text ml={1} className={globalStyles.textGeo14}>Bảng xếp hạng</Text>
+            <Text ml={1} className={globalStyles.textCharka14}>Bảng xếp hạng</Text>
           </Flex>
           <Flex p={1} centerY cursorPointer
             className={clsx(globalStyles.hoverUnderLine, globalStyles.hoverTransition)}
           >
-            <Text ml={1} className={globalStyles.textGeo14}>Bộ lọc</Text>
+            <Text ml={1} className={globalStyles.textCharka14}>Bộ lọc</Text>
           </Flex>
           <Flex p={1} centerY cursorPointer
             className={clsx(globalStyles.hoverUnderLine, globalStyles.hoverTransition)}
           >
-            <Text ml={1} className={globalStyles.textGeo14}>Reviews</Text>
+            <Text ml={1} className={globalStyles.textCharka14}>Reviews</Text>
           </Flex>
         </Flex>
 

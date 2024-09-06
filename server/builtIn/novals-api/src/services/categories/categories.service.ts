@@ -14,13 +14,20 @@ export class CategoriesService {
     private categoryRepos: Repository<CategoryEntity>,
   ) { }
 
-
   async findAll(filter: IPagingFilter & ICategoryFilter): Promise<IPagination<ICategoryResponse>> {
-    throw new Error('Error finding category');
+    const categories = await this.categoryRepos.find();
+    return {
+      data: CategoryEntityToCategoryResponse.maps(categories),
+      limit: 99999999,
+      offset: 0,
+      total: categories.length,
+    } as IPagination<ICategoryResponse>;
   }
 
   async findOne(id: number): Promise<ICategoryResponse | null> {
-    throw new Error('Error finding category');
+    const chapter = await this.categoryRepos.findOne({ where: { id: id } });
+
+    return chapter ? CategoryEntityToCategoryResponse.map(chapter) : chapter;
   }
 
   async update(categoryId: number, updateCategoryDto: UpdateCategoryDto) {

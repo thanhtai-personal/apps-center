@@ -14,13 +14,20 @@ export class AuthorsService {
     private authorsRepository: Repository<AuthorEntity>,
   ) { }
 
-
   async findAll(filter: IPagingFilter & IAuthorFilter): Promise<IPagination<IAuthorResponse>> {
-    throw new Error('Error finding author');
+    const authors = await this.authorsRepository.find();
+    return {
+      data: AuthorEntityToAuthorResponse.maps(authors),
+      limit: 99999999,
+      offset: 0,
+      total: authors.length,
+    } as IPagination<IAuthorResponse>;
   }
 
   async findOne(id: number): Promise<IAuthorResponse | null> {
-    throw new Error('Error finding author');
+    const author = await this.authorsRepository.findOne({ where: { id: id } });
+
+    return author ? AuthorEntityToAuthorResponse.map(author) : author;
   }
 
   async update(authorId: number, updateAuthorDto: UpdateAuthorDto) {

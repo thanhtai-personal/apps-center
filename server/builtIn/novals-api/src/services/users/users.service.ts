@@ -14,13 +14,20 @@ export class UsersService {
     private usersRepository: Repository<UserEntity>,
   ) { }
 
-
   async findAll(filter: IPagingFilter & IUserFilter): Promise<IPagination<IUserResponse>> {
-    throw new Error('Error finding user');
+    const users = await this.usersRepository.find();
+    return {
+      data: UserEntityToUserResponse.maps(users),
+      limit: 99999999,
+      offset: 0,
+      total: users.length,
+    } as IPagination<IUserResponse>;
   }
 
   async findOne(id: number): Promise<IUserResponse | null> {
-    throw new Error('Error finding user');
+    const user = await this.usersRepository.findOne({ where: { id: id } });
+
+    return user ? UserEntityToUserResponse.map(user) : user;
   }
 
   async update(userId: number, updateUserDto: UpdateUserDto) {

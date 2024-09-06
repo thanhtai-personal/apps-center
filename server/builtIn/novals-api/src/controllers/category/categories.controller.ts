@@ -8,7 +8,6 @@ import { UpdateCategoryDto } from '@/dtos/categories/category.update.dto';
 import { IPagination, IPagingFilter, ICategoryFilter, ICategoryResponse } from "@core-ui/novals-types";
 
 @Controller("/categories")
-@UseGuards(AuthGuard)
 export class CategoriesController {
   constructor(private readonly categoryService: CategoriesService) { }
 

@@ -8,6 +8,8 @@ import { RoleStore } from "./RoleStore"
 import { AuthorStore } from "./AuthorStore"
 import { CategoryStore } from "./CategoryStore"
 import { NotifyStore } from "./NotifyStore"
+import NovalsSDK, { CreateApiConfig } from "@core-sdk/novals";
+import { ReactNode, useEffect } from "react";
 
 export class NovalsStore {
   public accountStore: AccountStore;
@@ -37,6 +39,24 @@ export const novalsStore = createStore<NovalsStore>(new NovalsStore());
 
 export const useNovalsStore = novalsStore.useStore as () => NovalsStore;
 
+const Provider = novalsStore.Provider;
+
+export const NovalsProvider = ({ children, config }: {
+  children: ReactNode;
+  config: {
+    apiConfig: CreateApiConfig;
+  }
+}) => {
+  
+  useEffect(() => {
+    NovalsSDK.getInstance(config.apiConfig)
+  }, [])
+
+  return <Provider>
+    {children}
+  </Provider>
+}
+
 export * from "./AccountStore"
 export * from "./UserStore"
 export * from "./NovalStore"
@@ -46,4 +66,3 @@ export * from "./RoleStore"
 export * from "./AuthorStore"
 export * from "./CategoryStore"
 export * from "./NotifyStore"
-export * from "./Provider"

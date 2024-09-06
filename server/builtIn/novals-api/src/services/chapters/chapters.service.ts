@@ -14,13 +14,20 @@ export class ChaptersService {
     private chaptersRepository: Repository<ChapterEntity>,
   ) { }
 
-
   async findAll(filter: IPagingFilter & IChapterFilter): Promise<IPagination<IChapterResponse>> {
-    throw new Error('Error finding chapter');
+    const chapters = await this.chaptersRepository.find();
+    return {
+      data: ChapterEntityToChapterResponse.maps(chapters),
+      limit: 99999999,
+      offset: 0,
+      total: chapters.length,
+    } as IPagination<IChapterResponse>;
   }
 
   async findOne(id: number): Promise<IChapterResponse | null> {
-    throw new Error('Error finding chapter');
+    const chapter = await this.chaptersRepository.findOne({ where: { id: id } });
+
+    return chapter ? ChapterEntityToChapterResponse.map(chapter) : chapter;
   }
 
   async update(chapterId: number, updateChapterDto: UpdateChapterDto) {

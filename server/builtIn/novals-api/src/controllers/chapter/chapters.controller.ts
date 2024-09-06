@@ -8,7 +8,6 @@ import { UpdateChapterDto } from '@/dtos/chapters/chapter.update.dto';
 import { IPagination, IPagingFilter, IChapterFilter, IChapterResponse } from "@core-ui/novals-types";
 
 @Controller("/chapters")
-@UseGuards(AuthGuard)
 export class ChaptersController {
   constructor(private readonly chapterService: ChaptersService) { }
 

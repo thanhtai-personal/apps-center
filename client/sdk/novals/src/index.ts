@@ -66,6 +66,7 @@ export class NovalsSDK extends BaseSDK {
 
   public static getInstance = (config?: CreateApiConfig) => {
     if (!this.instance) {
+      console.log("config", config)
       this.instance = new NovalsSDK(config || { apiEndpoint: "no-api-end-point" })
     }
     return this.instance;

@@ -8,7 +8,6 @@ import { UpdateAuthorDto } from '@/dtos/authors/author.update.dto';
 import { IPagination, IPagingFilter, IAuthorFilter, IAuthorResponse } from "@core-ui/novals-types";
 
 @Controller("/authors")
-@UseGuards(AuthGuard)
 export class AuthorsController {
   constructor(private readonly authorService: AuthorsService) { }
 

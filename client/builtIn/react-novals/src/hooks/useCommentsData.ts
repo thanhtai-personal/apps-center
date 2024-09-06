@@ -12,7 +12,7 @@ export const useCommentsData = () => {
     try {
       const commentsRs = await NovalsSDK.getInstance().getCommentControl().getMany((commentStore.filterData || {}) as FilterParam);
       commentStore.comments = commentsRs as IPagination<ICommentResponse>;
-    } catch (error) {}
+    } catch (error) { }
   }
 
   return {

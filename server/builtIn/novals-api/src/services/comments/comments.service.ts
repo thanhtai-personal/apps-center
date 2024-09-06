@@ -14,13 +14,20 @@ export class CommentsService {
     private commentsRepository: Repository<CommentEntity>,
   ) { }
 
-
   async findAll(filter: IPagingFilter & ICommentFilter): Promise<IPagination<ICommentResponse>> {
-    throw new Error('Error finding comment');
+    const comments = await this.commentsRepository.find();
+    return {
+      data: CommentEntityToCommentResponse.maps(comments),
+      limit: 99999999,
+      offset: 0,
+      total: comments.length,
+    } as IPagination<ICommentResponse>;
   }
 
   async findOne(id: number): Promise<ICommentResponse | null> {
-    throw new Error('Error finding comment');
+    const comment = await this.commentsRepository.findOne({ where: { id: id } });
+
+    return comment ? CommentEntityToCommentResponse.map(comment) : comment;
   }
 
   async update(commentId: number, updateCommentDto: UpdateCommentDto) {

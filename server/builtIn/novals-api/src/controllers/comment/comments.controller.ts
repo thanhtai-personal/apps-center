@@ -8,7 +8,6 @@ import { UpdateCommentDto } from '@/dtos/comments/comment.update.dto';
 import { IPagination, IPagingFilter, ICommentFilter, ICommentResponse } from "@core-ui/novals-types";
 
 @Controller("/comments")
-@UseGuards(AuthGuard)
 export class CommentsController {
   constructor(private readonly commentService: CommentsService) { }
 
