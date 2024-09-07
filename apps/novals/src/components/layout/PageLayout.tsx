@@ -5,50 +5,92 @@ import { ReactNode } from "react"
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { MenuBar } from "./MenuBar";
-import { NovalsProvider } from "@core-ui/react-novals";
 import { ThemeProvider } from "@/styles/ThemeProvider";
 import { Animates } from "@core-ui/react-animates";
 import { VideoBackground } from "@core-ui/react-viewframe";
 import "@core-ui/react-viewframe/dist/styles.css"
+import { MessageQueueBoundary } from "./MessageQueueBoundary";
 
+// Interface for PageLayout props
 export interface IPageLayoutProps {
   children: ReactNode;
 }
 
-export const PageLayout = observer(({
-  children
-}: IPageLayoutProps) => {
-  const { uiStore } = useStore();
+// Main container component
+const MainContainer = ({ children }: { children: ReactNode }) => (
+  <Flex fullSize center width={"100vw"} height={"100vh"} overflow={"hidden"} position={"relative"}>
+    <Flex column fullWidth minHeight={"100vh"}
+      justifyContent={"flex-start"}
+      alignItems={"flex-start"}>
+      {children}
+    </Flex>
+  </Flex>
+);
 
+// Video background component
+const BackgroundVideo = ({ children }: { children: ReactNode }) => (
+  <VideoBackground
+    src={"https://www.youtube.com/embed/Hee7oQdNUpc?si=vFw776MODJeIrq0N"}
+    id={"test"}
+    preloadSrc={"https://picture.dzogame.vn/img/Tru-tien-1_pp_434.jpg"}>
+    {children}
+  </VideoBackground>
+);
+
+// Content container component
+const ContentContainer = observer(({ children }: { children: ReactNode }) => {
+  const { uiStore } = useStore();
+  return (
+    <Animates.FadeAppear delay={0}>
+      <Flex column
+        bgcolor={`${uiStore.colors.appBgColor}ee`}
+        height={"100vh"}
+        width={"100vw"}
+        position={"absolute"}
+        overflow={"auto"}
+        style={{
+          overflowX: "hidden",
+          scrollbarWidth: "thin"
+        }}
+      >
+        {children}
+      </Flex>
+    </Animates.FadeAppear>
+  );
+});
+
+// Main content component
+const MainContent = observer(({ children }: { children: ReactNode }) => {
+  const { uiStore } = useStore();
+  return (
+    <Flex fullWidth column>
+      {uiStore.useHeader && <Header />}
+      {uiStore.useMenuBar && (
+        <Animates.GrowUpAppear delay={2.5}>
+          <MenuBar />
+        </Animates.GrowUpAppear>
+      )}
+      {children}
+      {uiStore.useFooter && <Footer />}
+    </Flex>
+  );
+});
+
+// Main PageLayout component
+export const PageLayout = observer(({ children }: IPageLayoutProps) => {
   return (
     <ThemeProvider>
-      <Flex fullSize center width={"100vw"} height={"100vh"} overflow={"hidden"}>
-        <Flex column fullWidth minHeight={"100vh"}
-          justifyContent={"flex-start"}
-          alignItems={"flex-start"}>
-          <VideoBackground src={"https://www.youtube.com/embed/Hee7oQdNUpc?si=vFw776MODJeIrq0N"}
-            id={"test"} preloadSrc={"https://picture.dzogame.vn/img/Tru-tien-1_pp_434.jpg"}>
-            <Animates.FadeAppear delay={0}>
-              <Flex column
-                bgcolor={`${uiStore.colors.appBgColor}ee`}
-                height={"100vh"}
-                width={"100vw"}
-                position={"fixed"}
-                overflow={"auto"}
-              >
-                <Flex fullWidth column>
-                  {uiStore.useHeader && <Header />}
-                  {uiStore.useMenuBar && <Animates.GrowUpAppear delay={2.5}>
-                    <MenuBar />
-                  </Animates.GrowUpAppear>}
-                  {children}
-                  {uiStore.useFooter && <Footer />}
-                </Flex>
-              </Flex>
-            </Animates.FadeAppear>
-          </VideoBackground>
-        </Flex>
-      </Flex>
-    </ThemeProvider >
+      <MessageQueueBoundary>
+        <MainContainer>
+          <BackgroundVideo>
+            <ContentContainer>
+              <MainContent>
+                {children}
+              </MainContent>
+            </ContentContainer>
+          </BackgroundVideo>
+        </MainContainer>
+      </MessageQueueBoundary>
+    </ThemeProvider>
   )
-})
+});

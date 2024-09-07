@@ -46,7 +46,7 @@ export const Header = observer(() => {
                       style={{
                         fontStyle: "italic",
                       }}
-                    >Nguồn truyện tổng hợp</Text>
+                    >Không gian dành cho các tiên hữu</Text>
                   </Flex>
                 </Animates.ExpandUp>
               </Flex>
@@ -57,7 +57,7 @@ export const Header = observer(() => {
         <Flex p={1} centerY>
           <Animates.GrowUpAppear delay={2}>
             <Flex minWidth={500}>
-              <Input placeholder="Nhập tên truyện hoặc tên tác giả" fullWidth />
+              <Input placeholder="Tìm kiếm với tên truyện/tác giả" fullWidth />
             </Flex>
           </Animates.GrowUpAppear>
         </Flex>

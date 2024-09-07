@@ -51,7 +51,7 @@ export class TTVCrawlerService {
       }
       if (!isUpdateOnly) await this.ttvClassifies();
 
-      let listNovals = await this.novalRepo.find({ relations: ['authorData', 'categoryData', 'chaptersData'] });
+      let listNovals = await this.novalRepo.find({ relations: ['authorData', 'categoryData'] });
       if (!isUpdateOnly) {
         listNovals = (await this.crawlTTVNovals()).listNovals
       }
@@ -65,6 +65,7 @@ export class TTVCrawlerService {
         }
         console.log("Current noval is: ", noval.name);
         const pageHtmlString: string = (await axios.get(noval.referrence!)).data;
+        console.log("URL crawling", noval.referrence);
         const $noval = cheerio.load(pageHtmlString);
         const novalId = $noval('meta[name="book_detail"]')?.attr('content')?.trim();
         console.log("novalId", novalId)
@@ -128,6 +129,7 @@ export class TTVCrawlerService {
 
   async crawlTTVNovals(): Promise<any> {
     const novalsPage = 'https://truyen.tangthuvien.vn/tong-hop?ctg=1'
+    console.log("URL crawling", novalsPage);
     try {
       const novalsHtmlString: string = (await axios.get(novalsPage)).data;
       const $novals = cheerio.load(novalsHtmlString);
@@ -140,7 +142,7 @@ export class TTVCrawlerService {
       }
 
       for (const pageUrl of pageUrls) {
-        console.log("===HANDLE PAGINATION", pageUrl);
+        console.log("URL crawling", pageUrl);
         const pageHtmlString: string = (await axios.get(pageUrl)).data;
         const $page = cheerio.load(pageHtmlString);
         const novalElements: any = $page("div.book-img-text ul li");
@@ -220,17 +222,19 @@ export class TTVCrawlerService {
 
   async crawlTTVChapters(noval: NovalEntity) {
     const chapterUrl = `https://truyen.tangthuvien.vn/doc-truyen/page/${noval.originalNovalId}?page=0&limit=99999999999&web=1`
+    console.log("URL crawling", chapterUrl);
     const chaptersHtmlString: string = (await axios.get(chapterUrl)).data;
     const $chapters = cheerio.load(chaptersHtmlString);
     const listChapterElements = $chapters("ul li");
     let currentIndex = 0;
-    if ((noval.chaptersData?.length || 0) > 0) {
+    const countChapters = await this.chapterRepo.count({ where: { novalData: { id: noval.id } } });
+    if (countChapters > 0) {
       console.log("Chapters already exist for Noval", noval.name);
-      if (listChapterElements.length <= (noval.chaptersData?.length || 0)) {
+      if (listChapterElements.length <= countChapters) {
         console.log("All chapters existed");
         return;
       } else {
-        currentIndex = noval.chaptersData?.length || 0;
+        currentIndex = countChapters;
       }
     }
     console.log("currentIndex", currentIndex)
@@ -281,6 +285,7 @@ export class TTVCrawlerService {
 
     if (!existingChapter.content && chapterUrl2) {
       const chaptersHtmlString: string = (await axios.get(chapterUrl2)).data;
+      console.log("URL crawling", chapterUrl2);
       waitMs(10);
       const $chapterContent = cheerio.load(chaptersHtmlString);
       const chapterContent = $chapterContent("div.box-chap").text().trim();
