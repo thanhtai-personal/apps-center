@@ -16,13 +16,60 @@ export class NovalsService {
 
 
   async findAll(filter: IPagingFilter & INovalFilter): Promise<IPagination<INovalResponse>> {
-    const novals = await this.novalsRepository.find();
+    const where: any = {};
+    if (filter.authorId) {
+      where.authorId = filter.authorId
+    }
+    const novals = await this.novalsRepository.find({
+      where
+    });
     return {
       data: NovalEntityToNovalResponse.maps(novals),
-      limit: 99999999,
-      offset: 0,
+      limit: filter.limit,
+      offset: filter.offset,
       total: novals.length,
     } as IPagination<INovalResponse>;
+  }
+
+  async getRanking(limit: number): Promise<{
+    topView: INovalResponse[];
+    topVote: INovalResponse[];
+    topLike: INovalResponse[];
+    topFollow: INovalResponse[];
+  }> {
+    const topView = await this.novalsRepository.find({
+      take: limit,
+      order: {
+        view: 'DESC'
+      }
+    });
+
+    const topVote = await this.novalsRepository.find({
+      take: limit,
+      order: {
+        star: 'DESC'
+      }
+    });
+
+    const topLike = await this.novalsRepository.find({
+      take: limit,
+      order: {
+        like: 'DESC'
+      }
+    });
+
+    const topFollow = await this.novalsRepository.find({
+      take: limit,
+      order: {
+        follow: 'DESC'
+      }
+    });
+    return {
+      topView: NovalEntityToNovalResponse.maps(topView),
+      topVote: NovalEntityToNovalResponse.maps(topVote),
+      topLike: NovalEntityToNovalResponse.maps(topLike),
+      topFollow: NovalEntityToNovalResponse.maps(topFollow),
+    };
   }
 
   async findOne(id: number): Promise<INovalResponse | null> {

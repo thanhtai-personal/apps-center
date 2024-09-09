@@ -15,6 +15,8 @@ const waitMs = (msDuration: number) => {
 
 @Injectable()
 export class TTVCrawlerService {
+  private isCrawling: boolean;
+
   constructor(
     @InjectRepository(UserEntity)
     private userRepo: Repository<UserEntity>,
@@ -28,7 +30,9 @@ export class TTVCrawlerService {
     private commentRepo: Repository<CommentEntity>,
     @InjectRepository(CategoryEntity)
     private categoryRepo: Repository<CategoryEntity>,
-  ) { }
+  ) {
+    this.isCrawling = false;
+  }
 
   // @Cron("0 */2 * * * *") //2 mins
   // @Cron(CronExpression.EVERY_DAY_AT_1AM)
@@ -45,6 +49,8 @@ export class TTVCrawlerService {
   }
 
   async crawlTTV(isUpdateOnly: boolean = false) {
+    if (this.isCrawling) return;
+    this.isCrawling = true;
     try {
       if (isUpdateOnly) {
         console.log("========Crawl update only=====");
@@ -81,6 +87,8 @@ export class TTVCrawlerService {
     } catch (error) {
       console.error('Error fetching data:', error);
       return [];
+    } finally {
+      this.isCrawling = false;
     }
   }
 

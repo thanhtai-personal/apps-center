@@ -43,6 +43,23 @@ export class NovalService
       APIResult<IResponse<Pagination<INovalResponse>>>
     >;
   }
+
+  getRanking(filter: IPagingFilter): Promise<APIResult<IResponse<{
+    topVote: INovalResponse[];
+    topView: INovalResponse[];
+    topLike: INovalResponse[];
+    topFollow: INovalResponse[];
+  }>>> {
+    return this.api.get("/novals/ranking", filter) as Promise<
+      APIResult<IResponse<{
+        topVote: INovalResponse[];
+        topView: INovalResponse[];
+        topLike: INovalResponse[];
+        topFollow: INovalResponse[];
+      }>>
+    >;
+  }
+
   delete(
     id: string | number,
   ): Promise<APIResult<IResponse<void>>> {

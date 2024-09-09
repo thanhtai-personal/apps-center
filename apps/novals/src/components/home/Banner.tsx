@@ -27,8 +27,19 @@ export const Banner = observer(() => {
 
   return (
     <Flex fullWidth center>
+      <Flex position={"absolute"} left={"-50vw"} top={-350} >
+        <Animates.Smoke id={"smk-1"} blur={2} wind={15} />
+      </Flex>
+      <Flex position={"absolute"} left={"45vw"} top={-350}>
+        <Animates.Smoke id={"smk-2"} blur={2} wind={-5} />
+      </Flex>
+      <Flex position={"absolute"} left={"-50vw"} top={0} >
+        <Animates.Smoke id={"smk-1"} blur={2} wind={15} />
+      </Flex>
+      <Flex position={"absolute"} left={"45vw"} top={0}>
+        <Animates.Smoke id={"smk-2"} blur={2} wind={-5} />
+      </Flex>
       <Flex fullWidth center height={450} maxWidth={PAGE_MAX_WIDTH} position={"relative"}>
-
         <Flex flex={1} pr={2}>
           <Grid container spacing={2}>
             {(categoryStore.categories?.data || []).map((category, index) => (

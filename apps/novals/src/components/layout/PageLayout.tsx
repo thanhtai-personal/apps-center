@@ -7,7 +7,7 @@ import { Footer } from "./Footer";
 import { MenuBar } from "./MenuBar";
 import { ThemeProvider } from "@/styles/ThemeProvider";
 import { Animates } from "@core-ui/react-animates";
-import { VideoBackground } from "@core-ui/react-viewframe";
+import { ImageSlideBackground } from "@core-ui/react-viewframe";
 import "@core-ui/react-viewframe/dist/styles.css"
 import { MessageQueueBoundary } from "./MessageQueueBoundary";
 
@@ -28,13 +28,16 @@ const MainContainer = ({ children }: { children: ReactNode }) => (
 );
 
 // Video background component
-const BackgroundVideo = ({ children }: { children: ReactNode }) => (
-  <VideoBackground
-    src={"https://www.youtube.com/embed/Hee7oQdNUpc?si=vFw776MODJeIrq0N"}
+const BackgroundImageSlide = ({ children }: { children: ReactNode }) => (
+  <ImageSlideBackground
     id={"test"}
-    preloadSrc={"https://picture.dzogame.vn/img/Tru-tien-1_pp_434.jpg"}>
+    images={[
+      "https://picture.dzogame.vn/img/Tru-tien-1_pp_434.jpg",
+      "https://trutien.gamota.com/wp-content/uploads/2018/03/28619123_1971107369806596_3472030111921659591_o.jpg",
+      "https://animevietsubvn.com/storage/images/tru-tien-2021/tru-tien-2021-poster.jpg",
+    ]}>
     {children}
-  </VideoBackground>
+  </ImageSlideBackground>
 );
 
 // Content container component
@@ -82,13 +85,13 @@ export const PageLayout = observer(({ children }: IPageLayoutProps) => {
     <ThemeProvider>
       <MessageQueueBoundary>
         <MainContainer>
-          <BackgroundVideo>
+          <BackgroundImageSlide>
             <ContentContainer>
               <MainContent>
                 {children}
               </MainContent>
             </ContentContainer>
-          </BackgroundVideo>
+          </BackgroundImageSlide>
         </MainContainer>
       </MessageQueueBoundary>
     </ThemeProvider>

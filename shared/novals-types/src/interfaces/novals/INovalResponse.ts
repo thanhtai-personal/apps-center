@@ -7,6 +7,8 @@ export interface INovalResponse {
   thumb?: string;
   star?: number;
   view?: number;
+  like?: number;
+  follow?: number;
   categories?: string[];
   categoryIds?: number[];
   tags?: string[];

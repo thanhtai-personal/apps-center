@@ -1,4 +1,4 @@
-import { BaseRoutes, Pagination, IResponse } from "@core-sdk/core";
+import { BaseRoutes, Pagination, IResponse, IPagingFilter } from "@core-sdk/core";
 import {
   INovalCreation, INovalFilter
   , INovalResponse, INovalUpdating,
@@ -8,7 +8,7 @@ export interface NovalRoutes extends BaseRoutes {
   "/novals": {
     get: {
       request: {
-        query: INovalFilter;
+        query: INovalFilter & IPagingFilter;
       };
       responses: {
         "200": IResponse<Pagination<INovalResponse>>;
@@ -23,6 +23,21 @@ export interface NovalRoutes extends BaseRoutes {
       };
     };
   };
+  "/novals/ranking": {
+    get: {
+      request: {
+        query: IPagingFilter;
+      };
+      responses: {
+        "200": IResponse<{
+          topVote: INovalResponse[];
+          topView: INovalResponse[];
+          topLike: INovalResponse[];
+          topFollow: INovalResponse[];
+        }>;
+      };
+    };
+  },
   "/novals/{novalId}": {
     get: {
       request: {

@@ -149,6 +149,10 @@ export class NovalsSDK extends BaseSDK {
       >(this.roleService),
     };
   }
+
+  getRankingNovals(filter: IPagingFilter) {
+    return this.novalService.getRanking(filter);
+  }
 }
 
 export type Pagination<T> = PaginationCore<T>;

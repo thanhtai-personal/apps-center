@@ -26,7 +26,7 @@ export class NovalsController {
     }
   }
 
-  @Get()
+  @Get("")
   async getMany(
     @Query() query: IPagingFilter & INovalFilter,
     @Res()
@@ -38,6 +38,20 @@ export class NovalsController {
         limit: query.limit || 10,
         offset: query.offset || 0,
       }) as IPagination<INovalResponse>;
+      return res.status(HttpStatus.OK).send(data)
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get("/ranking")
+  async getRanking(
+    @Query() query: IPagingFilter,
+    @Res()
+    res: Response
+  ) {
+    try {
+      const data = await this.novalService.getRanking(query.limit);
       return res.status(HttpStatus.OK).send(data)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -32,7 +32,11 @@ import { RotateFromLeft as RotateFromLeftComponent } from "./RotateFromLeft";
 import { ExpandUp as ExpandUpComponent } from "./ExpandUp";
 import { Tornado as TornadoComponent } from "./Tornado";
 import { FadeAppear as FadeAppearComponent } from "./FadeAppear";
+import { SplastShader as SplastShaderComponent } from "./SplastShader";
 import { Wind as WindComponent } from "./Wind";
+import { Fire as FireComponent } from "./Fire";
+import { Smoke as SmokeComponent } from "./Smoke";
+import { Smoke2 as Smoke2Component } from "./Smoke2";
 import { ASecondBounce as ASecondBounceComponent } from "./ASecondBounce";
 import FireflyNightBgComponent from "./FireflyNightBg"
 import "./tailwind.css"
@@ -72,7 +76,11 @@ export namespace Animates {
   export const RotateFromLeft = RotateFromLeftComponent
   export const Tornado = TornadoComponent
   export const FadeAppear = FadeAppearComponent
+  export const SplastShader = SplastShaderComponent
   export const Wind = WindComponent
+  export const Fire = FireComponent
+  export const Smoke = SmokeComponent
+  export const Smoke2 = Smoke2Component
   export const ASecondBounce = ASecondBounceComponent
   export const FireflyNightBg = FireflyNightBgComponent
 }
