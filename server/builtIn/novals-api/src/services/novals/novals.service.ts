@@ -3,7 +3,7 @@ import { UpdateNovalDto } from '@/dtos/novals/noval.update.dto';
 import { NovalEntity } from '@/entities/noval.entity';
 import { NovalCreateDTOToEntityMapper } from '@/mappers/novals/noval.create.mapper';
 import { NovalEntityToNovalResponse } from '@/mappers/novals/noval.response.mapper';
-import { DeepPartial, InjectRepository, Repository } from '@core-api/nest-typeorm-postgres';
+import { DeepPartial, InjectRepository, IsNull, Not, Repository } from '@core-api/nest-typeorm-postgres';
 import { IPagination, IPagingFilter, INovalFilter, INovalResponse } from '@core-ui/novals-types';
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 
@@ -39,29 +39,46 @@ export class NovalsService {
   }> {
     const topView = await this.novalsRepository.find({
       take: limit,
+      where: {
+        view: Not(IsNull())
+      },
       order: {
-        view: 'DESC'
+        view: 'DESC' as const
       }
     });
+    console.log("topView", topView);
+    
+    if (topView.length === 0) {
+      console.error("Không tìm thấy bản ghi nào có giá trị view > 0");
+    }
 
     const topVote = await this.novalsRepository.find({
       take: limit,
+      where: {
+        suggest: Not(IsNull())
+      },
       order: {
-        star: 'DESC'
+        suggest: 'DESC' as const
       }
     });
 
     const topLike = await this.novalsRepository.find({
       take: limit,
+      where: {
+        like: Not(IsNull())
+      },
       order: {
-        like: 'DESC'
+        like: 'DESC' as const
       }
     });
 
     const topFollow = await this.novalsRepository.find({
       take: limit,
+      where: {
+        follow: Not(IsNull())
+      },
       order: {
-        follow: 'DESC'
+        follow: 'DESC' as const
       }
     });
     return {

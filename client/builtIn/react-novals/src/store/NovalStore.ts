@@ -29,6 +29,10 @@ export class NovalStore extends BaseStore implements INovalStore {
       novals: observable,
       noval: observable,
       filterData: observable,
+      topView: observable,
+      topLike: observable,
+      topVote: observable,
+      topFollow: observable,
     });
   }
 }

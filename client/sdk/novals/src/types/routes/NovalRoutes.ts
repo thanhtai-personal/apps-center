@@ -23,21 +23,6 @@ export interface NovalRoutes extends BaseRoutes {
       };
     };
   };
-  "/novals/ranking": {
-    get: {
-      request: {
-        query: IPagingFilter;
-      };
-      responses: {
-        "200": IResponse<{
-          topVote: INovalResponse[];
-          topView: INovalResponse[];
-          topLike: INovalResponse[];
-          topFollow: INovalResponse[];
-        }>;
-      };
-    };
-  },
   "/novals/{novalId}": {
     get: {
       request: {
@@ -79,6 +64,22 @@ export interface NovalRoutes extends BaseRoutes {
       };
       responses: {
         "200": IResponse<INovalResponse>;
+      };
+    };
+  };
+  
+  "/novals/ranking": {
+    get: {
+      request: {
+        query: IPagingFilter;
+      };
+      responses: {
+        "200": IResponse<{
+          topVote: INovalResponse[];
+          topView: INovalResponse[];
+          topLike: INovalResponse[];
+          topFollow: INovalResponse[];
+        }>;
       };
     };
   };

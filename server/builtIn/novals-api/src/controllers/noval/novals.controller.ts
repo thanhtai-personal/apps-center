@@ -10,22 +10,6 @@ import { IPagination, IPagingFilter, INovalFilter, INovalResponse } from "@core-
 export class NovalsController {
   constructor(private readonly novalService: NovalsService) { }
 
-  @Get("/:novalId")
-  async getOne(
-    @Param("novalId")
-    novalId: number,
-    @Res()
-    res: Response
-  ) {
-    try {
-      if (!novalId) throw new HttpException("No noval Id", HttpStatus.INTERNAL_SERVER_ERROR);
-      const noval = await this.novalService.findOne(novalId);
-      return res.status(HttpStatus.OK).send(noval)
-    } catch (error: any) {
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
-
   @Get("")
   async getMany(
     @Query() query: IPagingFilter & INovalFilter,
@@ -53,6 +37,22 @@ export class NovalsController {
     try {
       const data = await this.novalService.getRanking(query.limit);
       return res.status(HttpStatus.OK).send(data)
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get("/:novalId")
+  async getOne(
+    @Param("novalId")
+    novalId: number,
+    @Res()
+    res: Response
+  ) {
+    try {
+      if (!novalId) throw new HttpException("No noval Id", HttpStatus.INTERNAL_SERVER_ERROR);
+      const noval = await this.novalService.findOne(novalId);
+      return res.status(HttpStatus.OK).send(noval)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

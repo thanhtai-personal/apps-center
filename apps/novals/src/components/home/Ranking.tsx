@@ -7,6 +7,37 @@ import { useStore } from "@/store/index";
 import { INovalResponse } from "@core-ui/novals-types";
 
 
+export const Ranking = observer(() => {
+  const { novalStore } = useNovalsStore();
+
+  return (
+    <Flex fullWidth center>
+      <Flex mt={1} p={2} fullWidth centerX
+        borderTop={"solid 1px rgba(255,255,255, 0.1)"}
+        maxWidth={PAGE_MAX_WIDTH}
+        overflow={"hidden"}
+      >
+        <Flex flex={1} column overflow={"hidden"}>
+          <RankingList novals={novalStore.topVote || []} title="Đề cử" sortKey="star" description="Đề cử" />
+        </Flex>
+
+        <Flex flex={1} column overflow={"hidden"}>
+          <RankingList novals={novalStore.topView || []} title="Xem nhiều" sortKey="like" description="Lượt xem" />
+        </Flex>
+
+        <Flex flex={1} column overflow={"hidden"}>
+          <RankingList novals={novalStore.topLike || []} title="Yêu thích" sortKey="like" description="Lượt thích" />
+        </Flex>
+
+        <Flex flex={1} column overflow={"hidden"}>
+          <RankingList novals={novalStore.topFollow || []} title="Theo dõi" sortKey="follow" description="Lượt theo dõi" />
+        </Flex>
+      </Flex >
+    </Flex>
+  );
+});
+
+
 const RankingList = observer(({ novals, title, description, sortKey }: {
   novals: INovalResponse[];
   title: string,
@@ -38,54 +69,29 @@ const RankingList = observer(({ novals, title, description, sortKey }: {
   );
 
   const renderOtherItem = (noval: INovalResponse, index: number) => (
-    <Flex fullWidth key={noval.id} centerY justifyContent="space-between">
-      <Flex centerY maxWidth="80%">
+    <Flex fullWidth key={noval.id} justifyContent="space-between">
+      <Flex>
         <Text className={globalStyle.textKanit16}>{index + 1}</Text>
-        <Text className={globalStyle.textKanit16} ml={1} maxWidth="80%" textOverflow="ellipsis" whiteSpace="nowrap">
+        <Text overflow={"hidden"}
+          textAlign={"start"}
+          className={globalStyle.textKanit16} ml={1}>
           {noval.name}
         </Text>
       </Flex>
-      <Text className={globalStyle.textKanit14} color={uiStore.colors.gray}>
+      <Text ml={1} className={globalStyle.textKanit14} color={uiStore.colors.gray}>
         {noval[sortKey] || 0}
       </Text>
     </Flex>
   );
 
   return (
-    <Flex fullWidth column>
+    <Flex fullWidth column px={2} overflow={"hidden"}>
       {renderHeader()}
       <Flex fullWidth column borderTop="solid 1px rgba(255,255,255, 0.1)">
-        {novals.map((noval, index) => 
+        {novals.map((noval, index) =>
           index === 0 ? renderTopItem(noval) : renderOtherItem(noval, index)
         )}
       </Flex>
     </Flex>
   );
 })
-
-
-export const Ranking = observer(() => {
-  const { novalStore } = useNovalsStore();
-
-  return (
-    <Flex fullWidth center>
-      <Flex mt={1} py={2} fullWidth center borderTop={"solid 1px rgba(255,255,255, 0.1)"} maxWidth={PAGE_MAX_WIDTH}>
-        <Flex flex={1} column fullHeight>
-          <RankingList novals={novalStore.topVote || []} title="Đề cử" sortKey="star" description="Đề cử" />
-        </Flex>
-
-        <Flex flex={1} column fullHeight>
-          <RankingList novals={novalStore.topView || []} title="Xem nhiều" sortKey="like" description="Lượt xem"  />
-        </Flex>
-
-        <Flex flex={1} column fullHeight>
-          <RankingList novals={novalStore.topLike || []} title="Yêu thích" sortKey="like" description="Lượt thích"  />
-        </Flex>
-
-        <Flex flex={1} column fullHeight>
-          <RankingList novals={novalStore.topFollow || []} title="Theo dõi" sortKey="follow" description="Lượt theo dõi"  />
-        </Flex>
-      </Flex >
-    </Flex>
-  );
-});

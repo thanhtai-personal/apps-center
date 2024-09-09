@@ -21,7 +21,6 @@ export const useNovalsData = () => {
         limit: 10,
         offset: 0,
       }) as FilterParam);
-      console.log("novalsRs", novalsRs)
       novalStore.topFollow = novalsRs.data.topFollow;
       novalStore.topLike = novalsRs.data.topLike;
       novalStore.topView = novalsRs.data.topView;

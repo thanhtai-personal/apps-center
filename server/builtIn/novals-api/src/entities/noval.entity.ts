@@ -23,19 +23,19 @@ export class NovalEntity extends BaseEntity implements INoval {
   @Column({ name: "thumb", type: 'varchar', nullable: true })
   thumb?: string;
   
-  @Column({ name: "star", type: 'varchar', nullable: true })
+  @Column({ name: "star", type: 'numeric', nullable: true })
   star?: number;
   
-  @Column({ name: "view", type: 'varchar', nullable: true })
+  @Column({ name: "view", type: 'numeric', nullable: true })
   view?: number;
   
-  @Column({ name: "like", type: 'varchar', nullable: true })
+  @Column({ name: "like", type: 'numeric', nullable: true })
   like?: number;
   
-  @Column({ name: "follow", type: 'varchar', nullable: true })
+  @Column({ name: "follow", type: 'numeric', nullable: true })
   follow?: number;
   
-  @Column({ name: "suggest", type: 'varchar', nullable: true })
+  @Column({ name: "suggest", type: 'numeric', nullable: true })
   suggest?: number;
   
   @Column({ name: "original_noval_id", type: 'varchar', nullable: true })

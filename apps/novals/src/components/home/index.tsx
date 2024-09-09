@@ -3,10 +3,11 @@ import { Flex } from "@core-ui/react-mui-core";
 import { Banner } from "./Banner";
 import { Ranking } from "./Ranking";
 import { Footer } from "./Footer";
-import { runCategoryStore, runCommentStore, runNovalStore } from "@core-ui/react-novals";
+import { runCategoryStore, runCommentStore, runNovalStore, useNovalsStore } from "@core-ui/react-novals";
 
 export const HomePageContent = observer(() => {
-  
+  const { novalStore } = useNovalsStore();
+
   runNovalStore();
   runCategoryStore();
   runCommentStore();
