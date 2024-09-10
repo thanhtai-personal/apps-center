@@ -14,11 +14,10 @@ export const Footer = observer(() => {
   return (
     <Flex fullWidth center>
       <Flex mt={1} py={2} fullWidth center borderTop={"solid 1px rgba(255,255,255, 0.1)"} maxWidth={PAGE_MAX_WIDTH}>
-        <Flex fullWidth position={"relative"} minHeight={250}>
-          {/* <Animates.SplastShader id={"splast-frame"} canvasStyle={{ width: "100%", minHeight: 350 }} /> */}
-          <Flex position={"absolute"} fullSize center style={{ pointerEvents: "none" }}>
-            
-          </Flex>
+        <Flex fullWidth position={"relative"} center>
+          <Text className={globalStyles.textKanit12}>
+            @TTH là cửa sổ đọc truyện free cho cộng đồng fan kiếm hiệp, tiên hiệp, ngôn tình.
+          </Text>
         </Flex>
       </Flex >
     </Flex>

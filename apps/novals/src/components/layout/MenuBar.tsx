@@ -11,7 +11,7 @@ import { Link } from "@core-ui/react-core";
 import { useState } from "react";
 
 // Tách thành phần MenuItem
-const MenuItem = observer(({ text, icon, to, className, onClick }: any) => {
+const MenuItem = observer(({ text, icon, to, className, onClick, target }: any) => {
   const globalStyles = useGlobalStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -25,7 +25,7 @@ const MenuItem = observer(({ text, icon, to, className, onClick }: any) => {
 
   return (
     <>
-      <Link to={to}>
+      <Link to={to} target={target || "_self"}>
         <Flex p={1} centerY cursorPointer
           className={clsx(globalStyles.hoverUnderLine, globalStyles.hoverTransition)}
           onClick={handleClick}
@@ -118,7 +118,10 @@ export const MenuBar = observer(() => {
       <MenuItem text="Thể loại" icon={menuIcon} to="#" />
       <CenterMenu />
       <Flex flex={1} centerY justifyContent="flex-end">
-        <MenuItem text="Cửa hàng" icon={menuIcon} to="/store" className={globalStyles.textOrbi14} />
+        <MenuItem text="Cửa hàng" target="_blank" icon={menuIcon}
+          to="https://shopeefood.vn/ho-chi-minh/an-vat-113-banh-trang-lui-com-chay-tuoi-113-26-duong-so-1"
+          className={globalStyles.textOrbi14}
+        />
       </Flex>
     </MenuBarContainer>
   );

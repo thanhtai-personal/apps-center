@@ -5,6 +5,7 @@ import { useNovalsStore } from "@core-ui/react-novals";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { useStore } from "@/store/index";
 import { INovalResponse } from "@core-ui/novals-types";
+import { Link } from "@core-ui/react-core";
 
 
 export const Ranking = observer(() => {
@@ -57,31 +58,41 @@ const RankingList = observer(({ novals, title, description, sortKey }: {
   );
 
   const renderTopItem = (noval: INovalResponse) => (
-    <Flex fullWidth key={noval.id} centerY justifyContent="space-between">
-      <Flex column maxWidth="70%">
-        <Text className={globalStyle.textKanit16}>NO.1</Text>
-        <Text className={globalStyle.textKanit16} textOverflow="ellipsis" whiteSpace="nowrap">{noval.name}</Text>
-        <Text color={uiStore.colors.red} className={globalStyle.textKanit16}>
-          {`${noval[sortKey] || 0} ${description}`}
-        </Text>
+    <Link key={noval.id} to={`/noval/${noval.id}`} target={`noval_${noval.id}`}>
+      <Flex fullWidth centerY justifyContent="space-between" cursorPointer>
+        <Flex column>
+          <Text className={globalStyle.textKanitBold16} color={uiStore.colors.red}>NO.1</Text>
+          <Text className={globalStyle.textKanit16} color={uiStore.colors.green}>{noval.name}</Text>
+          <Text color={uiStore.colors.red} className={globalStyle.textKanit16}>
+            {`${noval[sortKey] || 0} ${description}`}
+          </Text>
+        </Flex>
+
+        <Flex ml={2} p={2}>
+          <LazyImage src={noval.thumb} style={{ height: 180, borderRadius: "16px" }}
+            imgStyle={{ height: 180, borderRadius: "16px", }}
+          />
+        </Flex>
       </Flex>
-    </Flex>
+    </Link>
   );
 
   const renderOtherItem = (noval: INovalResponse, index: number) => (
-    <Flex fullWidth key={noval.id} justifyContent="space-between">
-      <Flex>
-        <Text className={globalStyle.textKanit16}>{index + 1}</Text>
-        <Text overflow={"hidden"}
-          textAlign={"start"}
-          className={globalStyle.textKanit16} ml={1}>
-          {noval.name}
+    <Link key={noval.id} to={`/noval/${noval.id}`} target={`noval_${noval.id}`}>
+      <Flex fullWidth key={noval.id} justifyContent="space-between" cursorPointer>
+        <Flex>
+          <Text className={globalStyle.textKanit16}>{index + 1}</Text>
+          <Text overflow={"hidden"}
+            textAlign={"start"}
+            className={globalStyle.textKanit16} ml={1}>
+            {noval.name}
+          </Text>
+        </Flex>
+        <Text ml={1} className={globalStyle.textKanit14} color={uiStore.colors.gray}>
+          {noval[sortKey] || 0}
         </Text>
       </Flex>
-      <Text ml={1} className={globalStyle.textKanit14} color={uiStore.colors.gray}>
-        {noval[sortKey] || 0}
-      </Text>
-    </Flex>
+    </Link>
   );
 
   return (
