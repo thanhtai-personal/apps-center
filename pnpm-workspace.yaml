@@ -3,6 +3,7 @@ packages:
   # - "client/**"
   - "client/lib/api-client"
   - "client/lib/react-hooks"
+  - "client/lib/react-social-login"
   - "client/sdk/core"
   - "client/sdk/novals"
   - "client/ui/mui/react-core-mui"

@@ -1,5 +1,5 @@
 import { observer } from "@core-ui/react-mobx-state";
-import { AppTheme, Flex, LazyImage, OutlinedButton, Text } from "@core-ui/react-mui-core";
+import { AppTheme, Flex, LazyImage, OutlinedButton, Text, useResponsive } from "@core-ui/react-mui-core";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import Carousel from 'react-material-ui-carousel';
 import { useNovalsStore } from "@core-ui/react-novals";
@@ -24,22 +24,25 @@ export const Banner = observer(() => {
   const globalStyles = useGlobalStyles();
   const styles = useStyles();
   const { uiStore } = useStore();
+  const { fullSizeDown } = useResponsive({ fullSizeDown: PAGE_MAX_WIDTH + 350 });
 
   return (
     <Flex fullWidth center>
-      <Flex position={"absolute"} left={"-50vw"} top={-350} >
-        <Animates.Smoke id={"smk-1"} blur={2} wind={15} />
-      </Flex>
-      <Flex position={"absolute"} left={"45vw"} top={-350}>
-        <Animates.Smoke id={"smk-2"} blur={2} wind={-5} />
-      </Flex>
-      <Flex position={"absolute"} left={"-50vw"} top={0} >
-        <Animates.Smoke id={"smk-1"} blur={2} wind={15} />
-      </Flex>
-      <Flex position={"absolute"} left={"45vw"} top={0}>
-        <Animates.Smoke id={"smk-2"} blur={2} wind={-5} />
-      </Flex>
-      <Flex fullWidth center height={450} maxWidth={PAGE_MAX_WIDTH} position={"relative"}>
+      {!fullSizeDown && <>
+        <Flex position={"absolute"} left={"-50vw"} top={-350} >
+          <Animates.Smoke id={"smk-1"} blur={2} wind={15} />
+        </Flex>
+        <Flex position={"absolute"} left={"45vw"} top={-350}>
+          <Animates.Smoke id={"smk-2"} blur={2} wind={-5} />
+        </Flex>
+        <Flex position={"absolute"} left={"-50vw"} top={0} >
+          <Animates.Smoke id={"smk-1"} blur={2} wind={15} />
+        </Flex>
+        <Flex position={"absolute"} left={"45vw"} top={0}>
+          <Animates.Smoke id={"smk-2"} blur={2} wind={-5} />
+        </Flex>
+      </>}
+      <Flex fullWidth center height={450} maxWidth={PAGE_MAX_WIDTH} px={2} position={"relative"}>
         <Flex flex={1} pr={2}>
           <Grid container spacing={2}>
             {(categoryStore.categories?.data || []).map((category, index) => (
@@ -64,7 +67,6 @@ export const Banner = observer(() => {
         <Flex flex={2}>
           <Carousel
             animation={"slide"}
-            duration={2000}
             interval={10000}
             swipe
             fullHeightHover

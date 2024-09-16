@@ -1,5 +1,5 @@
 import { observer } from "@core-ui/react-mobx-state";
-import { Flex, LazyImage, Text } from "@core-ui/react-mui-core";
+import { Flex, LazyImage, ResponsiveFlex4Column, Text, useResponsive } from "@core-ui/react-mui-core";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { useNovalsStore } from "@core-ui/react-novals";
 import { useGlobalStyles } from "@/styles/globalStyle";
@@ -10,6 +10,7 @@ import { Link } from "@core-ui/react-core";
 
 export const Ranking = observer(() => {
   const { novalStore } = useNovalsStore();
+  const { tabletSizeDown, webviewSizeDown } = useResponsive();
 
   return (
     <Flex fullWidth center>
@@ -18,21 +19,14 @@ export const Ranking = observer(() => {
         maxWidth={PAGE_MAX_WIDTH}
         overflow={"hidden"}
       >
-        <Flex flex={1} column overflow={"hidden"}>
-          <RankingList novals={novalStore.topVote || []} title="Đề cử" sortKey="star" description="Đề cử" />
-        </Flex>
-
-        <Flex flex={1} column overflow={"hidden"}>
-          <RankingList novals={novalStore.topView || []} title="Xem nhiều" sortKey="like" description="Lượt xem" />
-        </Flex>
-
-        <Flex flex={1} column overflow={"hidden"}>
-          <RankingList novals={novalStore.topLike || []} title="Yêu thích" sortKey="like" description="Lượt thích" />
-        </Flex>
-
-        <Flex flex={1} column overflow={"hidden"}>
-          <RankingList novals={novalStore.topFollow || []} title="Theo dõi" sortKey="follow" description="Lượt theo dõi" />
-        </Flex>
+        <ResponsiveFlex4Column
+          items={[
+            <RankingList novals={novalStore.topVote || []} title="Đề cử" sortKey="star" description="Đề cử" />,
+            <RankingList novals={novalStore.topView || []} title="Xem nhiều" sortKey="like" description="Lượt xem" />,
+            <RankingList novals={novalStore.topLike || []} title="Yêu thích" sortKey="like" description="Lượt thích" />,
+            <RankingList novals={novalStore.topFollow || []} title="Theo dõi" sortKey="follow" description="Lượt theo dõi" />
+          ]}
+        />
       </Flex >
     </Flex>
   );

@@ -9,15 +9,8 @@ import { PAGE_MAX_WIDTH } from "@/utils/constants";
 
 export const Header = observer(() => {
 
-  // const { tabletSizeDown } = useResponsive();
   const globalStyles = useGlobalStyles();
   const { uiStore } = useStore()
-
-  // if (tabletSizeDown) {
-  //   return <Flex fullWidth>
-
-  //   </Flex>
-  // }
 
   return (
     <Flex fullWidth centerX>
@@ -67,6 +60,9 @@ export const Header = observer(() => {
             <Animates.DrawingBorderButton
               style={{
                 borderRadius: "8px"
+              }}
+              onClick={() => {
+                
               }}
             >
               <Animates.RippleButton id="account"

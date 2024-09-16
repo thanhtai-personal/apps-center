@@ -35,7 +35,10 @@ const BackgroundImageSlide = ({ children }: { children: ReactNode }) => (
       "https://picture.dzogame.vn/img/Tru-tien-1_pp_434.jpg",
       "https://trutien.gamota.com/wp-content/uploads/2018/03/28619123_1971107369806596_3472030111921659591_o.jpg",
       "https://animevietsubvn.com/storage/images/tru-tien-2021/tru-tien-2021-poster.jpg",
-    ]}>
+    ]}
+    style={{}}
+    imgStyle={{}}
+  >
     {children}
   </ImageSlideBackground>
 );

@@ -91,19 +91,21 @@ const MenuBarContainer = observer(({ children }) => {
   const { uiStore } = useStore();
 
   return (
-    <Flex fullWidth center>
-      <Flex fullWidth justifyContent="space-between" maxWidth={PAGE_MAX_WIDTH}
-        border="solid 1px rgba(255,255,255, 0.2)"
-        bgcolor={uiStore.colors.background1}
-        p={1}
-        style={{
-          borderLeft: "none",
-          borderRight: "none",
-          borderRadius: "8px",
-          boxShadow: "rgba(127, 229, 247, 0.74) 0 0 0.15em 0.15em"
-        }}
-      >
-        {children}
+    <Flex fullWidth center mt={4}>
+      <Flex fullWidth center maxWidth={PAGE_MAX_WIDTH} px={2}>
+        <Flex fullWidth justifyContent="space-between"
+          border="solid 1px rgba(255,255,255, 0.2)"
+          bgcolor={uiStore.colors.background1}
+          p={1}
+          style={{
+            borderLeft: "none",
+            borderRight: "none",
+            borderRadius: "8px",
+            boxShadow: "rgba(127, 229, 247, 0.74) 0 0 0.15em 0.15em"
+          }}
+        >
+          {children}
+        </Flex>
       </Flex>
     </Flex>
   );
@@ -115,7 +117,9 @@ export const MenuBar = observer(() => {
 
   return (
     <MenuBarContainer>
-      <MenuItem text="Thể loại" icon={menuIcon} to="#" />
+      <Flex flex={1} centerY>
+        <MenuItem text="Thể loại" icon={menuIcon} to="#" />
+      </Flex>
       <CenterMenu />
       <Flex flex={1} centerY justifyContent="flex-end">
         <MenuItem text="Cửa hàng" target="_blank" icon={menuIcon}
