@@ -17,6 +17,7 @@ declare interface ImportMetaEnv {
   readonly VITE_IS_TEST_NET: boolean;
   readonly PRIVATE_KEY_PATH: string;
   readonly CERTIFICATE_PATH: string;
+  readonly VITE_GOOGLE_CLIENT_ID: string;
 
   // Add other environment variables here as needed
 }

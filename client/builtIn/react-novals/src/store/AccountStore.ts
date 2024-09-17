@@ -7,6 +7,8 @@ export interface IAccountStore {
   accessToken?: string;
   isLoading?: boolean;
   account?: IUserResponse;
+  requestLoginSent?: boolean;
+  socialData?: any;
 }
 
 export class AccountStore extends BaseStore implements IAccountStore {
@@ -15,6 +17,8 @@ export class AccountStore extends BaseStore implements IAccountStore {
   public accessToken?: string;
   public isLoading?: boolean = true;
   public account?: IUserResponse;
+  public requestLoginSent?: boolean = false;
+  public socialData?: any = null;
 
   constructor() {
     super();
@@ -24,6 +28,8 @@ export class AccountStore extends BaseStore implements IAccountStore {
       error: observable,
       accessToken: observable,
       isLoading: observable,
+      socialData: observable,
+      requestLoginSent: observable,
     });
   }
 }

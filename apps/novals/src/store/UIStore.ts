@@ -8,6 +8,7 @@ class UIStore extends BaseStore {
   @observable public useBottomMenu = false;
   @observable public clipboardText = "";
   @observable public loadingStatus: string = "";
+  @observable public openLoginSection: boolean = false;
   @observable public colors: { [key: string]: string } = {};
 
   constructor() {

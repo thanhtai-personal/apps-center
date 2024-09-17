@@ -23,6 +23,7 @@
     "@core-config/*"
   ],
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "react-device-detect": "^2.2.3",
     "react-social-login-buttons": "^4.1.0",
     "reactjs-social-login": "^2.6.3"
