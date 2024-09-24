@@ -454,11 +454,11 @@ export const numberToString = (value: number, digit: number = 2) => {
   return value;
 };
 
-export const formatFullDate = (date: any) => {
+export const formatFullDate = (date: any, opt?: any) => {
   const currentDate = new Date(date);
 
   // Define options for date and time formatting
-  const options = {
+  const options = opt || {
     year: "numeric",
     month: "long",
     day: "2-digit",

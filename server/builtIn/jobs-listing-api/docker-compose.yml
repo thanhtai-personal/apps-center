@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  jobs-listing_db:
+    image: postgres:16.0
+    environment:
+      POSTGRES_USER: jobs-listing
+      POSTGRES_PASSWORD: Aaaa@1111
+    ports:
+      - 25433:5432
+    volumes:
+      - ./scripts/initial-jobs-listing.sql:/docker-entrypoint-initdb.d/initial-jobs-listing.sql
+
+    networks:
+      - jobs-listing
+networks:
+  jobs-listing:
+    driver: bridge

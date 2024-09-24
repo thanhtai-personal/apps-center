@@ -9,7 +9,6 @@ export const MessageQueueBoundary = observer(({
   children: ReactNode
 }) => {
   const { notiStore } = useNovalsStore();
-
   useEffect(() => {
     const message = notiStore.messageQueue?.shift();
     if (message) {

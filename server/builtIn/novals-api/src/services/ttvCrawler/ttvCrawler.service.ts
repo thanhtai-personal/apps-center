@@ -57,7 +57,7 @@ export class TTVCrawlerService {
       }
       if (!isUpdateOnly) await this.ttvClassifies();
 
-      let listNovals = await this.novalRepo.find({ relations: ['authorData', 'categoryData'] });
+      let listNovals = await this.novalRepo.find({ relations: ['authorData', 'categoryData'], where: { deletedAt: undefined } });
       if (!isUpdateOnly) {
         listNovals = (await this.crawlTTVNovals()).listNovals
       }

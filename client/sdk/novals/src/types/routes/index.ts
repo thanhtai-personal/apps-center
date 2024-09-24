@@ -5,3 +5,4 @@ export * from "./ChapterRoutes";
 export * from "./CommentRoutes";
 export * from "./NovalRoutes";
 export * from "./RoleRoutes";
+export * from "./JobRoutes";

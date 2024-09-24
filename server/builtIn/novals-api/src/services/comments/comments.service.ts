@@ -15,7 +15,7 @@ export class CommentsService {
   ) { }
 
   async findAll(filter: IPagingFilter & ICommentFilter): Promise<IPagination<ICommentResponse>> {
-    const comments = await this.commentsRepository.find();
+    const comments = await this.commentsRepository.find({ where: { deletedAt: undefined } });
     return {
       data: CommentEntityToCommentResponse.maps(comments),
       limit: 99999999,

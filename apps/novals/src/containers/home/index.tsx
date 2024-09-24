@@ -1,8 +1,7 @@
 import { HomePageContent } from "@/components/home";
 import { PageLayout } from "@/components/layout";
-import { useStore } from "@/store/index";
 import { observer } from "@core-ui/react-mobx-state";
-import { Flex, Text } from "@core-ui/react-mui-core";
+import { Flex } from "@core-ui/react-mui-core";
 
 const HomePage = () => {
 

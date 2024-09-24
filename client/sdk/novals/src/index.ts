@@ -7,6 +7,7 @@ import {
   NovalService,
   RoleService,
   UserService,
+  JobService
 } from "./services";
 import {
   CreateApiConfig,
@@ -52,6 +53,7 @@ export class NovalsSDK extends BaseSDK {
   private commentService: CommentService;
   private categoryService: CategoryService;
   private roleService: RoleService;
+  private jobService: JobService;
 
   private constructor(config: CreateApiConfig) {
     super(config);
@@ -62,6 +64,7 @@ export class NovalsSDK extends BaseSDK {
     this.commentService = new CommentService(this.api);
     this.categoryService = new CategoryService(this.api);
     this.roleService = new RoleService(this.api);
+    this.jobService = new JobService(this.api);
   }
 
   public static getInstance = (config?: CreateApiConfig) => {
@@ -71,7 +74,6 @@ export class NovalsSDK extends BaseSDK {
     }
     return this.instance;
   }
-
 
   getUserControl() {
     return {
@@ -150,8 +152,23 @@ export class NovalsSDK extends BaseSDK {
     };
   }
 
+  getJobControl() {
+    return {
+      ...this.getBaseControl<
+        any,
+        any,
+        any,
+        any
+      >(this.jobService),
+    };
+  }
+
   getRankingNovals(filter: IPagingFilter) {
     return this.novalService.getRanking(filter);
+  }
+
+  exportAnydayJob(jobId: string, htmlString: string) {
+    return this.novalService.exportAnydayJob(jobId, htmlString);
   }
 }
 

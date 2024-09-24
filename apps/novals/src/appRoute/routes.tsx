@@ -9,6 +9,7 @@ const Home = Import({
   desktop: React.lazy(() => import('@/containers/home'))
 }) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
 
+
 const NotFoundPage = Import({
   touch: React.lazy(() => import('@/containers/404')),
   desktop: React.lazy(() => import('@/containers/404'))

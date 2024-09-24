@@ -19,5 +19,5 @@ export const allModule = [
   CommentsModule,
   ChaptersModule,
   CategoriesModule,
-  CrawlerModule
+  CrawlerModule,
 ]

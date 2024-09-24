@@ -16,7 +16,7 @@ export class NovalsService {
 
 
   async findAll(filter: IPagingFilter & INovalFilter): Promise<IPagination<INovalResponse>> {
-    const where: any = {};
+    const where: any = { deletedAt: undefined };
     if (filter.authorId) {
       where.authorId = filter.authorId
     }
@@ -40,7 +40,8 @@ export class NovalsService {
     const topView = await this.novalsRepository.find({
       take: limit,
       where: {
-        view: Not(IsNull())
+        view: Not(IsNull()),
+        deletedAt: undefined
       },
       order: {
         view: 'DESC' as const
@@ -55,7 +56,8 @@ export class NovalsService {
     const topVote = await this.novalsRepository.find({
       take: limit,
       where: {
-        suggest: Not(IsNull())
+        suggest: Not(IsNull()),
+        deletedAt: undefined
       },
       order: {
         suggest: 'DESC' as const
@@ -65,7 +67,8 @@ export class NovalsService {
     const topLike = await this.novalsRepository.find({
       take: limit,
       where: {
-        like: Not(IsNull())
+        like: Not(IsNull()),
+        deletedAt: undefined
       },
       order: {
         like: 'DESC' as const
@@ -75,7 +78,8 @@ export class NovalsService {
     const topFollow = await this.novalsRepository.find({
       take: limit,
       where: {
-        follow: Not(IsNull())
+        follow: Not(IsNull()),
+        deletedAt: undefined
       },
       order: {
         follow: 'DESC' as const

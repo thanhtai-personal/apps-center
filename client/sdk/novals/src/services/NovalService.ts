@@ -60,6 +60,12 @@ export class NovalService
     >;
   }
 
+  exportAnydayJob(jobId: string, htmlString: string) {
+    return this.api.post("/crawler/aniday", {}, { htmlString, jobId }) as Promise<
+      APIResult<IResponse<any>>
+    >;
+  }
+
   delete(
     id: string | number,
   ): Promise<APIResult<IResponse<void>>> {

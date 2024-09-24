@@ -15,7 +15,7 @@ export class CategoriesService {
   ) { }
 
   async findAll(filter: IPagingFilter & ICategoryFilter): Promise<IPagination<ICategoryResponse>> {
-    const categories = await this.categoryRepos.find();
+    const categories = await this.categoryRepos.find({ where: { deletedAt: undefined } });
     return {
       data: CategoryEntityToCategoryResponse.maps(categories),
       limit: 99999999,

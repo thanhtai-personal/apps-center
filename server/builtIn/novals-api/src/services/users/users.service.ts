@@ -15,7 +15,7 @@ export class UsersService {
   ) { }
 
   async findAll(filter: IPagingFilter & IUserFilter): Promise<IPagination<IUserResponse>> {
-    const users = await this.usersRepository.find();
+    const users = await this.usersRepository.find({ where: { deletedAt: undefined } });
     return {
       data: UserEntityToUserResponse.maps(users),
       limit: 99999999,

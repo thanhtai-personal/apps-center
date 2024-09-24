@@ -15,7 +15,7 @@ export class ChaptersService {
   ) { }
 
   async findAll(filter: IPagingFilter & IChapterFilter): Promise<IPagination<IChapterResponse>> {
-    const chapters = await this.chaptersRepository.find();
+    const chapters = await this.chaptersRepository.find({ where: { deletedAt: undefined } });
     return {
       data: ChapterEntityToChapterResponse.maps(chapters),
       limit: 99999999,

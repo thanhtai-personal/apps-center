@@ -15,7 +15,7 @@ export class AuthorsService {
   ) { }
 
   async findAll(filter: IPagingFilter & IAuthorFilter): Promise<IPagination<IAuthorResponse>> {
-    const authors = await this.authorsRepository.find();
+    const authors = await this.authorsRepository.find({ where: { deletedAt: undefined } });
     return {
       data: AuthorEntityToAuthorResponse.maps(authors),
       limit: 99999999,

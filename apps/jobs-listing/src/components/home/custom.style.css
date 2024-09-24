@@ -1,0 +1,33 @@
+.ant-descriptions-view,
+table {
+  width: 100%;
+}
+
+table {
+  color: rgb(249, 112, 102);
+}
+
+.ant-descriptions-item {
+  padding: 8px;
+}
+
+.custom-button, .outlined-button {
+  border-radius: 16px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: calc(.27548vw + 12.71074px);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color .3s, border-color .3s;
+  background-color: #4c69ba;
+  border: calc(.06887vw + .67769px) solid #4c69ba;
+  padding: calc(.34435vw + 13.38843px) calc(.34435vw + 18.38843px);
+}
+
+.custom-button i {
+  margin-right: 16px;
+}
