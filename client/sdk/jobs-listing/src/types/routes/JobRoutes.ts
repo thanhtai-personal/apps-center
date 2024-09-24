@@ -63,4 +63,15 @@ export interface JobRoutes extends BaseRoutes {
       };
     };
   };
+  
+  "/jobs/aniday": {
+    post: {
+      request: {
+        body: { htmlString: string; jobId: string; };
+      };
+      responses: {
+        "200": IResponse<any>;
+      };
+    };
+  };
 }

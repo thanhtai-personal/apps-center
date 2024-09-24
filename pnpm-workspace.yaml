@@ -15,7 +15,7 @@ packages:
   - "client/ui/react-viewFrames"
   - "client/ui/react-lazyload"
   # - "client/builtIn/react-novals"
-  - "client/builtIn/jobs-listing"
+  - "client/builtIn/react-jobs-listing"
 
   # all packages in subdirs of components/
   # - "server/builtIn/novals-api"

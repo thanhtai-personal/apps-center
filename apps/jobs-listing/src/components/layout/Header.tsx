@@ -6,7 +6,6 @@ import { useGlobalStyles } from "@/styles/globalStyle";
 import { useStore } from "@/store/index";
 import { Input } from "@core-ui/react-mui-core/materials"
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
-import { LoginSection } from "@/components/authen/LoginSection";
 
 export const Header = observer(() => {
 
@@ -15,7 +14,6 @@ export const Header = observer(() => {
 
   return (
     <>
-      {uiStore.openLoginSection && <LoginSection />}
       <Flex fullWidth centerX>
         <Flex maxWidth={PAGE_MAX_WIDTH} fullWidth justifyContent={"space-between"} p={2} centerY>
           <Flex>

@@ -1,4 +1,4 @@
-import { BaseSDK, IPagingFilter, IResponse, Pagination as PaginationCore } from "@core-sdk/core";
+import { BaseSDK, IPagingFilter, Pagination as PaginationCore } from "@core-sdk/core";
 import {
   CategoryService,
   RoleService,
@@ -8,40 +8,23 @@ import {
 import {
   CreateApiConfig,
 } from "./types";
-import { APIResult } from "@core-ui/api-client";
 import {
   IUserResponse,
   IUserCreation,
   IUserUpdating,
   IUserFilter,
-  IJobsListingCreation,
-  IJobsListingUpdating,
-  IJobsListingResponse,
-  IJobsListingFilter,
-  IAuthorCreation,
-  IAuthorFilter,
-  IAuthorResponse,
-  IAuthorUpdating,
   ICategoryCreation,
   ICategoryFilter,
   ICategoryResponse,
   ICategoryUpdating,
-  IChapterCreation,
-  IChapterFilter,
-  IChapterResponse,
-  IChapterUpdating,
-  ICommentCreation,
-  ICommentFilter,
-  ICommentResponse,
-  ICommentUpdating,
   IRoleCreation,
   IRoleFilter,
   IRoleResponse,
   IRoleUpdating,
 } from "@core-ui/jobs-listing-types"
 
-export class JobsListingsSDK extends BaseSDK {
-  private static instance: JobsListingsSDK | null = null;
+export class JobsListingSDK extends BaseSDK {
+  private static instance: JobsListingSDK | null = null;
   private userService: UserService;
   private categoryService: CategoryService;
   private roleService: RoleService;
@@ -57,8 +40,7 @@ export class JobsListingsSDK extends BaseSDK {
 
   public static getInstance = (config?: CreateApiConfig) => {
     if (!this.instance) {
-      console.log("config", config)
-      this.instance = new JobsListingsSDK(config || { apiEndpoint: "no-api-end-point" })
+      this.instance = new JobsListingSDK(config || { apiEndpoint: "no-api-end-point" })
     }
     return this.instance;
   }
@@ -107,9 +89,13 @@ export class JobsListingsSDK extends BaseSDK {
     };
   }
 
+  exportAnydayJob(jobId: string, htmlString: string) {
+    return this.jobService.exportAnydayJob(jobId, htmlString);
+  }
+
 }
 
 export type Pagination<T> = PaginationCore<T>;
 
 export * from "./types";
-export default JobsListingsSDK;
+export default JobsListingSDK;

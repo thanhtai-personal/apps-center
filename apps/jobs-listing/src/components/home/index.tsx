@@ -3,7 +3,7 @@ import { useGlobalStyles } from "@/styles/globalStyle";
 import { observer, useLocalObservable } from "@core-ui/react-mobx-state";
 import { Flex, LazyImage, OutlinedButton, Text } from "@core-ui/react-mui-core";
 import { Drawer } from "@core-ui/react-mui-core/materials";
-import { runJobs, useCrawler, useJobListingStore, useJobsData } from "@core-ui/react-job-listting";
+import { runJobs, useCrawler, useJobsListingStore, useJobsData } from "@core-ui/react-job-listing";
 import { formatFullDate, waitMs } from "@core-utils/utils-helpers";
 import { useEffect, useLayoutEffect, useMemo, useRef, useTransition } from "react";
 import { toPng } from 'html-to-image';
@@ -24,7 +24,7 @@ export const CrawlerPageContent = observer(() => {
     selectedPages: [] as any[],
     postContent: '',
   }))
-  const { jobStore } = useJobListingStore();
+  const { jobStore } = useJobsListingStore();
   const { uiStore } = useStore();
   const globalStyles = useGlobalStyles();
   const inputRef = useRef<any>();

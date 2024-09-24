@@ -166,10 +166,6 @@ export class NovalsSDK extends BaseSDK {
   getRankingNovals(filter: IPagingFilter) {
     return this.novalService.getRanking(filter);
   }
-
-  exportAnydayJob(jobId: string, htmlString: string) {
-    return this.novalService.exportAnydayJob(jobId, htmlString);
-  }
 }
 
 export type Pagination<T> = PaginationCore<T>;

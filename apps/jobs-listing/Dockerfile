@@ -1,6 +1,6 @@
 FROM node:20
 
-WORKDIR /apps/goat-tap
+WORKDIR /apps/jobs-listing
 
 # Copy root package.json and lockfile
 COPY package.json ./

@@ -23,7 +23,7 @@
     "@core-ui/react-core": "workspace:^",
     "@core-ui/react-mobx-state": "workspace:^",
     "@core-ui/react-mui-core": "workspace:^",
-    "@core-ui/react-job-listting": "workspace:^",
+    "@core-ui/react-job-listing": "workspace:^",
     "@core-ui/react-viewframe": "workspace:^",
     "@core-utils/react-social-login": "workspace:^",
     "@core-utils/utils-helpers": "workspace:^",

@@ -23,11 +23,11 @@ export class JobsListingStore {
   }
 }
 
-export const jobs-listingStore = createStore<JobsListingStore>(new JobsListingStore());
+export const jobsListingStore = createStore<JobsListingStore>(new JobsListingStore());
 
-export const useJobsListingStore = jobs-listingStore.useStore as () => JobsListingStore;
+export const useJobsListingStore = jobsListingStore.useStore as () => JobsListingStore;
 
-const Provider = jobs-listingStore.Provider;
+const Provider = jobsListingStore.Provider;
 
 export const JobsListingProvider = ({ children, config }: {
   children: ReactNode;

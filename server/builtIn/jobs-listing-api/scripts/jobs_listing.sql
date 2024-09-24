@@ -2,7 +2,7 @@
 \c postgres
 
 -- Drop the target database if it exists
-DROP DATABASE IF EXISTS jobs-listing;
+DROP DATABASE IF EXISTS jobs_listing;
 
 -- Create the new database
-CREATE DATABASE jobs-listing;
+CREATE DATABASE jobs_listing;

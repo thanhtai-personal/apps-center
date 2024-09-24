@@ -1,6 +1,6 @@
 import { observer } from "@core-ui/react-mobx-state";
 import { NotiStackInstance } from "@core-ui/react-mui-core";
-import { useJobListingStore } from "@core-ui/react-job-listting";
+import { useJobsListingStore } from "@core-ui/react-job-listing";
 import { ReactNode, useEffect } from "react"
 
 export const MessageQueueBoundary = observer(({
@@ -8,7 +8,7 @@ export const MessageQueueBoundary = observer(({
 }: {
   children: ReactNode
 }) => {
-  const { notiStore } = useJobListingStore();
+  const { notiStore } = useJobsListingStore();
 
   useEffect(() => {
     if (notiStore.messageQueue) {

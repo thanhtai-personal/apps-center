@@ -2,8 +2,6 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from "@cor
 import { IUser } from "@core-ui/jobs-listing-types";
 import { BaseEntity } from "./base.entity";
 import { RoleEntity } from "./role.entity";
-import { AuthorEntity } from "./author.entity";
-import { CommentEntity } from "./comment.entity";
 
 // UserEntity
 @Entity('users')
@@ -31,10 +29,4 @@ export class UserEntity extends BaseEntity implements IUser {
   
   @ManyToOne(() => RoleEntity, (role) => role.users, { cascade: true })
   roleData?: string;
-
-  @OneToOne(() => UserEntity, { cascade: false })
-  author?: AuthorEntity;
-
-  @OneToMany(() => CommentEntity, (comment) => comment.userData, { cascade: false })
-  comments?: CommentEntity;
 }

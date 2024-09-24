@@ -49,4 +49,10 @@ export class JobService
       APIResult<IResponse<void>>
     >;
   }
+
+  exportAnydayJob(jobId: string, htmlString: string) {
+    return this.api.post("/jobs/aniday", {}, { htmlString, jobId }) as Promise<
+      APIResult<IResponse<any>>
+    >;
+  }
 }

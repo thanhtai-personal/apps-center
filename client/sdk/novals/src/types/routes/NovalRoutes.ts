@@ -83,15 +83,4 @@ export interface NovalRoutes extends BaseRoutes {
       };
     };
   };
-  
-  "/crawler/aniday": {
-    post: {
-      request: {
-        body: { htmlString: string; jobId: string; };
-      };
-      responses: {
-        "200": IResponse<any>;
-      };
-    };
-  };
 }
