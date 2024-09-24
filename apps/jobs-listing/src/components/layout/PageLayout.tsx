@@ -7,7 +7,6 @@ import { Footer } from "./Footer";
 import { MenuBar } from "./MenuBar";
 import { ThemeProvider } from "@/styles/ThemeProvider";
 import { Animates } from "@core-ui/react-animates";
-import { ImageSlideBackground } from "@core-ui/react-viewframe";
 import "@core-ui/react-viewframe/dist/styles.css"
 import { MessageQueueBoundary } from "./MessageQueueBoundary";
 
@@ -25,22 +24,6 @@ const MainContainer = ({ children }: { children: ReactNode }) => (
       {children}
     </Flex>
   </Flex>
-);
-
-// Video background component
-const BackgroundImageSlide = ({ children }: { children: ReactNode }) => (
-  <ImageSlideBackground
-    id={"test"}
-    images={[
-      "https://picture.dzogame.vn/img/Tru-tien-1_pp_434.jpg",
-      "https://trutien.gamota.com/wp-content/uploads/2018/03/28619123_1971107369806596_3472030111921659591_o.jpg",
-      "https://animevietsubvn.com/storage/images/tru-tien-2021/tru-tien-2021-poster.jpg",
-    ]}
-    style={{}}
-    imgStyle={{}}
-  >
-    {children}
-  </ImageSlideBackground>
 );
 
 // Content container component
@@ -70,14 +53,7 @@ const MainContent = observer(({ children }: { children: ReactNode }) => {
   const { uiStore } = useStore();
   return (
     <Flex fullWidth column>
-      {uiStore.useHeader && <Header />}
-      {uiStore.useMenuBar && (
-        <Animates.GrowUpAppear delay={2.5}>
-          <MenuBar />
-        </Animates.GrowUpAppear>
-      )}
       {children}
-      {uiStore.useFooter && <Footer />}
     </Flex>
   );
 });
@@ -86,13 +62,11 @@ const MainContent = observer(({ children }: { children: ReactNode }) => {
 export const PageLayout = observer(({ children }: IPageLayoutProps) => {
   return (
     <MainContainer>
-      <BackgroundImageSlide>
-        <ContentContainer>
-          <MainContent>
-            {children}
-          </MainContent>
-        </ContentContainer>
-      </BackgroundImageSlide>
+      <ContentContainer>
+        <MainContent>
+          {children}
+        </MainContent>
+      </ContentContainer>
     </MainContainer>
   )
 });

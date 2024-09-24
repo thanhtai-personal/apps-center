@@ -5,11 +5,13 @@ export interface IJobStore {
   jobs?: any;
   filterData?: any;
   loading?: boolean;
+  pagingFilterData?: any;
 }
 
 export class JobStore extends BaseStore implements IJobStore {
   public error?: any = null;
   public jobs?: any;
+  public pagingFilterData?: any;
   public filterData?: any;
   public job?: any;
   public loading?: boolean = false; 
@@ -22,6 +24,7 @@ export class JobStore extends BaseStore implements IJobStore {
       filterData: observable,
       job: observable,
       loading: observable,
+      pagingFilterData: observable,
     });
   }
 }

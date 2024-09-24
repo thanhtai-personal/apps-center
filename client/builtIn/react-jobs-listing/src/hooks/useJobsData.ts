@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { JobsListingSDK } from "@core-sdk/jobs-listing";
 import { IPagination } from "@core-ui/jobs-listing-types";
 import { useJobsListingStore } from "../store";
@@ -64,14 +64,28 @@ export const useJobsData = () => {
     deleteJob,
     searchJobs,
     getJobDetail,
-    viewJob
+    viewJob,
   }
 }
 
 export const runJobs = () => {
   const { refetch } = useJobsData();
+  const { jobStore } = useJobsListingStore();
   
   useEffect(() => {
     refetch();
-  }, [])
+  }, []);
+
+  const todayJobs = useMemo(() => {
+    return []
+  }, [jobStore.jobs])
+
+  const currentWeekJobs = useMemo(() => {
+    return []
+  }, [jobStore.jobs])
+
+  return {
+    todayJobs,
+    currentWeekJobs
+  }
 }
