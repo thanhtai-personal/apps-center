@@ -5,8 +5,8 @@ module.exports = {
       script: 'pnpm',
       args: 'build',
       env: {
-        VITE_BASE_URL: '',
-        VITE_API_URL: '',
+        VITE_BASE_URL:'https://34.135.118.246:5173',
+        VITE_API_URL: 'http://34.135.118.246:6789',
         VITE_TELEGRAM_BOT_URL: '',
         VITE_TELEGRAM_BOT_WALLET_ADDRESS: 'UQDozoVJzP-Va28QA8A3OG01ebBH31h1ofxb2wmzKYx-3pVK',
         VITE_IS_TEST_NET: true,
