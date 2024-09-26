@@ -3,7 +3,7 @@ import { AppLayout } from "@/layout/index"
 import "./reset.css";
 import "./index.css";
 import { AppStoreProvider } from "./store";
-// import { JobsListingProvider } from "@core-ui/react-job-listing";
+import { JobsListingProvider } from "@core-ui/react-job-listing";
 
 export const App = ({ children }: { children: ReactNode }) => {
   return (
