@@ -1,18 +1,18 @@
 module.exports = {
   apps: [
-    {
-      name: 'jobslistting-client',
-      script: 'serve',
-      args: 'apps/jobs-listing/dist 5173 --spa',
-      env: {
-        NODE_ENV: "production",
-        VITE_BASE_URL: 'https://34.135.118.246:5173/',
-        VITE_API_URL: 'http://34.135.118.246:6789/',
-        VITE_TELEGRAM_BOT_URL: 'https://t.me/jobslisttingdevbot',
-        VITE_TELEGRAM_BOT_WALLET_ADDRESS: 'UQDozoVJzP-Va28QA8A3OG01ebBH31h1ofxb2wmzKYx-3pVK',
-        VITE_IS_TEST_NET: true,
-      },
-    },
+    // {
+    //   name: 'jobslistting-client',
+    //   script: 'serve',
+    //   args: 'apps/jobs-listing/dist 5173 --spa',
+    //   env: {
+    //     NODE_ENV: "production",
+    //     VITE_BASE_URL: 'https://34.135.118.246:5173/',
+    //     VITE_API_URL: 'http://34.135.118.246:6789/',
+    //     VITE_TELEGRAM_BOT_URL: 'https://t.me/jobslisttingdevbot',
+    //     VITE_TELEGRAM_BOT_WALLET_ADDRESS: 'UQDozoVJzP-Va28QA8A3OG01ebBH31h1ofxb2wmzKYx-3pVK',
+    //     VITE_IS_TEST_NET: true,
+    //   },
+    // },
     {
       name: 'jobslistting-api',
       script: 'node',
