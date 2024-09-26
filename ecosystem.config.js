@@ -20,7 +20,7 @@ module.exports = {
       env: {
         PORT: 6789,
         NODE_ENV: "production",
-        DB_HOST: "localhost",
+        DB_HOST: "127.0.0.1",
         DB_PORT: "5432",
         DB_USER: "jobslisting",
         DB_PASSWORD: "Aaaa@1111",
