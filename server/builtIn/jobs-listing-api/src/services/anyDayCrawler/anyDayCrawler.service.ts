@@ -1,4 +1,4 @@
-import { JobEntity } from "@/entities";
+import { CategoryEntity, JobEntity } from "@/entities";
 import { InjectRepository, Repository } from '@core-api/nest-typeorm-postgres';
 import { Injectable } from '@nestjs/common';
 // import { Cron, CronExpression } from '@nestjs/schedule';
@@ -12,18 +12,20 @@ export class AnyDayCrawlerService {
   constructor(
     @InjectRepository(JobEntity)
     private jobRepo: Repository<JobEntity>,
+    @InjectRepository(CategoryEntity)
+    private categoriesRepo: Repository<CategoryEntity>,
   ) {
     this.isCrawling = false;
   }
 
-  async exportJobs(jobId: string, htmlString: string) {
+  async exportJobs(jobId: string, categoryId: number, htmlString: string) {
     if (this.isCrawling) return;
     this.isCrawling = true;
     try {
       const $page = cheerio.load(htmlString);
       const thumb = $page("div.job-detail-header_job-detail-header div.my-image_my-image img.my-image_my-image")?.attr("src");
       const name = $page("h1.title-section_title-section")?.text()?.trim();
-      
+
       const rewardElems = $page("div.job-detail-header_job-detail-header div.ant-space div.ant-space-item span.job-detail-header_job-detail-header") || [];
       const goldRef = $page((rewardElems?.[0] as any)?.children)?.text()?.trim();
       const goldItv = $page((rewardElems?.[2] as any)?.children)?.text()?.trim();
@@ -33,7 +35,7 @@ export class AnyDayCrawlerService {
       const jobDescriptionElems = $page("div.ant-row div.ant-col span.job-description_job-description");
       const cvInprogress = $page((jobDescriptionElems?.[0] as any)?.children)?.text()?.trim();
       const cvPassed = $page((jobDescriptionElems?.[1] as any)?.children)?.text()?.trim();
-      
+
       const inforElements = $page("tr.ant-descriptions-row td.ant-descriptions-item div.ant-descriptions-item-container span.ant-descriptions-item-content div.edit-information-view_edit-information-view");
       const grossSalary = $page((inforElements?.[1] as any)?.children)?.text()?.trim();
       const number = $page((inforElements?.[3] as any)?.children)?.text()?.trim();
@@ -55,7 +57,7 @@ export class AnyDayCrawlerService {
       const htmlInfo = `${$page(htmlInfoElements?.[0])?.html()?.toString()} ${$page(htmlInfoElements?.[1])?.html()?.toString()}`;
 
       const companyName = $page("h3.company-profile-view_company-profile-view a.my-link_my-link.company-profile-view_company-profile-view")?.text()?.trim();
-      
+
       const newJob = {
         jobId,
         companyName,
@@ -82,10 +84,14 @@ export class AnyDayCrawlerService {
       }
 
       let existingJob = await this.jobRepo.findOne({ where: { jobId } });
+      const category = await this.categoriesRepo.findOne({ where: { id: Number(categoryId) } })
+
       if (existingJob) {
+        if (category) existingJob.categoryData = category;
         existingJob = await this.jobRepo.save({ ...existingJob, ...newJob })
       } else {
         const newJobDt = this.jobRepo.create(newJob);
+        if (category) newJobDt.categoryData = category;
         existingJob = await this.jobRepo.save(newJobDt);
       }
       const jobs = await this.jobRepo.find({ where: { deletedAt: undefined } });

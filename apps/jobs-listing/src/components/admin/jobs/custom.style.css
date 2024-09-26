@@ -31,3 +31,7 @@ table {
 .custom-button i {
   margin-right: 16px;
 }
+
+select.custom-select {
+  color: #000000;
+}

@@ -6,10 +6,10 @@ import { JobsListingSDK } from "@core-sdk/jobs-listing";
 export const useCrawler = () => {
   const { jobStore } = useJobsListingStore();
 
-  const exportAnydayJob = async (jobId: string, htmlString: string) => {
+  const exportAnydayJob = async (jobId: string, categoryId: number, htmlString: string) => {
     try {
-      const jobs: any = await JobsListingSDK.getInstance().exportAnydayJob(jobId, htmlString);
-      jobStore.jobs = jobs.data; 
+      const jobs: any = await JobsListingSDK.getInstance().exportAnydayJob(jobId, categoryId, htmlString);
+      jobStore.jobs = jobs; 
     } catch (error) { }
   }
 

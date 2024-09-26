@@ -63,11 +63,11 @@ export interface JobRoutes extends BaseRoutes {
       };
     };
   };
-  
-  "/jobs/aniday": {
+
+  "/crawler/aniday": {
     post: {
       request: {
-        body: { htmlString: string; jobId: string; };
+        body: { htmlString: string; categoryId: number; jobId: string; };
       };
       responses: {
         "200": IResponse<any>;

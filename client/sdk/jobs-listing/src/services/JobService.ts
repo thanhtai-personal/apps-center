@@ -50,8 +50,8 @@ export class JobService
     >;
   }
 
-  exportAnydayJob(jobId: string, htmlString: string) {
-    return this.api.post("/jobs/aniday", {}, { htmlString, jobId }) as Promise<
+  exportAnydayJob(jobId: string, categoryId: number, htmlString: string) {
+    return this.api.post("/crawler/aniday", {}, { htmlString, categoryId, jobId }) as Promise<
       APIResult<IResponse<any>>
     >;
   }

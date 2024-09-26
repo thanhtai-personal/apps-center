@@ -3,7 +3,7 @@ import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state
 export interface IJobStore {
   error?: any;
   jobs?: any;
-  filterData?: any;
+  filterData: any;
   loading?: boolean;
   pagingFilterData?: any;
 }
@@ -12,7 +12,10 @@ export class JobStore extends BaseStore implements IJobStore {
   public error?: any = null;
   public jobs?: any;
   public pagingFilterData?: any;
-  public filterData?: any;
+  public filterData: any = {
+    limit: 10,
+    offset: 0
+  };
   public job?: any;
   public loading?: boolean = false; 
 

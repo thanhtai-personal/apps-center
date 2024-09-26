@@ -3,13 +3,14 @@ import { useGlobalStyles } from "@/styles/globalStyle";
 import { observer, useLocalObservable } from "@core-ui/react-mobx-state";
 import { Flex, LazyImage, OutlinedButton, Text } from "@core-ui/react-mui-core";
 import { Drawer } from "@core-ui/react-mui-core/materials";
-import { runJobs, useCrawler, useJobsListingStore, useJobsData } from "@core-ui/react-job-listing";
+import { runJobs, useCrawler, useJobsListingStore, useJobsData, runCategoryStore } from "@core-ui/react-job-listing";
 import { formatFullDate, waitMs } from "@core-utils/utils-helpers";
 import { useEffect, useLayoutEffect, useMemo, useRef, useTransition } from "react";
 import { toPng } from 'html-to-image';
 import FacebookLogin from 'react-facebook-login';
 
 import "./custom.style.css";
+import { JobDetail } from "@/components/JobDetail";
 
 const fbApiVersion = "v20.0"
 const fbAppId = "1058569359238393"
@@ -24,22 +25,28 @@ export const JobsCrawlerPageContent = observer(() => {
     selectedPages: [] as any[],
     postContent: '',
   }))
-  const { jobStore } = useJobsListingStore();
+  const { jobStore, categoryStore } = useJobsListingStore();
   const { uiStore } = useStore();
   const globalStyles = useGlobalStyles();
   const inputRef = useRef<any>();
   const inputIdRef = useRef<any>();
+  const categoryRef = useRef<any>();
   const { exportAnydayJob } = useCrawler();
   const [isPending, startTransition] = useTransition();
 
   const { deleteJob, viewJob, refetch } = useJobsData();
+
+  useEffect(() => {
+    jobStore.filterData.limit = 99999;
+    refetch?.();
+  }, [])
 
   const handleSubmit = async () => {
     if (state.loading) return;
     state.loading = true;
     if (inputIdRef.current.value && inputRef.current.value) {
       const trimHtmlStr = cleanHTML(inputRef.current.value);
-      await exportAnydayJob(inputIdRef.current.value, trimHtmlStr);
+      await exportAnydayJob(inputIdRef.current.value, categoryRef.current.value, trimHtmlStr);
       refetch();
     }
     await waitMs(1000);
@@ -49,6 +56,7 @@ export const JobsCrawlerPageContent = observer(() => {
   }
 
   runJobs();
+  runCategoryStore();
 
   const responseFacebook = (response) => {
     if (response.status === 'connected') {
@@ -107,7 +115,6 @@ export const JobsCrawlerPageContent = observer(() => {
         }),
       });
       const data = await response.json();
-      console.log('Post to user feed:', data);
     } catch (error) {
 
     }
@@ -138,9 +145,9 @@ export const JobsCrawlerPageContent = observer(() => {
   }, [])
 
   const handleSelectJob = (job: any, index: number) => () => {
-    if (jobStore.jobs[index]) {
+    if (jobStore.jobs?.data?.[index]) {
       state.lastTarget = `${job.id}-${job.selected}`
-      jobStore.jobs[index].selected = !jobStore.jobs[index].selected;
+      jobStore.jobs.data[index].selected = !jobStore.jobs?.data?.[index].selected;
     }
   }
 
@@ -163,7 +170,7 @@ export const JobsCrawlerPageContent = observer(() => {
     }
   }
 
-  const selectedJobs = useMemo(() => (jobStore.jobs || []).filter((j: any) => !!j.selected), [jobStore.jobs, state.lastTarget])
+  const selectedJobs = useMemo(() => (jobStore.jobs?.data || []).filter((j: any) => !!j.selected), [jobStore.jobs?.data, state.lastTarget])
 
 
   return <Flex fullWidth column>
@@ -187,6 +194,16 @@ export const JobsCrawlerPageContent = observer(() => {
         <Flex fullWidth p={2}>
           <input ref={inputIdRef} type="text" style={{ width: "100%", background: "rgba(255,255,255, 0.25)", padding: "8px" }} placeholder="id"></input>
         </Flex>
+        <Flex mt={1} px={2} column>
+          <Text textAlign={"left"}>Category:</Text>
+          <select className="custom-select"
+            defaultValue={categoryStore.categories?.data?.[0]?.id}
+            ref={categoryRef}>
+            {(categoryStore.categories?.data || []).map((category: any) => {
+              return <option key={category.id} value={category.id}>{category.name}</option>
+            })}
+          </select>
+        </Flex>
         <Flex fullWidth p={2} mt={2} center>
           <textarea placeholder="html string" rows={15} style={{ background: "rgba(255,255,255, 0.25)", width: "100%", padding: "8px" }} ref={inputRef} />
         </Flex>
@@ -203,7 +220,7 @@ export const JobsCrawlerPageContent = observer(() => {
           overflowX: "hidden",
         }}
       >
-        {(jobStore.jobs || []).map((job: any, index: number) => {
+        {(jobStore.jobs?.data || []).map((job: any, index: number) => {
           return (
             <Flex key={job.id} fullWidth centerY justifyContent={"center"} p={1} cursorPointer
               onClick={handleSelectJob(job, index)}
@@ -270,24 +287,37 @@ export const JobsCrawlerPageContent = observer(() => {
           })}</Text>
         </Flex>
         {selectedJobs.map((job: any, index: number) => {
-          return <Flex fullWidth key={job.id} centerY my={1} justifyContent={"space-between"}>
-            <Flex flex={4}>
-              <Flex>
-                <Text className={globalStyles.textGeo16} whiteSpace={"nowrap"}>{index + 1}</Text>
-              </Flex>
-              <Flex ml={1}>
-                <Text className={globalStyles.textGeo16} whiteSpace={"nowrap"}>- {job.name}</Text>
-              </Flex>
-              {job.engLevel && <Flex ml={1}>
-                <Text className={globalStyles.textKanit16} whiteSpace={"nowrap"}> - Tiếng anh: {job.engLevel}</Text>
-              </Flex>}
-            </Flex>
+          return <div key={job.id} style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            margin: "16px 0",
+          }} >
+            <div style={{ flex: 4, display: "flex" }}>
+              <div>
+                <div style={{
+                  whiteSpace: "nowrap", fontSize: 16
+                }}>{index + 1}</div>
+              </div>
+              <div style={{ marginLeft: "16px" }}>
+                <div style={{
+                  whiteSpace: "nowrap", fontSize: 16, fontWeight: "bold"
+                }}>- {job.name}</div>
+              </div>
+              {job.engLevel && <div style={{
+                whiteSpace: "nowrap",
+                marginLeft: "4px", fontSize: 16
+              }}>
+                <div> - Tiếng anh: {job.engLevel}</div>
+              </div>}
+            </div>
 
-            {job.jobType && <Flex flex={1} pl={8} justifyContent={"flex-end"}>
-              <Text className={globalStyles.textKanit16} whiteSpace={"nowrap"}>-#{job.jobType || ""}</Text>
-            </Flex>}
+            {job.jobType && <div style={{ display: "flex", whiteSpace: "nowrap", fontSize: 16 }}>
+              <div>-#{job.jobType || ""}</div>
+            </div>}
 
-          </Flex>
+          </div>
         })}
         <Flex fullWidth mt={2} center>
           <Text className={globalStyles.textKanit16} color={"red"} whiteSpace={"nowrap"}>@Inbox me!!!</Text>
@@ -336,198 +366,4 @@ function cleanHTML(html: string): string {
 
   // Return the cleaned HTML as a string
   return selectedElement?.toString() || "";
-}
-
-
-const JobDetail = ({ data }: any) => {
-  const globalStyles = useGlobalStyles();
-
-  const jobDetail = useMemo(() => {
-    return data || {}
-  }, [data])
-
-  return <Flex fullWidth column>
-    <Flex fullWidth centerY>
-      {/* <img src={jobDetail.thumb} style={{ height: 40 }} alt={jobDetail.id} /> */}
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textOrbiBold18} ml={0.5}>
-        <span style={{ color: "red" }}>Job: #{jobDetail.jobId}</span> - {jobDetail.name}
-      </Text>
-    </Flex>
-
-    <Flex fullWidth centerY mt={4}>
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanitBold16} ml={0.5}>
-        Bonus:
-      </Text>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Đậu PV: {jobDetail.goldRef}
-        </Text>
-      </Flex>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Đi phỏng vấn: {jobDetail.goldItv}
-        </Text>
-      </Flex>
-    </Flex>
-
-    <Flex fullWidth centerY mt={4}>
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanitBold16} ml={0.5}>
-        Công ty:
-      </Text>
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanitBold16} color={"red"} ml={0.5} textTransform={"uppercase"}>
-        {jobDetail.companyName}
-      </Text>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Đã tuyển: <span style={{ color: "rgb(249, 112, 102)" }}>{jobDetail.cvInprogress}</span>
-        </Text>
-      </Flex>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Đã mở: <span style={{ color: "rgb(249, 112, 102)" }}>{jobDetail.cvPassed}</span>
-        </Text>
-      </Flex>
-    </Flex>
-
-    <Flex fullWidth centerY mt={2}>
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanitBold16} ml={0.5}>
-        Công việc:
-      </Text>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex fullWidth column style={{
-        color: "#006699",
-        textAlign: "left",
-        whiteSpace: "pre-line",
-        fontSize: 14,
-      }} dangerouslySetInnerHTML={{ __html: jobDetail.htmlInfo }}>
-      </Flex>
-    </Flex>
-    {/* <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          CVs: {jobDetail.cvInprogress}
-        </Text>
-      </Flex>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Số lượng: {jobDetail.cvPassed}
-        </Text>
-      </Flex>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Lương: {jobDetail.grossSalary}
-        </Text>
-      </Flex>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Số lượng: {jobDetail.number}
-        </Text>
-      </Flex>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Loại: {jobDetail.jobType}
-        </Text>
-      </Flex>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Trình độ: {jobDetail.level}
-        </Text>
-      </Flex>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY>
-        <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanit16} ml={0.5}>
-          Địa chỉ:
-        </Text>
-        <Text textAlign={"left"} className={globalStyles.textKanit16} ml={0.5}>
-          {jobDetail.position}
-        </Text>
-      </Flex>
-    </Flex> */}
-
-    <Flex fullWidth centerY mt={1}>
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanitBold16} ml={0.5} style={{ textDecoration: "underline" }}>
-        Tổng quan:
-      </Text>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY style={{
-        color: "#006699",
-        textAlign: "left",
-        whiteSpace: "pre-line",
-        fontSize: 14,
-      }} dangerouslySetInnerHTML={{ __html: jobDetail.summary }}>
-      </Flex>
-    </Flex>
-
-    <Flex fullWidth centerY mt={2}>
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanitBold16} ml={0.5} style={{ textDecoration: "underline" }}>
-        Kỹ năng:
-      </Text>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY style={{
-        color: "#006699",
-        textAlign: "left",
-        whiteSpace: "pre-line",
-        fontSize: 14,
-      }} dangerouslySetInnerHTML={{ __html: jobDetail.skills }}>
-      </Flex>
-    </Flex>
-
-    <Flex fullWidth centerY mt={2}>
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanitBold16} ml={0.5} style={{ textDecoration: "underline" }}>
-        Kỹ năng ưu tiên:
-      </Text>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY style={{
-        color: "#006699",
-        textAlign: "left",
-        whiteSpace: "pre-line",
-        fontSize: 14,
-      }} dangerouslySetInnerHTML={{ __html: jobDetail.prioritySkills }}>
-      </Flex>
-    </Flex>
-
-    <Flex fullWidth centerY mt={2}>
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanitBold16} ml={0.5} style={{ textDecoration: "underline" }}>
-        Phúc lợi:
-      </Text>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY style={{
-        color: "#006699",
-        textAlign: "left",
-        whiteSpace: "pre-line",
-        fontSize: 14,
-      }} dangerouslySetInnerHTML={{ __html: jobDetail.profit }}>
-      </Flex>
-    </Flex>
-
-    <Flex fullWidth centerY mt={2}>
-      <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textKanitBold16} ml={0.5} style={{ textDecoration: "underline" }}>
-        Note:
-      </Text>
-    </Flex>
-    <Flex fullWidth justifyContent={"space-between"} mt={1}>
-      <Flex centerY style={{
-        color: "#006699",
-        textAlign: "left",
-        whiteSpace: "pre-line",
-        fontSize: 14,
-      }} dangerouslySetInnerHTML={{ __html: jobDetail.note }}>
-      </Flex>
-    </Flex>
-
-  </Flex>
 }

@@ -89,8 +89,8 @@ export class JobsListingSDK extends BaseSDK {
     };
   }
 
-  exportAnydayJob(jobId: string, htmlString: string) {
-    return this.jobService.exportAnydayJob(jobId, htmlString);
+  exportAnydayJob(jobId: string, categoryId: number, htmlString: string) {
+    return this.jobService.exportAnydayJob(jobId, categoryId, htmlString);
   }
 
 }

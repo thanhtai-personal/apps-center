@@ -1,6 +1,5 @@
 import { useEffect, useMemo } from "react";
 import { JobsListingSDK } from "@core-sdk/jobs-listing";
-import { IPagination } from "@core-ui/jobs-listing-types";
 import { useJobsListingStore } from "../store";
 
 export const useJobsData = () => {
@@ -10,7 +9,7 @@ export const useJobsData = () => {
     try {
       jobStore.loading = true;
       const response = await JobsListingSDK.getInstance().getJobControl().getMany((jobStore.filterData || {}) as any);
-      jobStore.jobs = (response as IPagination<any>).data;
+      jobStore.jobs = response;
     } catch (error) {} finally {
       jobStore.loading = false;
     }
@@ -20,7 +19,7 @@ export const useJobsData = () => {
     try {
       jobStore.loading = true;
       const response = await JobsListingSDK.getInstance().getJobControl().getMany({...(jobStore.filterData || {}), ...filter} as any);
-      jobStore.jobs = (response as IPagination<any>).data;
+      jobStore.jobs = response;
     } catch (error) {} finally {
       jobStore.loading = false;
     }
@@ -78,11 +77,11 @@ export const runJobs = () => {
 
   const todayJobs = useMemo(() => {
     return []
-  }, [jobStore.jobs])
+  }, [jobStore.jobs?.data])
 
   const currentWeekJobs = useMemo(() => {
     return []
-  }, [jobStore.jobs])
+  }, [jobStore.jobs?.data])
 
   return {
     todayJobs,

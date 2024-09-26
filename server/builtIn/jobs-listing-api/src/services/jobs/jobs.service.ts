@@ -1,7 +1,7 @@
 import { JobEntity } from '@/entities/job.entity';
 import { JobCreateDTOToEntityMapper } from '@/mappers/jobs/job.create.mapper';
 import { JobEntityToJobResponse } from '@/mappers/jobs/job.response.mapper';
-import { DeepPartial, InjectRepository, Repository } from '@core-api/nest-typeorm-postgres';
+import { DeepPartial, InjectRepository, IsNull, Repository } from '@core-api/nest-typeorm-postgres';
 import { IPagination, IPagingFilter } from '@core-ui/jobs-listing-types';
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 
@@ -13,12 +13,34 @@ export class JobsService {
   ) { }
 
   async findAll(filter: IPagingFilter & any): Promise<IPagination<any>> {
-    const jobs = await this.jobsRepository.find();
+    const where: any = { deletedAt: IsNull() };
+
+    if (filter.category) {
+      where.categoryData = { id: filter.category };
+    }
+
+    // if (filter.query) {
+    //   where.summary = { $ilike: `%${filter.query}%` };; // TODO: summary string includes query
+    //   where.skills = { $ilike: `%${filter.query}%` };; // TODO: or summary string includes query
+    // }
+    const query = this.jobsRepository.createQueryBuilder('job');
+    if (filter.query) {
+      query.where(where)
+           .andWhere('job.summary ILIKE :query OR job.skills ILIKE :query', { query: `%${filter.query}%` });
+    } else {
+      query.where(where);
+    }
+
+    const [jobs, count] = await query
+      .take(filter.limit)
+      .skip(filter.offset)
+      .getManyAndCount();
+    
     return {
       data: JobEntityToJobResponse.maps(jobs),
-      limit: 99999999,
-      offset: 0,
-      total: jobs.length,
+      limit: filter.limit || 10,
+      offset: filter.offset || 0,
+      total: count,
     } as IPagination<any>;
   }
 

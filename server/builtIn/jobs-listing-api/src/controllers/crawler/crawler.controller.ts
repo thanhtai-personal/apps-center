@@ -1,6 +1,6 @@
 
 
-import {  Body, Controller, HttpException, HttpStatus, Post, Res } from '@nestjs/common';
+import {  Body, Controller, Get, HttpException, HttpStatus, Post, Res } from '@nestjs/common';
 import { AnyDayCrawlerService } from '@/services/anyDayCrawler/anyDayCrawler.service';
 import { Response } from "express"
 
@@ -10,14 +10,30 @@ export class CrawlerController {
     private readonly anyDayCrawlerService: AnyDayCrawlerService,
   ) { }
 
-  @Post("/aniday")
-  async exportAnydayJob(
-    @Body() req: any,
+  @Get("/")
+  async crawler(
     @Res()
     res: Response
   ) {
     try {
-      const jobs = await this.anyDayCrawlerService.exportJobs(req.jobId, req.htmlString);
+      return res.status(HttpStatus.OK).send({})
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post("/aniday")
+  async exportAnydayJob(
+    @Body() req: {
+      jobId: string;
+      categoryId: number;
+      htmlString: string;
+    },
+    @Res()
+    res: Response
+  ) {
+    try {
+      const jobs = await this.anyDayCrawlerService.exportJobs(req.jobId, req.categoryId, req.htmlString);
       return res.status(HttpStatus.OK).send(jobs)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);

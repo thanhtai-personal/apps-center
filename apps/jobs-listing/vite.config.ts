@@ -22,6 +22,11 @@ export default defineConfig(({ command }) => {
       chunkSizeWarningLimit: 10240,
       sourcemap: true,
     },
+    server: {
+      host: '0.0.0.0', // Allows access from any IP address
+      port: 5173,      // Specify your desired port
+      open: true  
+    },
     css: {
       postcss: {
         plugins: [

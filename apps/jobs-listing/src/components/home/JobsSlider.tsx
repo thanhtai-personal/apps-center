@@ -6,6 +6,8 @@ export interface IJobsSliderProps {
 }
 
 export const JobsSlider = observer(({ }: IJobsSliderProps) => {
-  
-  return <Flex></Flex>
+
+  return <Flex fullWidth>
+
+  </Flex>
 })

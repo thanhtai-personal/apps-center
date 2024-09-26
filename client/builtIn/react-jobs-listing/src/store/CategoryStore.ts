@@ -6,6 +6,7 @@ export interface ICategoryStore {
   categories?: IPagination<ICategoryResponse>;
   category?: ICategoryResponse;
   filterData?: ICategoryFilter  & IPagingFilter;
+  activeCateId?: number;
 }
 
 export class CategoryStore extends BaseStore implements ICategoryStore {
@@ -13,6 +14,7 @@ export class CategoryStore extends BaseStore implements ICategoryStore {
   public categories?: IPagination<ICategoryResponse>;
   public category?: ICategoryResponse;
   public filterData?: ICategoryFilter  & IPagingFilter;
+  public activeCateId?: number;
 
   constructor() {
     super();
@@ -21,6 +23,7 @@ export class CategoryStore extends BaseStore implements ICategoryStore {
       categories: observable,
       category: observable,
       filterData: observable,
+      activeCateId: observable,
     });
   }
 }
