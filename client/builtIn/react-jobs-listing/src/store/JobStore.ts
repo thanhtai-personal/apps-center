@@ -5,6 +5,7 @@ export interface IJobStore {
   jobs?: any;
   job?: any;
   savedJobs?: any;
+  selectedJobs?: any;
   filterData: any;
   loading?: boolean;
   pagingFilterData?: any;
@@ -13,7 +14,8 @@ export interface IJobStore {
 export class JobStore extends BaseStore implements IJobStore {
   public error?: any = null;
   public jobs?: any;
-  public savedJobs?: any;
+  public savedJobs?: any = [];
+  public selectedJobs?: any = [];
   public pagingFilterData?: any;
   public filterData: any = {
     limit: 10,
@@ -28,6 +30,7 @@ export class JobStore extends BaseStore implements IJobStore {
       error: observable,
       jobs: observable,
       savedJobs: observable,
+      selectedJobs: observable,
       filterData: observable,
       job: observable,
       loading: observable,

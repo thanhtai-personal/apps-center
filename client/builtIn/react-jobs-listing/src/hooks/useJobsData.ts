@@ -6,6 +6,7 @@ import { useJobsListingStore } from "../store";
 export const useJobsData = () => {
   const { jobStore, notiStore } = useJobsListingStore();
   const [savedJobs, setSavedJobs] = useLocalStorageData("saved-jobs");
+  const [selectedJobs, setSelectedJobs] = useLocalStorageData("selected-jobs");
 
   const refetch = async () => {
     try {
@@ -60,6 +61,10 @@ export const useJobsData = () => {
     jobStore.savedJobs = savedJobs || [];
   }, [savedJobs])
 
+  useEffect(() => {
+    jobStore.selectedJobs = selectedJobs || [];
+  }, [selectedJobs])
+
   const viewJob = (job: any) => {
     jobStore.job = job;
   }
@@ -79,13 +84,34 @@ export const useJobsData = () => {
     })
   }
 
+  const selectJob = (job: any) => {
+    setSelectedJobs((prev) => {
+      if (prev) {
+        const existJob = prev.find(j => j.id === job.id)
+        if (existJob) {
+          return prev.filter(j => j.id !== job.id);
+        } else {
+          return [job, ...prev]
+        }
+      } else {
+        return [job]
+      }
+    })
+  }
+
+  const clearSelectedJobs = () => {
+    setSelectedJobs([])
+  }
+
   return {
     refetch,
     deleteJob,
     searchJobs,
     getJobDetail,
     viewJob,
-    handleSavedJob
+    handleSavedJob,
+    selectJob,
+    clearSelectedJobs
   }
 }
 

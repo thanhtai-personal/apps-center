@@ -1,19 +1,20 @@
 import { useStore } from "@/store/index";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { observer, useLocalObservable } from "@core-ui/react-mobx-state";
-import { Flex, LazyImage, OutlinedButton, Text } from "@core-ui/react-mui-core";
+import { Flex, LazyImage, OutlinedButton, Text, useResponsive } from "@core-ui/react-mui-core";
 import { Drawer } from "@core-ui/react-mui-core/materials";
 import { runJobs, useCrawler, useJobsListingStore, useJobsData, runCategoryStore } from "@core-ui/react-job-listing";
 import { formatFullDate, waitMs } from "@core-utils/utils-helpers";
 import { useEffect, useLayoutEffect, useMemo, useRef, useTransition } from "react";
 import { toPng } from 'html-to-image';
-import FacebookLogin from 'react-facebook-login';
+// import FacebookLogin from 'react-facebook-login';
 
 import "./custom.style.css";
 import { JobDetail } from "@/components/JobDetail";
+import { SearchBar } from "@/components/home/SearchBar";
 
-const fbApiVersion = "v20.0"
-const fbAppId = "1058569359238393"
+// const fbApiVersion = "v20.0"
+// const fbAppId = "1058569359238393"
 
 export const JobsCrawlerPageContent = observer(() => {
   const state = useLocalObservable(() => ({
@@ -25,7 +26,7 @@ export const JobsCrawlerPageContent = observer(() => {
     selectedPages: [] as any[],
     postContent: '',
   }))
-  const { jobStore, categoryStore } = useJobsListingStore();
+  const { jobStore, categoryStore, notiStore } = useJobsListingStore();
   const { uiStore } = useStore();
   const globalStyles = useGlobalStyles();
   const inputRef = useRef<any>();
@@ -34,7 +35,7 @@ export const JobsCrawlerPageContent = observer(() => {
   const { exportAnydayJob } = useCrawler();
   const [isPending, startTransition] = useTransition();
 
-  const { deleteJob, viewJob, refetch } = useJobsData();
+  const { deleteJob, viewJob, refetch, selectJob, clearSelectedJobs } = useJobsData();
 
   useEffect(() => {
     jobStore.filterData.limit = 99999;
@@ -144,11 +145,8 @@ export const JobsCrawlerPageContent = observer(() => {
     uiStore.useMenuBar = false;
   }, [])
 
-  const handleSelectJob = (job: any, index: number) => () => {
-    if (jobStore.jobs?.data?.[index]) {
-      state.lastTarget = `${job.id}-${job.selected}`
-      jobStore.jobs.data[index].selected = !jobStore.jobs?.data?.[index].selected;
-    }
+  const handleSelectJob = (job: any) => () => {
+    selectJob(job)
   }
 
   const handleDelete = (job) => (e) => {
@@ -170,27 +168,136 @@ export const JobsCrawlerPageContent = observer(() => {
     }
   }
 
-  const selectedJobs = useMemo(() => (jobStore.jobs?.data || []).filter((j: any) => !!j.selected), [jobStore.jobs?.data, state.lastTarget])
+  const { tabletSizeDown } = useResponsive();
 
+  const postContentRef = useRef<any>(null)
+  const handleCopy = () => {
+    navigator.clipboard.writeText(postContentRef?.current?.value || "");
+    notiStore.messageQueue?.push({
+      children: "Copied content!",
+      variant: "success"
+    })
+  }
+
+  useEffect(() => {
+    if (jobStore.selectedJobs && postContentRef.current) {
+      let text = `Bên mình đang tuyển dụng các vị trí sau`
+
+      for (const jobIndex in jobStore.selectedJobs) {
+        const job = jobStore.selectedJobs[jobIndex];
+        text += `\n\n${parseInt(jobIndex) + 1}. ${job.name}\n - Gross salary: ${job.grossSalary}`
+      }
+
+      text = text + `\n\n Các bạn quan tâm vui lòng inbox mình.`
+        + `\n Ghé page mình để cập nhật việc làm mỗi ngày:`
+        + `\n Jobs Everyday page: http://34.135.118.246:5173/`
+        + `\n Page FB: https://www.facebook.com/groups/1916032958872010`
+        + `\n Group FB: https://www.facebook.com/groups/1916032958872010`;
+
+      postContentRef.current.value = text;
+    }
+  }, [jobStore.selectedJobs])
+
+  const selectedJobIds = useMemo(() => {
+    return (jobStore.selectedJobs || []).map(job => job.id)
+  }, [jobStore.selectedJobs])
 
   return <Flex fullWidth column>
-    <Drawer
-      anchor={"right"}
-      open={!!jobStore.job}
-      onClose={() => { jobStore.job = null }}
-    >
-      <Flex fullSize column p={2} bgcolor={"rgba(0,0,0,1)"} width={600} maxHeight={"100vh"}
-        style={{
-          overflowX: "hidden",
-          overflowY: "auto"
-        }}
-      >
-        <JobDetail data={jobStore.job} />
+
+    <Flex fullWidth column={tabletSizeDown}>
+      <Flex flex={1} fullWidth p={1} mt={4} center column>
+        <Flex px={2} centerY>
+          <Text className={globalStyles.textKanitBold18}>
+            Text copy để đăng bài
+          </Text>
+          <OutlinedButton onClick={handleCopy} style={{ border: "none", marginLeft: "12px" }}>Copy</OutlinedButton>
+        </Flex>
+        <Flex fullWidth px={2} mt={2}>
+          <textarea rows={8} ref={postContentRef} style={{ background: "rgba(255,255,255, 0.25)", width: "100%", padding: "8px" }} />
+        </Flex>
       </Flex>
-    </Drawer>
+
+      <Flex flex={1} fullWidth p={1} mt={4} center column>
+        <Flex id="export-jobs" p={2} bgcolor={"#1d1c19"}
+          minWidth={600} maxWidth={1000} width={"fit-content"} borderRadius={"16px"} column>
+          <Flex fullWidth mt={2} center>
+            <Text className={globalStyles.textKanitBold16} whiteSpace={"nowrap"}>Job list {formatFullDate(new Date(), {
+              year: "numeric",
+              month: "numeric",
+              day: "2-digit",
+            })}</Text>
+          </Flex>
+          {jobStore.selectedJobs.map((job: any, index: number) => {
+            return <div key={job.id} style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              margin: "16px 0",
+            }} >
+              <div style={{ width: "100%" }}>
+                <div>
+                  <div style={{
+                    whiteSpace: "nowrap",
+                    fontSize: 16
+                  }}>{index + 1} - {job.name}</div>
+                </div>
+              </div>
+
+              {job.grossSalary && <div style={{
+                whiteSpace: "nowrap",
+                marginLeft: "4px",
+                fontSize: 16,
+                width: "100%",
+              }}>
+                <div> Lương gross: {job.grossSalary}</div>
+              </div>}
+            </div>
+          })}
+          <Flex fullWidth mt={2} center>
+            <Text className={globalStyles.textKanit16} color={"red"} whiteSpace={"nowrap"}>@Inbox me!!!</Text>
+          </Flex>
+        </Flex>
+
+        <Flex mt={2}>
+          <OutlinedButton style={{ padding: "16px" }} onClick={handleExportImage}>
+            <Text className={globalStyles.textOrbiBold14}>Export Image</Text>
+          </OutlinedButton>
+          <OutlinedButton style={{ padding: "16px", marginLeft: "16px" }} onClick={clearSelectedJobs}>
+            <Text className={globalStyles.textOrbiBold14}>Clear</Text>
+          </OutlinedButton>
+        </Flex>
+      </Flex>
+    </Flex>
+
+    <Flex fullWidth center mt={4} column>
+      {/* 
+      <Flex centerY mt={1}>
+        {!state.isLoggedIn ? <FacebookLogin
+          appId={fbAppId}
+          autoLoad
+          callback={responseFacebook}
+          fields="name,email,picture"
+          icon="fa-facebook"
+          cssClass="custom-button"
+          render={renderProps => (
+            <OutlinedButton style={{ padding: "16px" }} onClick={renderProps.onClick}>
+              <Text className={globalStyles.textOrbiBold18}>Login facebook</Text>
+            </OutlinedButton>
+          )}
+        /> : <OutlinedButton style={{ padding: "16px" }} onClick={autoPost}>
+          <Text className={globalStyles.textOrbiBold18}>Post facebook</Text>
+        </OutlinedButton>}
+      </Flex> */}
+    </Flex>
+
     <Flex fullWidth center>
 
       <Flex fullWidth column flex={1}>
+        <Flex px={2}>
+          <Text className={globalStyles.textKanitBold18}>
+            Form nhập dữ liệu công việc:
+          </Text>
+        </Flex>
         <Flex fullWidth p={2}>
           <input ref={inputIdRef} type="text" style={{ width: "100%", background: "rgba(255,255,255, 0.25)", padding: "8px" }} placeholder="id"></input>
         </Flex>
@@ -214,118 +321,70 @@ export const JobsCrawlerPageContent = observer(() => {
         </Flex>
       </Flex>
 
-      <Flex flex={1} column fullHeight pt={4} maxHeight={"100vh"}
-        style={{
-          overflowY: "auto",
-          overflowX: "hidden",
-        }}
-      >
-        {(jobStore.jobs?.data || []).map((job: any, index: number) => {
-          return (
-            <Flex key={job.id} fullWidth centerY justifyContent={"center"} p={1} cursorPointer
-              onClick={handleSelectJob(job, index)}
-            >
-              <Flex fullWidth justifyContent={"space-between"} centerY bgcolor={job.selected ? "rgba(255,255,255, 0.25)" : "rgba(255,255,255, 0.15)"}
-                p={1} borderRadius={"8px"}>
-                <Text className={job.selected ? globalStyles.textKanitBold16 : globalStyles.textKanit16}>{job.name}</Text>
+      <Flex flex={1} column fullHeight pt={4}>
+        <Flex px={2}>
+          <Text className={globalStyles.textKanitBold18}>
+            Bảng chọn công việc để đăng bài
+          </Text>
+        </Flex>
+        <Flex fullWidth>
+          <SearchBar />
+        </Flex>
 
-                <Flex centerY>
-                  <OutlinedButton style={{ background: "rgba(0,0,255,0.25)", marginRight: "8px", border: "none" }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      viewJob(job);
-                    }}
-                  >
-                    <Text>View</Text>
-                  </OutlinedButton>
-                  <OutlinedButton style={{ background: "rgba(255,0,0,0.5)", border: "none" }}
-                    onClick={handleDelete(job)}
-                  >
-                    <Text>Delete</Text>
-                  </OutlinedButton>
+        <Flex column
+          maxHeight={"100vh"}
+          style={{
+            overflowY: "auto",
+            overflowX: "hidden",
+          }}>
+          {(jobStore.jobs?.data || []).map((job: any, index: number) => {
+            return (
+              <Flex key={job.id} fullWidth centerY justifyContent={"center"} p={1} cursorPointer
+                onClick={handleSelectJob(job)}
+              >
+                <Flex fullWidth justifyContent={"space-between"} centerY bgcolor={selectedJobIds.includes(job.id) ? "rgba(255,255,255, 0.25)" : "rgba(255,255,255, 0.15)"}
+                  p={1} borderRadius={"8px"}>
+                  <Text className={selectedJobIds.includes(job.id) ? globalStyles.textKanitBold16 : globalStyles.textKanit16}>{job.name}</Text>
+
+                  <Flex centerY>
+                    <OutlinedButton style={{ background: "rgba(0,0,255,0.25)", marginRight: "8px", border: "none" }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        viewJob(job);
+                      }}
+                    >
+                      <Text>View</Text>
+                    </OutlinedButton>
+                    <OutlinedButton style={{ background: "rgba(255,0,0,0.5)", border: "none" }}
+                      onClick={handleDelete(job)}
+                    >
+                      <Text>Delete</Text>
+                    </OutlinedButton>
+                  </Flex>
                 </Flex>
               </Flex>
-            </Flex>
-          )
-        })}
-      </Flex>
-    </Flex>
+            )
+          })}
 
-    <Flex fullWidth center mt={4} column>
-      <OutlinedButton style={{ padding: "16px" }} onClick={handleExportImage}>
-        <Text className={globalStyles.textOrbiBold18}>Export Image</Text>
-      </OutlinedButton>
-
-      <Flex centerY mt={1}>
-        {!state.isLoggedIn ? <FacebookLogin
-          appId={fbAppId}
-          autoLoad
-          callback={responseFacebook}
-          fields="name,email,picture"
-          icon="fa-facebook"
-          cssClass="custom-button"
-          render={renderProps => (
-            <OutlinedButton style={{ padding: "16px" }} onClick={renderProps.onClick}>
-              <Text className={globalStyles.textOrbiBold18}>Login facebook</Text>
-            </OutlinedButton>
-          )}
-        /> : <OutlinedButton style={{ padding: "16px" }} onClick={autoPost}>
-          <Text className={globalStyles.textOrbiBold18}>Post facebook</Text>
-        </OutlinedButton>}
-      </Flex>
-    </Flex>
-
-    <Flex fullWidth p={1} mt={4} center>
-      <Flex id="export-jobs" p={2} bgcolor={"#1d1c19"}
-        minWidth={600} maxWidth={1000} width={"fit-content"} borderRadius={"16px"} column>
-        <Flex fullWidth mt={2} center>
-          <Text className={globalStyles.textKanitBold16} whiteSpace={"nowrap"}>Job list {formatFullDate(new Date(), {
-            year: "numeric",
-            month: "numeric",
-            day: "2-digit",
-          })}</Text>
-        </Flex>
-        {selectedJobs.map((job: any, index: number) => {
-          return <div key={job.id} style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            margin: "16px 0",
-          }} >
-            <div style={{ flex: 4, display: "flex" }}>
-              <div>
-                <div style={{
-                  whiteSpace: "nowrap", fontSize: 16
-                }}>{index + 1}</div>
-              </div>
-              <div style={{ marginLeft: "16px" }}>
-                <div style={{
-                  whiteSpace: "nowrap", fontSize: 16, fontWeight: "bold"
-                }}>- {job.name}</div>
-              </div>
-              {job.engLevel && <div style={{
-                whiteSpace: "nowrap",
-                marginLeft: "4px", fontSize: 16
-              }}>
-                <div> - Tiếng anh: {job.engLevel}</div>
-              </div>}
-            </div>
-
-            {job.jobType && <div style={{ display: "flex", whiteSpace: "nowrap", fontSize: 16 }}>
-              <div>-#{job.jobType || ""}</div>
-            </div>}
-
-          </div>
-        })}
-        <Flex fullWidth mt={2} center>
-          <Text className={globalStyles.textKanit16} color={"red"} whiteSpace={"nowrap"}>@Inbox me!!!</Text>
         </Flex>
       </Flex>
-
     </Flex>
 
+    <Drawer
+      anchor={"right"}
+      open={!!jobStore.job}
+      onClose={() => { jobStore.job = null }}
+    >
+      <Flex fullSize column p={2} bgcolor={"rgba(0,0,0,1)"} width={600} maxHeight={"100vh"}
+        style={{
+          overflowX: "hidden",
+          overflowY: "auto"
+        }}
+      >
+        <JobDetail data={jobStore.job} />
+      </Flex>
+    </Drawer>
   </Flex>
 })
 
