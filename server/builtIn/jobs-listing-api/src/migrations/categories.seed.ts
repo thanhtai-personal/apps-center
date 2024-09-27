@@ -51,10 +51,11 @@ export class CategoriesDataSeed implements MigrationInterface {
       }
     } catch (error) {
       // Rollback the transaction in case of error
-      await queryRunner.rollbackTransaction();
+      // await queryRunner.rollbackTransaction();
       console.error("Error during seeding:", error);
     } finally {
       // Release the query runner
+      await waitMs(1000);
       if (!queryRunner.isReleased) {
         await queryRunner.release();
       }
