@@ -57,7 +57,7 @@ export const JobsGridView = observer(({ data, title }: IJobsGridViewProps) => {
                 onClick={handleSaveJob(job)}
               >
                 {savedJobIds.includes(job.id) ? <FavoriteIcon style={{ color: "rgb(249, 112, 102)" }} />
-                  : <FavoriteBorderIcon />}
+                  : <FavoriteBorderIcon style={{ color: "rgb(255, 255, 255)" }} />}
               </Flex>
             </Flex>
 

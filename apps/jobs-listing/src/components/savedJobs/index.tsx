@@ -19,7 +19,7 @@ export const SavedJobsContent = observer(({ }: ISavedJobsContentProps) => {
       <Flex maxWidth={PAGE_MAX_WIDTH} fullWidth column position={"relative"} minHeight={"100vh"}>
         <Flex fullWidth my={2} px={1}>
           <Link target="_new_jobs" to="/saved" title="Việc mới">
-            <ArrowBackIcon />
+            <ArrowBackIcon style={{ color: "rgb(255, 255, 255)" }}  />
           </Link>
         </Flex>
         <JobsGridView data={jobStore.savedJobs} title={"Kho dự trữ của bạn"} />

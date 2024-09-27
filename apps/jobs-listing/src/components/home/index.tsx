@@ -23,7 +23,7 @@ export const HomePageContent = observer(({ }: IHomePageContentProps) => {
       <JobsSlider data={todayJobs} />
       <Flex fullWidth px={2} justifyContent={"flex-end"}>
         <Link target="_saved_job" to="/saved" title="Việc đã lưu">
-          <VolunteerActivismIcon />
+          <VolunteerActivismIcon  style={{ color: "rgb(255, 255, 255)" }} />
         </Link>
       </Flex>
       <JobsGridView data={jobStore.jobs?.data} paging={jobStore.pagingFilterData} title={"Việc mới đăng"} />
