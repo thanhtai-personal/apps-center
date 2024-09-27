@@ -1,10 +1,16 @@
 import { observer } from "@core-ui/react-mobx-state"
 import { Flex, Text } from "@core-ui/react-mui-core"
 import { Grid, Drawer, Pagination } from "@core-ui/react-mui-core/materials";
+import {
+  Favorite as FavoriteIcon,
+  FavoriteBorder as FavoriteBorderIcon
+} from "@core-ui/react-mui-core/icons";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { useJobsData, useJobsListingStore } from "@core-ui/react-job-listing";
 import { JobDetail } from "../JobDetail";
+import { formatFullDate } from "@core-utils/utils-helpers";
+import { useMemo } from "react";
 
 export interface IJobsGridViewProps {
   data: any[];
@@ -12,13 +18,33 @@ export interface IJobsGridViewProps {
   title?: string;
 }
 
-export const JobsGridView = observer(({ data }: IJobsGridViewProps) => {
+export const JobsGridView = observer(({ data, title }: IJobsGridViewProps) => {
   const globalStyles = useGlobalStyles();
   const { jobStore } = useJobsListingStore();
-  const { refetch } = useJobsData()
+  const { refetch, handleSavedJob } = useJobsData()
+
+  const handleSaveJob = (job: any) => (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handleSavedJob?.(job);
+  }
+
+  const savedJobIds = useMemo(() => {
+    return (jobStore.savedJobs || []).map(job => job.id)
+  }, [jobStore.savedJobs])
+  
 
   return <Flex fullWidth center>
     <Flex fullWidth column p={2} maxWidth={PAGE_MAX_WIDTH}>
+      {title && <Flex fullWidth mb={4}>
+        <Text className={globalStyles.textKanitBold24}
+          style={{
+            textDecoration: "underline",
+            textTransform: "uppercase"
+          }}
+        >{title}</Text>
+      </Flex>}
+
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
         {(data || []).map((job) => <Grid key={job.id} item xs={12} sm={6} md={3}>
           <Flex cursorPointer column fullSize p={1} borderRadius={"16px"} border="solid 1px rgba(255,255,255, 0.15)"
@@ -26,12 +52,30 @@ export const JobsGridView = observer(({ data }: IJobsGridViewProps) => {
           >
             <Text className={globalStyles.textKanitBold16}>{job.name}</Text>
 
+            <Flex fullWidth justifyContent={"flex-end"}>
+              <Flex className={globalStyles.hoverTransition} cursorPointer m={1}
+                onClick={handleSaveJob(job)}
+              >
+                {savedJobIds.includes(job.id) ? <FavoriteIcon style={{ color: "rgb(249, 112, 102)" }} />
+                  : <FavoriteBorderIcon />}
+              </Flex>
+            </Flex>
+
             <Flex fullWidth mt={2} centerY justifyContent={"space-between"}>
               <Text>{ }</Text>
               <Flex centerY>
                 <Text color={"red"}>Lương gross: </Text>
                 <Text whiteSpace={"nowrap"}>&nbsp;{job.grossSalary}</Text>
               </Flex>
+            </Flex>
+
+
+            <Flex fullWidth centerY mt={1}>
+              <Text textAlign={"right"} whiteSpace={"nowrap"} color={"#F0F0F0"} className={globalStyles.textKanit12}
+                ml={0.5} style={{ fontStyle: "italic", width: "100%", textDecoration: "underline" }}
+              >
+                Ngày cập nhật: {formatFullDate(job.updatedAt || job.createdAt)}
+              </Text>
             </Flex>
 
             <Flex mt={2}>

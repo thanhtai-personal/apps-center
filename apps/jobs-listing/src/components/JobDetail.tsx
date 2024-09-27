@@ -2,6 +2,7 @@ import { useGlobalStyles } from "@/styles/globalStyle";
 import { Flex, Text } from "@core-ui/react-mui-core";
 import { useMemo } from "react";
 import ZaloChat from "./ZaloChat";
+import { formatFullDate } from "@core-utils/utils-helpers";
 
 export const JobDetail = ({ data, restricted = false }: any) => {
   const globalStyles = useGlobalStyles();
@@ -15,6 +16,12 @@ export const JobDetail = ({ data, restricted = false }: any) => {
       {/* <img src={jobDetail.thumb} style={{ height: 40 }} alt={jobDetail.id} /> */}
       <Text textAlign={"left"} whiteSpace={"nowrap"} className={globalStyles.textOrbiBold18} ml={0.5}>
         {!restricted && <span style={{ color: "red" }}>Job: #{jobDetail.jobId}</span>} - {jobDetail.name}
+      </Text>
+    </Flex>
+    
+    <Flex fullWidth centerY mt={2}>
+      <Text textAlign={"right"} whiteSpace={"nowrap"} color={"#F0F0F0"} className={globalStyles.textKanit12} ml={0.5} style={{ fontStyle: "italic", width: "100%" }}>
+        Ngày cập nhật: {formatFullDate(jobDetail.updatedAt || jobDetail.createdAt)}
       </Text>
     </Flex>
 

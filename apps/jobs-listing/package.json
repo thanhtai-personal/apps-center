@@ -25,7 +25,7 @@
     "@core-ui/react-mui-core": "workspace:^",
     "@core-ui/react-viewframe": "workspace:^",
     "@core-utils/react-hooks": "workspace:^",
-    "@core-utils/react-social-login": "workspace:^",
+    "@core-ui/react-job-listing": "workspace:^",
     "@core-utils/utils-helpers": "workspace:^",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@tailwindcss/forms": "^0.5.7",

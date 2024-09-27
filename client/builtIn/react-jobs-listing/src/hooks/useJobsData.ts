@@ -1,16 +1,18 @@
 import { useEffect, useMemo } from "react";
 import { JobsListingSDK } from "@core-sdk/jobs-listing";
+import { useLocalStorageData } from "@core-utils/react-hooks"
 import { useJobsListingStore } from "../store";
 
 export const useJobsData = () => {
   const { jobStore, notiStore } = useJobsListingStore();
+  const [savedJobs, setSavedJobs] = useLocalStorageData("saved-jobs");
 
   const refetch = async () => {
     try {
       jobStore.loading = true;
       const response = await JobsListingSDK.getInstance().getJobControl().getMany((jobStore.filterData || {}) as any);
       jobStore.jobs = response;
-    } catch (error) {} finally {
+    } catch (error) { } finally {
       jobStore.loading = false;
     }
   }
@@ -18,9 +20,9 @@ export const useJobsData = () => {
   const searchJobs = async (filter = {}) => {
     try {
       jobStore.loading = true;
-      const response = await JobsListingSDK.getInstance().getJobControl().getMany({...(jobStore.filterData || {}), ...filter} as any);
+      const response = await JobsListingSDK.getInstance().getJobControl().getMany({ ...(jobStore.filterData || {}), ...filter } as any);
       jobStore.jobs = response;
-    } catch (error) {} finally {
+    } catch (error) { } finally {
       jobStore.loading = false;
     }
   }
@@ -30,7 +32,7 @@ export const useJobsData = () => {
       jobStore.loading = true;
       const response = await JobsListingSDK.getInstance().getJobControl().getOne(id);
       jobStore.job = response.data;
-    } catch (error) {} finally {
+    } catch (error) { } finally {
       jobStore.loading = false;
     }
   }
@@ -54,8 +56,27 @@ export const useJobsData = () => {
     }
   }
 
+  useEffect(() => {
+    jobStore.savedJobs = savedJobs || [];
+  }, [savedJobs])
+
   const viewJob = (job: any) => {
     jobStore.job = job;
+  }
+
+  const handleSavedJob = (job: any) => {
+    setSavedJobs((prev) => {
+      if (prev) {
+        const existJob = prev.find(j => j.id === job.id)
+        if (existJob) {
+          return prev.filter(j => j.id !== job.id);
+        } else {
+          return [job, ...prev]
+        }
+      } else {
+        return [job]
+      }
+    })
   }
 
   return {
@@ -64,13 +85,14 @@ export const useJobsData = () => {
     searchJobs,
     getJobDetail,
     viewJob,
+    handleSavedJob
   }
 }
 
 export const runJobs = () => {
   const { refetch } = useJobsData();
   const { jobStore } = useJobsListingStore();
-  
+
   useEffect(() => {
     refetch();
   }, []);

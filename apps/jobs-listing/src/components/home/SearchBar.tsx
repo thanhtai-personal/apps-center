@@ -6,6 +6,7 @@ import { Flex, OutlinedButton, Text } from "@core-ui/react-mui-core"
 import { useEffect } from "react"
 import { Input } from "@core-ui/react-mui-core/materials"
 import { useLocalStorageData } from "@core-utils/react-hooks"
+import { Link } from "@core-ui/react-core"
 
 export interface ISearchBarProps {
 }
@@ -67,6 +68,13 @@ export const SearchBar = observer(({ }: ISearchBarProps) => {
             >Tìm</Text>
           </OutlinedButton>
         </Flex>
+      </Flex>
+
+
+      <Flex fullWidth px={2}>
+        <Link target="_blank" to="/saved">
+          <Text whiteSpace={"nowrap"} className={globalStyle.textKanitBold16}>Công việc đã lưu</Text>
+        </Link>
       </Flex>
     </Flex>
   </Flex>

@@ -19,7 +19,7 @@ export const HomePageContent = observer(({ }: IHomePageContentProps) => {
     <Flex fullWidth column position={"relative"}>
       <SearchBar />
       <JobsSlider data={todayJobs} />
-      <JobsGridView data={jobStore.jobs?.data} paging={jobStore.pagingFilterData} title={"Jobs list"} />
+      <JobsGridView data={jobStore.jobs?.data} paging={jobStore.pagingFilterData} title={"Việc mới đăng"} />
       <Flex position={"absolute"} bottom={0} right={0} p={2} column>
         <FacebookChat />
         <Flex my={1}></Flex>

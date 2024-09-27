@@ -8,6 +8,11 @@ const Home = Import({
   desktop: React.lazy(() => import('@/containers/home'))
 }) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
 
+const SavedJobs = Import({
+  touch: React.lazy(() => import('@/containers/savedJobs')),
+  desktop: React.lazy(() => import('@/containers/savedJobs'))
+}) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
+
 const InputData = Import({
   touch: React.lazy(() => import('@/containers/admin/jobs')),
   desktop: React.lazy(() => import('@/containers/admin/jobs'))
@@ -37,6 +42,10 @@ export const router: IRouter[] = [
   {
     element: makeSuspense(InputData),
     path: '/data'
+  },
+  {
+    element: makeSuspense(SavedJobs),
+    path: '/saved'
   },
   {
     path: "*",

@@ -26,16 +26,17 @@ export class JobsService {
     const query = this.jobsRepository.createQueryBuilder('job');
     if (filter.query) {
       query.where(where)
-           .andWhere('job.summary ILIKE :query OR job.skills ILIKE :query', { query: `%${filter.query}%` });
+        .andWhere('job.summary ILIKE :query OR job.skills ILIKE :query', { query: `%${filter.query}%` });
     } else {
       query.where(where);
     }
 
     const [jobs, count] = await query
+      .orderBy("job.updatedAt", "DESC")
       .take(filter.limit)
       .skip(filter.offset)
       .getManyAndCount();
-    
+
     return {
       data: JobEntityToJobResponse.maps(jobs),
       limit: filter.limit || 10,

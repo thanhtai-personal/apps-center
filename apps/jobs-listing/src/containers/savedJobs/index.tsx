@@ -1,17 +1,17 @@
 import { PageLayout } from "@/components/layout";
-import { HomePageContent } from "@/components/home"
+import { SavedJobsContent } from "@/components/savedJobs";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex } from "@core-ui/react-mui-core";
 
-const HomePage = () => {
+const JobsSavedPage = () => {
   
   return (
     <PageLayout>
       <Flex fullWidth column>
-        <HomePageContent />
+        <SavedJobsContent />
       </Flex>
     </PageLayout>
   )
 }
 
-export default observer(HomePage)
+export default observer(JobsSavedPage)
