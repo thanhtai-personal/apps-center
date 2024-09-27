@@ -7,6 +7,8 @@ import { JobsGridView } from "./JobsGridView";
 import ZaloChat from "../ZaloChat";
 import FacebookChat from "../FacebookChat";
 import TelegramChat from "../TelegramChat";
+import { Link } from "@core-ui/react-core";
+import { VolunteerActivism as VolunteerActivismIcon } from "@core-ui/react-mui-core/icons"
 
 export interface IHomePageContentProps { }
 
@@ -19,6 +21,11 @@ export const HomePageContent = observer(({ }: IHomePageContentProps) => {
     <Flex fullWidth column position={"relative"}>
       <SearchBar />
       <JobsSlider data={todayJobs} />
+      <Flex fullWidth px={2} justifyContent={"flex-end"}>
+        <Link target="_saved_job" to="/saved" title="Việc đã lưu">
+          <VolunteerActivismIcon />
+        </Link>
+      </Flex>
       <JobsGridView data={jobStore.jobs?.data} paging={jobStore.pagingFilterData} title={"Việc mới đăng"} />
       <Flex position={"absolute"} bottom={0} right={0} p={2} column>
         <FacebookChat />
