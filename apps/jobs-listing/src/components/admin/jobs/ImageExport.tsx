@@ -1,7 +1,7 @@
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { useJobsData, useJobsListingStore } from "@core-ui/react-job-listing";
 import { observer } from "@core-ui/react-mobx-state";
-import { Flex, OutlinedButton, Text } from "@core-ui/react-mui-core";
+import { Flex, Loading, OutlinedButton, Text } from "@core-ui/react-mui-core";
 import { formatFullDate } from "@core-utils/utils-helpers";
 import { toPng } from 'html-to-image';
 
@@ -11,6 +11,8 @@ export const ImageExport = observer(() => {
   const { clearSelectedJobs } = useJobsData();
 
   const handleExportImage = async () => {
+    if (jobStore.loading) return;
+    jobStore.loading = true;
     const exportElement = document.getElementById("export-jobs") as HTMLElement;
     if (exportElement) {
       try {
@@ -19,7 +21,10 @@ export const ImageExport = observer(() => {
         link.href = dataUrl;
         link.download = `jobs-${formatFullDate(new Date())}.png`;
         link.click();
-      } catch (error) { }
+        jobStore.loading = false;
+      } catch (error) {
+        jobStore.loading = false;
+      }
     }
   }
 
@@ -73,7 +78,7 @@ export const ImageExport = observer(() => {
 
       <Flex mt={2} fullWidth center>
         <OutlinedButton style={{ padding: "16px" }} onClick={handleExportImage}>
-          <Text className={globalStyles.textOrbiBold14}>Tải ảnh</Text>
+          {jobStore.loading ? <Loading /> : <Text className={globalStyles.textOrbiBold14}>Tải ảnh</Text>}
         </OutlinedButton>
         <OutlinedButton style={{ padding: "16px", marginLeft: "16px" }} onClick={clearSelectedJobs}>
           <Text className={globalStyles.textOrbiBold14}>Xóa công việc đã chọn</Text>
