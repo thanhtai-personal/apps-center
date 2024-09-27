@@ -28,28 +28,27 @@ export class CategoriesDataSeed implements MigrationInterface {
     try {
       for (const record of records) {
         const { name, description } = record;
-        
+
         // Check if the category already exists
         const existing = await queryRunner.query(`SELECT * FROM categories WHERE name = $1`, [name]);
-        
+
         if (existing.length > 0) {
           // Update existing category
           await queryRunner.query(
             `UPDATE categories SET description = $2 WHERE name = $1`,
             [name, description]
           );
+          await queryRunner.commitTransaction();
         } else {
           // Insert new category
           await queryRunner.query(
             `INSERT INTO categories (name, description) VALUES ($1, $2)`,
             [name, description]
           );
+          await queryRunner.commitTransaction();
         }
         await waitMs(100); // Wait to simulate delay
       }
-      
-      // Commit the transaction
-      await queryRunner.commitTransaction();
     } catch (error) {
       // Rollback the transaction in case of error
       await queryRunner.rollbackTransaction();
