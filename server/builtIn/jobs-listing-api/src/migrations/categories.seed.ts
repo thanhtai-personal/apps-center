@@ -22,37 +22,43 @@ export class CategoriesDataSeed implements MigrationInterface {
         .on('end', resolve)
         .on('error', reject);
     });
+
+    // Start a transaction
     await queryRunner.startTransaction();
-    for (const record of records) {
-      // await queryRunner.startTransaction();
-      const { name, description } = record;
-      try {
-        const existing = await queryRunner.query(`SELECT * FROM categories where name='${name}'`);
-        if (existing) {
+    try {
+      for (const record of records) {
+        const { name, description } = record;
+        
+        // Check if the category already exists
+        const existing = await queryRunner.query(`SELECT * FROM categories WHERE name = $1`, [name]);
+        
+        if (existing.length > 0) {
+          // Update existing category
           await queryRunner.query(
-            `UPDATE FROM categories (name, description) VALUES 
-                ($1, $2) WHERE name='$1'`,
+            `UPDATE categories SET description = $2 WHERE name = $1`,
             [name, description]
           );
         } else {
+          // Insert new category
           await queryRunner.query(
-            `INSERT INTO categories (name, description) VALUES 
-                ($1, $2)`,
+            `INSERT INTO categories (name, description) VALUES ($1, $2)`,
             [name, description]
           );
         }
-        await queryRunner.commitTransaction();
-      } catch (error) {
-        // await queryRunner.rollbackTransaction();
-      } finally {
-        await waitMs(100)
+        await waitMs(100); // Wait to simulate delay
       }
-    }
-    // await waitMs(1000);
-    // await queryRunner.commitTransaction();
-    await waitMs(1000);
-    if (!queryRunner.isReleased) {
-      await queryRunner.release();
+      
+      // Commit the transaction
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      // Rollback the transaction in case of error
+      await queryRunner.rollbackTransaction();
+      console.error("Error during seeding:", error);
+    } finally {
+      // Release the query runner
+      if (!queryRunner.isReleased) {
+        await queryRunner.release();
+      }
     }
   }
 
@@ -60,10 +66,11 @@ export class CategoriesDataSeed implements MigrationInterface {
     await queryRunner.startTransaction();
 
     try {
-      await queryRunner.query("DELETE FROM famous_person");
+      // Assuming you're rolling back the category data
+      await queryRunner.query("DELETE FROM categories");
       await queryRunner.commitTransaction();
     } catch (error) {
-      console.log("Error during rollback:", error);
+      console.error("Error during rollback:", error);
       await queryRunner.rollbackTransaction();
       throw error;
     } finally {
