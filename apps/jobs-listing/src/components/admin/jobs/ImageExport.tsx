@@ -45,6 +45,7 @@ export const ImageExport = observer(() => {
             display: "flex",
             flexDirection: "column",
             margin: "16px 0",
+            color: "#fff"
           }} >
             <div style={{ width: "100%" }}>
               <div>

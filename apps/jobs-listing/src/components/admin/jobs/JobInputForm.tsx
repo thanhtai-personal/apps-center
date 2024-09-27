@@ -54,7 +54,7 @@ export const JobInputForm = observer(({ }: any) => {
         </select>
       </Flex>
       <Flex fullWidth p={2} mt={2} center>
-        <textarea placeholder="html string" rows={15} style={{ background: "rgba(255,255,255, 0.25)", width: "100%", padding: "8px" }} ref={inputRef} />
+        <textarea placeholder="html string" rows={15} style={{ background: "rgba(255,255,255, 0.25)", width: "100%", padding: "8px", color: "#fff" }} ref={inputRef} />
       </Flex>
       <Flex fullWidth center my={4}>
         <OutlinedButton style={{ padding: "16px" }} onClick={handleSubmit}>

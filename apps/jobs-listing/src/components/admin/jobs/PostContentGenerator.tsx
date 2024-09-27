@@ -45,7 +45,7 @@ export const PostContentGenerator = observer(() => {
         <OutlinedButton onClick={handleCopy} style={{ border: "none", marginLeft: "12px" }}>Copy</OutlinedButton>
       </Flex>
       <Flex fullWidth px={2} mt={2}>
-        <textarea rows={15} ref={postContentRef} style={{ background: "rgba(255,255,255, 0.25)", width: "100%", padding: "8px" }} />
+        <textarea rows={15} ref={postContentRef} style={{ background: "rgba(255,255,255, 0.25)", width: "100%", padding: "8px", color: "#fff" }} />
       </Flex>
     </Flex>
   )
