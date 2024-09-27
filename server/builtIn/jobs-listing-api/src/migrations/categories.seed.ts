@@ -27,11 +27,11 @@ export class CategoriesDataSeed implements MigrationInterface {
       // await queryRunner.startTransaction();
       const { name, description } = record;
       try {
-        const existing = await queryRunner.query(`SELECT * FROM categories where name=${name}`);
+        const existing = await queryRunner.query(`SELECT * FROM categories where name='${name}'`);
         if (existing) {
           await queryRunner.query(
             `UPDATE FROM categories (name, description) VALUES 
-                ($1, $2) WHERE name=$1`,
+                ($1, $2) WHERE name='$1'`,
             [name, description]
           );
         } else {
