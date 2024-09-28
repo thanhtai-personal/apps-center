@@ -3,6 +3,16 @@ import { IRouter } from '@core-ui/react-core';
 import { Import } from '@core-utils/utils-helpers/import';
 import { LoadingPage } from "@/components/LoadingPage";
 
+const Jobs = Import({
+  touch: React.lazy(() => import('@/containers/jobs')),
+  desktop: React.lazy(() => import('@/containers/jobs'))
+}) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
+
+const Portfolio = Import({
+  touch: React.lazy(() => import('@/containers/portfolio')),
+  desktop: React.lazy(() => import('@/containers/portfolio'))
+}) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
+
 const Home = Import({
   touch: React.lazy(() => import('@/containers/home')),
   desktop: React.lazy(() => import('@/containers/home'))
@@ -32,7 +42,7 @@ const makeSuspense = (Component: React.FC) => {
 
 export const router: IRouter[] = [
   {
-    element: makeSuspense(Home),
+    element: makeSuspense(Jobs),
     path: '/'
   },
   {
@@ -40,12 +50,20 @@ export const router: IRouter[] = [
     path: '/home'
   },
   {
+    element: makeSuspense(Jobs),
+    path: '/jobs'
+  },
+  {
+    element: makeSuspense(Portfolio),
+    path: '/me'
+  },
+  {
     element: makeSuspense(InputData),
     path: '/data'
   },
   {
     element: makeSuspense(SavedJobs),
-    path: '/saved'
+    path: '/jobs/saved'
   },
   {
     path: "*",

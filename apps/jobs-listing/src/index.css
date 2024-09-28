@@ -14,9 +14,9 @@
 }
 
 body::-webkit-scrollbar {
-  width: 5px;
+  width: thin;
 }
-body {
+html, body {
   scrollbar-width: thin;
   scrollbar-color: #000000 #111111;
 }

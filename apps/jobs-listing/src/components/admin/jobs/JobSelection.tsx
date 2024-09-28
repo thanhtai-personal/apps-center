@@ -1,4 +1,4 @@
-import { SearchBar } from "@/components/home/SearchBar";
+import { SearchBar } from "@/components/jobs/SearchBar";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { useJobsData, useJobsListingStore } from "@core-ui/react-job-listing";
 import { observer } from "@core-ui/react-mobx-state";

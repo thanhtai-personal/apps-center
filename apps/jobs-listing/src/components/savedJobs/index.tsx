@@ -4,7 +4,7 @@ import ZaloChat from "../ZaloChat";
 import FacebookChat from "../FacebookChat";
 import TelegramChat from "../TelegramChat";
 import { useJobsListingStore } from "@core-ui/react-job-listing";
-import { JobsGridView } from "../home/JobsGridView";
+import { JobsGridView } from "../jobs/JobsGridView";
 import { Link } from "@core-ui/react-core";
 import { ArrowBack as ArrowBackIcon } from "@core-ui/react-mui-core/icons";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
