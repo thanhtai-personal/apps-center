@@ -80,7 +80,7 @@ export const Smoke2 = ({
     const canvasElement = document.getElementById(`smoke-2-${id}`) as HTMLCanvasElement;
     if (canvasElement) {
       emitter(canvasElement, {
-        x: 600,
+        x: 1800,
         y: 0,
         size: 70,
         particles: 200,
