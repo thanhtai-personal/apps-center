@@ -6,43 +6,71 @@ import TelegramChat from "../TelegramChat";
 import { Banner } from "./Banner";
 import { IntersectionObserverView } from "@core-ui/react-viewframe";
 import { Introduce } from "./Introduce";
+import { Animates } from "@core-ui/react-animates";
+import { useStore } from "@/store/index";
+import { Projects } from "./Projects";
+import { Contact } from "./Contact";
+import { Layers } from "@/styles/layers";
+import { Products } from "./Products";
 
 export interface IPortfolioContentProps { }
 
 export const PortfolioContent = observer(({ }: IPortfolioContentProps) => {
-
+  const { uiStore } = useStore();
 
   return (
     <Flex fullWidth column position={"relative"} minHeight={"100vh"} bgcolor={"#000"}
       maxWidth={"100vw"}
       overflow={"hidden"}
     >
+      {!!uiStore.triggerClickAnimation && <Flex
+        position={"absolute"}
+        top={5}
+        left={"50%"}
+        center
+        width={5}
+        height={5}
+        className="bigger"
+        zIndex={Layers.layer12}
+      >
+        <Flex fontSize={2}>
+          <Animates.GlowingBallAnim id="bg-plasma" width={5} />
+        </Flex>
+      </Flex>}
       <Banner />
       <div id="section-introduce"></div>
-      <Flex fullWidth minHeight={500}>
+      <Flex fullWidth minHeight={600}>
         <IntersectionObserverView>
-          <Introduce />
+          <Animates.GrowUpAppear>
+            <Introduce />
+          </Animates.GrowUpAppear>
         </IntersectionObserverView>
       </Flex>
-      <div id="section-experience"></div>
-      <Flex fullWidth minHeight={500}>
-        {/* <IntersectionObserverView>
-          <Introduce />
-        </IntersectionObserverView> */}
-      </Flex>
       <div id="section-projects"></div>
-      <Flex fullWidth minHeight={500}>
-        {/* <IntersectionObserverView>
-          <Introduce />
-        </IntersectionObserverView> */}
+      <Flex fullWidth minHeight={500} justifyContent={"flex-start"}>
+        <IntersectionObserverView>
+          <Animates.GrowUpAppear>
+            <Flex fullWidth justifyContent={"flex-start"}>
+              <Projects />
+            </Flex>
+          </Animates.GrowUpAppear>
+        </IntersectionObserverView>
+      </Flex>
+      <div id="section-products"></div>
+      <Flex fullWidth minHeight={800}>
+        <IntersectionObserverView>
+          <Flex fullWidth>
+            <Products />
+          </Flex>
+        </IntersectionObserverView>
       </Flex>
       <div id="section-contact"></div>
       <Flex fullWidth minHeight={500}>
-        {/* <IntersectionObserverView>
-          <Introduce />
-        </IntersectionObserverView> */}
+        <IntersectionObserverView>
+          <Contact />
+        </IntersectionObserverView>
       </Flex>
-      <Flex position={"fixed"} bottom={0} right={0} p={2} column>
+      <Flex position={"fixed"} zIndex={Layers.layer12} bottom={0} right={0} p={2} column>
         <FacebookChat />
         <Flex my={1}></Flex>
         <ZaloChat />

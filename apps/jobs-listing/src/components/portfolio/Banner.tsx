@@ -13,6 +13,8 @@ import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { TopMenu } from "./TopMenu";
 import { SkillsSet } from "./SkillSet";
 import { useEffect } from "react";
+import { useStore } from "@/store/index";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export const Banner = observer(() => {
 
@@ -75,54 +77,27 @@ const Bg1 = () => {
 }
 
 const Bg2 = observer(() => {
-  const state = useLocalObservable(() => ({
-    rotate: false,
-  }))
-
-  const handleClickDocument = () => {
-    state.rotate = !state.rotate;
-  }
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickDocument);
-
-    return () => {
-      document.removeEventListener('click', handleClickDocument);
-    }
-  }, [])
+  const { uiStore } = useStore();
 
   return (
     <div className="framer-002" style={{ pointerEvents: "none" }}>
-      {state.rotate && <Flex
-        position={"absolute"}
-        top={5}
-        left={"50%"}
-        center
-        width={5}
-        height={5}
-        className="bigger"
-      >
-        <Flex fontSize={2}>
-          <Animates.GlowingBallAnim id="bg-plasma" width={5} />
-        </Flex>
-      </Flex>}
       <div
-        className={`framer-003 ${state.rotate ? "rotate" : ""}`}
+        className={`framer-003 ${uiStore.rotate ? "rotate" : ""}`}
         data-border="true"
         style={{ animationDuration: "2.65s" }}
       ></div>
       <div
-        className={`framer-004 ${state.rotate ? "rotate-invert" : ""}`}
+        className={`framer-004 ${uiStore.rotate ? "rotate-invert" : ""}`}
         data-border="true"
         style={{ animationDuration: "2.55s" }}
       ></div>
       <div
-        className={`framer-005 ${state.rotate ? "rotate" : ""}`}
+        className={`framer-005 ${uiStore.rotate ? "rotate" : ""}`}
         data-border="true"
         style={{ animationDuration: "2.35s" }}
       ></div>
       <div
-        className={`framer-006 ${state.rotate ? "rotate-invert" : ""}`}
+        className={`framer-006 ${uiStore.rotate ? "rotate-invert" : ""}`}
         data-border="true"
         style={{ animationDuration: "2.25s" }}
       ></div>
@@ -208,8 +183,18 @@ const Bg4 = () => {
   )
 }
 
-const Content = () => {
+const contextTexts = {
+  "VI": {
+    "Available for opportunities": "Sẵn sàng cho các cơ hội mới!",
+    "Welcome to \nmy digital humble abode": `Chào mừng bạn đến \nnơi trú ẩn kỹ thuật số của mình`,
+    "I’m an independent developer.\nMy interest lies in user experience."
+        : "Mình là một lập trình viên độc lập. \nMình quan tâm đến trải nghiệm người dùng."
+  }
+}
+
+const Content = observer(() => {
   const globalStyle = useGlobalStyles();
+  const { getText } = useLanguage(contextTexts);
 
   return (
     <Flex fullWidth center column minHeight={800}>
@@ -234,7 +219,7 @@ const Content = () => {
             <img src={onlineSignal} className="animate-live" />
             <Text className={globalStyle.textKanit12}
             >
-              Available for opportunities
+              {getText("Available for opportunities")}
             </Text>
           </Flex>
         </Flex>
@@ -243,12 +228,9 @@ const Content = () => {
             <Flex fullWidth center>
               <Text className={globalStyle.textOrbiBold32}
                 whiteSpace={"pre-line"}
-                style={{ lineHeight: "90%" }}
+                style={{ lineHeight: "135%" }}
               >
-                {`
-                    Welcome to \n
-                    my digital humble abode
-                  `}
+                {getText("Welcome to \nmy digital humble abode")}
               </Text>
             </Flex>
           </Animates.GrowUpAppear>
@@ -259,10 +241,9 @@ const Content = () => {
               <Text className={globalStyle.textKanit16}
                 color={"#FFFFFF66"}
                 whiteSpace={"pre-line"}
-                style={{ lineHeight: "90%", marginTop: "16px" }}>
+                style={{ lineHeight: "135%", marginTop: "16px" }}>
                 {
-                  `I’m an independent developer.\n
-                  My interest lies in brand experience, and user experience.`
+                  getText("I’m an independent developer.\nMy interest lies in user experience.")
                 }
               </Text>
             </Flex>
@@ -279,4 +260,4 @@ const Content = () => {
       </Flex>
     </Flex>
   )
-}
+})

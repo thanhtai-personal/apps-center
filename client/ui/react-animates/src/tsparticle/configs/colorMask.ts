@@ -1,9 +1,8 @@
-
-export const bubbleMask = {
+export const colorMask = {
   "autoPlay": true,
   "background": {
     "color": {
-      "value": "#efefef"
+      "value": "#000"
     },
     "image": "",
     "position": "",
@@ -25,8 +24,8 @@ export const bubbleMask = {
   "defaultThemes": {},
   "delay": 0,
   "fullScreen": {
-    "enable": false,
-    "zIndex": 0
+    "enable": true,
+    "zIndex": -1
   },
   "detectRetina": true,
   "duration": 0,
@@ -36,7 +35,7 @@ export const bubbleMask = {
     "events": {
       "onClick": {
         "enable": false,
-        "mode": "push"
+        "mode": []
       },
       "onDiv": {
         "selectors": [],
@@ -46,7 +45,7 @@ export const bubbleMask = {
       },
       "onHover": {
         "enable": true,
-        "mode": "bubble",
+        "mode": "trail",
         "parallax": {
           "enable": false,
           "force": 2,
@@ -60,9 +59,44 @@ export const bubbleMask = {
     },
     "modes": {
       "trail": {
-        "delay": 1,
-        "pauseOnStop": false,
-        "quantity": 1
+        "delay": 0.005,
+        "pauseOnStop": true,
+        "quantity": 5,
+        "particles": {
+          "color": {
+            "value": "#ff0000",
+            "animation": {
+              "enable": true,
+              "speed": 400,
+              "sync": true
+            }
+          },
+          "collisions": {
+            "enable": false
+          },
+          "links": {
+            "enable": false
+          },
+          "move": {
+            "outModes": {
+              "default": "destroy"
+            },
+            "speed": 2
+          },
+          "size": {
+            "value": {
+              "min": 1,
+              "max": 5
+            },
+            "animation": {
+              "enable": true,
+              "speed": 5,
+              "sync": true,
+              "startValue": "min",
+              "destroy": "max"
+            }
+          }
+        }
       },
       "attract": {
         "distance": 200,
@@ -76,14 +110,9 @@ export const bubbleMask = {
         "distance": 200
       },
       "bubble": {
-        "distance": 400,
-        "duration": 2,
-        "mix": true,
-        "opacity": 0.8,
-        "color": {
-          "value": "#ff0000"
-        },
-        "size": 40,
+        "distance": 200,
+        "duration": 0.4,
+        "mix": false,
         "divs": {
           "distance": 200,
           "duration": 0.4,
@@ -99,7 +128,7 @@ export const bubbleMask = {
         "radius": 60
       },
       "grab": {
-        "distance": 400,
+        "distance": 100,
         "links": {
           "blink": false,
           "consent": false,
@@ -187,15 +216,15 @@ export const bubbleMask = {
       }
     },
     "color": {
-      "value": "#1b1e34",
+      "value": "#ff0000",
       "animation": {
         "h": {
           "count": 0,
-          "enable": false,
-          "speed": 1,
+          "enable": true,
+          "speed": 50,
           "decay": 0,
           "delay": 0,
-          "sync": true,
+          "sync": false,
           "offset": 0
         },
         "s": {
@@ -272,7 +301,7 @@ export const bubbleMask = {
       },
       "random": false,
       "size": false,
-      "speed": 8,
+      "speed": 2,
       "spin": {
         "acceleration": 0,
         "enable": false
@@ -296,17 +325,17 @@ export const bubbleMask = {
         "mode": "delete",
         "value": 0
       },
-      "value": 6
+      "value": 100
     },
     "opacity": {
       "value": {
         "min": 0.3,
-        "max": 0.5
+        "max": 0.8
       },
       "animation": {
         "count": 0,
-        "enable": false,
-        "speed": 2,
+        "enable": true,
+        "speed": 0.5,
         "decay": 0,
         "delay": 0,
         "sync": false,
@@ -330,22 +359,18 @@ export const bubbleMask = {
     "shape": {
       "close": true,
       "fill": true,
-      "options": {
-        "polygon": {
-          "sides": 6
-        }
-      },
-      "type": "polygon"
+      "options": {},
+      "type": "circle"
     },
     "size": {
       "value": {
-        "min": 100,
-        "max": 160
+        "min": 1,
+        "max": 3
       },
       "animation": {
         "count": 0,
-        "enable": false,
-        "speed": 5,
+        "enable": true,
+        "speed": 3,
         "decay": 0,
         "delay": 0,
         "sync": false,
@@ -466,11 +491,11 @@ export const bubbleMask = {
     "links": {
       "blink": false,
       "color": {
-        "value": "#ffffff"
+        "value": "random"
       },
       "consent": false,
-      "distance": 200,
-      "enable": false,
+      "distance": 100,
+      "enable": true,
       "frequency": 1,
       "opacity": 1,
       "shadow": {
@@ -484,7 +509,7 @@ export const bubbleMask = {
         "enable": false,
         "frequency": 1
       },
-      "width": 2,
+      "width": 1,
       "warp": false
     },
     "repulse": {
@@ -503,7 +528,7 @@ export const bubbleMask = {
   "style": {},
   "themes": [],
   "zLayers": 100,
-  "name": "Bubble",
+  "emitters": [],
   "motion": {
     "disable": false,
     "reduce": {

@@ -8,9 +8,9 @@ import {
 import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 // import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
-import { bubbleMask } from "./configs";
+import { hexagonMask } from "./configs";
 
-export const BubbleMask = ({
+export const HexagonMask = ({
   config,
   id,
   children
@@ -42,7 +42,7 @@ export const BubbleMask = ({
 
   const options: ISourceOptions = useMemo(
     () => ({
-      ...bubbleMask,
+      ...hexagonMask,
       ...config
     } as ISourceOptions),
     [],
@@ -63,8 +63,8 @@ export const BubbleMask = ({
           zIndex: 1,
         }}>
           <Particles
-            id={`bubble-mask-${id}`}
-            className="bubble-mask"
+            id={`hexagon-mask-${id}`}
+            className="hexagon-mask"
             style={{
               width: "100%",
               height: "100%",
