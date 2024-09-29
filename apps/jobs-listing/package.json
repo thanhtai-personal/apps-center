@@ -21,11 +21,11 @@
     "@core-ui/react-animates": "workspace:^",
     "@core-ui/react-context": "workspace:^",
     "@core-ui/react-core": "workspace:^",
+    "@core-ui/react-job-listing": "workspace:^",
     "@core-ui/react-mobx-state": "workspace:^",
     "@core-ui/react-mui-core": "workspace:^",
     "@core-ui/react-viewframe": "workspace:^",
     "@core-utils/react-hooks": "workspace:^",
-    "@core-ui/react-job-listing": "workspace:^",
     "@core-utils/utils-helpers": "workspace:^",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@tailwindcss/forms": "^0.5.7",
@@ -61,6 +61,7 @@
     "vite": "^5.1.4",
     "vite-plugin-dts": "^3.7.3",
     "vite-plugin-lib-inject-css": "^2.0.0",
+    "vite-plugin-static-copy": "^1.0.6",
     "vite-plugin-svg-react": "^1.0.3",
     "vite-plugin-svgr": "^4.2.0"
   }

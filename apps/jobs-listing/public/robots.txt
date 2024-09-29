@@ -1,0 +1,12 @@
+# robots.txt for http://www.example.com/
+
+User-agent: *
+Disallow: /src/
+Disallow: /tmp/
+Disallow: /old-version/
+
+# Allow specific files or folders
+Allow: /public/
+Allow: /tth_logo.png
+
+Sitemap: http://34.135.118.246:5173/sitemap.xml
