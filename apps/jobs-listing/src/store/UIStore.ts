@@ -2,8 +2,10 @@ import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state
 
 class UIStore extends BaseStore {
   @observable public pageLoading = false;
+  @observable public openMobileMenu = false;
   @observable public rotate = false;
   @observable public triggerClickAnimation = 0;
+  @observable public activeMenu = 1;
   @observable public useHeader = true;
   @observable public useFooter = true;
   @observable public useMenuBar = true;

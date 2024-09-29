@@ -1,5 +1,5 @@
 import { observer } from "@core-ui/react-mobx-state";
-import { Flex } from "@core-ui/react-mui-core";
+import { Flex, LazyImage } from "@core-ui/react-mui-core";
 import ZaloChat from "../ZaloChat";
 import FacebookChat from "../FacebookChat";
 import TelegramChat from "../TelegramChat";
@@ -12,11 +12,14 @@ import { Projects } from "./Projects";
 import { Contact } from "./Contact";
 import { Layers } from "@/styles/layers";
 import { Products } from "./Products";
+import menuIcon from "@/assets/icons/menu.svg"
+import { useGlobalStyles } from "@/styles/globalStyle";
 
 export interface IPortfolioContentProps { }
 
 export const PortfolioContent = observer(({ }: IPortfolioContentProps) => {
   const { uiStore } = useStore();
+  const globalStyles = useGlobalStyles();
 
   return (
     <Flex fullWidth column position={"relative"} minHeight={"100vh"} bgcolor={"#000"}
@@ -71,11 +74,29 @@ export const PortfolioContent = observer(({ }: IPortfolioContentProps) => {
         </IntersectionObserverView>
       </Flex>
       <Flex position={"fixed"} zIndex={Layers.layer12} bottom={0} right={0} p={2} column>
-        <FacebookChat />
-        <Flex my={1}></Flex>
-        <ZaloChat />
-        <Flex my={1}></Flex>
-        <TelegramChat />
+        <Flex mr={2}
+          className={globalStyles.hoveredBtn}
+          onClick={() => {
+            uiStore.openMobileMenu = !uiStore.openMobileMenu
+          }}
+          cursorPointer
+          border={"solid 1px #0550a590"}
+          p={1}
+          borderRadius={"16px"}
+          style={{
+            transitionDuration: "1.25s"
+          }}
+        >
+          <LazyImage src={menuIcon} style={{ width: 24, height: 24 }} />
+        </Flex>
+        {!uiStore.openMobileMenu && <>
+          <Flex my={2}></Flex>
+          <FacebookChat />
+          <Flex my={1}></Flex>
+          <ZaloChat />
+          <Flex my={1}></Flex>
+          <TelegramChat />
+        </>}
       </Flex>
     </Flex>
   )

@@ -2,8 +2,8 @@ import "./custom.style.css"
 import "@core-ui/react-animates/dist/BubbleWrapper.style.css"
 
 
-import { observer, useLocalObservable } from "@core-ui/react-mobx-state";
-import { Flex, Text } from "@core-ui/react-mui-core";
+import { observer } from "@core-ui/react-mobx-state";
+import { Flex, LazyImage, Text } from "@core-ui/react-mui-core";
 import lightbg from "@/assets/images/lightbg.png";
 import avt from "@/assets/images/avatar.png";
 import onlineSignal from "@/assets/icons/online-signal.svg"
@@ -12,7 +12,6 @@ import { Animates } from "@core-ui/react-animates";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { TopMenu } from "./TopMenu";
 import { SkillsSet } from "./SkillSet";
-import { useEffect } from "react";
 import { useStore } from "@/store/index";
 import { useLanguage } from "@/hooks/useLanguage";
 
@@ -51,7 +50,7 @@ const Bg1 = () => {
           width: "200%",
         }}
       >
-        <img
+        <LazyImage
           src={lightbg}
           alt=""
           srcSet={`
@@ -188,7 +187,7 @@ const contextTexts = {
     "Available for opportunities": "Sẵn sàng cho các cơ hội mới!",
     "Welcome to \nmy digital humble abode": `Chào mừng bạn đến \nnơi trú ẩn kỹ thuật số của mình`,
     "I’m an independent developer.\nMy interest lies in user experience."
-        : "Mình là một lập trình viên độc lập. \nMình quan tâm đến trải nghiệm người dùng."
+      : "Mình là một lập trình viên độc lập. \nMình quan tâm đến trải nghiệm người dùng."
   }
 }
 
