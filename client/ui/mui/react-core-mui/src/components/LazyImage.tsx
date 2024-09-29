@@ -19,7 +19,7 @@ export interface LazyImageProps {
 
 export const LazyImage: React.FC<LazyImageProps> = ({
   src,
-  alt = '',
+  alt = 'mising-alt',
   lazy = true,
   placeholder = <CircularProgress />,
   width = '100%',

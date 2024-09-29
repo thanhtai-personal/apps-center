@@ -30,7 +30,7 @@ const MenuItem = observer(({ text, icon, to, className, onClick, target }: any) 
           className={clsx(globalStyles.hoverUnderLine, globalStyles.hoverTransition)}
           onClick={handleClick}
         >
-          {icon && <img src={icon} alt={text} style={{ height: 24 }} />}
+          {icon && <img src={icon} alt={ text || "missing-alt"} style={{ height: 24 }} />}
           <Text ml={1} className={className || globalStyles.textCharka14}>{text}</Text>
         </Flex>
       </Link>

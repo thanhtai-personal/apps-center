@@ -18,13 +18,13 @@ export const Contact = observer(() => {
     <Flex fullWidth mt={12} column center>
       <Flex fullWidth height={1200} position={"relative"}>
         {tabletSizeDown ? <Flex fullSize alignItems={"flex-end"}>
-          <img src={reflectBg} style={{
+          <img src={reflectBg} alt="water reflect background" style={{
             width: "100%",
             height: "40%",
           }} />
         </Flex> : <FireWorkMask id="contact-fw" config={{}}>
           <Flex fullSize alignItems={"flex-end"}>
-            <img src={reflectBg} style={{
+            <img src={reflectBg} alt="water reflect background" style={{
               width: "100%",
               height: "40%",
             }} />

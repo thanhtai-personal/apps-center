@@ -71,7 +71,7 @@ export const SkillsSet = () => {
               {[...skills, ...skills, ...skills, ...skills, ...skills, ...skills].map((item, index) => (
                 <Flex mx={2} key={item.id} title={item.title}>
                   <Animates.BubbleWrapper id={`bubble-${item.id}-${index}`} style={{ padding: 8, fontSize: 14 }}>
-                    <img src={item.image} alt=""
+                    <img src={item.image} alt={item.title}
                       style={{ width: 'auto', height: '50px', borderRadius: "100%" }}
                     />
                   </Animates.BubbleWrapper>

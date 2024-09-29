@@ -204,7 +204,7 @@ const Content = observer(() => {
           <Flex fullWidth center>
             <Animates.SlideUpAppear delay={0.5}>
               <Flex fullWidth center>
-                <img src={avt} style={{ width: 60 }} />
+                <img src={avt} alt="avartar" style={{ width: 60 }} />
               </Flex>
             </Animates.SlideUpAppear>
           </Flex>
@@ -218,7 +218,7 @@ const Content = observer(() => {
               backdropFilter: "blur(2px)",
               WebkitBackdropFilter: "blur(2px)",
             }}>
-            <img src={onlineSignal} className="animate-live" />
+            <img src={onlineSignal} alt="online-signal" className="animate-live" />
             <Text className={globalStyle.textKanit12}
             >
               {getText("Available for opportunities")}

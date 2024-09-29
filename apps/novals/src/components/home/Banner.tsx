@@ -53,7 +53,7 @@ export const Banner = observer(() => {
                     <Flex cursorPointer center column fullSize position={"relative"} pb={3} className={styles.iconWithTextHover}>
                       <Text className={clsx(globalStyles.hoverUnderLine, globalStyles.textCharka14)}>{category.name}</Text>
                       <Flex position={"absolute"} bottom={1}>
-                        <img src={sword2} style={{ height: 24 }} />
+                        <img src={sword2} alt="sword" style={{ height: 24 }} />
                       </Flex>
                     </Flex>
                     {/* </OutlinedButton> */}

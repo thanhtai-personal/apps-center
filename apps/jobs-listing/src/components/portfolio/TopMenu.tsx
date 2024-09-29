@@ -160,7 +160,7 @@ export const TopMenu = observer(() => {
           <Flex centerY fullWidth justifyContent={"space-between"} p={1}>
             <Flex></Flex>
             <Flex cursorPointer center p={0.5} onClick={() => { uiStore.openMobileMenu = false }}>
-              <img src={closeIcon} style={{ width: 24, height: 24 }} />
+              <img src={closeIcon} alt="close icon" style={{ width: 24, height: 24 }} />
             </Flex>
           </Flex>
 
