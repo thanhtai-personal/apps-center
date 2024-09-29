@@ -7,7 +7,7 @@ import tailwindcss from 'tailwindcss';
 import basicSsl from '@vitejs/plugin-basic-ssl'
 import svgr from "vite-plugin-svgr"
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
+// import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -17,14 +17,14 @@ export default defineConfig(({ command }) => {
       libInjectCss(),
       svgr(),
       basicSsl({}),
-      viteStaticCopy({
-        targets: [
-          {
-            src: path.resolve(__dirname, './public') + '/[!.]*',
-            dest: './public',
-          },
-        ],
-      }),
+      // viteStaticCopy({
+      //   targets: [
+      //     {
+      //       src: path.resolve(__dirname, './public') + '/[!.]*',
+      //       dest: './public',
+      //     },
+      //   ],
+      // }),
     ],
     build: {
       outDir: "dist",
