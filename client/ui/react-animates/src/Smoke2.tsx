@@ -6,18 +6,22 @@ export interface ISmoke2Props {
   wind?: number;
   blur?: number;
   style?: React.CSSProperties;
+  src?: string;
+  config?: any;
 }
 
 export const Smoke2 = ({
   id,
-  style = {}
+  src,
+  style = {},
+  config = {}
 }: ISmoke2Props) => {
 
   useEffect(() => {
     if (!id) return () => { }
 
     var smoke = new Image();
-    smoke.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/15388/smoke.png";
+    smoke.src = src || "https://s3-us-west-2.amazonaws.com/s.cdpn.io/15388/smoke.png";
 
     function emitter(el: HTMLCanvasElement, opts: any) {
       var particles: any[] = [];
@@ -80,11 +84,11 @@ export const Smoke2 = ({
     const canvasElement = document.getElementById(`smoke-2-${id}`) as HTMLCanvasElement;
     if (canvasElement) {
       emitter(canvasElement, {
-        x: 1800,
-        y: 0,
-        size: 70,
-        particles: 200,
-        speed: {
+        x: config.x || 1000,
+        y: config.y || 0,
+        size: config.size || 70,
+        particles: config.particles || 100,
+        speed: config.speed || {
           x: -2,
           y: 2.5,
           fade: 150,
@@ -93,7 +97,7 @@ export const Smoke2 = ({
       }).render();
     }
 
-  }, [id])
+  }, [id, src, config])
 
   return (
     <canvas id={`smoke-2-${id}`} style={{ ...style }}>
