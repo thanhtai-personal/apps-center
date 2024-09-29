@@ -178,7 +178,7 @@ const contactLangObj = {
     "Address: Nhân Cơ - Đăk'R Lấp - Đăk Nông": "Địa chỉ: Nhân Cơ - Đăk'R Lấp - Đăk Nông",
     "Novels online page": "Trang đọc truyện trực tuyến",
     "Portfolio page": "Trang tiểu sử",
-    "Soccer score online page": "Tran kết quả bóng đá online",
+    "Soccer score online page": "Trang kết quả bóng đá online",
     "Landing page templates": "Mẫu thiết kế trang web",
     "Jobs Seeker online page": "Trang tìm kiếm việc làm online",
   }
