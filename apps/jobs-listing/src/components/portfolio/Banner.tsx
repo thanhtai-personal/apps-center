@@ -14,8 +14,10 @@ import { TopMenu } from "./TopMenu";
 import { SkillsSet } from "./SkillSet";
 import { useStore } from "@/store/index";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useDeviceDetection } from "@core-ui/react-job-listing";
 
 export const Banner = observer(() => {
+  const { isIOS } = useDeviceDetection();
 
   return (
     <Flex fullSize column position={"relative"} minHeight={"100vh"}>
@@ -30,7 +32,7 @@ export const Banner = observer(() => {
         </Flex>
       </Flex>
 
-      <Bg1 />
+      {!isIOS && <Bg1 />}
       <Bg2 />
       <Bg4 />
       <Content />

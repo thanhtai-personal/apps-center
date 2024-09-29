@@ -85,7 +85,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-2"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="/me" target="_blank">
+                        <Link to="https://my-projects-delta-orcin.vercel.app/me" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -175,5 +175,11 @@ const contactLangObj = {
   "VI": {
     "Contact": "Thông tin liên hệ",
     "Projects": "Dự án",
+    "Address: Nhân Cơ - Đăk'R Lấp - Đăk Nông": "Địa chỉ: Nhân Cơ - Đăk'R Lấp - Đăk Nông",
+    "Novels online page": "Trang đọc truyện trực tuyến",
+    "Portfolio page": "Trang tiểu sử",
+    "Soccer score online page": "Tran kết quả bóng đá online",
+    "Landing page templates": "Mẫu thiết kế trang web",
+    "Jobs Seeker online page": "Trang tìm kiếm việc làm online",
   }
 }
