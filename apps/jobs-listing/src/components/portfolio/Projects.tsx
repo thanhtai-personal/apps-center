@@ -15,8 +15,6 @@ import { Layers } from "@/styles/layers";
 
 
 export const Projects = observer(() => {
-  const globalStyles = useGlobalStyles();
-  const { getText } = useLanguage(projectsLangObj);
   const { tabletSizeDown } = useResponsive();
 
   return (
@@ -27,7 +25,7 @@ export const Projects = observer(() => {
       <Flex position={"absolute"} bottom={19} left={-150} zIndex={Layers.layer2}>
         <Animates.GlowingBallAnim id="light-2" width={40} />
       </Flex>
-      <Flex position={"absolute"} top={"50%"} left={"50%"} zIndex={Layers.layer2}>
+      {!tabletSizeDown && <Flex position={"absolute"} top={"50%"} left={"50%"} zIndex={Layers.layer2}>
         <Animates.GlowingBallAnim id="light-2" width={1}
           center={{
             width: 10,
@@ -42,36 +40,46 @@ export const Projects = observer(() => {
             height: 30
           }}
         />
+      </Flex>}
+
+      {tabletSizeDown ? <ProjectsContent /> : <HexagonMask id="projects-bg" config={{}}>
+        <ProjectsContent />
+      </HexagonMask>}
+    </Flex>
+  )
+})
+
+const ProjectsContent = observer(() => {
+  const globalStyles = useGlobalStyles();
+  const { tabletSizeDown } = useResponsive();
+  const { getText } = useLanguage(projectsLangObj);
+
+  return (
+    <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
+      <Flex mt={tabletSizeDown ? 6 : 10} fullWidth center>
+        <Text className={tabletSizeDown ? globalStyles.textOrbiBold24
+          : globalStyles.textOrbiBold32}>
+          {getText("Projects")}
+        </Text>
       </Flex>
 
-      <HexagonMask id="projects-bg" config={{}}>
-        <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
-          <Flex mt={tabletSizeDown ? 6 : 10} fullWidth center>
-            <Text className={tabletSizeDown ? globalStyles.textOrbiBold24
-              : globalStyles.textOrbiBold32}>
-              {getText("Projects")}
-            </Text>
-          </Flex>
+      <Flex mt={1} fullWidth center>
+        <Text className={tabletSizeDown ? globalStyles.textKanit16
+          : globalStyles.textKanit24}
+          color={"#FFFFDD"}
+        >
+          {getText("Compilation of projects that I was joined")}
+        </Text>
+      </Flex>
 
-          <Flex mt={1} fullWidth center>
-            <Text className={tabletSizeDown ? globalStyles.textKanit16
-              : globalStyles.textKanit24}
-              color={"#FFFFDD"}
-            >
-              {getText("Compilation of projects that I was joined")}
-            </Text>
-          </Flex>
-
-          <Flex fullWidth column mt={8} position={"relative"}>
-            <Flex fullWidth style={{ opacity: 0 }}>
-              <GridContent projects={projects} getText={getText} />
-            </Flex>
-            <Flex fullSize position={"absolute"} zIndex={Layers.layer5}>
-              <GridContent projects={projects} getText={getText} />
-            </Flex>
-          </Flex>
+      <Flex fullWidth column mt={8} position={"relative"}>
+        <Flex fullWidth style={{ opacity: 0 }}>
+          <GridContent projects={projects} getText={getText} />
         </Flex>
-      </HexagonMask>
+        <Flex fullSize position={"absolute"} zIndex={Layers.layer5}>
+          <GridContent projects={projects} getText={getText} />
+        </Flex>
+      </Flex>
     </Flex>
   )
 })

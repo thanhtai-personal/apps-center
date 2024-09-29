@@ -1,5 +1,5 @@
 import { useGlobalStyles } from "@/styles/globalStyle";
-import { Flex, Text } from "@core-ui/react-mui-core";
+import { Flex, Text, useResponsive } from "@core-ui/react-mui-core";
 import { goToSection } from "@/utils/index";
 import { AppTheme } from "@core-ui/react-mui-core";
 import { makeStyles, createStyles } from "@core-ui/react-mui-core/style"
@@ -48,6 +48,7 @@ export const TopMenu = observer(() => {
   const styles = useStyles();
   const { uiStore } = useStore();
   const { getText, setLanguage, language } = useLanguage(languageTexts); 
+  const { tabletSizeDown } = useResponsive();
 
   useEffect(() => {
     let toId;
@@ -95,7 +96,7 @@ export const TopMenu = observer(() => {
           px={2}
           py={1}
         >
-          <Flex fullSize center>
+          {!tabletSizeDown && <Flex fullSize center>
             {menuItems.map((item) => (
               <Flex className={styles.hoveredButton} mx={2} key={item.id} cursorPointer center
                 onClick={() => {
@@ -105,7 +106,7 @@ export const TopMenu = observer(() => {
                 <Text className={clsx(globalStyles.textKanitBold16)}>{getText(item.label)}</Text>
               </Flex>
             ))}
-          </Flex>
+          </Flex>}
         </Flex>
         <Flex cursorPointer onClick={() => {
           if (uiStore.triggerClickAnimation > 0) return;

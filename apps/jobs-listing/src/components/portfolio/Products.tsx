@@ -49,7 +49,7 @@ export const Products = observer(() => {
           </Flex>}
         </Flex>
       </Flex>
-      <Flex fullWidth height={400} position={"relative"} style={{
+      {!tabletSizeDown && <Flex fullWidth height={400} position={"relative"} style={{
         pointerEvents: "none",
         opacity: 0.4
       }}>
@@ -58,7 +58,7 @@ export const Products = observer(() => {
           cloudBg2,
           cloudBg3
         ]} />
-      </Flex>
+      </Flex>}
     </Flex>
   )
 })
