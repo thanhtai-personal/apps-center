@@ -5,12 +5,14 @@ import { Flex, Text, useResponsive } from "@core-ui/react-mui-core";
 import reflectBg from "@/assets/images/hcm.png"
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { Layers } from "@/styles/layers";
-import { formatDate } from "date-fns";
 import { formatFullDate } from "@core-utils/utils-helpers";
+import { useLanguage } from "@/hooks/useLanguage";
+import { Link } from "@core-ui/react-core";
 
 export const Contact = observer(() => {
   const globalStyles = useGlobalStyles();
   const { tabletSizeDown } = useResponsive();
+  const { getText } = useLanguage(contactLangObj)
 
   return (
     <Flex fullWidth mt={12} column center>
@@ -31,11 +33,10 @@ export const Contact = observer(() => {
         <Flex position={"absolute"} fullSize zIndex={Layers.layer11} center>
           <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column justifyContent={"flex-end"} pb={100}>
             <Flex fullSize position={"relative"}>
-              <Flex fullWidth position={"absolute"} px={2}>
-
-                <Flex fullWidth centerY justifyContent={"space-between"} p={4}
-                  alignItems={"flex-end"}
-                  minHeight={350} bgcolor={"#000000DD"}
+              <Flex fullWidth position={"absolute"} px={2} column>
+                <Flex fullWidth column
+                  p={4}
+                  bgcolor={"#000000DD"}
                   boxShadow={"0 2px 5px rgb(55, 120, 251,0.3)"}
                   borderRadius={2}
                   style={{
@@ -43,12 +44,120 @@ export const Contact = observer(() => {
                     WebkitBackdropFilter: "blur(2px)"
                   }}
                 >
-                  <Text className={globalStyles.textKanit14} color={"#999999"}>
-                    Created by <span style={{ color: "#fff" }}>@Kai.R</span>
-                  </Text>
-                  <Text className={globalStyles.textKanit14} color={"#999999"}>
-                    {formatFullDate(new Date(), {})}
-                  </Text>
+                  <Flex fullWidth column={tabletSizeDown} center={tabletSizeDown}
+                    justifyContent={tabletSizeDown ? "center" : "space-between"}
+                  >
+                    <Flex column>
+                      <Text className={globalStyles.textOrbiBold24} color={"#ffffff"}
+                        textTransform={"uppercase"}
+                      >
+                        {getText("Contact")}
+                      </Text>
+                      <Flex fullWidth border={"solid 2px rgba(255,255,255, 0.1)"} mt={1} mb={2}></Flex>
+
+                      <Flex mt={2} column
+                        // justifyContent={tabletSizeDown ? "center" : "flex-start"}
+                        alignItems={tabletSizeDown ? "center" : "flex-start"}
+                      >
+                        <Text className={globalStyles.textKanit18} color={"#777777"}
+                          textTransform={"uppercase"}
+                        >
+                          {getText("Address: Nhân Cơ - Đăk'R Lấp - Đăk Nông")}
+                        </Text>
+                        <Text className={globalStyles.textKanit18} color={"#777777"}
+                          textTransform={"uppercase"}
+                        >
+                          {getText("TEL: 0972828264")}
+                        </Text>
+                      </Flex>
+                    </Flex>
+
+                    <Flex column
+                      // justifyContent={tabletSizeDown ? "center" : "flex-end"}
+                      alignItems={tabletSizeDown ? "center" : "flex-end"}
+                    >
+                      <Text className={globalStyles.textOrbiBold24} color={"#ffffff"}
+                        textTransform={"uppercase"}
+                      >
+                        {getText("Projects")}
+                      </Text>
+                      <Flex fullWidth border={"solid 2px rgba(255,255,255, 0.1)"} mt={1} mb={2}></Flex>
+                      <Animates.RippleButton id="project-2"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="/me" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("Portfolio page")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                      <Flex my={0.5}></Flex>
+                      <Animates.RippleButton id="project-1"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="/novels" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("Novels online page")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                      <Flex my={0.5}></Flex>
+                      <Animates.RippleButton id="project-1"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="/jobs" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("Jobs Seeker online page")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                      <Flex my={0.5}></Flex>
+                      <Animates.RippleButton id="project-1"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="/soccer-scores" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("Soccer score online page")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                      <Flex my={0.5}></Flex>
+                      <Animates.RippleButton id="project-1"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="/landing-pages" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("Landing page templates")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                    </Flex>
+                  </Flex>
+
+                  <Flex fullWidth border={"solid 1px rgba(255,255,255, 0.1)"} mt={6} mb={1}></Flex>
+                  <Flex fullWidth centerY justifyContent={"space-between"}>
+                    <Text className={globalStyles.textKanit14} color={"#999999"}>
+                      Created by <span style={{ color: "#fff" }}>@Kai.R</span>
+                    </Text>
+                    <Text className={globalStyles.textKanit14} color={"#999999"}>
+                      {formatFullDate(new Date(), {})}
+                    </Text>
+                  </Flex>
                 </Flex>
               </Flex>
             </Flex>
@@ -61,3 +170,10 @@ export const Contact = observer(() => {
     </Flex>
   )
 })
+
+const contactLangObj = {
+  "VI": {
+    "Contact": "Thông tin liên hệ",
+    "Projects": "Dự án",
+  }
+}
