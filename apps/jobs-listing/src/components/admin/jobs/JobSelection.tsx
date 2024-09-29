@@ -1,5 +1,6 @@
 import { SearchBar } from "@/components/jobs/SearchBar";
 import { useGlobalStyles } from "@/styles/globalStyle";
+import { Link } from "@core-ui/react-core";
 import { useJobsData, useJobsListingStore } from "@core-ui/react-job-listing";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, OutlinedButton, Text } from "@core-ui/react-mui-core";
@@ -47,7 +48,19 @@ export const JobSelection = observer(() => {
           >
             <Flex fullWidth justifyContent={"space-between"} centerY bgcolor={selectedJobIds.includes(job.id) ? "rgba(255,255,255, 0.25)" : "rgba(255,255,255, 0.15)"}
               p={1} borderRadius={"8px"}>
-              <Text className={selectedJobIds.includes(job.id) ? globalStyles.textKanitBold16 : globalStyles.textKanit16}>{job.name}</Text>
+              <Flex centerY>
+                <Link to={`https://app.aniday.com/vi/jobs/${job.jobId}`} target={`_job_${job.jobId}`}
+                  onClick={(e) => { e.stopPropagation(); }}
+                >
+                  <Text textAlign={"left"} width={60} className={selectedJobIds.includes(job.id) ? globalStyles.textKanitBold16 : globalStyles.textKanit16}>
+                    {job.jobId}
+                  </Text>
+                </Link>
+                <Flex mx={1}></Flex>
+                <Text className={selectedJobIds.includes(job.id) ? globalStyles.textKanitBold16 : globalStyles.textKanit16}>
+                  {job.name}
+                </Text>
+              </Flex>
               <Flex centerY>
                 <OutlinedButton style={{ background: "rgba(0,0,255,0.25)", marginRight: "8px", border: "none" }}
                   onClick={(e) => {

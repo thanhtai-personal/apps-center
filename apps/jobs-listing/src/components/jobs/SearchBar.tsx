@@ -34,7 +34,7 @@ export const SearchBar = observer(({ }: ISearchBarProps) => {
   runCategoryStore();
 
   return <Flex fullWidth my={1} center column>
-    <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} border={"solid 1px rgba(255,255,255, 0.1)"} p={1} column>
+    <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} border={"solid 1px rgba(255,255,255, 0.1)"} borderRadius={4} p={1} column>
       <Flex fullWidth>
         <Text mt={1} whiteSpace={"nowrap"} className={globalStyle.textKanitBold18}>Loại công việc: </Text>
         <Flex fullWidth flexWrap={"wrap"} ml={2}>

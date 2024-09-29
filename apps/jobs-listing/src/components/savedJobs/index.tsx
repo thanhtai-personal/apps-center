@@ -18,7 +18,7 @@ export const SavedJobsContent = observer(({ }: ISavedJobsContentProps) => {
     <Flex fullWidth center>
       <Flex maxWidth={PAGE_MAX_WIDTH} fullWidth column position={"relative"} minHeight={"100vh"}>
         <Flex fullWidth my={2} px={1}>
-          <Link target="_new_jobs" to="/" title="Việc mới">
+          <Link target="_new_jobs" to="/jobs" title="Việc mới">
             <ArrowBackIcon style={{ color: "rgb(255, 255, 255)" }}  />
           </Link>
         </Flex>
