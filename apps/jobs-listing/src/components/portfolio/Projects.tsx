@@ -12,6 +12,7 @@ import titan from "@/assets/images/titan.png"
 import commandcenter from "@/assets/images/command_center.png"
 import { Animates, HexagonMask } from "@core-ui/react-animates";
 import { Layers } from "@/styles/layers";
+import { IntersectionObserverView } from "@core-ui/react-viewframe";
 
 
 export const Projects = observer(() => {
@@ -90,9 +91,16 @@ const GridContent = ({ projects, getText }) => {
     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
       {projects.map((project, index) => (
         <Grid item sm={12} md={6} lg={4} key={project.id || `p-${index}`} >
-          <Animates.SlideRightAppear delay={0.25 + (0.3 * index)}>
-            <ProjectItem data={project} getText={getText} />
-          </Animates.SlideRightAppear>
+          <Flex fullSize minHeight={320}>
+            <IntersectionObserverView isInfinite={false}>
+              {index % 2 === 0 ? <Animates.SlideRightAppear delay={0.25}>
+                <ProjectItem data={project} getText={getText} />
+              </Animates.SlideRightAppear> :
+              <Animates.SlideLeftAppear delay={0.25}>
+                <ProjectItem data={project} getText={getText} />
+              </Animates.SlideLeftAppear>}
+            </IntersectionObserverView>
+          </Flex>
         </Grid>))}
     </Grid>
   )

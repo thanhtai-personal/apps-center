@@ -57,6 +57,7 @@ export const SkillsSet = () => {
       borderRadius={"16px"}
       style={{
         backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
         overflow: "hidden"
       }}
     >

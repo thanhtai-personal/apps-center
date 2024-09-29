@@ -52,8 +52,8 @@ export const Introduce = observer(() => {
               <Flex fullWidth center mt={2}>
                 <Text
                   color={"#FFFFDD"}
-                  className={tabletSizeDown ? globalStyles.textKanit24
-                    : globalStyles.textKanit18}
+                  className={tabletSizeDown ? globalStyles.textKanit18
+                    : globalStyles.textKanit24}
                   whiteSpace={"pre-line"}
                   style={{
                     lineHeight: "125%"

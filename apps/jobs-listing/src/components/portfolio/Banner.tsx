@@ -24,7 +24,7 @@ export const Banner = observer(() => {
       <Flex fullWidth center mt={2}>
         <Flex fullWidth center maxWidth={PAGE_MAX_WIDTH}>
           <Animates.GrowDownAppear delay={1}>
-            <Flex fullWidth center mt={2}>
+            <Flex fullWidth center mt={2} px={2}>
               <TopMenu />
             </Flex>
           </Animates.GrowDownAppear>
@@ -215,6 +215,7 @@ const Content = observer(() => {
             style={{
               transform: "translateY(-10px)",
               backdropFilter: "blur(2px)",
+              WebkitBackdropFilter: "blur(2px)",
             }}>
             <img src={onlineSignal} className="animate-live" />
             <Text className={globalStyle.textKanit12}

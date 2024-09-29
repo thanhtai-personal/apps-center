@@ -39,7 +39,8 @@ export const Contact = observer(() => {
                   boxShadow={"0 2px 5px rgb(55, 120, 251,0.3)"}
                   borderRadius={2}
                   style={{
-                    backdropFilter: "blur(2px)"
+                    backdropFilter: "blur(2px)",
+                    WebkitBackdropFilter: "blur(2px)"
                   }}
                 >
                   <Text className={globalStyles.textKanit14} color={"#999999"}>
@@ -49,7 +50,6 @@ export const Contact = observer(() => {
                     {formatFullDate(new Date(), {})}
                   </Text>
                 </Flex>
-
               </Flex>
             </Flex>
           </Flex>

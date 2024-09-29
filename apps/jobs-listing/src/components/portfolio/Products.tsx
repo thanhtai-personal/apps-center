@@ -7,6 +7,7 @@ import cloudBg3 from "@/assets/images/bg/clouds_3.png"
 import skillsetPng from "@/assets/images/skillset.svg"
 import smokePng from "@/assets/images/smoke.png"
 import "@core-ui/react-animates/dist/bgClouds.style.css"
+import { IntersectionObserverView } from "@core-ui/react-viewframe";
 
 export const Products = observer(() => {
   const { tabletSizeDown } = useResponsive();
@@ -21,11 +22,16 @@ export const Products = observer(() => {
           borderRadius={2}
           style={{
             backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
           }}
           position={"relative"}
         >
           <Flex fullWidth center my={10}>
-            <LazyImage src={skillsetPng} className="ufo-animate" />
+            <IntersectionObserverView isInfinite={false}>
+              <Animates.SlideRightAppear duration={2}>
+                <LazyImage src={skillsetPng} className="ufo-animate" />
+              </Animates.SlideRightAppear>
+            </IntersectionObserverView>
           </Flex>
           {!tabletSizeDown && <Flex position={"absolute"} fullSize bottom={0} left={0}>
             <Animates.Smoke2 id="smoke-bg"
@@ -49,7 +55,7 @@ export const Products = observer(() => {
           </Flex>}
         </Flex>
       </Flex>
-      {!tabletSizeDown && <Flex fullWidth height={400} position={"relative"} style={{
+      {<Flex fullWidth height={400} position={"relative"} style={{
         pointerEvents: "none",
         opacity: 0.4
       }}>

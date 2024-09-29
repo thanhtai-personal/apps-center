@@ -68,10 +68,11 @@ export const TopMenu = observer(() => {
       fullWidth
       maxWidth={800}
       centerY
-      bgcolor={"rgba(255,255,255,0.25)"}
+      bgcolor={tabletSizeDown ? "unset" : "rgba(255,255,255,0.25)"}
       borderRadius={"16px"}
       style={{
         backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
         overflow: "hidden"
       }}
     >
@@ -88,15 +89,15 @@ export const TopMenu = observer(() => {
           <Animates.GlowingBallAnim id="bg-plasma" width={5} />
         </Flex>
       </Flex>}
-      <Flex fullWidth centerY position={"relative"}>
-        <Flex fullSize m={0} center style={{
+      <Flex fullWidth centerY centerX={tabletSizeDown} position={"relative"}>
+        {!tabletSizeDown && <Flex fullSize m={0} center style={{
           maskImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10.5%, rgb(0, 0, 0) 90.5%, rgba(0, 0, 0, 0) 100%)'
           , overflow: 'hidden'
         }}
           px={2}
           py={1}
         >
-          {!tabletSizeDown && <Flex fullSize center>
+        <Flex fullSize center>
             {menuItems.map((item) => (
               <Flex className={styles.hoveredButton} mx={2} key={item.id} cursorPointer center
                 onClick={() => {
@@ -106,17 +107,18 @@ export const TopMenu = observer(() => {
                 <Text className={clsx(globalStyles.textKanitBold16)}>{getText(item.label)}</Text>
               </Flex>
             ))}
-          </Flex>}
-        </Flex>
+          </Flex>
+        </Flex>}
         <Flex cursorPointer onClick={() => {
           if (uiStore.triggerClickAnimation > 0) return;
           uiStore.triggerClickAnimation = 1;
           setLanguage(language && language === "EN" ? "VI" : "EN");
         }}
-          position="absolute"
+          position={tabletSizeDown ? "static" : "absolute"}
           right={0}
           fullHeight
           px={4}
+          py={1}
           center
           borderRadius={4}
           bgcolor={"red"}

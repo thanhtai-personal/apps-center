@@ -39,8 +39,8 @@ export const ProjectItem = observer(({
           <Text
             color={"#FFFFDD"}
             textAlign={"left"}
-            className={tabletSizeDown ? globalStyles.textKanit24
-              : globalStyles.textKanit18}
+            className={tabletSizeDown ? globalStyles.textKanit18
+              : globalStyles.textKanit24}
             whiteSpace={"pre-line"}
             style={{
               lineHeight: "125%"
