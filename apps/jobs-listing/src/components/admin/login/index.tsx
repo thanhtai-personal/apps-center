@@ -27,7 +27,7 @@ const images = [
   }
 ];
 
-export const LoginComponent = observer(() => {
+export const AdminLoginComponent = observer(() => {
 
   return (
     <Flex fullWidth center className="login_page">
