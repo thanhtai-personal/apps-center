@@ -5,12 +5,26 @@ import { Flex, LazyImage } from "@core-ui/react-mui-core";
 import { LoginForm } from "./LoginForm";
 import recruiterBg from "@/assets/images/bg/recruiter_bg.png"
 import Carousel from 'react-material-ui-carousel';
+import jobspage from "@/assets/images/bg/jobspage.png"
+import novels_page from "@/assets/images/bg/novels_page.png"
+import portfolio_preview from "@/assets/images/bg/portfolio_preview.png"
+import performanceResult from "@/assets/images/bg/performance-result.png"
+import { Link } from "@core-ui/react-core";
 
 const images = [
-  "https://truyen.tangthuvien.vn/images/slide3.jpg",
-  "https://truyen.tangthuvien.vn/images/slide7.jpg",
-  "https://truyen.tangthuvien.vn/images/slide9.jpg",
-  "https://truyen.tangthuvien.vn/images/slide8.jpg",
+  {
+    src: portfolio_preview,
+    url: "/me"
+  }, {
+    src: jobspage,
+    url: "/jobs"
+  }, {
+    src: novels_page,
+    url: "/novels"
+  }, {
+    src: performanceResult,
+    url: "https://pagespeed.web.dev/analysis/https-my-projects-delta-orcin-vercel-app-me/vcos3fthy7?form_factor=desktop"
+  }
 ];
 
 export const LoginComponent = observer(() => {
@@ -41,7 +55,7 @@ export const LoginComponent = observer(() => {
             {images.map((image, index) => (
               <Flex key={index} fullSize>
                 <LazyImage
-                  src={image}
+                  src={image.src}
                   alt={`Slide ${index + 1}`}
                   style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
                   imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
@@ -53,14 +67,16 @@ export const LoginComponent = observer(() => {
             {images.map((image, index) => {
               return (
                 <Grid item xs={12} key={index} sm={6} md={3}>
-                  <Flex fullSize cursorPointer>
-                    <LazyImage
-                      src={image}
-                      alt={`Slide ${index + 1}`}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
-                      imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
-                    />
-                  </Flex>
+                  <Link to={image.url} target="_blank">
+                    <Flex fullSize cursorPointer>
+                      <LazyImage
+                        src={image.src}
+                        alt={`Slide ${index + 1}`}
+                        style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                        imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                      />
+                    </Flex>
+                  </Link>
                 </Grid>
               )
             })}
