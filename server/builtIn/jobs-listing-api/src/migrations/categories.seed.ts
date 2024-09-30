@@ -52,7 +52,7 @@ export class CategoriesDataSeed implements MigrationInterface {
     // await queryRunner.commitTransaction();
     await waitMs(1000);
     if (!queryRunner.isReleased) {
-      await queryRunner.release();
+      // await queryRunner.release();
     }
   }
 

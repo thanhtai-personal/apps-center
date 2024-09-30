@@ -5,7 +5,7 @@ import { LazyImage } from "@core-ui/react-mui-core";
 import { useLanguage } from "@/hooks/useLanguage";
 import loginBg from "@/assets/images/bg/login_bg.png"
 import loginBg2 from "@/assets/images/bg/login_bg_2.png"
-import { useJobsListingStore, useLogin } from "@core-ui/react-job-listing";
+import { useJobsListingStore, useAuthen } from "@core-ui/react-job-listing";
 
 export const LoginForm = observer(({
   isAdmin
@@ -14,7 +14,7 @@ export const LoginForm = observer(({
 }) => {
   const { getText } = useLanguage(loginTextsObj);
   const { userStore } = useJobsListingStore();
-  const { onLogin } = useLogin(isAdmin);
+  const { onLogin } = useAuthen(isAdmin);
 
   useEffect(() => {
     const body: any = document.querySelector("body");
@@ -82,7 +82,7 @@ export const LoginForm = observer(({
           </div>
           <div className="input-block">
             <label htmlFor="password" className="input-label">{getText("Password")}</label>
-            <input onChange={(e) => userStore.loginData.passward = e.target.value} type="password" name="password" id="password" placeholder={getText("Password")} />
+            <input onChange={(e) => userStore.loginData.password = e.target.value} type="password" name="password" id="password" placeholder={getText("Password")} />
           </div>
           <div className="modal-buttons">
             <a href="#" className="">{getText("Forgot your password?")}</a>

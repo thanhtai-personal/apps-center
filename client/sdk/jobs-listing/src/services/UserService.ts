@@ -52,7 +52,7 @@ export class UserService
   }
 
   login(data: any): Promise<APIResult<IResponse<void>>> {
-    return this.api.post("/users/login", {}, data) as Promise<
+    return this.api.post("/auth/login", {}, data) as Promise<
       APIResult<IResponse<void>>
     >;
   }

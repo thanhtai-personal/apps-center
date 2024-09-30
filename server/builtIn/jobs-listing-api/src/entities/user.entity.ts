@@ -15,6 +15,9 @@ export class UserEntity extends BaseEntity implements IUser {
   @Column({ name: "email", type: 'varchar', nullable: true })
   email?: string;
 
+  @Column({ name: "salt", type: 'varchar', nullable: true })
+  salt?: string;
+
   @Column({ name: "avatar", type: 'varchar', nullable: true })
   avatar?: string;
 
@@ -28,5 +31,6 @@ export class UserEntity extends BaseEntity implements IUser {
   level?: number;
   
   @ManyToOne(() => RoleEntity, (role) => role.users, { cascade: true })
-  roleData?: string;
+  @JoinColumn({ name: 'roleId' }) // Establish the relationship
+  roleData?: RoleEntity; 
 }

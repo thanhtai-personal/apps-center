@@ -9,6 +9,7 @@ export interface IUser {
   level?: number;
   role?: string;
   roleId?: number;
+  salt?: string;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;

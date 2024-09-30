@@ -6,6 +6,7 @@ import { UserEntityToUserResponse } from '@/mappers/users/user.response.mapper';
 import { DeepPartial, InjectRepository, Repository } from '@core-api/nest-typeorm-postgres';
 import { IPagination, IPagingFilter, IUserFilter, IUserResponse } from '@core-ui/jobs-listing-types';
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -24,9 +25,13 @@ export class UsersService {
     } as IPagination<IUserResponse>;
   }
 
-  async findOne(id: number): Promise<IUserResponse | null> {
-    const user = await this.usersRepository.findOne({ where: { id: id } });
+  async findOne(id: number, populate: string[] = []): Promise<IUserResponse | null> {
+    const user = await this.usersRepository.findOne({ where: { id: id }, relations: populate });
+    return user ? UserEntityToUserResponse.map(user) : user;
+  }
 
+  async findByEmail(email: string, populate: string[] = []): Promise<IUserResponse | null> {
+    const user = await this.usersRepository.findOne({ where: { email: email }, relations: populate });
     return user ? UserEntityToUserResponse.map(user) : user;
   }
 
@@ -63,6 +68,10 @@ export class UsersService {
   async add(requestedUser: CreateUserDto, isEntity: boolean = false) {
     try {
       const user = this.usersRepository.create(UserCreateDTOToEntityMapper.map(requestedUser));
+      if (user.password && user.salt) {
+        user.password = await bcrypt.hash(user.password, user.salt);
+      }
+
       await this.usersRepository.save(user);
       return isEntity ? user : UserEntityToUserResponse.map(user);
     } catch (error: any) {
@@ -75,6 +84,15 @@ export class UsersService {
       await this.usersRepository.delete(id);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  async validatePassword(user: any, password: string): Promise<boolean> {
+    try {
+      const isMatch = await bcrypt.compare(password, user.password);
+      return isMatch;
+    } catch (error: any) {
+      return false;
     }
   }
 }

@@ -57,25 +57,6 @@ export class AuthController {
     }
   }
 
-  @Get()
-  async authenticate(
-    @Query()
-    query: any,
-    @Res()
-    res: Response
-  ) {
-    try {
-      // Optionally fetch additional user info
-      const userInfo = await this.authService.signIn();
-      if (userInfo.error) {
-        return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(userInfo.error);
-      }
-      return res.status(HttpStatus.OK).send(userInfo);
-    } catch (error) {
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
-    }
-  }
-
   @Get('profile')
   getProfile(
     @Body()
