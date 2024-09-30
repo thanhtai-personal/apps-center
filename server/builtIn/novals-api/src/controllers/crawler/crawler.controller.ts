@@ -2,7 +2,7 @@
 
 import {  Body, Controller, Get, HttpException, HttpStatus, Param, Post, Res, UseGuards } from '@nestjs/common';
 import { TTVCrawlerService } from '@/services/ttvCrawler/ttvCrawler.service';
-import { AnyDayCrawlerService } from '@/services/anyDayCrawler/anyDayCrawler.service';
+// import { AnyDayCrawlerService } from '@/services/anyDayCrawler/anyDayCrawler.service';
 import { Response } from "express"
 // import { AuthGuard } from '@/guards/auth.guard';
 
@@ -11,7 +11,7 @@ import { Response } from "express"
 export class CrawlerController {
   constructor(
     private readonly ttvCrawlerService: TTVCrawlerService,
-    private readonly anyDayCrawlerService: AnyDayCrawlerService,
+    // private readonly anyDayCrawlerService: AnyDayCrawlerService,
   ) { }
 
   @Get("/tangthuvien")

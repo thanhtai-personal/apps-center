@@ -8,12 +8,7 @@
   color: rgba(0, 0, 0, 0.7);
 }
 
-.login_page .container {
-  height: 200vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+.login_page .container {}
 
 .login_page .modal {
   position: fixed;

@@ -16,6 +16,8 @@
     "build": "turbo build",
     "build:dev": "pnpm run clean && pnpm install && turbo build",
     "dev": "turbo dev",
+    "client:novels": "turbo client:novels",
+    "server:novels": "turbo server:novels",
     "lint": "turbo lint",
     "release:all": "turbo release"
   },

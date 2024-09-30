@@ -1,57 +1,73 @@
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { observer } from "@core-ui/react-mobx-state";
-import { Flex } from "@core-ui/react-mui-core";
-import { useEffect } from "react";
+import { Grid } from "@core-ui/react-mui-core/materials"
+import { Flex, LazyImage } from "@core-ui/react-mui-core";
 import { LoginForm } from "./LoginForm";
+import recruiterBg from "@/assets/images/bg/recruiter_bg.png"
+import Carousel from 'react-material-ui-carousel';
+
+const images = [
+  "https://truyen.tangthuvien.vn/images/slide3.jpg",
+  "https://truyen.tangthuvien.vn/images/slide7.jpg",
+  "https://truyen.tangthuvien.vn/images/slide9.jpg",
+  "https://truyen.tangthuvien.vn/images/slide8.jpg",
+];
 
 export const LoginComponent = observer(() => {
 
-  useEffect(() => {
-    const body: any = document.querySelector("body");
-    const modal: any = document.querySelector(".modal");
-    const modalButton: any = document.querySelector(".modal-button");
-    const closeButton: any = document.querySelector(".close-button");
-    const scrollDown: any = document.querySelector(".scroll-down");
-    let isOpened = false;
-
-    const openModal = () => {
-      if (modal && body) {
-        modal.classList.add("is-open");
-        body.style.overflow = "hidden";
-      }
-    };
-
-    const closeModal = () => {
-      if (modal && body) {
-        modal.classList.remove("is-open");
-        body.style.overflow = "initial";
-      }
-    };
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > window.innerHeight / 3 && !isOpened) {
-        isOpened = true;
-        if (scrollDown && scrollDown.style) scrollDown.style.display = "none";
-        openModal();
-      }
-    });
-
-    if (modalButton && closeButton) {
-      modalButton.addEventListener("click", openModal);
-      closeButton.addEventListener("click", closeModal);
-    }
-
-    document.onkeydown = evt => {
-      evt = evt || window.event;
-      evt.keyCode === 27 ? closeModal() : false;
-    };
-  }, [])
-
   return (
-    <Flex fullWidth center>
-      <Flex className="login_page" fullWidth maxWidth={PAGE_MAX_WIDTH} column>
-        <LoginForm />
+    <Flex fullWidth center className="login_page">
+      <Flex
+        width={"100vw"}
+        height={"100vh"}
+        center
+        style={{
+          backgroundImage: `url(${recruiterBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
+          <Carousel
+            animation={"slide"}
+            interval={10000}
+            swipe
+            fullHeightHover
+            navButtonsWrapperProps={{
+              style: { margin: "0 10px" },
+            }}
+          >
+            {images.map((image, index) => (
+              <Flex key={index} fullSize>
+                <LazyImage
+                  src={image}
+                  alt={`Slide ${index + 1}`}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                  imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                />
+              </Flex>
+            ))}
+          </Carousel>
+          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
+            {images.map((image, index) => {
+              return (
+                <Grid item xs={12} key={index} sm={6} md={3}>
+                  <Flex fullSize cursorPointer>
+                    <LazyImage
+                      src={image}
+                      alt={`Slide ${index + 1}`}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                      imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                    />
+                  </Flex>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </Flex>
       </Flex>
+      <LoginForm />
     </Flex>
   )
 })
