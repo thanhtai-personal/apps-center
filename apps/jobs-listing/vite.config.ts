@@ -58,6 +58,7 @@ export default defineConfig(({ command }) => {
         "@/layout": path.resolve(__dirname, "src", "layout"),
         "@/store": path.resolve(__dirname, "src", "store"),
         "@/styles": path.resolve(__dirname, "src", "styles"),
+        "@/providers": path.resolve(__dirname, "src", "providers"),
         "@/api": path.resolve(__dirname, "src", "api"),
       }
     },

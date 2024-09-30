@@ -93,6 +93,10 @@ export class JobsListingSDK extends BaseSDK {
     return this.jobService.exportAnydayJob(jobId, categoryId, htmlString);
   }
 
+  login(data: any) {
+    return this.userService.login(data);
+  }
+
 }
 
 export type Pagination<T> = PaginationCore<T>;

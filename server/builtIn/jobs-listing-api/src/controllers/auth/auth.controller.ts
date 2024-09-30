@@ -39,10 +39,11 @@ export class AuthController {
 
   @Post('login')
   async signIn(
-    @Res() res: Response
+    @Res() res: Response,
+    @Body() loginData: any,
   ) {
     try {
-      const authData = await this.authService.signIn();
+      const authData = await this.authService.signIn(loginData);
       if (authData.error) {
         return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
           message: authData.error.message,

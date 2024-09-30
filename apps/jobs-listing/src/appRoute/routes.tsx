@@ -2,6 +2,7 @@ import React from 'react';
 import { IRouter } from '@core-ui/react-core';
 import { Import } from '@core-utils/utils-helpers/import';
 import { LoadingPage } from "@/components/LoadingPage";
+import { AuthenProvider } from "@/providers/AuthenProvider";
 
 const Jobs = Import({
   touch: React.lazy(() => import('@/containers/jobs')),
@@ -23,9 +24,19 @@ const SavedJobs = Import({
   desktop: React.lazy(() => import('@/containers/savedJobs'))
 }) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
 
-const InputData = Import({
+const AdminJobsBoard = Import({
   touch: React.lazy(() => import('@/containers/admin/jobs')),
   desktop: React.lazy(() => import('@/containers/admin/jobs'))
+}) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
+
+const AdminLogin = Import({
+  touch: React.lazy(() => import('@/containers/admin/login')),
+  desktop: React.lazy(() => import('@/containers/admin/login'))
+}) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
+
+const Login = Import({
+  touch: React.lazy(() => import('@/containers/login')),
+  desktop: React.lazy(() => import('@/containers/login'))
 }) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
 
 const NotFoundPage = Import({
@@ -37,6 +48,14 @@ const NotFoundPage = Import({
 const makeSuspense = (Component: React.FC) => {
   return <React.Suspense fallback={<LoadingPage isStrongPlatform={false} />}>
     <Component />
+  </React.Suspense>
+}
+
+const requiredAuthen = (Component: React.FC) => {
+  return <React.Suspense fallback={<LoadingPage isStrongPlatform={false} />}>
+    <AuthenProvider>
+      <Component />
+    </AuthenProvider>
   </React.Suspense>
 }
 
@@ -58,8 +77,16 @@ export const router: IRouter[] = [
     path: '/me'
   },
   {
-    element: makeSuspense(InputData),
-    path: '/data'
+    element: makeSuspense(Login),
+    path: '/login'
+  },
+  {
+    element: requiredAuthen(AdminJobsBoard),
+    path: '/admin/data'
+  },
+  {
+    element: makeSuspense(AdminLogin),
+    path: '/admin/login'
   },
   {
     element: makeSuspense(SavedJobs),

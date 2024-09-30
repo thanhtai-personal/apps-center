@@ -31,7 +31,7 @@ export class AuthService {
     }
   }
 
-  async signIn(): Promise<any> {
+  async signIn(loginInput: any): Promise<any> {
     try {
       return {
         access_token:"",

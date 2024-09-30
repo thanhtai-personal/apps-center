@@ -67,4 +67,15 @@ export interface UserRoutes extends BaseRoutes {
       };
     };
   };
+  "/users/login": {
+    post: {
+      request: {
+        query: any;
+      };
+      body: any;
+      responses: {
+        "200": IResponse<any>;
+      };
+    };
+  };
 }

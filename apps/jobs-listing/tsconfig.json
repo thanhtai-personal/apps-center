@@ -16,6 +16,7 @@
       "@/layout/*": ["src/layout/*"],
       "@/store/*": ["src/store/*"],
       "@/styles/*": ["src/styles/*"],
+      "@/providers/*": ["src/providers/*"],
       "@/api/*": ["src/api/*"],
     },
     "lib": [

@@ -4,7 +4,9 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch,
 import { JobsService } from '@/services/jobs/jobs.service';
 import { Response } from "express"
 import { IPagination, IPagingFilter } from "@core-ui/jobs-listing-types";
+import { AuthGuard } from "@/guards/authPublicGet.guard";
 
+@UseGuards(AuthGuard)
 @Controller("/jobs")
 export class JobsController {
   constructor(private readonly jobService: JobsService) { }
