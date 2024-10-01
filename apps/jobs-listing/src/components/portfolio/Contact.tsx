@@ -58,7 +58,7 @@ export const Contact = observer(() => {
                       <Flex fullWidth center column={tabletSizeDown}>
                         <Flex flex={1} px={2} column
                           alignItems={tabletSizeDown ? "center" : "flex-end"}>
-                          <Flex my={0.5}></Flex>
+                          {/* <Flex my={0.5}></Flex>
                           <Animates.RippleButton id="project-1"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
@@ -95,7 +95,7 @@ export const Contact = observer(() => {
                                 {getText("Novels online page")}
                               </Text>
                             </Link>
-                          </Animates.RippleButton>
+                          </Animates.RippleButton> */}
 
                           <Flex my={0.5}></Flex>
                           <Animates.RippleButton id="project-4"
@@ -110,7 +110,7 @@ export const Contact = observer(() => {
                             </Link>
                           </Animates.RippleButton>
 
-                          <Flex my={0.5}></Flex>
+                          {/* <Flex my={0.5}></Flex>
                           <Animates.RippleButton id="project-5"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
@@ -121,12 +121,12 @@ export const Contact = observer(() => {
                                 {getText("Soccer score online page")}
                               </Text>
                             </Link>
-                          </Animates.RippleButton>
+                          </Animates.RippleButton> */}
                         </Flex>
 
                         <Flex flex={1} px={2} column alignItems={tabletSizeDown ? "center" : "flex-start"}>
 
-                          <Flex my={0.5}></Flex>
+                          {/* <Flex my={0.5}></Flex>
                           <Animates.RippleButton id="project-8"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
@@ -176,7 +176,7 @@ export const Contact = observer(() => {
                                 {getText("Landing page templates")}
                               </Text>
                             </Link>
-                          </Animates.RippleButton>
+                          </Animates.RippleButton> */}
 
                           <Flex my={0.5}></Flex>
                           <Animates.RippleButton id="project-7"
