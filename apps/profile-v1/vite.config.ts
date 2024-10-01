@@ -1,25 +1,17 @@
 import react from '@vitejs/plugin-react';
+// import { glob } from "glob";
+// import { fileURLToPath } from "node:url";
+// import path, { extname, relative, resolve } from "path";
 import path from "path";
 import { defineConfig } from 'vite';
+import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
-import autoprefixer from 'autoprefixer';
-import tailwindcss from 'tailwindcss';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), libInjectCss()],
+  plugins: [react(), libInjectCss(), dts({ include: ["cordova-build/www"] })],
   build: {
-    outDir: "dist",
-    chunkSizeWarningLimit: 10240,
-    sourcemap: true,
-  },
-  css: {
-    postcss: {
-      plugins: [
-        autoprefixer(),
-        tailwindcss()
-      ]
-    }
+    outDir: "release/www",
   },
   resolve: {
     alias: {
@@ -30,7 +22,6 @@ export default defineConfig({
       "@/appRoute": path.resolve(__dirname, "src", "appRoute"),
       "@/utils": path.resolve(__dirname, "src", "utils"),
       "@/context": path.resolve(__dirname, "src", "context"),
-      "@/features": path.resolve(__dirname, "src", "features"),
     }
   }
 })

@@ -1,14 +1,25 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy } from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import { LoadingComponent } from "@/components/index"
 
-const NotFoundPage = lazy(() => import("@/containers/404"));
+const HomePage = lazy(() => import('@/containers/home/index'));
 
-export const router = [
+
+export const router = createBrowserRouter([
   {
-    path: "*",
+    path: '/',
     element: (
-      <Suspense fallback={<div>loading</div>}>
-        <NotFoundPage />
+      <Suspense fallback={<LoadingComponent loadingPage />}>
+        <HomePage />
       </Suspense>
     ),
   },
-];
+  {
+    path: '/home',
+    element: (
+      <Suspense fallback={<LoadingComponent loadingPage />}>
+        <HomePage />
+      </Suspense>
+    ),
+  },
+]);

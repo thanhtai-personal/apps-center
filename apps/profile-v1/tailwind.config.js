@@ -1,41 +1,21 @@
-const plugin = require('tailwindcss/plugin');
+const colors = require("tailwindcss/colors");
 
 /** @type {import("tailwindcss").Config} */
 module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
+    "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   plugins: [
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          'animate-duration': (value) => ({
-            animationDuration: value,
-          }),
-        },
-        { values: theme('transitionDuration') }
-      )
+    require("@tailwindcss/forms")({
+      strategy: 'class'
     }),
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          'animate-delay': (value) => ({
-            animationDelay: value,
-          }),
-        },
-        { values: theme('transitionDelay') }
-      )
-    }),
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          'animate-ease': (value) => ({
-            animationTimingFunction: value,
-          }),
-        },
-        { values: theme('transitionTimingFunction') }
-      )
+    require('flowbite/plugin')({
+      charts: true,
+      forms: true,
+      tooltips: true
     }),
   ],
   mode: "jit",
@@ -65,7 +45,6 @@ module.exports = {
         text: "var(--text-color)",
         cover: "var(--thumbBG)",
         "text-active": "var(--text-active-color)",
-        "text-unactive": "var(--text-unactive-color)",
         primary: {
           50: "var(--color-primary-50)", //"#F6F8FF",
           100: "var(--color-primary-100)", //"#EDF0FF",
@@ -189,13 +168,62 @@ module.exports = {
           "0%, 100%": { transform: "scale(0.5)" },
           "50%": { transform: "scale(1)" },
         },
+        tada: {
+          "0%": { transform: "scale3d(1, 1, 1)" },
+          "10%, 20%": {
+            transform: "scale3d(1, 1, 0.95) rotate3d(0, 0, 1, -10deg)",
+          },
+          "30%, 50%, 70%, 90%": {
+            transform: "scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg)",
+          },
+          "40%, 60%, 80%": {
+            transform: "rotate3d(0, 0, 1, -10deg)",
+          },
+          "100%": { transform: "scale3d(1, 1, 1)" },
+        },
+        fadeltr: {
+          "0%": { width: "100%" },
+          "40%": { width: "0%" },
+          "60%": { width: "0%" },
+          "100%": { width: "100%" }
+        },
+        fadertl: {
+          "0%": { width: "0%" },
+          "40%": { width: "100%" },
+          "60%": { width: "100%" },
+          "100%": { width: "0%" }
+        },
+        fade_in_rtl: {
+          "0%": { opacity: 0.5, transform: "translateX(70%)" },
+          "100%": { opacity: 1 }
+        },
+        fade_in: {
+          "0%": { opacity: 0.3 },
+          "100%": { opacity: 1 }
+        },
+        slide_in: {
+          "0%": { transform: "translateY(10%)" },
+          "100%": {  }
+        },
+        expand: {
+          "0%": { height: 0 },
+          "100%": { height: "auto" }
+        }
       },
       animation: {
+        "spin-slow": "spin 3s linear infinite",
         zoom: "zoom 1s ease-in-out infinite",
+        tada: "tada 1.5s ease-in-out infinite",
+        fadeltr: "fadeltr 3s ease-in alternate infinite",
+        fadertl: "fadertl 3s ease-in alternate infinite",
+        fade_in_rtl: "fade_in_rtl .25s ease-in",
+        fade_in: "fade_in .3s ease-in",
+        spin_2: "spin 1.2s linear infinite",
+        spin_3: "spin 1.4s linear infinite",
+        spin_4: "spin 1.6s linear infinite",
+        expand: "expand .25s ease-in-out",
+        slide_in: "slide_in .25s ease-in"
       },
-      backgroundImage: {
-        "bg-gradient": "var(--gradient)"
-      }
     },
   },
 };
