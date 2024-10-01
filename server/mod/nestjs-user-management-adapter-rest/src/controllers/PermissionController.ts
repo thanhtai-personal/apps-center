@@ -16,9 +16,9 @@ import {
   PermissionCreate,
   PermissionUpdate,
   PermissionService,
-} from "@ttt-domain/user-management";
-import { ResourceCRUD } from "@ttt-module/infra";
-import { Create, Delete, Read, Result, Update } from "@ttt-module/nestjs-utils";
+} from "@core-domain/user-management";
+import { ResourceCRUD } from "@core-module/infra";
+import { Create, Delete, Read, Result, Update } from "@core-module/nestjs-utils";
 import {
   PermissionCreationMapper,
   PermissionFilterMapper,

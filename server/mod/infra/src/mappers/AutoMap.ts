@@ -1,4 +1,4 @@
-import { AnyClass, Path, PathValue, isPrimitiveType } from "@ttt/utils";
+import { AnyClass, Path, PathValue, isPrimitiveType } from "@core/utils";
 import { AutoMapper } from "./AutoMapper.js";
 import { mapConfig } from "./const.js";
 import {

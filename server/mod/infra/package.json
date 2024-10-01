@@ -1,5 +1,5 @@
 {
-  "name": "@ttt-module/infra",
+  "name": "@core-module/infra",
   "version": "0.0.15",
   "private": false,
   "main": "./dist/index.js",
@@ -15,8 +15,8 @@
     "./abstract": "./dist/abstract.js"
   },
   "devDependencies": {
-    "@ttt-config/eslint-plugin": "workspace:*",
-    "@ttt-config/tsconfig": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:*",
+    "@core-config/tsconfig": "workspace:*",
     "@types/assert": "^1.5.10",
     "@types/node": "^20.11.24",
     "@types/uuid": "^9.0.0",
@@ -24,7 +24,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@ttt/utils": "workspace:*",
+    "@core/utils": "workspace:*",
     "reflect-metadata": "^0.1.13",
     "typedoc": "^0.25.11",
     "uuid": "^9.0.0"

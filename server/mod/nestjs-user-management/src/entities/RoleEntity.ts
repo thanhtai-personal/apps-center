@@ -1,5 +1,5 @@
-import { Permission, Role, User } from "@ttt-domain/user-management";
-import { Entity, ManyToMany, Property, ThingEntity } from "@ttt-module/infra";
+import { Permission, Role, User } from "@core-domain/user-management";
+import { Entity, ManyToMany, Property, ThingEntity } from "@core-module/infra";
 import { UserEntity } from "./UserEntity.js";
 import { PermissionEntity } from "./PermissionEntity.js";
 

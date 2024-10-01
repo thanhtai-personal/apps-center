@@ -1,5 +1,5 @@
 {
-  "name": "@ttt-adapter/user-management-mikro-orm",
+  "name": "@core-adapter/user-management-mikro-orm",
   "version": "0.0.6",
   "private": false,
   "main": "./dist/index.js",
@@ -12,8 +12,8 @@
     "release:patch": "pnpm i && pnpm test && pnpm run docs && npm version patch && npm publish"
   },
   "devDependencies": {
-    "@ttt-config/eslint-plugin": "workspace:*",
-    "@ttt-config/tsconfig": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:*",
+    "@core-config/tsconfig": "workspace:*",
     "@types/assert": "^1.5.10",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
@@ -24,8 +24,8 @@
   "dependencies": {
     "@mikro-orm/core": "5.6.9",
     "@mikro-orm/postgresql": "5.6.9",
-    "@ttt-module/infra": "workspace:*",
-    "@ttt/utils": "workspace:*",
+    "@core-module/infra": "workspace:*",
+    "@core/utils": "workspace:*",
     "typedoc": "^0.25.11"
   }
 }

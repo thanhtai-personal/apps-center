@@ -1,3 +1,3 @@
 ### CLI
 
-`@ttt/cli`
+`@core/cli`

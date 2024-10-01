@@ -1,1 +1,1 @@
-export { serviceMapper } from "@ttt-domain/user-management";
+export { serviceMapper } from "@core-domain/user-management";

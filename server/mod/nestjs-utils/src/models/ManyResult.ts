@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IManyResult } from "@ttt-module/infra";
+import { IManyResult } from "@core-module/infra";
 
 export class ManyResult<T> implements IManyResult<T> {
   @ApiProperty({ type: [Object] })

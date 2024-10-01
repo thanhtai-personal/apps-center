@@ -1,5 +1,5 @@
-import { INonPagingQuery } from "@ttt-domain/shared";
-import { ISearchQuery } from "@ttt-module/infra";
+import { INonPagingQuery } from "@core-domain/shared";
+import { ISearchQuery } from "@core-module/infra";
 import { RoleCreate, RoleFilter, RoleUpdate } from "~/dtos";
 import { Role } from "~/entities";
 

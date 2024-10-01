@@ -1,5 +1,5 @@
-import { BaseOrmService, INonPagingQuery } from "@ttt-domain/shared";
-import { ISearchQuery } from "@ttt-module/infra";
+import { BaseOrmService, INonPagingQuery } from "@core-domain/shared";
+import { ISearchQuery } from "@core-module/infra";
 import { PermissionCreate, PermissionFilter, PermissionUpdate } from "~/dtos";
 import { Permission } from "~/entities";
 import { IPermissionService } from "~/interfaces";

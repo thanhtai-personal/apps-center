@@ -23,8 +23,8 @@ import {
   UserCreate,
   UserService,
   UserUpdate,
-} from "@ttt-domain/user-management";
-import { ExceptionMapper, ResourceCRUD } from "@ttt-module/infra";
+} from "@core-domain/user-management";
+import { ExceptionMapper, ResourceCRUD } from "@core-module/infra";
 import {
   Create,
   Delete,
@@ -32,7 +32,7 @@ import {
   Result,
   Update,
   UpdateAttribute,
-} from "@ttt-module/nestjs-utils";
+} from "@core-module/nestjs-utils";
 import { default as bcrypt } from "bcryptjs";
 import {
   UserCreationMapper,

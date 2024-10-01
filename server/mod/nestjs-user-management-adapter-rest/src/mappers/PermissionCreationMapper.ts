@@ -1,5 +1,5 @@
-import { PermissionCreate } from "@ttt-domain/user-management";
-import { BaseMapper } from "@ttt-module/infra";
+import { PermissionCreate } from "@core-domain/user-management";
+import { BaseMapper } from "@core-module/infra";
 import { PermissionCreationBody } from "~/models";
 
 export class PermissionCreationMapper extends BaseMapper<

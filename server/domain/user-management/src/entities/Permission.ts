@@ -1,4 +1,4 @@
-import { Thing } from "@ttt-domain/shared";
+import { Thing } from "@core-domain/shared";
 
 export interface IPermissionData {
   name: string;

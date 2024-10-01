@@ -1,5 +1,5 @@
-import { UserUpdate } from "@ttt-domain/user-management";
-import { BaseMapper } from "@ttt-module/infra";
+import { UserUpdate } from "@core-domain/user-management";
+import { BaseMapper } from "@core-module/infra";
 import { UserUpdatingBody } from "~/models";
 
 export class UserUpdatingMapper extends BaseMapper<

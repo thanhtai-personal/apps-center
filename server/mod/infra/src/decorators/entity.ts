@@ -1,4 +1,4 @@
-import { AnyClass, Primitive, removeUndefined } from "@ttt/utils";
+import { AnyClass, Primitive, removeUndefined } from "@core/utils";
 import "reflect-metadata";
 import { BaseEntity } from "~/abstract/index.js";
 

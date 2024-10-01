@@ -1,9 +1,9 @@
 {
   "extends": [
-    "plugin:@ttt-config/eslint-plugin/base"
+    "plugin:@core-config/eslint-plugin/base"
   ],
   "plugins": [
-    "@ttt-config/eslint-plugin"
+    "@core-config/eslint-plugin"
   ],
   "ignorePatterns": [
     "**/jest.config.js",

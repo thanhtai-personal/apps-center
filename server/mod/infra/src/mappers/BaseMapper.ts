@@ -1,4 +1,4 @@
-import { AnyClass } from "@ttt/utils";
+import { AnyClass } from "@core/utils";
 import { IMapper } from "./interfaces.js";
 
 interface IEntityMapperOptions {

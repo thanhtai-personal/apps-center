@@ -1,4 +1,4 @@
-# @ttt-adapter/nestjs-user-management-rest
+# @core-adapter/nestjs-user-management-rest
 
 Adapter Library, defines REST protocol of User Management.
 

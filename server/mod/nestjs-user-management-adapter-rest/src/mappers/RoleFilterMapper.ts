@@ -1,5 +1,5 @@
-import { RoleFilter } from "@ttt-domain/user-management";
-import { ISearchQueryFilter, SearchQueryMapper } from "@ttt-module/infra";
+import { RoleFilter } from "@core-domain/user-management";
+import { ISearchQueryFilter, SearchQueryMapper } from "@core-module/infra";
 import { RoleFilterParams } from "~/models";
 
 export class RoleFilterMapper extends SearchQueryMapper<

@@ -1,6 +1,6 @@
 import { UserCreationBody } from "~/models";
-import { Role as RoleEntity, UserCreate } from "@ttt-domain/user-management";
-import { BaseMapper } from "@ttt-module/infra";
+import { Role as RoleEntity, UserCreate } from "@core-domain/user-management";
+import { BaseMapper } from "@core-module/infra";
 
 interface Options {
   roles: RoleEntity[];

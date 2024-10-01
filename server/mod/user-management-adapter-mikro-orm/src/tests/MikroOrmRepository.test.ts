@@ -4,7 +4,7 @@ import {
   Property,
   RequiredEntityData,
   ThingEntity,
-} from "@ttt-module/infra";
+} from "@core-module/infra";
 import { MikroOrmRepository } from "~/repositories/index.js";
 
 @Entity({ tableName: "users" })

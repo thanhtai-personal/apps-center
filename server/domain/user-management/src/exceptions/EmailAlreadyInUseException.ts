@@ -1,4 +1,4 @@
-import { DomainException } from "@ttt-domain/shared";
+import { DomainException } from "@core-domain/shared";
 
 export class EmailAlreadyInUseException extends DomainException {
   errCode = "email_already_in_use";

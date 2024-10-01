@@ -1,5 +1,5 @@
 import { Provider, Type } from "@nestjs/common";
-import { IService } from "@ttt-module/infra";
+import { IService } from "@core-module/infra";
 
 type ServiceMapper = Record<string, Type<IService>>;
 

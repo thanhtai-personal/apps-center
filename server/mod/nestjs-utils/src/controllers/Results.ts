@@ -2,7 +2,7 @@ import {
   IManyResult,
   IPaginationResult,
   ISingleResult,
-} from "@ttt-module/infra";
+} from "@core-module/infra";
 import { ManyResult, PaginationResult, SingleResult } from "~/models";
 
 export class Result {

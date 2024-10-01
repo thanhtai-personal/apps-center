@@ -1,5 +1,5 @@
 {
-  "extends": "@ttt-config/tsconfig/dist/module.json",
+  "extends": "@core-config/tsconfig/dist/module.json",
   "compilerOptions": {
     "outDir": "./dist",
     "baseUrl": ".",

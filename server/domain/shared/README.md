@@ -1,11 +1,11 @@
-# @ttt-domain/user-management
+# @core-domain/user-management
 
 Domain Library, contains a set of abstract classes, types & interfaces that are ONLY used across domains.
 
 ## Installation
 
 ```bash
-pnpm add @ttt-domain/shared
+pnpm add @core-domain/shared
 ```
 
 ## Directory structure

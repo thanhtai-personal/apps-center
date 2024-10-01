@@ -1,5 +1,5 @@
 {
-  "extends": ["plugin:@ttt-config/eslint-plugin/base"],
-  "plugins": ["@ttt-config/eslint-plugin"],
+  "extends": ["plugin:@core-config/eslint-plugin/base"],
+  "plugins": ["@core-config/eslint-plugin"],
   "ignorePatterns": ["docs"]
 }

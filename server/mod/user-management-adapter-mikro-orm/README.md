@@ -1,4 +1,4 @@
-# @ttt-adapter/user-management-mikro-orm
+# @core-adapter/user-management-mikro-orm
 
 Adapter Library, contains a set of services, and directives that are related to Mikro ORM for User Management.
 
@@ -9,7 +9,7 @@ Adapter Library, contains a set of services, and directives that are related to 
 First install the module via package manager of your choice.
 
 ```bash
-pnpm add @ttt-adapter/user-management-mikro-orm
+pnpm add @core-adapter/user-management-mikro-orm
 ```
 
 In bootstrapping of your app:
@@ -18,7 +18,7 @@ In bootstrapping of your app:
 import {
   MikroOrmRepository
   UserRepository,
-} from "@ttt-adapter/user-management-adapter-mikro-orm";
+} from "@core-adapter/user-management-adapter-mikro-orm";
 
 const ormRepo = new MikroOrmRepository()
 await ormRepo.init({

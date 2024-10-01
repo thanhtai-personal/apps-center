@@ -7,7 +7,7 @@ import {
   isClass,
   isNil,
   setVal,
-} from "@ttt/utils";
+} from "@core/utils";
 import { BaseMapper } from "./BaseMapper.js";
 import { isCustomMap, isMapperMap, mapConfig } from "./const.js";
 import { IAutoMapper, MapConfig, PropMapConfig } from "./interfaces.js";

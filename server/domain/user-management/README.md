@@ -1,11 +1,11 @@
-# @ttt-domain/user-management
+# @core-domain/user-management
 
 Domain Library, contains a set of services, and directives that are related to User Management.
 
 ## Installation
 
 ```bash
-pnpm add @ttt-domain/user-management
+pnpm add @core-domain/user-management
 ```
 
 ## Directory structure

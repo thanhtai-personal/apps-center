@@ -12,9 +12,9 @@ import {
   PermissionService,
   RoleService,
   UserService,
-} from "@ttt-domain/user-management";
-import { IRepository, Loaded } from "@ttt-module/infra";
-import { Result, SingleResult } from "@ttt-module/nestjs-utils";
+} from "@core-domain/user-management";
+import { IRepository, Loaded } from "@core-module/infra";
+import { Result, SingleResult } from "@core-module/nestjs-utils";
 import { UserController } from "~/controllers";
 import { UserMapper } from "~/mappers";
 import { User, UserCreationBody, UserUpdatingBody } from "~/models";

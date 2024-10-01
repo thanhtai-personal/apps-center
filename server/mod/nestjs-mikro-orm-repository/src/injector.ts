@@ -6,8 +6,8 @@ import {
   IMikroOrmRepository,
   IRepository,
   IService,
-} from "@ttt-module/infra";
-import { AnyClass } from "@ttt/utils";
+} from "@core-module/infra";
+import { AnyClass } from "@core/utils";
 
 function mapValue<TMappedValue = AnyClass>(
   mapper: Record<string, TMappedValue>,

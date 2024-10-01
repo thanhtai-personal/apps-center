@@ -1,5 +1,5 @@
 {
-  "name": "@ttt-domain/shared",
+  "name": "@core-domain/shared",
   "version": "0.0.14",
   "private": false,
   "main": "./dist/index.js",
@@ -19,8 +19,8 @@
     "./src/controllers": "./dist/controllers.js"
   },
   "devDependencies": {
-    "@ttt-config/eslint-plugin": "workspace:*",
-    "@ttt-config/tsconfig": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:*",
+    "@core-config/tsconfig": "workspace:*",
     "@types/assert": "^1.5.10",
     "@types/node": "^20.11.24",
     "tsc-alias": "^1.8.8",
@@ -28,7 +28,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@ttt-module/infra": "workspace:*",
+    "@core-module/infra": "workspace:*",
     "typedoc": "^0.25.11"
   }
 }

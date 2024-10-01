@@ -1,5 +1,5 @@
 import ErrorImage from "@/assets/images/404.svg";
-import { Link } from "@ttt-ui/react-core";
+import { Link } from "@core-ui/react-core";
 
 function Error(): JSX.Element {
   return (

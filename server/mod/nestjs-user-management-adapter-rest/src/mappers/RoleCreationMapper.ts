@@ -1,8 +1,8 @@
 import {
   Permission as PermissionEntity,
   RoleCreate,
-} from "@ttt-domain/user-management";
-import { BaseMapper } from "@ttt-module/infra";
+} from "@core-domain/user-management";
+import { BaseMapper } from "@core-module/infra";
 import { RoleCreationBody } from "~/models";
 
 interface IOptions {

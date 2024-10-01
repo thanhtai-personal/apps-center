@@ -1,5 +1,5 @@
-import { Role, User } from "@ttt-domain/user-management";
-import { Entity, ManyToMany, Property, ThingEntity } from "@ttt-module/infra";
+import { Role, User } from "@core-domain/user-management";
+import { Entity, ManyToMany, Property, ThingEntity } from "@core-module/infra";
 import { RoleEntity } from "./RoleEntity.js";
 
 @Entity({ tableName: "users" })

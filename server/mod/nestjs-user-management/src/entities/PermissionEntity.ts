@@ -1,5 +1,5 @@
-import { Permission, IPermissionJSON, Role } from "@ttt-domain/user-management";
-import { Entity, ManyToMany, Property, ThingEntity } from "@ttt-module/infra";
+import { Permission, IPermissionJSON, Role } from "@core-domain/user-management";
+import { Entity, ManyToMany, Property, ThingEntity } from "@core-module/infra";
 import { RoleEntity } from "./RoleEntity.js";
 
 @Entity({ tableName: "permissions" })

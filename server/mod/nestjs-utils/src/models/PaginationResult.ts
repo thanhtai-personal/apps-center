@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { ManyResult } from "./ManyResult.js";
-import { IPaginationResult } from "@ttt-module/infra";
+import { IPaginationResult } from "@core-module/infra";
 
 export class PaginationResult<T>
   extends ManyResult<T>

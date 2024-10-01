@@ -1,5 +1,5 @@
 import { router } from "@/appRoute/index";
-import { IAppWithRoute, ReactApplicationManager } from "@ttt-ui/react-core";
+import { IAppWithRoute, ReactApplicationManager } from "@core-ui/react-core";
 import buildinFeatures from "@/features/index";
 import allProviders from "./providers/index";
 import { App } from "./App";

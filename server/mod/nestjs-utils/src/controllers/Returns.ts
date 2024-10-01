@@ -4,7 +4,7 @@ import {
   ReferenceObject,
   SchemaObject,
 } from "@nestjs/swagger/dist/interfaces/open-api-spec.interface.js";
-import { AnyClass } from "@ttt/utils";
+import { AnyClass } from "@core/utils";
 import { PaginationResult, SingleResult } from "~/models";
 
 export function Returns<T extends AnyClass | [AnyClass] | undefined>(

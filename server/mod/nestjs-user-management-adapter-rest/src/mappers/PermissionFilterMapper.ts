@@ -1,5 +1,5 @@
-import { PermissionFilter } from "@ttt-domain/user-management";
-import { ISearchQueryFilter, SearchQueryMapper } from "@ttt-module/infra";
+import { PermissionFilter } from "@core-domain/user-management";
+import { ISearchQueryFilter, SearchQueryMapper } from "@core-module/infra";
 import { PermissionFilterParams } from "~/models";
 
 export class PermissionFilterMapper extends SearchQueryMapper<

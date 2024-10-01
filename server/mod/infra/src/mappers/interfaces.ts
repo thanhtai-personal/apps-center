@@ -1,5 +1,5 @@
-import { Casing } from "@ttt/utils";
-import { AnyClass, Path, PathValue, Primitive } from "@ttt/utils";
+import { Casing } from "@core/utils";
+import { AnyClass, Path, PathValue, Primitive } from "@core/utils";
 
 export interface IMapper<
   From extends object,

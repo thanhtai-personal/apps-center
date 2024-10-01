@@ -1,5 +1,5 @@
-import { INonPagingQuery } from "@ttt-domain/shared";
-import { IRepository, ISearchQuery, Loaded } from "@ttt-module/infra";
+import { INonPagingQuery } from "@core-domain/shared";
+import { IRepository, ISearchQuery, Loaded } from "@core-module/infra";
 import { PermissionCreate, PermissionFilter, PermissionUpdate } from "~/dtos";
 import { Permission } from "~/entities";
 import { PermissionService } from "~/services";

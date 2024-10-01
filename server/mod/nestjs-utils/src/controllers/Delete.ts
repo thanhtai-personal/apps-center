@@ -4,7 +4,7 @@ import {
   Delete as NestDelete,
   applyDecorators,
 } from "@nestjs/common";
-import { AnyClass } from "@ttt/utils";
+import { AnyClass } from "@core/utils";
 import { Returns } from "./Returns.js";
 
 /**

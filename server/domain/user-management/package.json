@@ -1,5 +1,5 @@
 {
-  "name": "@ttt-domain/user-management",
+  "name": "@core-domain/user-management",
   "version": "0.0.17",
   "private": false,
   "main": "./dist/index.js",
@@ -12,8 +12,8 @@
     "release:patch": "pnpm i && pnpm test && pnpm run docs && npm version patch && npm publish"
   },
   "devDependencies": {
-    "@ttt-config/eslint-plugin": "workspace:*",
-    "@ttt-config/tsconfig": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:*",
+    "@core-config/tsconfig": "workspace:*",
     "@types/assert": "^1.5.10",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
@@ -23,9 +23,9 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@ttt-domain/shared": "workspace:*",
-    "@ttt-module/infra": "workspace:*",
-    "@ttt/utils": "workspace:*",
+    "@core-domain/shared": "workspace:*",
+    "@core-module/infra": "workspace:*",
+    "@core/utils": "workspace:*",
     "typedoc": "^0.25.11"
   }
 }

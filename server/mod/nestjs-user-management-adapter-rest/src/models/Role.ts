@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Role as RoleEntity } from "@ttt-domain/user-management";
-import { AutoMap } from "@ttt-module/infra";
+import { Role as RoleEntity } from "@core-domain/user-management";
+import { AutoMap } from "@core-module/infra";
 import { Permission } from "./Permission.js";
 
 const { MapTarget, MapValue } = AutoMap(RoleEntity);

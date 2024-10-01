@@ -1,4 +1,4 @@
-# @ttt-module/infra
+# @core-module/infra
 
 Module Library, contains shared models, and services that are used across the application.
 
@@ -7,7 +7,7 @@ Module Library, contains shared models, and services that are used across the ap
 First install the module via package manager of your choice.
 
 ```bash
-pnpm add @ttt-module/infra
+pnpm add @core-module/infra
 ```
 
 ## Directory structure

@@ -1,8 +1,8 @@
-import { INonPagingQuery, BaseOrmService } from "@ttt-domain/shared";
+import { INonPagingQuery, BaseOrmService } from "@core-domain/shared";
 import { Role } from "~/entities";
 import { RoleCreate, RoleFilter, RoleUpdate } from "~/dtos";
 import { IRoleService } from "~/interfaces";
-import { ISearchQuery } from "@ttt-module/infra";
+import { ISearchQuery } from "@core-module/infra";
 
 export class RoleService extends BaseOrmService<Role> implements IRoleService {
   /**

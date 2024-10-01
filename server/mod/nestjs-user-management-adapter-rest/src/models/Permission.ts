@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Permission as PermissionEntity } from "@ttt-domain/user-management";
-import { AutoMap } from "@ttt-module/infra";
+import { Permission as PermissionEntity } from "@core-domain/user-management";
+import { AutoMap } from "@core-module/infra";
 
 const { MapTarget, MapValue } = AutoMap(PermissionEntity);
 

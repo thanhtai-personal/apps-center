@@ -1,4 +1,4 @@
-import { TTTMantineProvider } from "@ttt-ui/react-mantine-core";
+import { TTTMantineProvider } from "@core-ui/react-mantine-core";
 
 export default [
   TTTMantineProvider

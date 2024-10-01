@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Pageable } from "@ttt-module/nestjs-utils";
+import { Pageable } from "@core-module/nestjs-utils";
 import { Type } from "class-transformer";
 import { IsIn, IsInt, IsOptional, IsPhoneNumber } from "class-validator";
 

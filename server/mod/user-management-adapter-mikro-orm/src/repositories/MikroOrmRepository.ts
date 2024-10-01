@@ -26,7 +26,7 @@ import {
   Loaded,
   RequiredEntityData,
   SortField,
-} from "@ttt-module/infra";
+} from "@core-module/infra";
 
 export class MikroOrmRepository<T extends { id: number } = any>
   implements

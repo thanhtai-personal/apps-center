@@ -1,5 +1,5 @@
 {
-  "name": "@ttt/cli",
+  "name": "@core/cli",
   "version": "0.0.4",
   "description": "TTT Core CLI",
   "keywords": [
@@ -56,8 +56,8 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@ttt-config/eslint-plugin": "workspace:*",
-    "@ttt-config/tsconfig": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:*",
+    "@core-config/tsconfig": "workspace:*",
     "@types/node": "^20.11.24",
     "typescript": "^5.3.3",
     "@oclif/prettier-config": "^0.2.1",

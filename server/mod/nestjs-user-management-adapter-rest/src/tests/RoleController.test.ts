@@ -10,9 +10,9 @@ import {
   Role as RoleEntity,
   PermissionService,
   RoleService,
-} from "@ttt-domain/user-management";
-import { IRepository, Loaded } from "@ttt-module/infra";
-import { Result } from "@ttt-module/nestjs-utils";
+} from "@core-domain/user-management";
+import { IRepository, Loaded } from "@core-module/infra";
+import { Result } from "@core-module/nestjs-utils";
 import { RoleController } from "~/controllers";
 import { RoleMapper } from "~/mappers";
 import { Role } from "~/models";

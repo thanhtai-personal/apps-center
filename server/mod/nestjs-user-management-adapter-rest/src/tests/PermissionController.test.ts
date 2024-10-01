@@ -4,9 +4,9 @@ import { Test } from "@nestjs/testing";
 import {
   Permission as PermissionEntity,
   PermissionService,
-} from "@ttt-domain/user-management";
-import { IRepository, Loaded } from "@ttt-module/infra";
-import { Result } from "@ttt-module/nestjs-utils";
+} from "@core-domain/user-management";
+import { IRepository, Loaded } from "@core-module/infra";
+import { Result } from "@core-module/nestjs-utils";
 import { PermissionController } from "~/controllers";
 import { PermissionMapper } from "~/mappers";
 

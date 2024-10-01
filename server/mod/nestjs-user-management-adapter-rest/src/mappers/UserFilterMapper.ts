@@ -1,5 +1,5 @@
-import { UserFilter } from "@ttt-domain/user-management";
-import { SearchQueryMapper, ISearchQueryFilter } from "@ttt-module/infra";
+import { UserFilter } from "@core-domain/user-management";
+import { SearchQueryMapper, ISearchQueryFilter } from "@core-module/infra";
 import { UserFilterParams } from "~/models";
 
 export class UserFilterMapper extends SearchQueryMapper<

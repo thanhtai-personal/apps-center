@@ -1,5 +1,5 @@
 {
-  "name": "@ttt-module/nestjs-user-management",
+  "name": "@core-module/nestjs-user-management",
   "version": "0.0.17",
   "private": false,
   "main": "./dist/index.js",
@@ -11,8 +11,8 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^10.3.2",
-    "@ttt-config/eslint-plugin": "workspace:*",
-    "@ttt-config/tsconfig": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:*",
+    "@core-config/tsconfig": "workspace:*",
     "@types/assert": "^1.5.10",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
@@ -22,10 +22,10 @@
   "dependencies": {
     "@nestjs/common": "^10.1.3",
     "@nestjs/core": "^10.1.3",
-    "@ttt-domain/user-management": "workspace:*",
-    "@ttt-module/infra": "workspace:*",
-    "@ttt-module/nestjs-utils": "workspace:*",
-    "@ttt/utils": "workspace:*",
+    "@core-domain/user-management": "workspace:*",
+    "@core-module/infra": "workspace:*",
+    "@core-module/nestjs-utils": "workspace:*",
+    "@core/utils": "workspace:*",
     "typedoc": "^0.25.11"
   }
 }

@@ -1,4 +1,4 @@
 {
-  "extends": ["@ttt-config/typedoc"],
+  "extends": ["@core-config/typedoc"],
   "entryPoints": ["src/index.ts"]
 }

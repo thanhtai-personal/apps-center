@@ -1,5 +1,5 @@
 {
-  "extends": "@ttt-config/tsconfig/dist/react.json",
+  "extends": "@core-config/tsconfig/dist/react.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "outDir": "./dist",

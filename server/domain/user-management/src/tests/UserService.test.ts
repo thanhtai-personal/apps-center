@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 
-import { INonPagingQuery } from "@ttt-domain/shared";
-import { IRepository, ISearchQuery, Loaded } from "@ttt-module/infra";
+import { INonPagingQuery } from "@core-domain/shared";
+import { IRepository, ISearchQuery, Loaded } from "@core-module/infra";
 import { UserCreate, UserFilter, UserPropertyUpdate } from "~/dtos";
 import { Role, User } from "~/entities";
 import { EmailAlreadyInUseException } from "~/exceptions";

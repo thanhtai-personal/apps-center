@@ -1,5 +1,5 @@
-import { IMikroOrmRepository } from "@ttt-module/infra";
-import { AnyClass } from "@ttt/utils";
+import { IMikroOrmRepository } from "@core-module/infra";
+import { AnyClass } from "@core/utils";
 import { UserRepository } from "./UserRepository.js";
 import { RoleRepository } from "./RoleRepository.js";
 import { PermissionRepository } from "./PermissionRepository.js";
