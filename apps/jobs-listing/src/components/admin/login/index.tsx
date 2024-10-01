@@ -35,6 +35,7 @@ export const AdminLoginComponent = observer(() => {
     <Flex fullWidth center className="login_page">
       <Flex
         width={"100vw"}
+        minHeight={"100vh"}
         center
         p={2}
         py={4}
@@ -43,6 +44,8 @@ export const AdminLoginComponent = observer(() => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          overflowX: "hidden",
+          overflowY: "auto",
         }}
       >
         <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
@@ -61,34 +64,42 @@ export const AdminLoginComponent = observer(() => {
                   <LazyImage
                     src={image.src}
                     alt={`Slide ${index + 1}`}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
-                    imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                    style={{
+                      width: "100%", height: "100%", objectFit: "cover",
+                      maxWidth: PAGE_MAX_WIDTH, borderRadius: 16
+                    }}
+                    imgStyle={{
+                      width: "100%", height: "100%", objectFit: "cover",
+                      maxWidth: PAGE_MAX_WIDTH, borderRadius: 16
+                    }}
                   />
                 </Flex>
               ))}
             </Carousel>
           </Flex>
-          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
-            {images.map((image, index) => {
-              return (
-                <Grid item xs={12} key={index} sm={6} md={3}>
-                  <Link to={image.url} target="_blank">
-                    <Flex fullSize cursorPointer className={globalStyles.hoverTransition}>
-                      <LazyImage
-                        src={image.src}
-                        alt={`Slide ${index + 1}`}
-                        style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
-                        imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
-                      />
-                    </Flex>
-                  </Link>
-                </Grid>
-              )
-            })}
-          </Grid>
+          <Flex fullWidth>
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
+              {images.map((image, index) => {
+                return (
+                  <Grid item xs={12} key={index} sm={6} md={3}>
+                    <Link to={image.url} target="_blank">
+                      <Flex fullSize cursorPointer className={globalStyles.hoverTransition}>
+                        <LazyImage
+                          src={image.src}
+                          alt={`Slide ${index + 1}`}
+                          style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                          imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                        />
+                      </Flex>
+                    </Link>
+                  </Grid>
+                )
+              })}
+            </Grid>
+          </Flex>
         </Flex>
       </Flex>
-      <LoginForm isAdmin  />
+      <LoginForm isAdmin />
     </Flex>
   )
 })
