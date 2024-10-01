@@ -14,6 +14,11 @@ export const useAuthen = (isAdmin?: boolean) => {
       JobsListingSDK.getInstance().login({
         token
       })
+      if (isAdmin) {
+        window.location.replace("/admin/data")
+      } else {
+        window.location.replace("/")
+      }
     } catch (error) {
       notiStore.messageQueue?.push({
         children: "Login failed",
@@ -40,7 +45,7 @@ export const useAuthen = (isAdmin?: boolean) => {
       if (isAdmin) {
         window.location.replace("/admin/data")
       } else {
-        window.location.replace("/jobs")
+        window.location.replace("/")
       }
     } catch (error) {
       notiStore.messageQueue?.push({
@@ -66,6 +71,9 @@ export const runAuthen = () => {
   useLayoutEffect(() => {
     if (!token) {
       // JobsListingSDK.getInstance().logout();
+      setTimeout(() => {
+        window.location.replace("/login");
+      }, 3000)
     } else {
       loginWithToken(token);
     }

@@ -10,7 +10,7 @@ export const AuthenProvider = observer(({
   children: ReactNode;
 }) => {
   const [token, setToken] = useLocalStorageData("token");
-
+  
   runAuthen();
 
   if (!token) {

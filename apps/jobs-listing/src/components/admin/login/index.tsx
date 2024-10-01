@@ -49,34 +49,6 @@ export const AdminLoginComponent = observer(() => {
         }}
       >
         <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
-          {/* <Flex fullWidth center position={"relative"}>
-            <Carousel
-              animation={"slide"}
-              interval={10000}
-              swipe
-              fullHeightHover
-              navButtonsWrapperProps={{
-                style: { margin: "0 10px" },
-              }}
-            >
-              {images.map((image, index) => (
-                <Flex key={index} fullSize>
-                  <LazyImage
-                    src={image.src}
-                    alt={`Slide ${index + 1}`}
-                    style={{
-                      width: "100%", height: "100%", objectFit: "cover",
-                      maxWidth: PAGE_MAX_WIDTH, borderRadius: 16
-                    }}
-                    imgStyle={{
-                      width: "100%", height: "100%", objectFit: "cover",
-                      maxWidth: PAGE_MAX_WIDTH, borderRadius: 16
-                    }}
-                  />
-                </Flex>
-              ))}
-            </Carousel>
-          </Flex> */}
           <Flex fullWidth>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
               {images.map((image, index) => {
