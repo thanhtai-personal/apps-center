@@ -44,6 +44,11 @@ const DevTechLanding = Import({
   desktop: React.lazy(() => import('@/containers/devTechLanding'))
 }) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
 
+const JobSeeker = Import({
+  touch: React.lazy(() => import('@/containers/jobSeeker')),
+  desktop: React.lazy(() => import('@/containers/jobSeeker'))
+}) as React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
+
 const NotFoundPage = Import({
   touch: React.lazy(() => import('@/containers/404')),
   desktop: React.lazy(() => import('@/containers/404'))
@@ -102,6 +107,12 @@ export const router: IRouter[] = [
     element: makeSuspense(DevTechLanding),
     path: '/dev-tech-landing'
   },
+  {
+    element: makeSuspense(JobSeeker),
+    path: '/jobs-seeker'
+  },
+
+  
   {
     path: "*",
     element: makeSuspense(NotFoundPage),

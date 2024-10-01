@@ -101,7 +101,7 @@ export const Contact = observer(() => {
                           <Animates.RippleButton id="project-4"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
-                            <Link to="https://www.taitran.dev/jobs" target="_blank">
+                            <Link to="http://34.135.118.246:5173/jobs" target="_blank">
                               <Text className={globalStyles.textKanit18} color={"#cccccc"}
                                 textTransform={"uppercase"}
                               >
@@ -114,7 +114,7 @@ export const Contact = observer(() => {
                           <Animates.RippleButton id="project-5"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
-                            <Link to="https://www.taitran.dev/soccer-scores" target="_blank">
+                            <Link to="/soccer-scores" target="_blank">
                               <Text className={globalStyles.textKanit18} color={"#cccccc"}
                                 textTransform={"uppercase"}
                               >
@@ -130,7 +130,7 @@ export const Contact = observer(() => {
                           <Animates.RippleButton id="project-8"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
-                            <Link to="https://www.taitran.dev/smart-docs" target="_blank">
+                            <Link to="/smart-docs" target="_blank">
                               <Text className={globalStyles.textKanit18} color={"#cccccc"}
                                 textTransform={"uppercase"}
                               >
@@ -143,7 +143,7 @@ export const Contact = observer(() => {
                           <Animates.RippleButton id="project-9"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
-                            <Link to="https://www.taitran.dev/universe" target="_blank">
+                            <Link to="/universe" target="_blank">
                               <Text className={globalStyles.textKanit18} color={"#cccccc"}
                                 textTransform={"uppercase"}
                               >
@@ -156,7 +156,7 @@ export const Contact = observer(() => {
                           <Animates.RippleButton id="project-10"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
-                            <Link to="https://www.taitran.dev/portfolio" target="_blank">
+                            <Link to="/portfolio" target="_blank">
                               <Text className={globalStyles.textKanit18} color={"#cccccc"}
                                 textTransform={"uppercase"}
                               >
@@ -169,7 +169,7 @@ export const Contact = observer(() => {
                           <Animates.RippleButton id="project-6"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
-                            <Link to="https://www.taitran.dev/landing-templates" target="_blank">
+                            <Link to="/landing-templates" target="_blank">
                               <Text className={globalStyles.textKanit18} color={"#cccccc"}
                                 textTransform={"uppercase"}
                               >
@@ -182,7 +182,7 @@ export const Contact = observer(() => {
                           <Animates.RippleButton id="project-7"
                             style={{ padding: "8px 16px", borderRadius: "8px" }}
                           >
-                            <Link to="https://www.taitran.dev/dev-tech-landing" target="_blank">
+                            <Link to="/dev-tech-landing" target="_blank">
                               <Text className={globalStyles.textKanit18} color={"#cccccc"}
                                 textTransform={"uppercase"}
                               >
