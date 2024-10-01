@@ -1,0 +1,26 @@
+{
+  "name": "@ttt-ui/react-multilanguage-flowbite",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build",
+    "docs": "typedoc --out docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "@ttt-ui/react-core": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@ttt-config/eslint-plugin": "workspace:*",
+    "@ttt-config/release": "workspace:*",
+    "@ttt-config/tsconfig": "workspace:*",
+    "@ttt-config/typedoc": "workspace:*",
+    "@ttt-logic/multilanguage": "workspace:*",
+    "@ttt-utils/utils-helpers": "workspace:*",
+    "typescript": "^5.3.2"
+  }
+}

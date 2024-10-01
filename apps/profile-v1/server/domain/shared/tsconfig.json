@@ -1,0 +1,14 @@
+{
+  "extends": "@ttt-config/tsconfig/dist/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "allowJs": true,
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"],
+  "emitDecoratorMetadata": true
+}

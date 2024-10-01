@@ -1,0 +1,35 @@
+{
+  "name": "@ttt-utils/react-hooks",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "docs": "typedoc --out docs",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "react-device-detect": "^2.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@ttt-config/eslint-plugin": "workspace:*",
+    "@ttt-config/release": "workspace:*",
+    "@ttt-config/tsconfig": "workspace:*",
+    "@ttt-config/typedoc": "workspace:*",
+    "@ttt-utils/utils-helpers": "workspace:*",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
+}

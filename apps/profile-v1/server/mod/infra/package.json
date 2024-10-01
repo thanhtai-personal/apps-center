@@ -1,0 +1,32 @@
+{
+  "name": "@ttt-module/infra",
+  "version": "0.0.15",
+  "private": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "docs": "typedoc --out docs --entryPoints src",
+    "release:patch": "pnpm i && pnpm build && pnpm run docs && npm version patch && npm publish"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./abstract": "./dist/abstract.js"
+  },
+  "devDependencies": {
+    "@ttt-config/eslint-plugin": "workspace:*",
+    "@ttt-config/tsconfig": "workspace:*",
+    "@types/assert": "^1.5.10",
+    "@types/node": "^20.11.24",
+    "@types/uuid": "^9.0.0",
+    "tsc-alias": "^1.8.8",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@ttt/utils": "workspace:*",
+    "reflect-metadata": "^0.1.13",
+    "typedoc": "^0.25.11",
+    "uuid": "^9.0.0"
+  }
+}

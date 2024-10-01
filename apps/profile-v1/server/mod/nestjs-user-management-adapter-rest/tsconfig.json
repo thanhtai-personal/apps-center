@@ -1,0 +1,16 @@
+{
+  "extends": "@ttt-config/tsconfig/dist/module.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "~/controllers": ["src/controllers/index.js"],
+      "~/mappers": ["src/mappers/index.js"],
+      "~/models": ["src/models/index.js"],
+      "~/modules": ["src/modules/index.js"]
+    },
+    "allowJs": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

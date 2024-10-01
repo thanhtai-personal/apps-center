@@ -1,0 +1,45 @@
+{
+  "name": "@ttt-ui/auto-form",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "files": ["dist"],
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "docs": "typedoc --out docs",
+    "build": "tsc --build",
+    "release": "pnpm i && pnpm build && npm version patch && npm publish",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "@mantine/core": "^7.3.2",
+    "@mantine/dropzone": "^7.3.2",
+    "@mantine/hooks": "^7.3.2",
+    "@tabler/icons-react": "^2.44.0",
+    "@ttt-ui/react-hooks-form": "workspace:*",
+    "@ttt/json-schema": "workspace:*",
+    "@ttt/utils": "workspace:*",
+    "react-hook-form": "^7.49.2",
+    "react": "18.2.0"
+  },
+  "devDependencies": {
+    "@mantine/core": "^7.3.2",
+    "@mantine/dates": "^7.3.2",
+    "@mantine/dropzone": "^7.3.2",
+    "@mantine/hooks": "^7.3.2",
+    "@tabler/icons-react": "^2.44.0",
+    "@ttt-config/eslint-plugin": "workspace:*",
+    "@ttt-config/release": "workspace:*",
+    "@ttt-config/tsconfig": "workspace:*",
+    "@ttt-config/typedoc": "workspace:*",
+    "@ttt-ui/react-hooks-form": "workspace:*",
+    "@ttt/utils": "workspace:*",
+    "@types/react-dom": "18.2.8",
+    "@types/react": "^18.2.43",
+    "dayjs": "^1.11.10",
+    "react-hook-form": "^7.49.2",
+    "semantic-release": "^23.0.2",
+    "typedoc": "^0.25.11",
+    "typescript": "^5.3.3"
+  }
+}

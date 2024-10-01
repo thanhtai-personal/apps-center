@@ -1,0 +1,31 @@
+{
+  "name": "@ttt-adapter/user-management-mikro-orm",
+  "version": "0.0.6",
+  "private": false,
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "pnpm build && jest",
+    "test:watch": "pnpm build && jest --watch",
+    "docs": "typedoc --out docs --entryPoints src",
+    "release:patch": "pnpm i && pnpm test && pnpm run docs && npm version patch && npm publish"
+  },
+  "devDependencies": {
+    "@ttt-config/eslint-plugin": "workspace:*",
+    "@ttt-config/tsconfig": "workspace:*",
+    "@types/assert": "^1.5.10",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.24",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@mikro-orm/core": "5.6.9",
+    "@mikro-orm/postgresql": "5.6.9",
+    "@ttt-module/infra": "workspace:*",
+    "@ttt/utils": "workspace:*",
+    "typedoc": "^0.25.11"
+  }
+}

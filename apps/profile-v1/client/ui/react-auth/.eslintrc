@@ -1,0 +1,4 @@
+{
+  "extends": ["plugin:@ttt-config/eslint-plugin/base"],
+  "plugins": ["@ttt-config/eslint-plugin"]
+}

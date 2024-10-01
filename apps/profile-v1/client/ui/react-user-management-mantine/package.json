@@ -1,0 +1,40 @@
+{
+  "name": "@ttt-ui/react-user-management-mantine",
+  "version": "0.0.8",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build && pnpm run copy:css",
+    "copy:css": "copyfiles -u 1 src/**/*.css dist",
+    "docs": "typedoc --out docs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "pnpm i && pnpm build && npm version patch && npm publish"
+  },
+  "peerDependencies": {
+    "@ttt-ui/react-mantine-core": "workspace:*",
+    "@ttt-ui/react-core": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@ttt-ui/react-context": "workspace:*",
+    "autoprefixer": "^10.4.18",
+    "rollup-plugin-postcss": "^4.0.2"
+  },
+  "devDependencies": {
+    "@ttt-config/eslint-plugin": "workspace:*",
+    "@ttt-config/release": "workspace:*",
+    "@ttt-config/tsconfig": "workspace:*",
+    "@ttt-config/typedoc": "workspace:*",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "copyfiles": "^2.4.1",
+    "postcss": "^8.4.38",
+    "typescript": "^5.3.2"
+  }
+}

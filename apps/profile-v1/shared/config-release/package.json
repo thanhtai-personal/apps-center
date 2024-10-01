@@ -1,0 +1,28 @@
+{
+  "name": "@ttt-config/release",
+  "main": ".dist/index.js",
+  "version": "0.0.2",
+  "private": false,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "release:semantic": "semantic-release",
+    "release": "pnpm i && pnpm build && npm version patch && npm publish",
+    "build": "pnpm run copy:js",
+    "copy:js": "copyfiles -u 1 src/**/*.js dist"
+  },
+  "dependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/gitlab": "^13.0.3",
+    "@semantic-release/npm": "^11.0.3",
+    "@semantic-release/release-notes-generator": "^12.1.0"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "semantic-release": "^23.0.2"
+  }
+}

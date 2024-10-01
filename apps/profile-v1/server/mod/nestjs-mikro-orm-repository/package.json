@@ -1,0 +1,27 @@
+{
+  "name": "@ttt-module/nestjs-mikro-orm-repository",
+  "version": "0.0.8",
+  "private": false,
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "nest build",
+    "docs": "typedoc --out docs --entryPoints src",
+    "release:patch": "pnpm i && pnpm build && pnpm run docs && npm version patch && npm publish"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^10.3.2",
+    "@ttt-config/eslint-plugin": "workspace:*",
+    "@ttt-config/tsconfig": "workspace:*",
+    "@types/assert": "^1.5.10",
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.1.3",
+    "@nestjs/config": "^3.0.0",
+    "@ttt-module/infra": "workspace:*",
+    "@ttt/utils": "workspace:*",
+    "typedoc": "^0.25.11"
+  }
+}

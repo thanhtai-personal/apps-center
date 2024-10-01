@@ -1,0 +1,20 @@
+{
+  "extends": "@ttt-config/tsconfig/dist/react.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "useDefineForClassFields": true,
+    "lib": ["dom", "esnext", "DOM.Iterable"],
+    
+    "resolveJsonModule": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "docs"]
+}
