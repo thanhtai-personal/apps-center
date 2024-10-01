@@ -1,0 +1,12 @@
+.hoverableNode {
+  cursor: pointer;
+  color: #000;
+  background-color: rgba(0, 106, 255, 0.25);
+  border: solid 1px rgba(0, 106, 255, 0.8);
+  border-radius: 8px;
+}
+
+.hoverableNode:hover {
+  border: solid 1px rgba(0, 106, 255, 1);
+  background-color: #fff;
+}

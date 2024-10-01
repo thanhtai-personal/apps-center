@@ -1,0 +1,47 @@
+.bike {
+	display: block;
+	margin: auto;
+	width: 16em;
+	height: auto;
+}
+.bike__body,
+.bike__front,
+.bike__handlebars,
+.bike__pedals,
+.bike__pedals-spin,
+.bike__seat,
+.bike__spokes,
+.bike__spokes-spin,
+.bike__tire {
+	animation: bikeBody 3s ease-in-out infinite;
+	stroke: var(--primary);
+	transition: stroke var(--trans-dur);
+}
+.bike__front {
+	animation-name: bikeFront;
+}
+.bike__handlebars {
+	animation-name: bikeHandlebars;
+}
+.bike__pedals {
+	animation-name: bikePedals;
+}
+.bike__pedals-spin {
+	animation-name: bikePedalsSpin;
+}
+.bike__seat {
+	animation-name: bikeSeat;
+}
+.bike__spokes,
+.bike__tire {
+	stroke: currentColor;
+}
+.bike__spokes {
+	animation-name: bikeSpokes;
+}
+.bike__spokes-spin {
+	animation-name: bikeSpokesSpin;
+}
+.bike__tire {
+	animation-name: bikeTire;
+}
