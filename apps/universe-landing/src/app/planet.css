@@ -1,0 +1,112 @@
+.moon {
+  height: 20px;
+  width: 20px;
+  background: gray;
+  background: radial-gradient(#ddd, #888);
+  border-radius: 100%;
+  box-shadow: 0 0 40px white;
+}
+
+.moon-orbit {
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  z-index: 4;
+  top: 150%;
+  left: -100%;
+  margin-top: -60px;
+  border-radius: 100%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.space {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.space .planet {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px 1px #8097a1,
+    inset -30px -10px 50px 10px rgba(255, 255, 255, 0.7),
+    inset -80px -10px 100px 10px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+.space .planet .circle1 {
+  position: absolute;
+  left: 100px;
+  top: 290px;
+  width: 40px;
+  height: 45px;
+  border-radius: 50%;
+  transform: rotate(60deg);
+  box-shadow: inset -8px 0 10px 4px #64646466, 8px 0 5px 2px #ffffff66,
+    inset 3px 0 1px 0 #ffffffb3;
+}
+.space .planet .circle2 {
+  position: absolute;
+  top: 90px;
+  left: 120px;
+  width: 65px;
+  height: 75px;
+  border-radius: 50%;
+  transform: rotate(60deg);
+  box-shadow: inset -8px 0 10px 4px #64646466, 8px 0 5px 2px #ffffff66,
+    inset 3px 0 1px 0 #ffffffb3;
+}
+.space .planet .circle3 {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  width: 55px;
+  height: 75px;
+  border-radius: 50%;
+  transform: rotate(60deg);
+  box-shadow: inset -8px 0 10px 4px #64646466, 8px 0 5px 2px #ffffff66,
+    inset 3px 0 1px 0 #ffffffb3;
+}
+.space .planet .circle4 {
+  position: absolute;
+  top: 170px;
+  left: 230px;
+  width: 80px;
+  height: 100px;
+  border-radius: 50%;
+  transform: rotate(60deg);
+  box-shadow: inset -8px 0 10px 4px #64646466, 8px 0 5px 2px #ffffff66,
+    inset 3px 0 1px 0 #ffffffb3;
+}
+.space .planet .circle5 {
+  position: absolute;
+  top: 30px;
+  left: 90px;
+  width: 45px;
+  height: 55px;
+  border-radius: 50%;
+  transform: rotate(60deg);
+  box-shadow: inset -8px 0 10px 4px #64646466, 8px 0 5px 2px #ffffff66,
+    inset 3px 0 1px 0 #ffffffb3;
+}
+.space .bigCircle {
+  position: absolute;
+  width: 500px;
+  height: 100px;
+  border: 10px double #ffffff66;
+  border-radius: 50%;
+  border-top: 0;
+  filter: drop-shadow(10px 16px 5px #ffffff66);
+  transform: rotate(25deg);
+  box-shadow: -50px 9px 3px 2px #ffffff66, 50px 9px 3px 2px #ffffff4d,
+    -50px 10px 10px -1px #2d709780, 50px 10px 10px -1px #2d709780,
+    -20px 10px 2px -5px #fff, 20px 10px 2px -5px #fff;
+}

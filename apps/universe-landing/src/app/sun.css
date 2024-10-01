@@ -1,0 +1,40 @@
+.earth-wrapper {
+  width: 500px;
+  height: 350px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.earth {
+  width: 250px;
+  height: 250px;
+  color: #1da1c1;
+  font-size: 380px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 35px 2px rgba(255, 255, 255, 0.15),
+    inset -25px -5px 40px 20px rgba(0, 0, 0, 0.6);
+  i {
+    background-color: #8bc34a;
+    z-index: -1;
+    animation: 5s ease-in-out 0s normal none infinite land-move;
+  }
+}
+
+@keyframes sunFlare {
+  from {
+    box-shadow: 0 0 50px #f4c91a;
+  }
+  to {
+    box-shadow: 0 0 100px #f4c91a;
+  }
+}
