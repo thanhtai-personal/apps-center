@@ -61,7 +61,7 @@ const requiredAuthen = (Component: React.FC) => {
 
 export const router: IRouter[] = [
   {
-    element: makeSuspense(Jobs),
+    element: makeSuspense(Home),
     path: '/'
   },
   {

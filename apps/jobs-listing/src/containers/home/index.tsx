@@ -1,17 +1,18 @@
-import { PageLayout } from "@/components/layout";
-import { HomePageContent } from "@/components/home"
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex } from "@core-ui/react-mui-core";
+import { LoginForm } from "@/components/login/LoginForm";
+import { PortfolioContent } from "@/components/portfolio";
 
-const HomePage = () => {
-  
+const HomePage = observer(() => {
+
   return (
-    <PageLayout>
+    <Flex fullWidth column className="login_page">
       <Flex fullWidth column>
-        <HomePageContent />
+        <PortfolioContent />
       </Flex>
-    </PageLayout>
+      <LoginForm />
+    </Flex>
   )
-}
+})
 
-export default observer(HomePage)
+export default HomePage;
