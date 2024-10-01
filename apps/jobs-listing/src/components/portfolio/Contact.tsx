@@ -95,7 +95,7 @@ export const Contact = observer(() => {
                       </Animates.RippleButton>
 
                       <Flex my={0.5}></Flex>
-                      <Animates.RippleButton id="project-1"
+                      <Animates.RippleButton id="project-3"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
                         <Link to="/novels" target="_blank">
@@ -108,7 +108,7 @@ export const Contact = observer(() => {
                       </Animates.RippleButton>
 
                       <Flex my={0.5}></Flex>
-                      <Animates.RippleButton id="project-1"
+                      <Animates.RippleButton id="project-4"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
                         <Link to="/jobs" target="_blank">
@@ -121,7 +121,7 @@ export const Contact = observer(() => {
                       </Animates.RippleButton>
 
                       <Flex my={0.5}></Flex>
-                      <Animates.RippleButton id="project-1"
+                      <Animates.RippleButton id="project-5"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
                         <Link to="/soccer-scores" target="_blank">
@@ -134,7 +134,7 @@ export const Contact = observer(() => {
                       </Animates.RippleButton>
 
                       <Flex my={0.5}></Flex>
-                      <Animates.RippleButton id="project-1"
+                      <Animates.RippleButton id="project-6"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
                         <Link to="/landing-pages" target="_blank">
@@ -142,6 +142,45 @@ export const Contact = observer(() => {
                             textTransform={"uppercase"}
                           >
                             {getText("Landing page templates")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                      <Flex my={0.5}></Flex>
+                      <Animates.RippleButton id="project-7"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="https://my-core-ui.vercel.app/" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("DEV.TECT Landing page")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                      <Flex my={0.5}></Flex>
+                      <Animates.RippleButton id="project-8"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="https://smart-docs-two.vercel.app" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("Smart-docs")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                      <Flex my={0.5}></Flex>
+                      <Animates.RippleButton id="project-9"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="https://smart-docs-two.vercel.app" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("Smart-docs")}
                           </Text>
                         </Link>
                       </Animates.RippleButton>
