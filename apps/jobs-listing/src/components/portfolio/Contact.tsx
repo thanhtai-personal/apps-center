@@ -85,7 +85,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-2"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="https://my-projects-delta-orcin.vercel.app/me" target="_blank">
+                        <Link to="https://www.taitran.dev/me" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -98,7 +98,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-3"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="http://34.135.118.246:5173/novels" target="_blank">
+                        <Link to="https://www.taitran.dev/novels" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -111,7 +111,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-4"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="http://34.135.118.246:5173/jobs" target="_blank">
+                        <Link to="https://www.taitran.dev/jobs" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -124,7 +124,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-5"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="http://34.135.118.246:5173/soccer-scores" target="_blank">
+                        <Link to="https://www.taitran.dev/soccer-scores" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -137,7 +137,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-6"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="http://34.135.118.246:5173/landing-pages" target="_blank">
+                        <Link to="https://www.taitran.dev/landing-templates" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -150,7 +150,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-7"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="https://my-core-ui.vercel.app/" target="_blank">
+                        <Link to="https://www.taitran.dev/dev-tech-landing" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -163,7 +163,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-8"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="https://smart-docs-two.vercel.app" target="_blank">
+                        <Link to="https://www.taitran.dev/smart-docs" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -176,7 +176,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-9"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="https://visio-tools-dev.vercel.app" target="_blank">
+                        <Link to="https://www.taitran.dev/hptool" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -202,7 +202,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-10"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="https://www.taitran.dev" target="_blank">
+                        <Link to="https://www.taitran.dev/portfolio" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
