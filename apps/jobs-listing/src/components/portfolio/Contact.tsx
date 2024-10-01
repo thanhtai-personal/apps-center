@@ -98,7 +98,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-3"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="/novels" target="_blank">
+                        <Link to="http://34.135.118.246:5173/novels" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -111,7 +111,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-4"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="/jobs" target="_blank">
+                        <Link to="http://34.135.118.246:5173/jobs" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -124,7 +124,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-5"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="/soccer-scores" target="_blank">
+                        <Link to="http://34.135.118.246:5173/soccer-scores" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -137,7 +137,7 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-6"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="/landing-pages" target="_blank">
+                        <Link to="http://34.135.118.246:5173/landing-pages" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
@@ -176,11 +176,37 @@ export const Contact = observer(() => {
                       <Animates.RippleButton id="project-9"
                         style={{ padding: "8px 16px", borderRadius: "8px" }}
                       >
-                        <Link to="https://smart-docs-two.vercel.app" target="_blank">
+                        <Link to="https://visio-tools-dev.vercel.app" target="_blank">
                           <Text className={globalStyles.textKanit18} color={"#cccccc"}
                             textTransform={"uppercase"}
                           >
-                            {getText("Smart-docs")}
+                            {getText("HP-Tools")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                      <Flex my={0.5}></Flex>
+                      <Animates.RippleButton id="project-9"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="https://www.taitran.dev/universe" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("Portfolio-v2")}
+                          </Text>
+                        </Link>
+                      </Animates.RippleButton>
+
+                      <Flex my={0.5}></Flex>
+                      <Animates.RippleButton id="project-10"
+                        style={{ padding: "8px 16px", borderRadius: "8px" }}
+                      >
+                        <Link to="https://www.taitran.dev" target="_blank">
+                          <Text className={globalStyles.textKanit18} color={"#cccccc"}
+                            textTransform={"uppercase"}
+                          >
+                            {getText("Portfolio-v1")}
                           </Text>
                         </Link>
                       </Animates.RippleButton>
