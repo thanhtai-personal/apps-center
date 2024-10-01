@@ -1,36 +1,42 @@
 {
-  "name": "@web/core",
-  "version": "1.0.2",
-  "description": "",
-  "main": "index.js",
+  "name": "landing-page",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "clean:cache": "node ./scripts/cleanup-cache.js",
-    "clean:build": "node ./scripts/cleanup.js",
-    "clean:modules": "node ./scripts/cleanup-modules.js",
-    "clean:docs": "node ./scripts/cleanup-docs.js",
-    "clean:npmrc": "node ./scripts/cleanup-npmrc.js",
-    "clean:lock": "node ./scripts/cleanup-packagelock.js",
-    "docs": "turbo docs",
-    "docs:all": "typedoc",
-    "build": "turbo build",
-    "clean": "pnpm run clean:cache && pnpm run clean:modules && pnpm run clean:docs",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "release:all": "turbo release"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@commitlint/cli": "^19.2.2",
-    "@commitlint/config-conventional": "^19.2.2",
-    "eslint": "^8.57.0",
-    "fs-extra": "^11.2.0",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "typedoc": "^0.25.11"
+    "dev": "vite --host",
+    "build": "vite build",
+    "lint:check": "tsc",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "turbo": "^1.13.2"
+    "@tailwindcss/forms": "^0.5.7",
+    "@ttt-ui/react-core": "workspace:*",
+    "@ttt-ui/react-layout-mantine": "workspace:*",
+    "@ttt-ui/react-mantine-core": "workspace:*",
+    "@ttt-ui/react-user-management-mantine": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.3"
   },
-  "packageManager": "pnpm@8.15.4"
+  "devDependencies": {
+    "@ttt-config/eslint-plugin": "workspace:*",
+    "@ttt-config/release": "workspace:*",
+    "@ttt-config/tsconfig": "workspace:*",
+    "@ttt-config/typedoc": "workspace:*",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "glob": "^10.3.10",
+    "postcss": "^8.4.38",
+    "postcss-import": "^16.1.0",
+    "postcss-nesting": "^12.1.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vite-plugin-dts": "^3.7.3",
+    "vite-plugin-lib-inject-css": "^2.0.0"
+  }
 }

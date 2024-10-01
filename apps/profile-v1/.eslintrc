@@ -1,10 +1,4 @@
 {
-  "parserOptions": {
-    "project": [
-      "./client/*/*/tsconfig.json",
-      "./server/*/*/tsconfig.json",
-      "./shared/*/tsconfig.json"
-    ],
-    "ignorePatterns": ["docs"]
-  }
+  "extends": ["plugin:@ttt-config/eslint-plugin/base"],
+  "plugins": ["@ttt-config/eslint-plugin"]
 }

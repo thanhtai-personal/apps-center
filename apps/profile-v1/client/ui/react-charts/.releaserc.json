@@ -1,3 +1,0 @@
-{
-  "extends": ["@ttt-config/release/npm.js"]
-}
