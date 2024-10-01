@@ -137,7 +137,7 @@ export const TopMenu = observer(() => {
           : <Flex cursorPointer onClick={() => {
             if (uiStore.triggerClickAnimation > 0) return;
             uiStore.triggerClickAnimation = 1;
-            setLanguage(language && language === "EN" ? "VI" : "EN");
+            setLanguage(language && language === "VI" ? "EN" : "VI");
           }}
             position={tabletSizeDown ? "static" : "absolute"}
             right={0}
