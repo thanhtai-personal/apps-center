@@ -10,6 +10,7 @@ import portfolio_preview from "@/assets/images/bg/portfolio_preview.png"
 import performanceResult from "@/assets/images/bg/performance-result.png"
 import { Link } from "@core-ui/react-core";
 import { LoginForm } from "@/components/login/LoginForm";
+import { useGlobalStyles } from "@/styles/globalStyle";
 
 const images = [
   {
@@ -28,13 +29,15 @@ const images = [
 ];
 
 export const AdminLoginComponent = observer(() => {
+  const globalStyles = useGlobalStyles();
 
   return (
     <Flex fullWidth center className="login_page">
       <Flex
         width={"100vw"}
-        height={"100vh"}
         center
+        p={2}
+        py={4}
         style={{
           backgroundImage: `url(${recruiterBg})`,
           backgroundSize: "cover",
@@ -43,32 +46,34 @@ export const AdminLoginComponent = observer(() => {
         }}
       >
         <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
-          <Carousel
-            animation={"slide"}
-            interval={10000}
-            swipe
-            fullHeightHover
-            navButtonsWrapperProps={{
-              style: { margin: "0 10px" },
-            }}
-          >
-            {images.map((image, index) => (
-              <Flex key={index} fullSize>
-                <LazyImage
-                  src={image.src}
-                  alt={`Slide ${index + 1}`}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
-                  imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
-                />
-              </Flex>
-            ))}
-          </Carousel>
+          <Flex fullWidth center position={"relative"}>
+            <Carousel
+              animation={"slide"}
+              interval={10000}
+              swipe
+              fullHeightHover
+              navButtonsWrapperProps={{
+                style: { margin: "0 10px" },
+              }}
+            >
+              {images.map((image, index) => (
+                <Flex key={index} fullSize>
+                  <LazyImage
+                    src={image.src}
+                    alt={`Slide ${index + 1}`}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                    imgStyle={{ width: "100%", height: "100%", objectFit: "cover", maxWidth: PAGE_MAX_WIDTH, borderRadius: 16 }}
+                  />
+                </Flex>
+              ))}
+            </Carousel>
+          </Flex>
           <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
             {images.map((image, index) => {
               return (
                 <Grid item xs={12} key={index} sm={6} md={3}>
                   <Link to={image.url} target="_blank">
-                    <Flex fullSize cursorPointer>
+                    <Flex fullSize cursorPointer className={globalStyles.hoverTransition}>
                       <LazyImage
                         src={image.src}
                         alt={`Slide ${index + 1}`}
@@ -83,7 +88,7 @@ export const AdminLoginComponent = observer(() => {
           </Grid>
         </Flex>
       </Flex>
-      <LoginForm isAdmin />
+      <LoginForm isAdmin  />
     </Flex>
   )
 })
