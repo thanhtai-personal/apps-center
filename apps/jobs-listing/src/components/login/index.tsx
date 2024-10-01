@@ -35,6 +35,7 @@ export const LoginComponent = observer(() => {
     <Flex fullWidth center className="login_page">
       <Flex
         width={"100vw"}
+        minHeight={"100vh"}
         center
         p={2}
         py={4}
@@ -45,7 +46,7 @@ export const LoginComponent = observer(() => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
+        {/* <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
           <Flex fullWidth center position={"relative"}>
             <Carousel
               animation={"slide"}
@@ -86,7 +87,7 @@ export const LoginComponent = observer(() => {
               )
             })}
           </Grid>
-        </Flex>
+        </Flex> */}
       </Flex>
       <LoginForm  />
     </Flex>

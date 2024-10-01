@@ -49,7 +49,7 @@ export const AdminLoginComponent = observer(() => {
         }}
       >
         <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
-          <Flex fullWidth center position={"relative"}>
+          {/* <Flex fullWidth center position={"relative"}>
             <Carousel
               animation={"slide"}
               interval={10000}
@@ -76,7 +76,7 @@ export const AdminLoginComponent = observer(() => {
                 </Flex>
               ))}
             </Carousel>
-          </Flex>
+          </Flex> */}
           <Flex fullWidth>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
               {images.map((image, index) => {
