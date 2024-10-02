@@ -11,8 +11,8 @@ export const ProjectItem = observer(({
   index
 }: {
   data: any;
-    getText: (key: string) => string;
-    index: number;
+  getText: (key: string) => string;
+  index: number;
 }) => {
   const globalStyles = useGlobalStyles();
   const styles = useStyles();
@@ -39,14 +39,20 @@ export const ProjectItem = observer(({
           backdropFilter: "blur(4px)"
         }}
       >
-        <Flex center>
-          {data.image && <Flex mr={2} width={tabletSizeDown ? 40 : 60}
-            justifyContent={"flex-start"}
-            alignItems={"flex-start"}
+        <Flex px={4} fullWidth center>
+          <Flex
+            data-aos={index % 2 === 0 ? "flip-right" : "flip-left"}
+            data-aos-anchor-placement="top-center"
+            data-aos-duration="400"
           >
-            <LazyImage src={data.image} alt={data.name} style={{ width: tabletSizeDown ? 40 : 60 }}
-              imgStyle={{ width: tabletSizeDown ? 40 : 60 }} />
-          </Flex>}
+            {data.iframe ? data.iframe :
+              <LazyImage src={data.image} alt={data.name} style={{ height: "250px" }}
+                imgStyle={{ height: "250px" }} />
+            }
+          </Flex>
+        </Flex>
+
+        <Flex center mt={4}>
           <Text className={tabletSizeDown ? globalStyles.textOrbiBold24
             : globalStyles.textOrbiBold32}>{getText(data.name)}</Text>
         </Flex>

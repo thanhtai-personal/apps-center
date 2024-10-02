@@ -6,13 +6,16 @@ import { observer } from "@core-ui/react-mobx-state";
 import { Flex, Text, useResponsive } from "@core-ui/react-mui-core";
 import { ProjectItem } from "./ProjectItem";
 import tgminiapp from "@/assets/images/tgminiapp.jpg"
-import oxtool from "@/assets/icons/0xtool.svg"
 import flymore from "@/assets/images/plane.png"
 import titan from "@/assets/images/titan.png"
 import commandcenter from "@/assets/images/command_center.png"
 import { Animates, HexagonMask } from "@core-ui/react-animates";
 import { Layers } from "@/styles/layers";
 import { Grid } from "@core-ui/react-mui-core/materials";
+import oxtoolLogo from "@/assets/images/projects/0xtool.png"
+import auvenirLogo from "@/assets/images/projects/auvenir.png"
+import meastroPng from "@/assets/images/projects/meastro.png"
+import swallowPng from "@/assets/images/projects/swallow.png"
 
 export const Projects = observer(() => {
   const { tabletSizeDown } = useResponsive();
@@ -138,7 +141,7 @@ const projects = [
   {
     id: 5,
     name: "Auvenir/Deloitte Auditing platform",
-    image: titan,
+    image: auvenirLogo,
     description: "Developed by more than 200 developers, this is a significant outsourced project and the flagship endeavor of TiTan. The backend is built on .Net Core microservices, the database is a SQL project, and the frontend is developed in ReactJS.\n\nMy responsibility in this project is to implement new features and fix bugs. Some of the features I have worked on include creating an engagement screen, handling logout in multi-tab, multi-browser scenarios, and managing content updates,...",
   },
   {
@@ -162,7 +165,7 @@ const projects = [
   {
     id: 2,
     name: "0xtool",
-    image: oxtool,
+    image: oxtoolLogo,
     description: "This on-chain analytics tool enhances trading with high-utility features like a Safety Checklist, Smart Money, and Trading Strategy. The product secured $200,000 in funding from the Google Cloud's Startup Program.",
   },
   {
@@ -174,24 +177,19 @@ const projects = [
   {
     id: 7,
     name: "Maestro",
-    image: "",
+    image: meastroPng,
     description: "The Maestro Celebrity Event Planning Platform, developed by approximately 20 developers, utilizes .NET for the backend and ReactJS for the frontend.\n\nIn this project, my role as a frontend developer entails implementing various features on ReactJS. Specifically, I focus on functionalities like calendar event management and report printing services",
   },
   {
     id: 8,
     name: "Swallow",
+    image: swallowPng,
     description: "Swallow, a product of CityNow, focuses on Japan Study & Job Recruitment, offering insights into job and study opportunities in Japan. Following Delorean, this project is built by a small team of 7 developers, utilizing a JavaScript stack.\n\nMy role in this project involves implementing full features from backend to frontend. A notable contribution of mine is the development of a rich text editor, facilitating the posting of content on public sites.",
   },
   {
     id: 9,
     name: "TankVN (Battle city)",
-    image: "",
+    iframe: <iframe width="560" height="250" src="https://www.youtube.com/embed/LwJa69CBARk?si=ucWNqCT_9KFzBGZ9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>,
     description: "TankVN is a nostalgic yet innovative project inspired by the classic Battle City game. With a fresh user interface and exciting new features, TankVN brings the beloved retro gaming experience into the modern era.\n\nTankVN is developed by a small team with me and 1 other utilizing microsoft XNA 4.0, and AI technique for enemy objects in game (find the shortest way to go and kill player). At its core, TankVN retains the essence of Battle City, where players navigate a maze-like battlefield, strategically maneuvering their tanks to eliminate enemy forces and defend their base. However, TankVN goes beyond mere homage by introducing captivating new elements, including visually stunning graphics and challenging boss battles.",
-  },
-  {
-    id: 10,
-    name: "HP tool — Online shopping",
-    image: "",
-    description: "HP Tool — Online Shopping is a learning project of mine, aimed at utilizing Next.js to construct an e-commerce website. Data is crawled through the Cheerio tool and stored in an Atlas database powered by MongoDB.\n\nThe user interface comprises a products page, showcasing and facilitating the search of all available products. Additionally, an admin page is included to manage operations such as posting new content or editing crawled data.",
   }
 ]
