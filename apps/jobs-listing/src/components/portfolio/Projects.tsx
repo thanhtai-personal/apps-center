@@ -12,7 +12,7 @@ import titan from "@/assets/images/titan.png"
 import commandcenter from "@/assets/images/command_center.png"
 import { Animates, HexagonMask } from "@core-ui/react-animates";
 import { Layers } from "@/styles/layers";
-// import { IntersectionObserverView } from "@core-ui/react-viewframe";
+import { Grid } from "@core-ui/react-mui-core/materials";
 
 export const Projects = observer(() => {
   const { tabletSizeDown } = useResponsive();
@@ -93,14 +93,15 @@ const ProjectsContent = observer(() => {
 const GridContent = ({ projects, getText }) => {
 
   return (
-    <Flex fullSize column>
+    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
       {projects.map((project, index) => (
-        <Flex fullSize my={4}>
-          <ProjectItem data={project} getText={getText} />
-        </Flex>
+        <Grid item sm={12} md={6} lg={4} key={project.id || `p-${index}`} >
+          <Flex fullSize my={4}>
+            <ProjectItem data={project} getText={getText} index={index} />
+          </Flex>
+        </Grid>
       ))}
-    </Flex>
-    // </Grid>
+    </Grid>
   )
 }
 

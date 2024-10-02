@@ -7,10 +7,12 @@ import { useEffect } from "react";
 
 export const ProjectItem = observer(({
   data,
-  getText
+  getText,
+  index
 }: {
   data: any;
-  getText: (key: string) => string;
+    getText: (key: string) => string;
+    index: number;
 }) => {
   const globalStyles = useGlobalStyles();
   const styles = useStyles();
@@ -22,8 +24,9 @@ export const ProjectItem = observer(({
 
   return (
     <Flex fullSize p={2}
-      data-aos="fade-up"
-      data-aos-anchor-placement="center-center"
+      data-aos={index % 2 === 0 ? "zoom-in-right" : "zoom-in-left"}
+      data-aos-anchor-placement="top-center"
+      data-aos-duration="800"
     >
       <Flex fullSize column
         p={3}
