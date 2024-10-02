@@ -13,16 +13,19 @@ import { hexagonMask } from "./configs";
 export const HexagonMask = ({
   config,
   id,
-  children
+  children,
+  resetTime = 120000
 }: {
     config: any;
     id: string;
     children: JSX.Element;
+    resetTime?: number;
 }) => {
   const [init, setInit] = useState(false);
 
   // this should be run only once per application lifetime
   useEffect(() => {
+    if (init) return;
     initParticlesEngine(async (engine) => {
       // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
       // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -34,10 +37,18 @@ export const HexagonMask = ({
     }).then(() => {
       setInit(true);
     });
-  }, []);
+
+    const toId = setTimeout(() => {
+      setInit(false);
+    }, resetTime)
+
+    return () => {
+      clearTimeout(toId)
+    }
+  }, [init, resetTime]);
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
+    // console.log(container);
   };
 
   const options: ISourceOptions = useMemo(
@@ -84,5 +95,5 @@ export const HexagonMask = ({
     );
   }
 
-  return <></>;
+  return children;
 };

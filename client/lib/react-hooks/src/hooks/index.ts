@@ -9,4 +9,5 @@ export * from "./useInterval";
 export * from "./usePreviousData";
 export * from "./useTitleUpdate";
 export * from "./useScrollTop";
-export * from "./useLocalStorageData"
+export * from "./useLocalStorageData";
+export * from "./useScriptTag"

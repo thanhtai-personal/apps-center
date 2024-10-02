@@ -1,7 +1,9 @@
 import { useGlobalStyles } from "@/styles/globalStyle";
+import { AOS } from "@core-ui/react-animates";
 import { observer } from "@core-ui/react-mobx-state";
 import { AppTheme, Flex, LazyImage, Text, useResponsive } from "@core-ui/react-mui-core";
 import { makeStyles, createStyles } from "@core-ui/react-mui-core/style"
+import { useEffect } from "react";
 
 export const ProjectItem = observer(({
   data,
@@ -14,15 +16,25 @@ export const ProjectItem = observer(({
   const styles = useStyles();
   const { tabletSizeDown } = useResponsive();
 
+  useEffect(() => {
+    AOS.init();
+  }, [])
+
   return (
-    <Flex fullSize p={2}>
+    <Flex fullSize p={2}
+      data-aos="fade-up"
+      data-aos-anchor-placement="center-center"
+    >
       <Flex fullSize column
         p={3}
-        bgcolor={"#000"}
+        bgcolor={"#000000bb"}
         boxShadow={"0 2px 5px rgb(55, 120, 251,0.3)"}
         borderRadius={"16px"}
         overflow={"hidden"}
         className={styles.hoverCard}
+        style={{
+          backdropFilter: "blur(4px)"
+        }}
       >
         <Flex center>
           {data.image && <Flex mr={2} width={tabletSizeDown ? 40 : 60}
@@ -39,8 +51,8 @@ export const ProjectItem = observer(({
           <Text
             color={"#FFFFDD"}
             textAlign={"left"}
-            className={tabletSizeDown ? globalStyles.textKanit18
-              : globalStyles.textKanit24}
+            className={tabletSizeDown ? globalStyles.textKanit16
+              : globalStyles.textKanit18}
             whiteSpace={"pre-line"}
             style={{
               lineHeight: "125%"

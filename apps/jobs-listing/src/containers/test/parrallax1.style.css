@@ -1,0 +1,168 @@
+@import url(https://fonts.googleapis.com/css?family=Sansita+One|Tenor+Sans);
+/*
+Esta demo no contiene
+@medias queries 
+*/
+* {margin: 0; padding: 0; border: 0 none; position: relative;}
+
+.parallax-container {width: auto; font-size: 1rem; background: #f9f9f9}
+*, *:after, *:before {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.parallax-container:before {
+    border-radius: 60% 60% 60% 60% / 7px 7px 7px 7px;
+    box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.9);
+    content: "";
+    height: 10px;
+    left: 5%;
+    position: fixed;
+    top: -10px;
+    width: 90%;
+    z-index: 3;
+}
+
+header {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  background: #472F53;
+  letter-spacing: 8px;
+  padding: .3rem 0 .3rem 5%;
+  z-index: 4;
+}
+header a {
+ text-decoration: none; color: #FFC000; display: block;
+}
+header a:hover {color: #EC0404;}
+h1, h2 {
+  font-family: 'Sansita One', sans-serif;
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: #472F53;
+  margin: 2rem 0 .5rem;
+}
+header a img {
+  height: 80%;
+  position: absolute;
+  right: 5px;
+  top: 10%;
+  border-radius: 5px;
+}
+article {
+  background: #f9f9f9;
+  margin-bottom: 350px;
+  z-index:1;
+  box-shadow: -5px 0 10px 8px rgba(0, 0, 0, 0.7);
+  padding: 2rem 5%;
+
+}
+article p:nth-of-type(2n+1) {
+	text-align: justify;
+  font-family: georgia;  
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.3;
+  text-align: justify;
+  color: #8AA9B8;
+  -moz-column-count: 3;
+	-moz-column-gap: 40px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 40px;
+	column-count: 3;
+	column-gap: 40px;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
+}
+article p:nth-of-type(n+2)  {
+	text-align: justify;
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  font-style: normal;
+  color: darkred;
+  -moz-column-count: 2;
+	-moz-column-gap: 50px;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 50px;
+	column-count: 2;
+	column-gap: 50px;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
+}
+article p:nth-of-type(n+2):first-line {
+  text-transform: uppercase;
+  color: #472F53;
+  font-family: serif;
+  font-style: italic;  
+}
+footer {
+  background: url(https://i.imgur.com/VfQdztO.jpg) no-repeat center bottom;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 350px;
+  width: 100%;
+  text-align: center;
+  padding: 70px 5% 0;
+}
+ul#pag_amigos {
+list-style-type: none;
+}
+#pag_amigos li {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  display: inline-block;
+  height: 102px;
+  padding: 4px;
+  overflow: hidden;
+  margin: 0 10px 45px 0;
+  width: 260px;
+}
+
+#pag_amigos li a {
+  display: block;
+  width: auto;
+  height: 93px;
+  text-decoration: none;
+  text-indent: 0;
+  text-align: left;
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 1.2em;
+  line-height: 1;
+  color: #fff;
+}
+#pag_amigos li img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  -moz-transition: all 1s linear;
+  -webkit-transition: all 1s linear;
+  -o-transition: all 1s linear;
+  -ms-transition: all 1s linear;
+  transition: all 1s linear;
+}
+#pag_amigos li:hover img {
+  left:164px;
+  top: -30px;
+  border-radius: 0 0 0 50px;
+  box-shadow: -4px 4px 5px -1px rgba(0, 0, 0, 0.2);
+  border: 3px solid #fff;
+}
+#pag_amigos li.li-sesenta {height: 68px;}
+#pag_amigos li a.sesenta {line-height: .9}
+#pag_amigos li:hover a.sesenta img {
+  left: 130px;
+  top: -10px;
+}

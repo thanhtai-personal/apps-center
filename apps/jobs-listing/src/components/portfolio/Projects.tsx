@@ -1,10 +1,10 @@
+import "@core-ui/react-animates/dist/listScrollAnimate.style.css"
 import { useLanguage } from "@/hooks/useLanguage";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, Text, useResponsive } from "@core-ui/react-mui-core";
 import { ProjectItem } from "./ProjectItem";
-import { Grid } from "@core-ui/react-mui-core/materials";
 import tgminiapp from "@/assets/images/tgminiapp.jpg"
 import oxtool from "@/assets/icons/0xtool.svg"
 import flymore from "@/assets/images/plane.png"
@@ -12,8 +12,7 @@ import titan from "@/assets/images/titan.png"
 import commandcenter from "@/assets/images/command_center.png"
 import { Animates, HexagonMask } from "@core-ui/react-animates";
 import { Layers } from "@/styles/layers";
-import { IntersectionObserverView } from "@core-ui/react-viewframe";
-
+// import { IntersectionObserverView } from "@core-ui/react-viewframe";
 
 export const Projects = observer(() => {
   const { tabletSizeDown } = useResponsive();
@@ -29,21 +28,22 @@ export const Projects = observer(() => {
       {!tabletSizeDown && <Flex position={"absolute"} top={"50%"} left={"50%"} zIndex={Layers.layer2}>
         <Animates.GlowingBallAnim id="light-2" width={1}
           center={{
-            width: 10,
-            height: 10
+            width: 1,
+            height: 1,
           }}
           middle={{
-            width: 20,
-            height: 20
+            width: 5,
+            height: 5,
+            color: "#FF0000"
           }}
           farest={{
-            width: 30,
-            height: 30
+            width: 15,
+            height: 15
           }}
         />
       </Flex>}
 
-      {tabletSizeDown ? <ProjectsContent /> : <HexagonMask id="projects-bg" config={{}}>
+      {tabletSizeDown ? <ProjectsContent /> : <HexagonMask id="projects-bg" config={{}} resetTime={10000}>
         <ProjectsContent />
       </HexagonMask>}
     </Flex>
@@ -56,24 +56,29 @@ const ProjectsContent = observer(() => {
   const { getText } = useLanguage(projectsLangObj);
 
   return (
-    <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column>
-      <Flex mt={tabletSizeDown ? 6 : 10} fullWidth center>
-        <Text className={tabletSizeDown ? globalStyles.textOrbiBold24
+    <Flex fullWidth column center>
+      <Flex mt={tabletSizeDown ? 10 : 20} fullWidth center maxWidth={PAGE_MAX_WIDTH}
+        data-aos="fade-up"
+        data-aos-anchor-placement="center-center"
+      >
+        <Text textAlign={"center"} className={tabletSizeDown ? globalStyles.textOrbiBold24
           : globalStyles.textOrbiBold32}>
           {getText("Projects")}
         </Text>
       </Flex>
 
-      <Flex mt={1} fullWidth center>
+      <Flex mt={1} fullWidth center maxWidth={PAGE_MAX_WIDTH}
+        data-aos="fade-up"
+        data-aos-anchor-placement="center-center">
         <Text className={tabletSizeDown ? globalStyles.textKanit16
-          : globalStyles.textKanit24}
+          : globalStyles.textKanit18}
           color={"#FFFFDD"}
         >
           {getText("Compilation of projects that I was joined")}
         </Text>
       </Flex>
 
-      <Flex fullWidth column mt={8} position={"relative"}>
+      <Flex fullWidth column mt={8} position={"relative"} maxWidth={PAGE_MAX_WIDTH} mb={10}>
         <Flex fullWidth style={{ opacity: 0 }}>
           <GridContent projects={projects} getText={getText} />
         </Flex>
@@ -88,21 +93,14 @@ const ProjectsContent = observer(() => {
 const GridContent = ({ projects, getText }) => {
 
   return (
-    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
+    <Flex fullSize column>
       {projects.map((project, index) => (
-        <Grid item sm={12} md={6} lg={4} key={project.id || `p-${index}`} >
-          <Flex fullSize minHeight={320}>
-            <IntersectionObserverView isInfinite={false}>
-              {index % 2 === 0 ? <Animates.SlideRightAppear delay={0.25}>
-                <ProjectItem data={project} getText={getText} />
-              </Animates.SlideRightAppear> :
-              <Animates.SlideLeftAppear delay={0.25}>
-                <ProjectItem data={project} getText={getText} />
-              </Animates.SlideLeftAppear>}
-            </IntersectionObserverView>
-          </Flex>
-        </Grid>))}
-    </Grid>
+        <Flex fullSize my={4}>
+          <ProjectItem data={project} getText={getText} />
+        </Flex>
+      ))}
+    </Flex>
+    // </Grid>
   )
 }
 
@@ -112,8 +110,8 @@ const projectsLangObj = {
     "Compilation of projects that I was joined": "Tập hợp các dự án, công việc đã tham gia.",
     "Goat Tap is a Telegram mini-app that creates 'Tap to earn' games. The main content of the game involves clicking on the Goat avatar to accumulate points.\n\nGoat Tap is part of the Goat games system, along with other games such as Wheel Lottery, Up and Down, and Trust Battle.\n\nIn Wheel Lottery, a prize wheel is used to randomly select a winner from all participants. The more value a player contributes to the prize pool, the higher their chance of winning.\n\nUp and Down involves predicting whether the token price will go up or down after 30 seconds. Trust Battle pits two teams against each other in a 24-hour competition over token amounts. After 24 hours, the team with the larger total token amount wins. Participants on the winning team will receive rewards proportional to the percentages of tokens they contributed."
       : "Goat Tap là một mini-app trên Telegram tạo ra các trò chơi 'Tap to earn'. Nội dung chính của trò chơi liên quan đến việc nhấp vào hình đại diện của Goat để tích lũy điểm.\n\nGoat Tap là một phần của hệ thống trò chơi Goat, cùng với các trò chơi khác như Wheel Lottery, Up and Down, và Trust Battle.\n\nTrong Wheel Lottery, một bánh thưởng được sử dụng để ngẫu nhiên chọn một người chiến thắng từ tất cả người tham gia. Giá trị mà người chơi đóng góp vào quỹ giải thưởng càng lớn thì cơ hội chiến thắng càng cao.\n\nUp and Down liên quan đến việc dự đoán xem giá token sẽ tăng hay giảm sau 30 giây. Trust Battle đối đầu hai đội với nhau trong một cuộc thi kéo dài 24 giờ về số lượng token. Sau 24 giờ, đội có tổng số token lớn hơn sẽ thắng. Những người tham gia trong đội chiến thắng sẽ nhận được phần thưởng tương ứng với tỷ lệ phần trăm token mà họ đã đóng góp.",
-    "0xtool is a project that offers tools for tracking token shark accounts, reviewing tokens, and NFTs. This project is being developed by myself and one other developer. My responsibility lies in the UI aspect of the project, which is being handled using React with TypeScript"
-      : "0xtool là một dự án cung cấp công cụ để theo dõi các tài khoản 'Cá mập', xem xét các token và NFT. Dự án này đang được phát triển bởi tôi và một nhà phát triển khác. Tôi phụ trách phần giao diện người dùng của dự án, được thực hiện bằng React với TypeScript.",
+    "This on-chain analytics tool enhances trading with high-utility features like a Safety Checklist, Smart Money, and Trading Strategy. The product secured $200,000 in funding from the Google Cloud's Startup Program."
+      : "Công cụ phân tích on-chain này nâng cao hiệu quả giao dịch với các tính năng hữu ích như Danh sách kiểm tra an toàn, Smart Money, và Chiến lược giao dịch. Sản phẩm đã nhận được 200.000 đô la tài trợ từ Chương trình Khởi nghiệp của Google Cloud.",
     "Flymore is another project of TiTan. It is developed by approximately 20 developers and is a TypeScript full-stack e-commerce application available on both web and mobile platforms, utilizing PostgreSQL.\n\nThis project employs a microservices architecture communicated by event-driven in its structure.\n\nMy responsibility in this project is to implement new features and fix bugs. Some of the features I have worked on include creating agreements and handling the bidding system, and creating a migrated database script"
       : "Flymore là một dự án khác của TiTan. Dự án này được phát triển bởi khoảng 20 lập trình viên và là một ứng dụng thương mại điện tử full-stack sử dụng TypeScript, có sẵn trên cả nền tảng web và di động, với cơ sở dữ liệu PostgreSQL.\n\nDự án này sử dụng kiến trúc microservices và giao tiếp qua các sự kiện trong cấu trúc của nó.\n\nTrách nhiệm của tôi trong dự án này là triển khai các tính năng mới và sửa lỗi. Một số tính năng mà tôi đã làm việc bao gồm tạo hợp đồng, xử lý hệ thống đấu thầu và tạo script di chuyển cơ sở dữ liệu.",
     "TiTan Core is a pivotal project within TiTan, designed to create modular bases for utilization across various other projects within the typescript stack. This monorepo source encompasses several tiers, including client modules, SDKs, applications, and domains. Clients aggregate all UI packages, applications encapsulate business logic packages, domains provide API packages, and SDKs consolidate all SDK packages that facilitate the connection and usage of API packages by UI packages.\n\nIn this project, my primary responsibility lies in implementing all UI packages and SDK packages for the initial phase. This includes React-core, unittest-vitest, SDKs for user management and authentication, as well as UI packages for authentication and user management. Additionally, I am tasked with documenting each component thoroughly."
@@ -137,16 +135,10 @@ const projectsLangObj = {
 
 const projects = [
   {
-    id: 1,
-    name: "Goat games",
-    image: tgminiapp,
-    description: `Goat Tap is a Telegram mini-app that creates 'Tap to earn' games. The main content of the game involves clicking on the Goat avatar to accumulate points.\n\nGoat Tap is part of the Goat games system, along with other games such as Wheel Lottery, Up and Down, and Trust Battle.\n\nIn Wheel Lottery, a prize wheel is used to randomly select a winner from all participants. The more value a player contributes to the prize pool, the higher their chance of winning.\n\nUp and Down involves predicting whether the token price will go up or down after 30 seconds. Trust Battle pits two teams against each other in a 24-hour competition over token amounts. After 24 hours, the team with the larger total token amount wins. Participants on the winning team will receive rewards proportional to the percentages of tokens they contributed.`,
-  },
-  {
-    id: 2,
-    name: "0xtool",
-    image: oxtool,
-    description: "0xtool is a project that offers tools for tracking token shark accounts, reviewing tokens, and NFTs. This project is being developed by myself and one other developer. My responsibility lies in the UI aspect of the project, which is being handled using React with TypeScript",
+    id: 5,
+    name: "Auvenir/Deloitte Auditing platform",
+    image: titan,
+    description: "Developed by more than 200 developers, this is a significant outsourced project and the flagship endeavor of TiTan. The backend is built on .Net Core microservices, the database is a SQL project, and the frontend is developed in ReactJS.\n\nMy responsibility in this project is to implement new features and fix bugs. Some of the features I have worked on include creating an engagement screen, handling logout in multi-tab, multi-browser scenarios, and managing content updates,...",
   },
   {
     id: 3,
@@ -161,10 +153,16 @@ const projects = [
     description: "TiTan Core is a pivotal project within TiTan, designed to create modular bases for utilization across various other projects within the typescript stack. This monorepo source encompasses several tiers, including client modules, SDKs, applications, and domains. Clients aggregate all UI packages, applications encapsulate business logic packages, domains provide API packages, and SDKs consolidate all SDK packages that facilitate the connection and usage of API packages by UI packages.\n\nIn this project, my primary responsibility lies in implementing all UI packages and SDK packages for the initial phase. This includes React-core, unittest-vitest, SDKs for user management and authentication, as well as UI packages for authentication and user management. Additionally, I am tasked with documenting each component thoroughly.",
   },
   {
-    id: 5,
-    name: "Auvenir/Deloitte Auditing platform",
-    image: titan,
-    description: "Developed by more than 200 developers, this is a significant outsourced project and the flagship endeavor of TiTan. The backend is built on .Net Core microservices, the database is a SQL project, and the frontend is developed in ReactJS.\n\nMy responsibility in this project is to implement new features and fix bugs. Some of the features I have worked on include creating an engagement screen, handling logout in multi-tab, multi-browser scenarios, and managing content updates,...",
+    id: 1,
+    name: "Goat games",
+    image: tgminiapp,
+    description: `Goat Tap is a Telegram mini-app that creates 'Tap to earn' games. The main content of the game involves clicking on the Goat avatar to accumulate points.\n\nGoat Tap is part of the Goat games system, along with other games such as Wheel Lottery, Up and Down, and Trust Battle.\n\nIn Wheel Lottery, a prize wheel is used to randomly select a winner from all participants. The more value a player contributes to the prize pool, the higher their chance of winning.\n\nUp and Down involves predicting whether the token price will go up or down after 30 seconds. Trust Battle pits two teams against each other in a 24-hour competition over token amounts. After 24 hours, the team with the larger total token amount wins. Participants on the winning team will receive rewards proportional to the percentages of tokens they contributed.`,
+  },
+  {
+    id: 2,
+    name: "0xtool",
+    image: oxtool,
+    description: "This on-chain analytics tool enhances trading with high-utility features like a Safety Checklist, Smart Money, and Trading Strategy. The product secured $200,000 in funding from the Google Cloud's Startup Program.",
   },
   {
     id: 6,

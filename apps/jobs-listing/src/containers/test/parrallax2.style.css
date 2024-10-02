@@ -1,0 +1,30 @@
+#parallax {
+  background-image: url('http://images.unsplash.com/photo-1471255618142-bc3ea8675f3a?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=');
+  background-color: black;
+  background-attachment: fixed;
+  background-position-y: -0.2;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+section {
+  text-align: center;
+  color: white;
+  transition: 0s linear;
+  transition-property: background-position;
+  height: 500px;
+}
+
+#two {
+  background-color: #3498db;
+}
+
+#three {
+  background-color: #e74c3c;
+}
+
+#section-container {
+  padding-top: 16%
+}
