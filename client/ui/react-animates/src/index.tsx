@@ -10,7 +10,7 @@ import { SpaceIn as SpaceInComponent } from "./SpaceIn";
 import { WaterText as WaterTextComponent } from "./WaterText";
 import { BubbleWrapper as BubbleWrapperComponent } from "./BubbleWrapper";
 import { PlasmaBall as PlasmaBallComponent } from "./PlasmaBall";
-import { TypeWriter as TypeWriterComponent } from "./TypeWriter";
+import { Typewriter as TypeWriterComponent } from "./TypeWriter";
 import { LoadingBlock as LoadingBlockComponent } from "./LoadingBlock";
 import { LoadingIcon as LoadingIconComponent } from "./LoadingIcon";
 import { AnimatedNumber as AnimatedNumberCommponent } from "./AnimatedNumber";

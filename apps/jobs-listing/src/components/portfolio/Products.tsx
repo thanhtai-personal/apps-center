@@ -62,6 +62,9 @@ export const Products = observer(() => {
                         p={1}
                         py={4}
                         fullWidth
+                        style={{
+                          backdropFilter: "blur(4px)"
+                        }}
                       >
                         <Flex fullWidth center>
                           <Link to="https://pagespeed.web.dev/analysis/https-my-projects-delta-orcin-vercel-app-me/vcos3fthy7?form_factor=desktop">
@@ -106,7 +109,7 @@ export const Products = observer(() => {
                             src={pageSpeedRsImg} alt="page speed result"
                           />
                         </Flex>
-                        
+
                       </Flex>
                     </Animates.GrowUpAppear>
                   </Flex>
@@ -140,7 +143,8 @@ export const Products = observer(() => {
       </Flex>
       {<Flex fullWidth height={400} position={"relative"} style={{
         pointerEvents: "none",
-        opacity: 0.4
+        opacity: 0.4,
+        transform: "translateY(-200px)",
       }}>
         <Animates.BgClouds cloudsImageUrl={[
           cloudBg1,

@@ -16,7 +16,7 @@ export const Contact = observer(() => {
 
   return (
     <Flex fullWidth mt={2} column center>
-      <Flex fullWidth height={1200} position={"relative"}>
+      <Flex fullWidth height={1000} position={"relative"}>
         {tabletSizeDown ? <Flex fullSize alignItems={"flex-end"}>
           <img src={reflectBg} alt="water reflect background" style={{
             width: "100%",
@@ -31,7 +31,7 @@ export const Contact = observer(() => {
           </Flex>
         </FireWorkMask>}
         <Flex position={"absolute"} fullSize zIndex={Layers.layer11} center>
-          <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column justifyContent={"flex-end"} pb={100}>
+          <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} column justifyContent={"flex-end"} pb={200}>
             <Flex fullSize position={"relative"}>
               <Flex fullWidth position={"absolute"} px={2} column>
                 <Flex fullWidth column

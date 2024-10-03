@@ -232,7 +232,7 @@ const Content = observer(() => {
                 whiteSpace={"pre-line"}
                 style={{ lineHeight: "135%" }}
               >
-                {getText("Welcome to \nmy digital humble abode")}
+                <Animates.TypeWriter delay={60000} id="well-come" content={getText("Welcome to \nmy digital humble abode")} />
               </Text>
             </Flex>
           </Animates.GrowUpAppear>
