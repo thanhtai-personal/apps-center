@@ -8,7 +8,7 @@ import skillsetPng from "@/assets/images/skillset.svg"
 import smokePng from "@/assets/images/smoke.png"
 import pageSpeedRsImg from "@/assets/images/performance-result.png"
 
-import { Animates, GAME } from "@core-ui/react-animates";
+import { Animates, GAME, Meteor } from "@core-ui/react-animates";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, LazyImage, Text, useResponsive } from "@core-ui/react-mui-core";
 import { IntersectionObserverView } from "@core-ui/react-viewframe";
@@ -149,6 +149,9 @@ export const Products = observer(() => {
               }}
             />
           </Flex>}
+          <Flex fullSize position={"absolute"} zIndex={999} >
+            <Meteor.MouseEffect id={"product-moust-effect"} style={{ width: "100%", height: "100%" }} />
+          </Flex>
         </Flex>
       </Flex>
 
