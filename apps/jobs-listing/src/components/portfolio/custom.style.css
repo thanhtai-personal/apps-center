@@ -298,3 +298,96 @@
     opacity: 0;
   }
 }
+
+.water-meteor-bg {
+  background: #000000aa;
+  overflow: hidden;
+  position: relative;
+  /* animation: sky 5s; */
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  /* -webkit-animation: sky 5s; */
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  /* -moz-animation: sky 5s; */
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+}
+
+@keyframes sky {
+  0% {
+    background: #01152699;
+  }
+  75% {
+    background: #035d6d99;
+  }
+  90% {
+    background: #6d9aaf99;
+  }
+  /* 	95% {
+		background: #fff;
+	} */
+  /* 	100% {
+		background: #011526;
+		-webkit-filter:blur(0.5em);
+	} */
+}
+ 
+@-webkit-keyframes sky {
+  0% {
+    background: #01152699;
+  }
+  75% {
+    background: #035d6d99;
+    -webkit-filter: blur(0);
+  }
+  90% {
+    background: #6d9aaf99;
+  }
+  /* 	95% {
+		background: #fff;
+	} */
+  /* 	100% {
+		background: #011526;
+		-webkit-filter:blur(0.5em);
+	} */
+}
+
+@-moz-keyframes sky {
+  0% {
+    background: #01152699;
+  }
+  75% {
+    background: #035d6d99;
+    -webkit-filter: blur(0);
+  }
+  90% {
+    background: #6d9aaf99;
+  }
+  /* 	95% {
+		background: #fff;
+	}
+	100% {
+		background: #011526;
+		-webkit-filter:blur(0.5em);
+	} */
+}
+
+.meteor-movement {
+  animation: meteor_movement 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  -webkit-animation: meteor_movement 15s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation: meteor_movement 15s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+}
+
+@keyframes meteor_movement {
+  100% {
+    right: 100%;
+    top: 80%;
+  }
+}
