@@ -25,6 +25,10 @@ import urchinGif from "@/assets/game/images/urchin.gif";
 import whaleGif from "@/assets/game/images/whale.gif";
 import subGif from "@/assets/game/images/sub.gif";
 import wall1Jpg from "@/assets/game/images/wall1.jpg";
+// import universePng from "@/assets/game/images/universe.jpg";
+import spacearoundGif from "@/assets/game/images/spacearound.gif";
+import spacecraftGif from "@/assets/game/images/spacecraft.gif";
+import meteorGif from "@/assets/game/images/meteor.gif";
 
 export const Products = observer(() => {
   const { tabletSizeDown, md1160 } = useResponsive({ md1160: 1160 });
@@ -35,6 +39,30 @@ export const Products = observer(() => {
     <Flex column fullSize position={"relative"}
       justifyContent={"flex-end"}
     >
+      <Flex fullWidth height={350} position={"relative"}
+        className="water-meteor-bg"
+        style={{
+          filter: "blur(0px)",
+          fontSize: 40,
+        }}
+      >
+        <GAME.Seabed resources={{
+          audio: {
+            ping: pingAudio,
+            shoot: shootAudio,
+            water: waterAudio
+          },
+          images: {
+            cave: cavePng,
+            sonar: sonaPng,
+            clam: "",
+            urchin: meteorGif,
+            whale: meteorGif,
+            sub: spacecraftGif,
+            wall: spacearoundGif,//universePng
+          }
+        }} />
+      </Flex>
       <Flex fullWidth>
         <Flex fullWidth centerY justifyContent={"space-between"} p={4}
           bgcolor={"#00000088"}
