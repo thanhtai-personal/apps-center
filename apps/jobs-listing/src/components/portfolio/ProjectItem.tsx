@@ -16,7 +16,7 @@ export const ProjectItem = observer(({
 }) => {
   const globalStyles = useGlobalStyles();
   const styles = useStyles();
-  const { tabletSizeDown, mdDown } = useResponsive();
+  const { tabletSizeDown } = useResponsive();
 
   useEffect(() => {
     AOS.init();
@@ -29,7 +29,7 @@ export const ProjectItem = observer(({
       data-aos-duration="800"
     >
       <Flex fullSize column
-        p={3}
+        p={tabletSizeDown ? 1 : 3}
         bgcolor={"#000000bb"}
         boxShadow={"0 2px 5px rgb(55, 120, 251,0.3)"}
         borderRadius={"16px"}
@@ -39,13 +39,13 @@ export const ProjectItem = observer(({
           backdropFilter: "blur(4px)"
         }}
       >
-        <Flex px={4} fullWidth center>
+        <Flex px={tabletSizeDown ? 0 : 4} fullWidth center>
           <Flex
             data-aos={index % 2 === 0 ? "flip-right" : "flip-left"}
             data-aos-anchor-placement="top-center"
             data-aos-duration="400"
           >
-            {data.iframe ? data.iframe(mdDown) :
+            {data.iframe ? data.iframe(tabletSizeDown) :
               <LazyImage src={data.image} alt={data.name} style={{ height: "250px" }}
                 imgStyle={{ height: "250px" }} />
             }
@@ -79,7 +79,7 @@ const useStyles = makeStyles((_theme: AppTheme) =>
       transitionDuration: "0.25s",
       "&:hover": {
         transitionDuration: "0.25s",
-        transform: "scaleX(1.01)"
+        transform: "scaleX(1.05)"
       }
     }
   }))
