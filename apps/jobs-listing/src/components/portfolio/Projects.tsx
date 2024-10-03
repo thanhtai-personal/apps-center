@@ -189,9 +189,14 @@ const projects = [
   {
     id: 9,
     name: "TankVN (Battle city)",
-    iframe: <Flex maxWidth={"100%"} overflow={"hidden"}>
-      <iframe width="560" height="250" src="https://www.youtube.com/embed/LwJa69CBARk?si=ucWNqCT_9KFzBGZ9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </Flex>,
+    iframe: (mdDown) => <iframe width={mdDown ? "320" : "560"} height="250"
+      src="https://www.youtube.com/embed/LwJa69CBARk?si=ucWNqCT_9KFzBGZ9"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>,
     description: "TankVN is a nostalgic yet innovative project inspired by the classic Battle City game. With a fresh user interface and exciting new features, TankVN brings the beloved retro gaming experience into the modern era.\n\nTankVN is developed by a small team with me and 1 other utilizing microsoft XNA 4.0, and AI technique for enemy objects in game (find the shortest way to go and kill player). At its core, TankVN retains the essence of Battle City, where players navigate a maze-like battlefield, strategically maneuvering their tanks to eliminate enemy forces and defend their base. However, TankVN goes beyond mere homage by introducing captivating new elements, including visually stunning graphics and challenging boss battles.",
   }
 ]

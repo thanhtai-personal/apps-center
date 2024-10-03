@@ -16,7 +16,7 @@ export const ProjectItem = observer(({
 }) => {
   const globalStyles = useGlobalStyles();
   const styles = useStyles();
-  const { tabletSizeDown } = useResponsive();
+  const { tabletSizeDown, mdDown } = useResponsive();
 
   useEffect(() => {
     AOS.init();
@@ -45,7 +45,7 @@ export const ProjectItem = observer(({
             data-aos-anchor-placement="top-center"
             data-aos-duration="400"
           >
-            {data.iframe ? data.iframe :
+            {data.iframe ? data.iframe(mdDown) :
               <LazyImage src={data.image} alt={data.name} style={{ height: "250px" }}
                 imgStyle={{ height: "250px" }} />
             }
