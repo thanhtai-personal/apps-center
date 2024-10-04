@@ -43,6 +43,9 @@ export const Contact = observer(() => {
                     backdropFilter: "blur(2px)",
                     WebkitBackdropFilter: "blur(2px)"
                   }}
+                  data-aos={"fade-up"}
+                  data-aos-anchor-placement="top-center"
+                  data-aos-duration="400"
                 >
                   <Flex fullWidth column center={tabletSizeDown}
                     justifyContent={tabletSizeDown ? "center" : "space-between"}
