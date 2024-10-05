@@ -42,9 +42,7 @@ export const Introduce = observer(() => {
               data-aos="fade-up"
               data-aos-anchor-placement="center-center"
               style={{
-                boxShadow: `
-                  0 2px 5px rgb(55, 120, 251,0.3)
-                `
+                boxShadow: "0 0 20px rgba(255, 105, 180, 0.5)"
               }}
             >
               <Flex fullWidth center>

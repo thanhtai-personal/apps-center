@@ -1,6 +1,6 @@
 import { useGlobalStyles } from "@/styles/globalStyle";
-import { AOS } from "@core-ui/react-animates";
-import { observer } from "@core-ui/react-mobx-state";
+import { AnimateCard, AOS } from "@core-ui/react-animates";
+import { observer, useLocalStore } from "@core-ui/react-mobx-state";
 import { AppTheme, Flex, LazyImage, Text, useResponsive } from "@core-ui/react-mui-core";
 import { makeStyles, createStyles } from "@core-ui/react-mui-core/style"
 import { useEffect } from "react";
@@ -17,6 +17,9 @@ export const ProjectItem = observer(({
   const globalStyles = useGlobalStyles();
   const styles = useStyles();
   const { tabletSizeDown } = useResponsive();
+  const state = useLocalStore(() => ({
+    hovered: false,
+  }))
 
   useEffect(() => {
     AOS.init();
@@ -27,48 +30,57 @@ export const ProjectItem = observer(({
       data-aos={index % 2 === 0 ? "zoom-in-right" : "zoom-in-left"}
       data-aos-anchor-placement="top-center"
       data-aos-duration="800"
+      onMouseEnter={() => state.hovered = true}
+      onMouseLeave={() => state.hovered = false}
+      onClick={() => state.hovered = !state.hovered}
     >
-      <Flex fullSize column
-        p={tabletSizeDown ? 1 : 3}
-        bgcolor={"#000000bb"}
-        boxShadow={"0 2px 5px rgb(55, 120, 251,0.3)"}
-        borderRadius={"16px"}
-        overflow={"hidden"}
-        className={styles.hoverCard}
-        style={{
-          backdropFilter: "blur(4px)"
-        }}
-      >
-        <Flex px={tabletSizeDown ? 0 : 4} fullWidth center>
-          <Flex
-            data-aos={index % 2 === 0 ? "flip-right" : "flip-left"}
-            data-aos-anchor-placement="top-center"
-            data-aos-duration="400"
-          >
-            {data.iframe ? data.iframe(tabletSizeDown) :
-              <LazyImage src={data.image} alt={data.name} style={{ height: "250px" }}
-                imgStyle={{ height: "250px" }} />
-            }
+      <AnimateCard.BorderWrap active={state.hovered}>
+        <Flex fullSize column
+          borderRadius={"16px"}
+          overflow={"hidden"}
+          bgcolor={"#fff"}
+          style={{
+            boxShadow: "0 0 20px rgba(255, 105, 180, 0.5)"
+          }}
+        >
+          <Flex fullSize column
+            p={tabletSizeDown ? 1 : 3}
+            style={{
+              boxShadow: `inset 0 -50px 150px -25px #435dba,
+                            0 8px 16px rgba(0, 0, 0, 0.4)`
+            }}>
+            <Flex px={tabletSizeDown ? 0 : 4} fullWidth center>
+              <Flex
+                data-aos={index % 2 === 0 ? "flip-right" : "flip-left"}
+                data-aos-anchor-placement="top-center"
+                data-aos-duration="400"
+              >
+                {data.iframe ? data.iframe(tabletSizeDown) :
+                  <LazyImage src={data.image} alt={data.name} style={{ height: "250px" }}
+                    imgStyle={{ height: "250px" }} />
+                }
+              </Flex>
+            </Flex>
+
+            <Flex center mt={4}>
+              <Text color={"#000"} className={tabletSizeDown ? globalStyles.textOrbiBold24
+                : globalStyles.textOrbiBold32}>{getText(data.name)}</Text>
+            </Flex>
+            <Flex fullWidth mt={4} height={"100%"}>
+              <Text
+                color={"#0000DD"}
+                textAlign={"left"}
+                className={tabletSizeDown ? globalStyles.textKanit16
+                  : globalStyles.textKanit18}
+                whiteSpace={"pre-line"}
+                style={{
+                  lineHeight: "125%"
+                }}>{getText(data.description)}
+              </Text>
+            </Flex>
           </Flex>
         </Flex>
-
-        <Flex center mt={4}>
-          <Text className={tabletSizeDown ? globalStyles.textOrbiBold24
-            : globalStyles.textOrbiBold32}>{getText(data.name)}</Text>
-        </Flex>
-        <Flex fullWidth mt={4}>
-          <Text
-            color={"#FFFFDD"}
-            textAlign={"left"}
-            className={tabletSizeDown ? globalStyles.textKanit16
-              : globalStyles.textKanit18}
-            whiteSpace={"pre-line"}
-            style={{
-              lineHeight: "125%"
-            }}>{getText(data.description)}
-          </Text>
-        </Flex>
-      </Flex>
+      </AnimateCard.BorderWrap>
     </Flex>
   )
 })
