@@ -11,12 +11,6 @@
       "cache": false,
       "persistent": true
     },
-    "server:novels": {
-      "dependsOn": ["^server:dev:novels"],
-      "cache": false,
-      "persistent": true
-    },
-    
     "migration:run": {
       "dependsOn": ["^migration:run"],
       "cache": false
@@ -26,11 +20,28 @@
       "cache": false
     },
     
-    "client:novels": {
-      "dependsOn": ["^dev:novels"],
+    "novels:client": {
+      "dependsOn": ["^novels:client"],
       "cache": false,
       "persistent": true
     },
+    "novels:server": {
+      "dependsOn": ["^novels:server"],
+      "cache": false,
+      "persistent": true
+    },
+    "novels:client:build": {
+      "dependsOn": ["^novels:client:build"],
+      "cache": false,
+      "persistent": true
+    },
+    "novels:server:build": {
+      "dependsOn": ["^novels:server:build"],
+      "cache": false,
+      "persistent": true
+    },
+    
+
     "dev": {
       "dependsOn": ["^dev"],
       "cache": false,

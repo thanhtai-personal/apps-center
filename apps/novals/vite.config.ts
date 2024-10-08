@@ -17,6 +17,9 @@ export default defineConfig(({ command }) => {
       svgr(),
       basicSsl({})
     ],
+    server: {
+      port: 5174,
+    },
     build: {
       outDir: "dist",
       chunkSizeWarningLimit: 10240,
