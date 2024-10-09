@@ -1,11 +1,11 @@
 import { CategoryEntity, JobEntity } from "@/entities";
+import { NEST_COMMON } from "@core-api/nest-core";
 import { InjectRepository, Repository } from '@core-api/nest-typeorm-postgres';
-import { Injectable } from '@nestjs/common';
 // import { Cron, CronExpression } from '@nestjs/schedule';
 import * as cheerio from 'cheerio';
 
 
-@Injectable()
+@NEST_COMMON.Injectable()
 export class AnyDayCrawlerService {
   private isCrawling: boolean;
 

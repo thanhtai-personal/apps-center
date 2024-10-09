@@ -1,18 +1,22 @@
-import { Module } from '@nestjs/common';
-import { CategoryEntity, JobEntity, UserEntity } from '@/entities';
+import { CategoryEntity, JobEntity } from '@/entities';
 import { TypeOrmModule } from '@core-api/nest-typeorm-postgres';
 import { CrawlerController } from "@/controllers/crawler/crawler.controller";
-import { ScheduleModule } from "@nestjs/schedule";
 import { AnyDayCrawlerService } from "@/services/anyDayCrawler/anyDayCrawler.service";
+import { ModuleRefInterceptor, NEST_COMMON, NEST_CORE, NEST_SCHEDULE } from "@core-api/nest-core";
 
-@Module({
+@NEST_COMMON.Module({
   imports: [
     TypeOrmModule.forFeature([
-      UserEntity, CategoryEntity, JobEntity
+      CategoryEntity, JobEntity
     ]),
-    ScheduleModule.forRoot(),
+    NEST_SCHEDULE.ScheduleModule.forRoot(),
   ],
-  providers: [AnyDayCrawlerService],
+  providers: [AnyDayCrawlerService,
+    {
+      provide: NEST_CORE.APP_INTERCEPTOR,
+      useClass: ModuleRefInterceptor,
+    },
+  ],
   controllers: [CrawlerController],
   exports: [AnyDayCrawlerService],
 })

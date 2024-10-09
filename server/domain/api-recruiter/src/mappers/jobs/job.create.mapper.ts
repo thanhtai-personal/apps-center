@@ -1,8 +1,3 @@
-import { JobEntity } from "@/entities"
+import { JobCreateDTOToEntityMapper as CoreJobCreateDTOToEntityMapper } from "@core-modules/jobs"
 
-export class JobCreateDTOToEntityMapper {
-  public static map(source: any, options?: any): JobEntity {
-    const rsSource = source as JobEntity;
-    return rsSource as JobEntity
-  }
-}
+export class JobCreateDTOToEntityMapper extends CoreJobCreateDTOToEntityMapper {}

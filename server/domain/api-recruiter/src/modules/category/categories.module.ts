@@ -1,19 +1,17 @@
 import { CategoriesController } from '@/controllers/category/categories.controller';
 import { CategoryEntity } from '@/entities/category.entity';
-import { ModuleRefInterceptor } from '@/exceptions';
 import { CategoriesService } from '@/services/categories/categories.service';
+import { ModuleRefInterceptor, NEST_COMMON, NEST_CORE } from "@core-api/nest-core";
 import { TypeOrmModule } from '@core-api/nest-typeorm-postgres';
-import { Module } from '@nestjs/common';
-import { APP_INTERCEPTOR } from '@nestjs/core';
 
-@Module({
+@NEST_COMMON.Module({
   imports: [
     TypeOrmModule.forFeature([CategoryEntity])
   ],
   providers: [
     CategoriesService,
     {
-      provide: APP_INTERCEPTOR,
+      provide: NEST_CORE.APP_INTERCEPTOR,
       useClass: ModuleRefInterceptor,
     },
   ],

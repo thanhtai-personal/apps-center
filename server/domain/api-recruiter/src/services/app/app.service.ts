@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { NEST_COMMON } from "@core-api/nest-core";
 
-@Injectable()
+@NEST_COMMON.Injectable()
 export class AppService {
   getHello(): string {
     return 'Hello World!';

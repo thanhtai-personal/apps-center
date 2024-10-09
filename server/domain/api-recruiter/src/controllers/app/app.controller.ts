@@ -1,12 +1,11 @@
-import { Controller, Get } from '@nestjs/common';
 import { AppService } from '@/services/app/app.service';
-import { CatchExceptions } from '@/decorators';
+import { NEST_COMMON } from "@core-api/nest-core";
 
-@Controller()
+@NEST_COMMON.Controller()
 export class AppController {
   constructor(private readonly appService: AppService) { }
 
-  @Get()
+  @NEST_COMMON.Get()
   getHello(): string {
     return this.appService.getHello();
   }

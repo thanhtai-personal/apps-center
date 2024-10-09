@@ -1,16 +1,14 @@
-import { Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
 import { AppController } from '@/controllers/app/app.controller';
 import { AppService } from '@/services/app/app.service';
 import { allModule } from '..';
 import { DataSource } from '@core-api/nest-typeorm-postgres';
-import { AppExceptionsFilter } from '@/decorators/exceptions/AppExceptionsFilter';
+import { AppExceptionsFilter, NEST_COMMON, NEST_CORE } from "@core-api/nest-core";
 
-@Module({
+@NEST_COMMON.Module({
   imports: allModule,
   controllers: [AppController],
   providers: [AppService, {
-    provide: APP_FILTER,
+    provide: NEST_CORE.APP_FILTER,
     useClass: AppExceptionsFilter,
   }],
 })

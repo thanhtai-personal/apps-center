@@ -1,9 +1,3 @@
-import { CategoryEntity } from "@/entities"
-import { ICategoryCreation } from "@core-ui/jobs-listing-types"
+import { CategoryCreateDTOToEntityMapper as CoreCategoryCreateDTOToEntityMapper } from "@core-modules/categories"
 
-export class CategoryCreateDTOToEntityMapper {
-  public static map(source: ICategoryCreation, options?: any): CategoryEntity {
-    const rsSource = source as CategoryEntity;
-    return rsSource as CategoryEntity
-  }
-}
+export class CategoryCreateDTOToEntityMapper extends CoreCategoryCreateDTOToEntityMapper {}

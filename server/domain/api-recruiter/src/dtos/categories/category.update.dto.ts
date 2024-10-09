@@ -1,14 +1,3 @@
-import { ICategoryUpdating } from '@core-ui/jobs-listing-types';
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { UpdateCategoryDto as CoreUpdateCategoryDto } from "@core-modules/categories"
 
-export class UpdateCategoryDto implements ICategoryUpdating {
-  @IsNotEmpty()
-  @IsNumber()
-  id!: number;
-  
-  name?: string;
-  description?: string;
-  image?: string;
-  icon?: string;
-  parentCategoryId?: number;
-}
+export class UpdateCategoryDto extends CoreUpdateCategoryDto {}

@@ -1,7 +1,6 @@
 import { ConnectionOptions } from '@core-api/nest-typeorm-postgres';
 import * as entities from "@/entities"
 import * as migrations from "@/migrations"
-// import * as subscribers from "@/subscribers"
 import { DatabaseConfig } from "@/config";
 import { DataSource } from "@core-api/nest-typeorm-postgres";
 

@@ -1,9 +1,3 @@
-import { ICategoryCreation } from "@core-ui/jobs-listing-types"
+import { CreateCategoryDto as CoreCreateCategoryDto } from "@core-modules/categories"
 
-export class CreateCategoryDto implements ICategoryCreation {
-  name?: string;
-  description?: string;
-  image?: string;
-  icon?: string;
-  parentCategoryId?: number;
-}
+export class CreateCategoryDto extends CoreCreateCategoryDto {}

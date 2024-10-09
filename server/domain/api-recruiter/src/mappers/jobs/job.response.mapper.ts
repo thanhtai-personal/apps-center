@@ -1,11 +1,4 @@
-import { JobEntity } from "@/entities"
+import { JobEntityToJobResponse as CoreJobEntityToJobResponse } from "@core-modules/jobs"
 
-export class JobEntityToJobResponse {
-  public static map(source: JobEntity, options?: any): any {
-    return source
-  }
+export class JobEntityToJobResponse extends CoreJobEntityToJobResponse {}
 
-  public static maps(sources: JobEntity[], options?: any): any[] {
-    return sources.map((item) => JobEntityToJobResponse.map(item))
-  }
-}

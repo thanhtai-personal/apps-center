@@ -1,8 +1,10 @@
 
 
-import {  Body, Controller, Get, HttpException, HttpStatus, Post, Res } from '@nestjs/common';
 import { AnyDayCrawlerService } from '@/services/anyDayCrawler/anyDayCrawler.service';
+import { NEST_COMMON } from "@core-api/nest-core";
 import { Response } from "express"
+
+const {  Body, Controller, Get, HttpException, HttpStatus, Post, Res } = NEST_COMMON
 
 @Controller("/crawler")
 export class CrawlerController {
