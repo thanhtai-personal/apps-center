@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": false,
   "main": "./dist/index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build": "tsc && tsc-alias",
     "docs": "typedoc --out docs --entryPoints src",
@@ -24,6 +24,7 @@
   "dependencies": {
     "class-validator": "^0.14.1",
     "typedoc": "^0.25.11",
-    "@core-ui/common-types": "workspace:*"
+    "@core-ui/common-types": "workspace:*",
+    "@core-api/nest-typeorm-postgres": "workspace:*"
   }
 }

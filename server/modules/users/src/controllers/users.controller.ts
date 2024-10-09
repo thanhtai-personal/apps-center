@@ -12,7 +12,7 @@ const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Que
 
 @Controller("/users")
 export class UsersController {
-  constructor(private readonly userService: UsersService) { }
+  constructor(protected readonly userService: UsersService) { }
 
   @Get("/:userId")
   async getOne(

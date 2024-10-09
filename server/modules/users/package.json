@@ -5,7 +5,7 @@
   "files": [
     "dist"
   ],
-  "type": "module",
+  "type": "commonjs",
   "license": "MIT",
   "scripts": {
     "build": "tsc --build",
@@ -54,6 +54,9 @@
     "@core-api/nest-core": "workspace:^",
     "@core-api/nest-typeorm-postgres": "workspace:^",
     "@core-modules/core": "workspace:^",
-    "@core-ui/common-types": "workspace:^"
+    "@core-ui/common-types": "workspace:^",
+    "@core-modules/users": "workspace:^",
+    "@core-modules/roles": "workspace:^",
+    "@core-modules/permissions": "workspace:^"
   }
 }

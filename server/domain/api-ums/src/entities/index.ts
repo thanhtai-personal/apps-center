@@ -1,3 +1,2 @@
-export * from "./Permission.js";
-export * from "./Role.js";
-export * from "./User.js";
+export * from "./user.entity"
+export * from "./role.entity"

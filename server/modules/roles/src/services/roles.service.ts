@@ -15,7 +15,7 @@ const { HttpException, HttpStatus, Injectable, NotFoundException } = NEST_COMMON
 export class RolesService extends BaseService {
   constructor(
     @InjectRepository(RoleEntity)
-    private rolesRepository: Repository<RoleEntity>,
+    protected rolesRepository: Repository<RoleEntity>,
   ) {
     super();
   }

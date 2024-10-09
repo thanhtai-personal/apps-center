@@ -1,9 +1,9 @@
 import { Column, Entity } from "@core-api/nest-typeorm-postgres";
 import { IUser } from "../interfaces";
-import { Thing } from "@core-modules/core"
+import { ThingEntity } from "@core-modules/core"
 
 @Entity('users')
-export class UserEntity extends Thing implements IUser {
+export class UserEntity extends ThingEntity implements IUser {
   @Column({ name: "username", type: 'varchar', nullable: true })
   username?: string;
 

@@ -1,17 +1,12 @@
 {
-  "extends": "@core-config/tsconfig/dist/base.json",
+  "extends": "@core-config/tsconfig/dist/server.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "~/dtos": ["src/dtos/index.js"],
-      "~/entities": ["src/entities/index.js"],
-      "~/exceptions": ["src/exceptions/index.js"],
-      "~/interfaces": ["src/interfaces/index.js"],
-      "~/services": ["src/services/index.js"]
+      "@/*": ["src/*"]
     },
-    "allowJs": true
+    "outDir": "./dist"
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
