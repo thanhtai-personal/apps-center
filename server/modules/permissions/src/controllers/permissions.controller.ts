@@ -3,10 +3,9 @@ import { Response } from "express"
 import { NEST_COMMON } from "@core-api/nest-core";
 import { PermissionsService } from "../services/permissions.service";
 import { UpdatePermissionDto } from "../dtos";
-import { INonPagingResponse, ISearchQuery } from "@core-ui/common-types";
+import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IPermissionFilter } from "../interfaces/IPermissionFilter";
 import { IPermissionResponse } from "../interfaces";
-import { IPagingResponse } from "@core-ui/common-types/dist/interfaces";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete } = NEST_COMMON;
 

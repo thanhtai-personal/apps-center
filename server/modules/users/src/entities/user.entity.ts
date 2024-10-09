@@ -22,7 +22,7 @@ export class UserEntity extends ThingEntity implements IUser {
   @Column({ name: "last_name", type: 'varchar', nullable: true })
   lastName?: string;
 
-  @Column({ name: "last_name", type: 'varchar', nullable: true })
+  @Column({ name: "full_name", type: 'varchar', nullable: true })
   fullName?: string;
 
   @Column({ name: "avatar", type: 'varchar', nullable: true })

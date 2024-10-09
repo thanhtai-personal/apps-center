@@ -3,10 +3,9 @@ import { Response } from "express"
 import { NEST_COMMON } from "@core-api/nest-core";
 import { UsersService } from "../services/users.service";
 import { UpdateUserDto } from "../dtos";
-import { INonPagingResponse, ISearchQuery } from "@core-ui/common-types";
+import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IUserFilter } from "../interfaces/IUserFilter";
 import { IUserResponse } from "../interfaces";
-import { IPagingResponse } from "@core-ui/common-types/dist/interfaces";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete } = NEST_COMMON;
 
