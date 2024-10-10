@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
 import { TypeOrmModule, DataSource } from '@core-api/nest-typeorm-postgres';
 import { dbConnectOptions } from './dbConnectOptions';
+import { NEST_COMMON } from "@core-api/nest-core";
 
-@Module({
+@NEST_COMMON.Module({
   imports: [
     TypeOrmModule.forRoot(dbConnectOptions),
   ],

@@ -1,5 +1,5 @@
 import { CommentEntity } from "@/entities"
-import { ICommentResponse } from "@core-ui/novals-types"
+import { ICommentResponse } from "@core-ui/novels-types"
 
 export class CommentEntityToCommentResponse {
   public static map(source: CommentEntity, options?: any): ICommentResponse {

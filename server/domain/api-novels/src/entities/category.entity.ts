@@ -1,21 +1,9 @@
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany } from "@core-api/nest-typeorm-postgres";
-import { ICategory } from "@core-ui/novals-types";
-import { BaseEntity } from "./base.entity";
-import { NovalEntity } from "./noval.entity";
+import { Entity, ManyToOne, OneToMany } from "@core-api/nest-typeorm-postgres";
+import { CategoryEntity as CoreCategoryEntity } from "@core-modules/categories"
+import { NovelEntity } from "./novel.entity";
 
 @Entity('categories')
-export class CategoryEntity extends BaseEntity implements ICategory {
-  @Column({ name: "name", type: 'varchar', nullable: true })
-  name?: string;
-
-  @Column({ name: "description", type: 'varchar', nullable: true })
-  description?: string;
-
-  @Column({ name: "image", type: 'varchar', nullable: true })
-  image?: string;
-
-  @Column({ name: "icon", type: 'varchar', nullable: true })
-  icon?: string;
+export class CategoryEntity extends CoreCategoryEntity {
 
   @ManyToOne(() => CategoryEntity, (cate) => cate.categories, { cascade: false })
   category?: CategoryEntity;
@@ -23,7 +11,6 @@ export class CategoryEntity extends BaseEntity implements ICategory {
   @OneToMany(() => CategoryEntity, (cate) => cate.category, { cascade: true })
   categories?: CategoryEntity[];
   
-  @OneToMany(() => NovalEntity, (noval) => noval.categoryData, { eager: false, cascade: false })
-  novalsData?: NovalEntity[];
-
+  @OneToMany(() => NovelEntity, (novel) => novel.categoryData, { eager: false, cascade: false })
+  novelsData?: NovelEntity[];
 }

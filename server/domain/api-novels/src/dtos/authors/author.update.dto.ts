@@ -1,13 +1,4 @@
-import { IAuthorUpdating } from '@core-ui/novals-types';
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IAuthorCreation } from "@core-ui/novels-types"
+import { UpdateAuthorDto as CoreUpdateAuthorDto } from "@core-modules/authors"
 
-export class UpdateAuthorDto implements IAuthorUpdating {
-  @IsNotEmpty()
-  @IsNumber()
-  id!: number;
-  
-  name?: string;
-  description?: string;
-  avatar?: string;
-  userId?: number;
-}
+export class UpdateAuthorDto extends CoreUpdateAuthorDto implements IAuthorCreation {}

@@ -1,14 +1,4 @@
-import { ICategoryUpdating } from '@core-ui/novals-types';
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { ICategoryCreation } from "@core-ui/novels-types"
+import { UpdateCategoryDto as CoreUpdateCategoryDto } from "@core-modules/categories"
 
-export class UpdateCategoryDto implements ICategoryUpdating {
-  @IsNotEmpty()
-  @IsNumber()
-  id!: number;
-  
-  name?: string;
-  description?: string;
-  image?: string;
-  icon?: string;
-  parentCategoryId?: number;
-}
+export class UpdateCategoryDto extends CoreUpdateCategoryDto implements ICategoryCreation {}

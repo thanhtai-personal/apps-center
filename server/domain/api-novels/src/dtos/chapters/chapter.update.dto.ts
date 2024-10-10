@@ -1,20 +1,4 @@
-import { IChapterUpdating } from '@core-ui/novals-types';
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IChapterUpdating } from "@core-ui/novels-types"
+import { UpdateChapterDto as CoreUpdateChapterDto } from "@core-modules/chapters"
 
-export class UpdateChapterDto implements IChapterUpdating {
-  @IsNotEmpty()
-  @IsNumber()
-  id!: number;
-  
-  name?: string;
-  shortDescription?: string;
-  fullDescription?: string;
-  shortContent?: string;
-  content?: string;
-  htmlContent?: string;
-  referrence?: string;
-  thumb?: string;
-  view?: number;
-  chapterIndex?: number;
-  novalId?: number;
-}
+export class UpdateChapterDto extends CoreUpdateChapterDto implements IChapterUpdating {}

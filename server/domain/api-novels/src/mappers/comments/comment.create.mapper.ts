@@ -1,5 +1,5 @@
 import { CommentEntity } from "@/entities"
-import { ICommentCreation } from "@core-ui/novals-types"
+import { ICommentCreation } from "@core-ui/novels-types"
 
 export class CommentCreateDTOToEntityMapper {
   public static map(source: ICommentCreation, options?: any): CommentEntity {

@@ -1,5 +1,5 @@
 import { AuthorEntity } from "@/entities"
-import { IAuthorResponse } from "@core-ui/novals-types"
+import { IAuthorResponse } from "@core-ui/novels-types"
 
 export class AuthorEntityToAuthorResponse {
   public static map(source: AuthorEntity, options?: any): IAuthorResponse {

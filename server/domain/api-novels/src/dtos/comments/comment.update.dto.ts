@@ -1,17 +1,4 @@
-import { ICommentUpdating } from '@core-ui/novals-types';
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { ICommentUpdating } from "@core-ui/novels-types"
+import { UpdateCommentDto as CoreUpdateCommentDto } from "@core-modules/comments"
 
-export class UpdateCommentDto implements ICommentUpdating {
-  @IsNotEmpty()
-  @IsNumber()
-  id!: number;
-  
-  username?: string;
-  email?: string;
-  avatar?: string;
-  userId?: number;
-  novalId?: number;
-  chapterId?: number;
-  content?: string;
-  htmlContent?: string;
-}
+export class UpdateCommentDto extends CoreUpdateCommentDto implements ICommentUpdating {}

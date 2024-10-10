@@ -1,19 +1,17 @@
 import { CommentsController } from '@/controllers/comment/comments.controller';
 import { CommentEntity } from '@/entities/comment.entity';
-import { ModuleRefInterceptor } from '@/exceptions';
 import { CommentsService } from '@/services/comments/comments.service';
 import { TypeOrmModule } from '@core-api/nest-typeorm-postgres';
-import { Module } from '@nestjs/common';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ModuleRefInterceptor, NEST_COMMON, NEST_CORE } from "@core-api/nest-core";
 
-@Module({
+@NEST_COMMON.Module({
   imports: [
     TypeOrmModule.forFeature([CommentEntity])
   ],
   providers: [
     CommentsService,
     {
-      provide: APP_INTERCEPTOR,
+      provide: NEST_CORE.APP_INTERCEPTOR,
       useClass: ModuleRefInterceptor,
     },
   ],

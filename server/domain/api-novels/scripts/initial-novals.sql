@@ -2,7 +2,7 @@
 \c postgres
 
 -- Drop the target database if it exists
-DROP DATABASE IF EXISTS novals;
+DROP DATABASE IF EXISTS novels;
 
 -- Create the new database
-CREATE DATABASE novals;
+CREATE DATABASE novels;

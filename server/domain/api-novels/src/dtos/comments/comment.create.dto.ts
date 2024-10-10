@@ -1,12 +1,4 @@
-import { ICommentCreation } from "@core-ui/novals-types"
+import { ICommentCreation } from "@core-ui/novels-types"
+import { CreateCommentDto as CoreCreateCommentDto } from "@core-modules/comments"
 
-export class CreateCommentDto implements ICommentCreation {
-  username?: string;
-  email?: string;
-  avatar?: string;
-  userId?: number;
-  novalId?: number;
-  chapterId?: number;
-  content?: string;
-  htmlContent?: string;
-}
+export class CreateCommentDto extends CoreCreateCommentDto implements ICommentCreation {}

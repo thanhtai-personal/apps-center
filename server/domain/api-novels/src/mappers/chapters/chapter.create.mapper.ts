@@ -1,5 +1,5 @@
 import { ChapterEntity } from "@/entities"
-import { IChapterCreation } from "@core-ui/novals-types"
+import { IChapterCreation } from "@core-ui/novels-types"
 
 export class ChapterCreateDTOToEntityMapper {
   public static map(source: IChapterCreation, options?: any): ChapterEntity {

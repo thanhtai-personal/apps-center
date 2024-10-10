@@ -1,5 +1,5 @@
 import { ChapterEntity } from "@/entities"
-import { IChapterResponse } from "@core-ui/novals-types"
+import { IChapterResponse } from "@core-ui/novels-types"
 
 export class ChapterEntityToChapterResponse {
   public static map(source: ChapterEntity, options?: any): IChapterResponse {

@@ -42,6 +42,7 @@
     "@core-api/nest-core": "workspace:^",
     "@core-modules/users": "workspace:^",
     "@core-modules/roles": "workspace:^",
+    "@core-ui/jobs-listing-types": "workspace:^",
     "@orbs-network/ton-access": "^2.3.3",
     "@ton/core": "^0.56.3",
     "@ton/ton": "^14.0.0",

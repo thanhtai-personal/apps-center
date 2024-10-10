@@ -1,17 +1,15 @@
 
 
-import {  Body, Controller, Get, HttpException, HttpStatus, Param, Post, Res, UseGuards } from '@nestjs/common';
 import { TTVCrawlerService } from '@/services/ttvCrawler/ttvCrawler.service';
-// import { AnyDayCrawlerService } from '@/services/anyDayCrawler/anyDayCrawler.service';
+import { NEST_COMMON } from "@core-api/nest-core";
 import { Response } from "express"
-// import { AuthGuard } from '@/guards/auth.guard';
+
+const {  Body, Controller, Get, HttpException, HttpStatus, Param, Post, Res, UseGuards } = NEST_COMMON
 
 @Controller("/crawler")
-// @UseGuards(AuthGuard)
 export class CrawlerController {
   constructor(
     private readonly ttvCrawlerService: TTVCrawlerService,
-    // private readonly anyDayCrawlerService: AnyDayCrawlerService,
   ) { }
 
   @Get("/tangthuvien")

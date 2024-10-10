@@ -1,15 +1,4 @@
-import { IChapterCreation } from "@core-ui/novals-types"
+import { IChapterCreation } from "@core-ui/novels-types"
+import { CreateChapterDto as CoreCreateChapterDto } from "@core-modules/chapters"
 
-export class CreateChapterDto implements IChapterCreation {
-  name?: string;
-  shortDescription?: string;
-  fullDescription?: string;
-  chapterIndex?: number;
-  shortContent?: string;
-  content?: string;
-  htmlContent?: string;
-  referrence?: string;
-  thumb?: string;
-  view?: number;
-  novalId?: number;
-}
+export class CreateChapterDto extends CoreCreateChapterDto implements IChapterCreation {}

@@ -8,6 +8,7 @@ export * as NEST_EVENT_EMITTER from "@nestjs/event-emitter";
 export * as NEST_JWT from "@nestjs/jwt";
 export * as NEST_SCHEDULE from "@nestjs/schedule";
 export * as NEST_SWAGGER from "@nestjs/swagger";
+export * as NEST_TESTING from "@nestjs/testing"
 
 export * from "./manager"
 export * from "./exceptions"

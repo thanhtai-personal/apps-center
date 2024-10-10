@@ -1,17 +1,17 @@
 version: '3.3'
 services:
-  novals_db:
+  novels_db:
     image: postgres:16.0
     environment:
-      POSTGRES_USER: novals
+      POSTGRES_USER: novels
       POSTGRES_PASSWORD: Aaaa@1111
     ports:
       - 25433:5432
     volumes:
-      - ./scripts/initial-novals.sql:/docker-entrypoint-initdb.d/initial-novals.sql
+      - ./scripts/initial-novels.sql:/docker-entrypoint-initdb.d/initial-novels.sql
 
     networks:
-      - novals
+      - novels
 networks:
-  novals:
+  novels:
     driver: bridge

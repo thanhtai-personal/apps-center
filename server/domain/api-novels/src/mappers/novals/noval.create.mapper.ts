@@ -1,9 +1,9 @@
-import { NovalEntity } from "@/entities"
-import { INovalCreation } from "@core-ui/novals-types"
+import { NovelEntity } from "@/entities"
+import { INovelCreation } from "@core-ui/novels-types"
 
-export class NovalCreateDTOToEntityMapper {
-  public static map(source: INovalCreation, options?: any): NovalEntity {
-    const rsSource = source as NovalEntity;
-    return rsSource as NovalEntity
+export class NovelCreateDTOToEntityMapper {
+  public static map(source: INovelCreation, options?: any): NovelEntity {
+    const rsSource = source as NovelEntity;
+    return rsSource as NovelEntity
   }
 }

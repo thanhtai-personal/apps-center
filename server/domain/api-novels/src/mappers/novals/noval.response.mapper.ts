@@ -1,12 +1,12 @@
-import { NovalEntity } from "@/entities"
-import { INovalResponse } from "@core-ui/novals-types"
+import { NovelEntity } from "@/entities"
+import { INovelResponse } from "@core-ui/novels-types"
 
-export class NovalEntityToNovalResponse {
-  public static map(source: NovalEntity, options?: any): INovalResponse {
+export class NovelEntityToNovelResponse {
+  public static map(source: NovelEntity, options?: any): INovelResponse {
     return source
   }
 
-  public static maps(sources: NovalEntity[], options?: any): INovalResponse[] {
-    return sources.map((item) => NovalEntityToNovalResponse.map(item))
+  public static maps(sources: NovelEntity[], options?: any): INovelResponse[] {
+    return sources.map((item) => NovelEntityToNovelResponse.map(item))
   }
 }

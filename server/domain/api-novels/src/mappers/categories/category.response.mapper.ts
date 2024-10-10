@@ -1,5 +1,5 @@
 import { CategoryEntity } from "@/entities"
-import { ICategoryResponse } from "@core-ui/novals-types"
+import { ICategoryResponse } from "@core-ui/novels-types"
 
 export class CategoryEntityToCategoryResponse {
   public static map(source: CategoryEntity, options?: any): ICategoryResponse {

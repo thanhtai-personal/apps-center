@@ -1,8 +1,5 @@
 import { DbModule } from "@/database";
-import { UsersModule } from "./user/users.module";
-import { AuthModule } from "./auth/auth.module";
-import { RolesModule } from "./role/roles.module";
-import { NovalsModule } from "./noval/novals.module";
+import { NovelsModule } from "./novel/novels.module";
 import { AuthorsModule } from "./author/authors.module";
 import { CommentsModule } from "./comment/comments.module";
 import { ChaptersModule } from "./chapter/chapters.module";
@@ -11,10 +8,7 @@ import { CrawlerModule } from "./crawler/crawler.module";
 
 export const allModule = [
   DbModule,
-  AuthModule,
-  UsersModule,
-  RolesModule,
-  NovalsModule,
+  NovelsModule,
   AuthorsModule,
   CommentsModule,
   ChaptersModule,

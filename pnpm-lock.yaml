@@ -164,7 +164,7 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0(rollup@4.17.2)(typescript@5.4.5)(vite@5.2.11(@types/node@20.14.10)(sugarss@4.0.1(postcss@8.4.38))(terser@5.31.1))
 
-  apps/novals:
+  apps/novels:
     dependencies:
       '@core-ui/react-animates':
         specifier: workspace:^
@@ -181,9 +181,9 @@ importers:
       '@core-ui/react-mui-core':
         specifier: workspace:^
         version: link:../../client/ui/mui/react-core-mui
-      '@core-ui/react-novals':
+      '@core-ui/react-novels':
         specifier: workspace:^
-        version: link:../../client/builtIn/react-novals
+        version: link:../../client/builtIn/react-novels
       '@core-ui/react-viewframe':
         specifier: workspace:^
         version: link:../../client/ui/react-viewFrames
@@ -370,7 +370,7 @@ importers:
         specifier: ^5.2.0
         version: 5.2.11(@types/node@20.14.10)(sugarss@4.0.1(postcss@8.4.38))(terser@5.31.1)
 
-  client/builtIn/react-novals:
+  client/builtIn/react-novels:
     dependencies:
       '@core-ui/react-mobx-state':
         specifier: workspace:^
@@ -403,12 +403,12 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../../../shared/config-typedoc
-      '@core-sdk/novals':
+      '@core-sdk/novels':
         specifier: workspace:^
-        version: link:../../sdk/novals
-      '@core-ui/novals-types':
+        version: link:../../sdk/novels
+      '@core-ui/novels-types':
         specifier: workspace:^
-        version: link:../../../shared/novals-types
+        version: link:../../../shared/novels-types
       '@core-utils/utils-helpers':
         specifier: workspace:^
         version: link:../../../shared/helpers
@@ -655,7 +655,7 @@ importers:
         specifier: ^5.3.2
         version: 5.4.5
 
-  client/sdk/novals:
+  client/sdk/novels:
     dependencies:
       '@core-sdk/core':
         specifier: workspace:^
@@ -663,9 +663,9 @@ importers:
       '@core-ui/api-client':
         specifier: workspace:^
         version: link:../../lib/api-client
-      '@core-ui/novals-types':
+      '@core-ui/novels-types':
         specifier: workspace:^
-        version: link:../../../shared/novals-types
+        version: link:../../../shared/novels-types
       '@core-utils/utils-helpers':
         specifier: workspace:^
         version: link:../../../shared/helpers
@@ -1374,6 +1374,9 @@ importers:
 
   server/domain/api-novels:
     dependencies:
+      '@core-api/nest-core':
+        specifier: workspace:^
+        version: link:../../nestjs/core
       '@core-api/nest-typeorm-postgres':
         specifier: workspace:^
         version: link:../../nestjs/typeorm-postgres
@@ -1389,33 +1392,24 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../../../shared/config-typedoc
-      '@core-ui/novals-types':
+      '@core-modules/authors':
         specifier: workspace:^
-        version: link:../../../shared/novals-types
-      '@nestjs/cache-manager':
-        specifier: ^2.2.2
-        version: 2.2.2(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.10(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.10)(reflect-metadata@0.2.2)(rxjs@7.8.1))(cache-manager@5.7.6)(rxjs@7.8.1)
-      '@nestjs/common':
-        specifier: ^10.0.0
-        version: 10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      '@nestjs/core':
-        specifier: ^10.0.0
-        version: 10.3.10(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.10)(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      '@nestjs/event-emitter':
-        specifier: ^2.0.4
-        version: 2.0.4(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.10(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.10)(reflect-metadata@0.2.2)(rxjs@7.8.1))
-      '@nestjs/jwt':
-        specifier: ^10.2.0
-        version: 10.2.0(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))
-      '@nestjs/platform-express':
-        specifier: ^10.3.10
-        version: 10.3.10(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.10)
-      '@nestjs/schedule':
-        specifier: ^4.1.0
-        version: 4.1.1(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.10(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.10)(reflect-metadata@0.2.2)(rxjs@7.8.1))
-      '@nestjs/swagger':
-        specifier: ^7.4.0
-        version: 7.4.2(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.10(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.10)(reflect-metadata@0.2.2)(rxjs@7.8.1))(class-validator@0.14.1)(reflect-metadata@0.2.2)
+        version: link:../../modules/authors
+      '@core-modules/categories':
+        specifier: workspace:^
+        version: link:../../modules/categories
+      '@core-modules/chapters':
+        specifier: workspace:^
+        version: link:../../modules/chapters
+      '@core-modules/comments':
+        specifier: workspace:^
+        version: link:../../modules/comments
+      '@core-modules/novels':
+        specifier: workspace:^
+        version: link:../../modules/novels
+      '@core-ui/novels-types':
+        specifier: workspace:^
+        version: link:../../../shared/novels-types
       '@orbs-network/ton-access':
         specifier: ^2.3.3
         version: 2.3.3
@@ -1434,9 +1428,6 @@ importers:
       cheerio:
         specifier: ^1.0.0
         version: 1.0.0
-      class-validator:
-        specifier: ^0.14.1
-        version: 0.14.1
       crypto-js:
         specifier: ^4.2.0
         version: 4.2.0
@@ -1751,6 +1742,9 @@ importers:
       '@core-modules/users':
         specifier: workspace:^
         version: link:../../modules/users
+      '@core-ui/jobs-listing-types':
+        specifier: workspace:^
+        version: link:../../../shared/jobs-listing-types
       '@orbs-network/ton-access':
         specifier: ^2.3.3
         version: 2.3.3
@@ -1893,18 +1887,9 @@ importers:
       '@core-api/nest-typeorm-postgres':
         specifier: workspace:^
         version: link:../../nestjs/typeorm-postgres
-      '@core-modules/authors':
-        specifier: workspace:^
-        version: 'link:'
       '@core-modules/core':
         specifier: workspace:^
         version: link:../core
-      '@core-modules/permissions':
-        specifier: workspace:^
-        version: link:../permissions
-      '@core-modules/roles':
-        specifier: workspace:^
-        version: link:../roles
       '@core-ui/common-types':
         specifier: workspace:^
         version: link:../../../shared/common-types
@@ -2002,18 +1987,9 @@ importers:
       '@core-api/nest-typeorm-postgres':
         specifier: workspace:^
         version: link:../../nestjs/typeorm-postgres
-      '@core-modules/categories':
-        specifier: workspace:^
-        version: 'link:'
       '@core-modules/core':
         specifier: workspace:^
         version: link:../core
-      '@core-modules/permissions':
-        specifier: workspace:^
-        version: link:../permissions
-      '@core-modules/roles':
-        specifier: workspace:^
-        version: link:../roles
       '@core-ui/common-types':
         specifier: workspace:^
         version: link:../../../shared/common-types
@@ -2348,15 +2324,6 @@ importers:
       '@core-modules/core':
         specifier: workspace:^
         version: link:../core
-      '@core-modules/jobs':
-        specifier: workspace:^
-        version: 'link:'
-      '@core-modules/permissions':
-        specifier: workspace:^
-        version: link:../permissions
-      '@core-modules/roles':
-        specifier: workspace:^
-        version: link:../roles
       '@core-ui/common-types':
         specifier: workspace:^
         version: link:../../../shared/common-types
@@ -2457,15 +2424,6 @@ importers:
       '@core-modules/core':
         specifier: workspace:^
         version: link:../core
-      '@core-modules/novels':
-        specifier: workspace:^
-        version: 'link:'
-      '@core-modules/permissions':
-        specifier: workspace:^
-        version: link:../permissions
-      '@core-modules/roles':
-        specifier: workspace:^
-        version: link:../roles
       '@core-ui/common-types':
         specifier: workspace:^
         version: link:../../../shared/common-types
@@ -2766,15 +2724,6 @@ importers:
       '@core-modules/core':
         specifier: workspace:^
         version: link:../core
-      '@core-modules/permissions':
-        specifier: workspace:^
-        version: link:../permissions
-      '@core-modules/roles':
-        specifier: workspace:^
-        version: link:../roles
-      '@core-modules/users':
-        specifier: workspace:^
-        version: 'link:'
       '@core-ui/common-types':
         specifier: workspace:^
         version: link:../../../shared/common-types
@@ -3425,7 +3374,7 @@ importers:
         specifier: ^5.2.2
         version: 5.4.5
 
-  shared/novals-types:
+  shared/novels-types:
     devDependencies:
       '@core-config/eslint-plugin':
         specifier: workspace:^

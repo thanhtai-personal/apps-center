@@ -1,9 +1,10 @@
-import { AuthorEntity, CategoryEntity, ChapterEntity, CommentEntity, NovalEntity, UserEntity } from '@/entities';
+import { AuthorEntity, CategoryEntity, ChapterEntity, CommentEntity, NovelEntity } from '@/entities';
+import { NEST_COMMON } from "@core-api/nest-core";
 import { InjectRepository, Repository } from '@core-api/nest-typeorm-postgres';
-import { Injectable } from '@nestjs/common';
-// import { Cron, CronExpression } from '@nestjs/schedule';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+
+const { Injectable } = NEST_COMMON
 
 const waitMs = (msDuration: number) => {
   return new Promise((resolve, _reject) => {
@@ -18,10 +19,8 @@ export class TTVCrawlerService {
   private isCrawling: boolean;
 
   constructor(
-    @InjectRepository(UserEntity)
-    private userRepo: Repository<UserEntity>,
-    @InjectRepository(NovalEntity)
-    private novalRepo: Repository<NovalEntity>,
+    @InjectRepository(NovelEntity)
+    private novelRepo: Repository<NovelEntity>,
     @InjectRepository(ChapterEntity)
     private chapterRepo: Repository<ChapterEntity>,
     @InjectRepository(AuthorEntity)
@@ -57,30 +56,30 @@ export class TTVCrawlerService {
       }
       if (!isUpdateOnly) await this.ttvClassifies();
 
-      let listNovals = await this.novalRepo.find({ relations: ['authorData', 'categoryData'], where: { deletedAt: undefined } });
+      let listNovels = await this.novelRepo.find({ relations: ['authorData', 'categoryData'], where: { deletedAt: undefined } });
       if (!isUpdateOnly) {
-        listNovals = (await this.crawlTTVNovals()).listNovals
+        listNovels = (await this.crawlTTVNovels()).listNovels
       }
 
-      console.log("====START CRAWL NOVALS DETAIL");
-      for (const noval of listNovals) {
-        if (!noval || !noval.referrence) continue;
-        if (noval.isFull) {
-          console.log("Noval is full, skip crawl chapters: ", noval.name);
+      console.log("====START CRAWL NOVELS DETAIL");
+      for (const novel of listNovels) {
+        if (!novel || !novel.referrence) continue;
+        if (novel.isFull) {
+          console.log("Novel is full, skip crawl chapters: ", novel.name);
           continue;
         }
-        console.log("Current noval is: ", noval.name);
-        const pageHtmlString: string = (await axios.get(noval.referrence!)).data;
-        console.log("URL crawling", noval.referrence);
-        const $noval = cheerio.load(pageHtmlString);
-        const novalId = $noval('meta[name="book_detail"]')?.attr('content')?.trim();
-        console.log("novalId", novalId)
-        if (!novalId) {
-          console.log("Noval id not found")
+        console.log("Current novel is: ", novel.name);
+        const pageHtmlString: string = (await axios.get(novel.referrence!)).data;
+        console.log("URL crawling", novel.referrence);
+        const $novel = cheerio.load(pageHtmlString);
+        const novelId = $novel('meta[name="book_detail"]')?.attr('content')?.trim();
+        console.log("novelId", novelId)
+        if (!novelId) {
+          console.log("Novel id not found")
           continue;
         }
-        noval.originalNovalId = novalId;
-        await this.crawlTTVNovalData($noval, noval)
+        novel.originalNovelId = novelId;
+        await this.crawlTTVNovelData($novel, novel)
       }
 
       console.log("SUCCESS - FINISHED CRAWLS DATA")
@@ -135,26 +134,26 @@ export class TTVCrawlerService {
     }
   }
 
-  async crawlTTVNovals(): Promise<any> {
-    const novalsPage = 'https://truyen.tangthuvien.vn/tong-hop?ctg=1'
-    console.log("URL crawling", novalsPage);
+  async crawlTTVNovels(): Promise<any> {
+    const novelsPage = 'https://truyen.tangthuvien.vn/tong-hop?ctg=1'
+    console.log("URL crawling", novelsPage);
     try {
-      const novalsHtmlString: string = (await axios.get(novalsPage)).data;
-      const $novals = cheerio.load(novalsHtmlString);
-      const pageNumberElements: any = $novals("ul.pagination li a");
+      const novelsHtmlString: string = (await axios.get(novelsPage)).data;
+      const $novels = cheerio.load(novelsHtmlString);
+      const pageNumberElements: any = $novels("ul.pagination li a");
       const totalPages = parseInt(pageNumberElements[pageNumberElements.length - 2]?.children?.[0]?.data, 10);
       const pageUrls = [];
-      const listNovals = [];
+      const listNovels = [];
       for (let page = 1; page <= totalPages; page++) {
-        pageUrls.push(`${novalsPage}&page=${page}`);
+        pageUrls.push(`${novelsPage}&page=${page}`);
       }
 
       for (const pageUrl of pageUrls) {
         console.log("URL crawling", pageUrl);
         const pageHtmlString: string = (await axios.get(pageUrl)).data;
         const $page = cheerio.load(pageHtmlString);
-        const novalElements: any = $page("div.book-img-text ul li");
-        for (const element of novalElements) {
+        const novelElements: any = $page("div.book-img-text ul li");
+        for (const element of novelElements) {
           const name = $page(element).find('h4 a').text().trim();
           const author = $page(element).find('p.author a.name').text().trim();
           const category = ($page(element).find('p.author a')?.[1] as any)?.children?.[0]?.data;
@@ -162,7 +161,7 @@ export class TTVCrawlerService {
           // const updatedTime = $page(element).find('p.update span').text().trim();
           const thumb = ($page(element).find('img.lazy')?.[0] as any)?.attribs?.src;
           const url = ($page(element).find('h4 a')?.[0] as any)?.attribs?.href;
-          console.log("===HANDLE Noval", name);
+          console.log("===HANDLE Novel", name);
 
           let existingAuthor = await this.authorRepo.findOne({ where: { name: author } });
           if (!existingAuthor) {
@@ -180,10 +179,10 @@ export class TTVCrawlerService {
             existingCategory = await this.categoryRepo.save(existingCategory);
           }
 
-          let existingNoval = await this.novalRepo.findOne({ where: { name }, relations: ['authorData', 'categoryData', 'chaptersData'] });
-          if (!existingNoval) {
+          let existingNovel = await this.novelRepo.findOne({ where: { name }, relations: ['authorData', 'categoryData', 'chaptersData'] });
+          if (!existingNovel) {
             try {
-              existingNoval = await this.novalRepo.create({
+              existingNovel = await this.novelRepo.create({
                 name,
                 shortDescription: intro,
                 thumb,
@@ -191,53 +190,53 @@ export class TTVCrawlerService {
                 authorData: existingAuthor,
                 categoryData: existingCategory,
               });
-              existingNoval = await this.novalRepo.save(existingNoval);
-              console.log("Saved Noval", name)
+              existingNovel = await this.novelRepo.save(existingNovel);
+              console.log("Saved Novel", name)
             } catch (error: any) {
               console.log("FAILED", error.message)
             }
           } else {
-            console.log("IGNORE - Exist noval name")
+            console.log("IGNORE - Exist novel name")
           }
-          listNovals.push(existingNoval);
+          listNovels.push(existingNovel);
         }
       }
-      console.log("SUCCESS - FINISHED CRAWLS NOVALS DATA");
+      console.log("SUCCESS - FINISHED CRAWLS NOVELS DATA");
       return {
-        listNovals
+        listNovels
       }
     } catch (error: any) {
-      console.log("====Get list novals error =====", error.message);
+      console.log("====Get list novels error =====", error.message);
     }
   }
 
-  async crawlTTVNovalData($noval: cheerio.Root, noval: NovalEntity) {
+  async crawlTTVNovelData($novel: cheerio.Root, novel: NovelEntity) {
     try {
-      const fullIntro = $noval('.book-info-detail .book-intro p').text().trim();
-      noval.fullDescription = fullIntro;
-      const bookIntro = $noval('.book-info');
-      const contentElements: any = $noval(bookIntro).find('p em span');
-      noval.view = Number(contentElements?.[0]?.children?.[0]?.data);
-      noval.like = Number(contentElements?.[1]?.children?.[0]?.data)
-      noval.follow = Number(contentElements?.[2]?.children?.[0]?.data)
-      noval.suggest = Number(contentElements?.[3].children?.[0]?.data)
-      await this.novalRepo.save(noval);
-      await this.crawlTTVChapters(noval);
+      const fullIntro = $novel('.book-info-detail .book-intro p').text().trim();
+      novel.fullDescription = fullIntro;
+      const bookIntro = $novel('.book-info');
+      const contentElements: any = $novel(bookIntro).find('p em span');
+      novel.view = Number(contentElements?.[0]?.children?.[0]?.data);
+      novel.like = Number(contentElements?.[1]?.children?.[0]?.data)
+      novel.follow = Number(contentElements?.[2]?.children?.[0]?.data)
+      novel.suggest = Number(contentElements?.[3].children?.[0]?.data)
+      await this.novelRepo.save(novel);
+      await this.crawlTTVChapters(novel);
     } catch (error: any) {
-      console.log("save noval id error", error.message)
+      console.log("save novel id error", error.message)
     }
   }
 
-  async crawlTTVChapters(noval: NovalEntity) {
-    const chapterUrl = `https://truyen.tangthuvien.vn/doc-truyen/page/${noval.originalNovalId}?page=0&limit=99999999999&web=1`
+  async crawlTTVChapters(novel: NovelEntity) {
+    const chapterUrl = `https://truyen.tangthuvien.vn/doc-truyen/page/${novel.originalNovelId}?page=0&limit=99999999999&web=1`
     console.log("URL crawling", chapterUrl);
     const chaptersHtmlString: string = (await axios.get(chapterUrl)).data;
     const $chapters = cheerio.load(chaptersHtmlString);
     const listChapterElements = $chapters("ul li");
     let currentIndex = 0;
-    const countChapters = await this.chapterRepo.count({ where: { novalData: { id: noval.id } } });
+    const countChapters = await this.chapterRepo.count({ where: { novelData: { id: novel.id } } });
     if (countChapters > 0) {
-      console.log("Chapters already exist for Noval", noval.name);
+      console.log("Chapters already exist for Novel", novel.name);
       if (listChapterElements.length <= countChapters) {
         console.log("All chapters existed");
         return;
@@ -245,7 +244,6 @@ export class TTVCrawlerService {
         currentIndex = countChapters;
       }
     }
-    console.log("currentIndex", currentIndex)
     for (const chapterElementIdx in listChapterElements) {
       if (Number(chapterElementIdx) < currentIndex) continue;
       try {
@@ -264,7 +262,7 @@ export class TTVCrawlerService {
           console.log("Existed chapter: ", chapterUrl2)
           continue;
         }
-        await this.crawlTTVChapterData($chapters, chapterElement, noval, chapterElementIdx, chapterUrl2)
+        await this.crawlTTVChapterData($chapters, chapterElement, novel, chapterElementIdx, chapterUrl2)
       } catch (error: any) {
         console.log("save chapter error", chapterElementIdx, error.message);
       }
@@ -272,7 +270,7 @@ export class TTVCrawlerService {
   }
 
   async crawlTTVChapterData($chapters: cheerio.Root, chapterElement: cheerio.Element | undefined
-    , noval: NovalEntity, chapterElementIdx: string | number, chapterUrl2: string,
+    , novel: NovelEntity, chapterElementIdx: string | number, chapterUrl2: string,
   ) {
     const chapterName = $chapters(chapterElement).find("a").attr("title");
     let existingChapter = await this.chapterRepo.findOne({
@@ -280,13 +278,13 @@ export class TTVCrawlerService {
         referrence: chapterUrl2,
         name: chapterName
       },
-      relations: ['novalData', 'comments']
+      relations: ['novelData', 'comments']
     })
     if (!existingChapter) {
       existingChapter = await this.chapterRepo.create({
         referrence: chapterUrl2,
         name: chapterName,
-        novalData: noval,
+        novelData: novel,
         chapterIndex: Number(chapterElementIdx) + 1,
       })
     }
@@ -299,8 +297,8 @@ export class TTVCrawlerService {
       const chapterContent = $chapterContent("div.box-chap").text().trim();
       existingChapter.content = chapterContent;
     }
-    if (!existingChapter.novalData?.id) {
-      console.log("Failed. Update chapter without noval id", chapterUrl2);
+    if (!existingChapter.novelData?.id) {
+      console.log("Failed. Update chapter without novel id", chapterUrl2);
       return;
     }
     await this.chapterRepo.save(existingChapter);

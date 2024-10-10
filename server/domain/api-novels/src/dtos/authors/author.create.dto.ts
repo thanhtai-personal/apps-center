@@ -1,8 +1,4 @@
-import { IAuthorCreation } from "@core-ui/novals-types"
+import { IAuthorCreation } from "@core-ui/novels-types"
+import { CreateAuthorDto as CoreCreateAuthorDto } from "@core-modules/authors"
 
-export class CreateAuthorDto implements IAuthorCreation {
-  name?: string;
-  description?: string;
-  avatar?: string;
-  userId?: number;
-}
+export class CreateAuthorDto extends CoreCreateAuthorDto implements IAuthorCreation {}

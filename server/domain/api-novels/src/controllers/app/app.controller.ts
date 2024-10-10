@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
 import { AppService } from '@/services/app/app.service';
-import { CatchExceptions } from '@/decorators';
+import { NEST_COMMON } from "@core-api/nest-core";
+
+const { Controller, Get } = NEST_COMMON
 
 @Controller()
 export class AppController {

@@ -1,9 +1,4 @@
-import { ICategoryCreation } from "@core-ui/novals-types"
+import { ICategoryCreation } from "@core-ui/novels-types"
+import { CreateCategoryDto as CoreCreateCategoryDto } from "@core-modules/categories"
 
-export class CreateCategoryDto implements ICategoryCreation {
-  name?: string;
-  description?: string;
-  image?: string;
-  icon?: string;
-  parentCategoryId?: number;
-}
+export class CreateCategoryDto extends CoreCreateCategoryDto implements ICategoryCreation {}
