@@ -9,4 +9,7 @@ export class RoleEntity extends ThingEntity implements IRole {
 
   @Column({ name: "description", type: 'varchar', nullable: true })
   description?: string;
+
+  @Column({ name: "type", type: 'varchar', nullable: true, default: "user" })
+  type?: string;
 }

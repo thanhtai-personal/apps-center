@@ -1,8 +1,10 @@
 import { AuthGuard } from '@/guards/auth.guard';
 import { AuthService } from '@/services/auth/auth.service';
-import { Response } from 'express';
+import { Response, Request } from 'express';
 import { NEST_COMMON } from "@core-api/nest-core";
 import { CatchExceptions } from "@/decorators";
+import { UserCreationDto } from "@/dtos";
+
 
 const {
   Body,
@@ -10,7 +12,6 @@ const {
   Get,
   HttpStatus,
   Post,
-  Query,
   Req,
   Res,
   UseGuards,
@@ -27,52 +28,72 @@ export class AuthController {
     @Req() req: Request & { authUser: any },
     @Res() res: Response,
   ) {
-    // try {
-    //   const authUser = req.authUser;
-    //   if (!authUser) {
-    //     return res.status(HttpStatus.UNAUTHORIZED).send("No authorization");
-    //   }
-    //   const authData = await this.authService.getUser(authUser.user?.id)
-    //   return res.status(HttpStatus.OK).send(authData);
-    // } catch (error) {
-    //   return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
-    // }
+    try {
+      const token = req.headers["Authorization"]?.[0] || "";
+      if (!token) {
+        return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({ message: "no token" });
+      }
+      const authData = await this.authService.getAuthentication(token)
+      return res.status(HttpStatus.OK).send(authData);
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    }
+  }
+  
+  @Post('refresh-token')
+  async refreshToken(
+    @Req() req: Request,
+    @Res() res: Response
+  ) {
+    try {
+      const refreshToken = req.cookies['refreshToken'];
+      if (!refreshToken) {
+        throw res.status(HttpStatus.BAD_REQUEST).send({ message: 'Refresh token not found'});
+      }
+      const newToken = await this.authService.refreshToken(refreshToken);
+      return res.status(HttpStatus.OK).send(newToken);
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    }
   }
 
   @Post('login')
   async signIn(
+    @Body()
+    body: any,
     @Res() res: Response
   ) {
     try {
-      return res.status(HttpStatus.OK).send(true);
+      const data = await this.authService.login(body);
+      return res.status(HttpStatus.OK).send(data);
     } catch (error) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
     }
   }
 
-  @Get()
-  async authenticate(
-    @Query()
-    query: any,
-    @Res()
-    res: Response
-  ) {
-    try {
-      return res.status(HttpStatus.OK).send(true);
-    } catch (error) {
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
-    }
-  }
-
-  @Get('profile')
-  getProfile(
+  @Post('register')
+  async register(
     @Body()
-    req: any,
-    @Res()
-    res: Response
+    body: UserCreationDto,
+    @Res() res: Response
   ) {
     try {
-      return res.status(HttpStatus.OK).send(req.user);
+      await this.authService.register(body);
+      return res.status(HttpStatus.OK).send({});
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    }
+  }
+
+  @Post('reset-password')
+  async resetPassword(
+    // @Body()
+    // body: ResetPasswordDto,
+    @Res() res: Response
+  ) {
+    try {
+      // await this.authService.resetPassword(body);
+      return res.status(HttpStatus.OK).send({});
     } catch (error) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
     }

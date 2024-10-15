@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "novels:client": "vite --host",
-    "novels:client:build": "vite build",
+    "dev": "vite --host",
+    "build": "vite build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"src/**/*.tsx\"",
     "lint:check": "tsc",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
