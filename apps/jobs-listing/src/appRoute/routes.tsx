@@ -107,7 +107,6 @@ export const router: IRouter[] = [
     element: makeSuspense(SavedJobs),
     path: '/jobs/saved'
   },
-  
   {
     element: makeSuspense(DevTechLanding),
     path: '/dev-tech-landing'
