@@ -8,4 +8,9 @@ export const EnvironmentConfig = {
   CORS_ORIGIN: process.env.CORS_ORIGIN,
   CORS_CREDENTIALS: process.env.CORS_CREDENTIALS === 'true',
   API_PREFIX: process.env.API_PREFIX ?? '/api',
+  USE_TCP_EVENTS_BUS: process.env.USE_TCP_EVENTS_BUS,
+  TCP_PORT: process.env.TCP_PORT,
+  USE_REDIS_EVENTS_BUS: process.env.USE_REDIS_EVENTS_BUS,
+  REDIS_HOST: process.env.REDIS_HOST,
+  REDIS_PORT: process.env.REDIS_PORT,
 };

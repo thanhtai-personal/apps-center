@@ -9,6 +9,7 @@ export * as NEST_JWT from "@nestjs/jwt";
 export * as NEST_SCHEDULE from "@nestjs/schedule";
 export * as NEST_SWAGGER from "@nestjs/swagger";
 export * as NEST_TESTING from "@nestjs/testing"
+export * as NEST_MICRO_SERVICE from "@nestjs/microservices";
 
 export * from "./manager"
 export * from "./exceptions"

@@ -2,13 +2,26 @@ import { AppController } from '@/controllers/app/app.controller';
 import { AppService } from '@/services/app/app.service';
 import { allModule } from '..';
 import { DataSource } from '@core-api/nest-typeorm-postgres';
-import { AppExceptionsFilter, NEST_COMMON, NEST_CORE } from "@core-api/nest-core";
+import { AppExceptionsFilter, NEST_COMMON, NEST_CORE, NEST_MICRO_SERVICE } from "@core-api/nest-core";
+import { EnvironmentConfig } from "@/config";
 
 const { Module } = NEST_COMMON
 const { APP_FILTER } = NEST_CORE
 
 @Module({
-  imports: allModule,
+  imports: [
+    NEST_MICRO_SERVICE.ClientsModule.register([
+      {
+        name: 'UMS_SERVICE',
+        transport: NEST_MICRO_SERVICE.Transport.REDIS,
+        options: {
+          host: EnvironmentConfig.REDIS_HOST,
+          port: Number(EnvironmentConfig.REDIS_PORT),
+        }
+      },
+    ]),
+    ...(allModule || {})
+  ],
   controllers: [AppController],
   providers: [AppService, {
     provide: APP_FILTER,
