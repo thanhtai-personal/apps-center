@@ -2,12 +2,12 @@
 import { Response } from "express"
 import { NEST_COMMON } from "@core-api/nest-core";
 import { PermissionsService } from "../services/permissions.service";
-import { UpdatePermissionDto } from "../dtos";
+import { UpdatePermissionDto, CreatePermissionDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IPermissionFilter } from "../interfaces/IPermissionFilter";
 import { IPermissionResponse } from "../interfaces";
 
-const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete } = NEST_COMMON;
+const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
 @Controller("/permissions")
 export class PermissionsController {
@@ -52,6 +52,21 @@ export class PermissionsController {
     try {
       const data: INonPagingResponse<IPermissionResponse> = await this.permissionService.findAll(query) as INonPagingResponse<IPermissionResponse>;
       return res.status(HttpStatus.OK).send(data)
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post()
+  async createPermisison(
+    @Body()
+    createPermisisonDto: CreatePermissionDto,
+    @Res()
+    res: Response
+  ) {
+    try {
+      const permission = await this.permissionService.create(createPermisisonDto);
+      return res.status(HttpStatus.OK).send(permission);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

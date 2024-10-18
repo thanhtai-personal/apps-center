@@ -2,12 +2,12 @@
 import { Response } from "express"
 import { NEST_COMMON } from "@core-api/nest-core";
 import { RolesService } from "../services/roles.service";
-import { UpdateRoleDto } from "../dtos";
+import { CreateRoleDto, UpdateRoleDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IRoleFilter } from "../interfaces/IRoleFilter";
 import { IRoleResponse } from "../interfaces";
 
-const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete } = NEST_COMMON;
+const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
 @Controller("/roles")
 export class RolesController {
@@ -52,6 +52,21 @@ export class RolesController {
     try {
       const data: INonPagingResponse<IRoleResponse> = await this.roleService.findAll(query) as INonPagingResponse<IRoleResponse>;
       return res.status(HttpStatus.OK).send(data)
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post()
+  async createRole(
+    @Body()
+    createRoleDto: CreateRoleDto,
+    @Res()
+    res: Response
+  ) {
+    try {
+      const role = await this.roleService.create(createRoleDto);
+      return res.status(HttpStatus.OK).send(role);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -1,7 +1,7 @@
 import { AuthGuard } from '@/guards/auth.guard';
 import { AuthService } from '@/services/auth/auth.service';
 import { Response, Request } from 'express';
-import { NEST_COMMON } from "@core-api/nest-core";
+import { NEST_COMMON, NEST_MICRO_SERVICE } from "@core-api/nest-core";
 import { CatchExceptions } from "@/decorators";
 import { UserCreationDto } from "@/dtos";
 
@@ -37,6 +37,16 @@ export class AuthController {
       return res.status(HttpStatus.OK).send(authData);
     } catch (error) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    }
+  }
+  @NEST_MICRO_SERVICE.MessagePattern('get_auth')
+  async handleAuthMessage(data: any) {
+    try {
+      const result = await this.authService.getAuthentication(data.token);
+      return result;
+    } catch (error) {
+      console.error('Error processing auth message', error);
+      throw error; // Or handle the error appropriately
     }
   }
   

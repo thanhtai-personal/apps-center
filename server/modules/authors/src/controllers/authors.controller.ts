@@ -2,12 +2,12 @@
 import { Response } from "express"
 import { NEST_COMMON } from "@core-api/nest-core";
 import { AuthorsService } from "../services/authors.service";
-import { UpdateAuthorDto } from "../dtos";
+import { CreateAuthorDto, UpdateAuthorDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IAuthorFilter } from "../interfaces/IAuthorFilter";
 import { IAuthorResponse } from "../interfaces";
 
-const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete } = NEST_COMMON;
+const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
 @Controller("/authors")
 export class AuthorsController {
@@ -52,6 +52,21 @@ export class AuthorsController {
     try {
       const data: INonPagingResponse<IAuthorResponse> = await this.authorService.findAll(query) as INonPagingResponse<IAuthorResponse>;
       return res.status(HttpStatus.OK).send(data)
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post()
+  async createAuthor(
+    @Body()
+    createAuthorDto: CreateAuthorDto,
+    @Res()
+    res: Response
+  ) {
+    try {
+      const author = await this.authorService.create(createAuthorDto);
+      return res.status(HttpStatus.OK).send(author);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

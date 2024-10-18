@@ -2,12 +2,12 @@
 import { Response } from "express"
 import { NEST_COMMON } from "@core-api/nest-core";
 import { CommentsService } from "../services/comments.service";
-import { UpdateCommentDto } from "../dtos";
+import { CreateCommentDto, UpdateCommentDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { ICommentFilter } from "../interfaces/ICommentFilter";
 import { ICommentResponse } from "../interfaces";
 
-const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete } = NEST_COMMON;
+const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
 @Controller("/comments")
 export class CommentsController {
@@ -52,6 +52,21 @@ export class CommentsController {
     try {
       const data: INonPagingResponse<ICommentResponse> = await this.commentService.findAll(query) as INonPagingResponse<ICommentResponse>;
       return res.status(HttpStatus.OK).send(data)
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post()
+  async createComment(
+    @Body()
+    createCommentDto: CreateCommentDto,
+    @Res()
+    res: Response
+  ) {
+    try {
+      const comment = await this.commentService.create(createCommentDto);
+      return res.status(HttpStatus.OK).send(comment);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

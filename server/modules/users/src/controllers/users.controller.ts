@@ -2,12 +2,12 @@
 import { Response } from "express"
 import { NEST_COMMON } from "@core-api/nest-core";
 import { UsersService } from "../services/users.service";
-import { UpdateUserDto } from "../dtos";
+import { CreateUserDto, UpdateUserDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IUserFilter } from "../interfaces/IUserFilter";
 import { IUserResponse } from "../interfaces";
 
-const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete } = NEST_COMMON;
+const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
 @Controller("/users")
 export class UsersController {
@@ -52,6 +52,21 @@ export class UsersController {
     try {
       const data: INonPagingResponse<IUserResponse> = await this.userService.findAll(query) as INonPagingResponse<IUserResponse>;
       return res.status(HttpStatus.OK).send(data)
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post()
+  async createUser(
+    @Body()
+    createUserDto: CreateUserDto,
+    @Res()
+    res: Response
+  ) {
+    try {
+      const user = await this.userService.create(createUserDto);
+      return res.status(HttpStatus.OK).send(user);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

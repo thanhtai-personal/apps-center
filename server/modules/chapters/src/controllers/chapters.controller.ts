@@ -2,12 +2,12 @@
 import { Response } from "express"
 import { NEST_COMMON } from "@core-api/nest-core";
 import { ChaptersService } from "../services/chapters.service";
-import { UpdateChapterDto } from "../dtos";
+import { CreateChapterDto, UpdateChapterDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IChapterFilter } from "../interfaces/IChapterFilter";
 import { IChapterResponse } from "../interfaces";
 
-const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete } = NEST_COMMON;
+const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
 @Controller("/chapters")
 export class ChaptersController {
@@ -52,6 +52,21 @@ export class ChaptersController {
     try {
       const data: INonPagingResponse<IChapterResponse> = await this.chapterService.findAll(query) as INonPagingResponse<IChapterResponse>;
       return res.status(HttpStatus.OK).send(data)
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post()
+  async createChapter(
+    @Body()
+    createChapterDto: CreateChapterDto,
+    @Res()
+    res: Response
+  ) {
+    try {
+      const chapter = await this.chapterService.create(createChapterDto);
+      return res.status(HttpStatus.OK).send(chapter);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

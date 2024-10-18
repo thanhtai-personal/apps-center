@@ -21,8 +21,15 @@ const { JwtModule } = NEST_JWT
   ],
   controllers: [AuthController],
   providers: [
-    AuthService
+    AuthService,
+    {
+      provide: 'AUTH_SERVICE',
+      useClass: AuthService,
+    },
   ],
   exports: [AuthService]
 })
-export class AuthModule { }
+  
+export class AuthModule {
+  // Add Redis message pattern handling here if needed
+}

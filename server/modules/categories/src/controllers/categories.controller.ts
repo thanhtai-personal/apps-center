@@ -2,12 +2,12 @@
 import { Response } from "express"
 import { NEST_COMMON } from "@core-api/nest-core";
 import { CategoriesService } from "../services/categories.service";
-import { UpdateCategoryDto } from "../dtos";
+import { CreateCategoryDto, UpdateCategoryDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { ICategoryFilter } from "../interfaces/ICategoryFilter";
 import { ICategoryResponse } from "../interfaces";
 
-const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete } = NEST_COMMON;
+const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
 @Controller("/categories")
 export class CategoriesController {
@@ -52,6 +52,21 @@ export class CategoriesController {
     try {
       const data: INonPagingResponse<ICategoryResponse> = await this.categoryService.findAll(query) as INonPagingResponse<ICategoryResponse>;
       return res.status(HttpStatus.OK).send(data)
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post()
+  async createCategory(
+    @Body()
+    createCategoryDto: CreateCategoryDto,
+    @Res()
+    res: Response
+  ) {
+    try {
+      const category = await this.categoryService.create(createCategoryDto);
+      return res.status(HttpStatus.OK).send(category);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

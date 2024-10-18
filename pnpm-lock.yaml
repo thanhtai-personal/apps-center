@@ -3240,46 +3240,6 @@ importers:
         specifier: ^5.3.2
         version: 5.5.4
 
-  server/nestjs/nestjs-redis:
-    dependencies:
-      '@core-api/nest-core':
-        specifier: workspace:^
-        version: link:../core
-      ioredis:
-        specifier: ^5.4.1
-        version: 5.4.1
-    devDependencies:
-      '@core-config/eslint-plugin':
-        specifier: workspace:^
-        version: link:../../../shared/config-eslint
-      '@core-config/release':
-        specifier: workspace:^
-        version: link:../../../shared/config-release
-      '@core-config/tsconfig':
-        specifier: workspace:^
-        version: link:../../../shared/config-tsconfig
-      '@core-config/typedoc':
-        specifier: workspace:^
-        version: link:../../../shared/config-typedoc
-      '@core-utils/utils-helpers':
-        specifier: workspace:^
-        version: link:../../../shared/helpers
-      '@nestjs/common':
-        specifier: ^10.0.0
-        version: 10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
-      '@types/node':
-        specifier: ^20.14.10
-        version: 20.14.10
-      '@types/pg':
-        specifier: ^8.11.6
-        version: 8.11.6
-      tslib:
-        specifier: ^2.6.2
-        version: 2.7.0
-      typescript:
-        specifier: ^5.3.2
-        version: 5.5.4
-
   server/nestjs/typeorm-postgres:
     dependencies:
       '@nestjs/typeorm':
@@ -14597,7 +14557,8 @@ snapshots:
     dependencies:
       mute-stream: 1.0.0
 
-  '@ioredis/commands@1.2.0': {}
+  '@ioredis/commands@1.2.0':
+    optional: true
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -18459,7 +18420,8 @@ snapshots:
 
   clsx@2.1.1: {}
 
-  cluster-key-slot@1.1.2: {}
+  cluster-key-slot@1.1.2:
+    optional: true
 
   co@4.6.0: {}
 
@@ -18954,7 +18916,8 @@ snapshots:
 
   delegates@1.0.0: {}
 
-  denque@2.1.0: {}
+  denque@2.1.0:
+    optional: true
 
   depd@2.0.0: {}
 
@@ -20451,6 +20414,7 @@ snapshots:
       standard-as-callback: 2.1.0
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   ipaddr.js@1.9.1: {}
 
@@ -21305,7 +21269,8 @@ snapshots:
 
   lodash.debounce@4.0.8: {}
 
-  lodash.defaults@4.2.0: {}
+  lodash.defaults@4.2.0:
+    optional: true
 
   lodash.escaperegexp@4.1.2: {}
 
@@ -21313,7 +21278,8 @@ snapshots:
 
   lodash.includes@4.3.0: {}
 
-  lodash.isarguments@3.1.0: {}
+  lodash.isarguments@3.1.0:
+    optional: true
 
   lodash.isboolean@3.0.3: {}
 
@@ -22862,11 +22828,13 @@ snapshots:
     dependencies:
       esprima: 4.0.1
 
-  redis-errors@1.2.0: {}
+  redis-errors@1.2.0:
+    optional: true
 
   redis-parser@3.0.0:
     dependencies:
       redis-errors: 1.2.0
+    optional: true
 
   reflect-metadata@0.2.2: {}
 
@@ -23474,7 +23442,8 @@ snapshots:
     dependencies:
       escape-string-regexp: 2.0.0
 
-  standard-as-callback@2.1.0: {}
+  standard-as-callback@2.1.0:
+    optional: true
 
   static-extend@0.1.2:
     dependencies:
