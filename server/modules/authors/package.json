@@ -53,6 +53,7 @@
   "dependencies": {
     "@core-api/nest-core": "workspace:^",
     "@core-api/nest-typeorm-postgres": "workspace:^",
+    "@core-api/microservices-utils": "workspace:^",
     "@core-modules/core": "workspace:^",
     "@core-ui/common-types": "workspace:^"
   }

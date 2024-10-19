@@ -1,11 +1,12 @@
 
 import { Response } from "express"
-import { NEST_COMMON } from "@core-api/nest-core";
+import { NEST_COMMON, NEST_MICRO_SERVICE } from "@core-api/nest-core";
 import { UsersService } from "../services/users.service";
-import { CreateUserDto, UpdateUserDto } from "../dtos";
+import { UpdateUserDto, CreateUserDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IUserFilter } from "../interfaces/IUserFilter";
 import { IUserResponse } from "../interfaces";
+import { UserMessages } from "@core-api/microservices-utils"
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -29,6 +30,18 @@ export class UsersController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: UserMessages.GET_ONE_USER })
+  async handleGetOneUserMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const user = await this.userService.findOne(data.userId);
+      return user;
+    } catch (error) {
+      console.error('Error processing get one user message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Get()
   async getMany(
     @Query() query: ISearchQuery<IUserFilter>,
@@ -40,6 +53,18 @@ export class UsersController {
       return res.status(HttpStatus.OK).send(data)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: UserMessages.GET_MANY_USERS })
+  async handleGetManyUsersMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const users: IPagingResponse<IUserResponse> = await this.userService.find(data) as IPagingResponse<IUserResponse>;
+      return users;
+    } catch (error) {
+      console.error('Error processing get many users message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 
@@ -57,18 +82,42 @@ export class UsersController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: UserMessages.GET_ALL_USERS })
+  async handleGetAllUsersMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const users: IPagingResponse<IUserResponse> = await this.userService.find(data) as IPagingResponse<IUserResponse>;
+      return users;
+    } catch (error) {
+      console.error('Error processing get many users message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Post()
-  async createUser(
+  async createPermisison(
     @Body()
-    createUserDto: CreateUserDto,
+    createPermisisonDto: CreateUserDto,
     @Res()
     res: Response
   ) {
     try {
-      const user = await this.userService.create(createUserDto);
+      const user = await this.userService.create(createPermisisonDto);
       return res.status(HttpStatus.OK).send(user);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: UserMessages.CREATE_USER })
+  async handleCreateUserMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const users: IPagingResponse<IUserResponse> = await this.userService.create(data) as IPagingResponse<IUserResponse>;
+      return users;
+    } catch (error) {
+      console.error('Error processing get many users message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 
@@ -89,6 +138,18 @@ export class UsersController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: UserMessages.UPDATE_USER })
+  async handleUpdateUserMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const user = await this.userService.update(Number(data.userId), data.body);
+      return user;
+    } catch (error) {
+      console.error('Error processing get many users message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Patch("/:userId")
   async patchUpdate(
     @Param('userId')
@@ -106,6 +167,18 @@ export class UsersController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: UserMessages.PATCH_UPDATE_USER })
+  async handlePatchUpdateUserMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const user = await this.userService.patchUpdate(Number(data.userId), data.body);
+      return user;
+    } catch (error) {
+      console.error('Error processing get many users message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Delete("/:userId")
   async delete(
     @Param('userId')
@@ -118,6 +191,18 @@ export class UsersController {
       return res.status(HttpStatus.OK).send(user);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: UserMessages.DELETE_USER })
+  async handleDeleteUser(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const user = await this.userService.delete(Number(data));
+      return user;
+    } catch (error) {
+      console.error('Error processing get many users message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 

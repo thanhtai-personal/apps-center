@@ -54,6 +54,7 @@
     "@core-api/nest-core": "workspace:^",
     "@core-api/nest-typeorm-postgres": "workspace:^",
     "@core-modules/core": "workspace:^",
+    "@core-api/microservices-utils": "workspace:^",
     "@core-ui/common-types": "workspace:^"
   }
 }

@@ -1,11 +1,12 @@
 
 import { Response } from "express"
-import { NEST_COMMON } from "@core-api/nest-core";
+import { NEST_COMMON, NEST_MICRO_SERVICE } from "@core-api/nest-core";
 import { CategoriesService } from "../services/categories.service";
-import { CreateCategoryDto, UpdateCategoryDto } from "../dtos";
+import { UpdateCategoryDto, CreateCategoryDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { ICategoryFilter } from "../interfaces/ICategoryFilter";
 import { ICategoryResponse } from "../interfaces";
+import { NovelCategoryMessages } from "@core-api/microservices-utils"
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -29,6 +30,18 @@ export class CategoriesController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: NovelCategoryMessages.GET_ONE_CATEGORY })
+  async handleGetOneCategoryMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const category = await this.categoryService.findOne(data.categoryId);
+      return category;
+    } catch (error) {
+      console.error('Error processing get one category message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Get()
   async getMany(
     @Query() query: ISearchQuery<ICategoryFilter>,
@@ -40,6 +53,18 @@ export class CategoriesController {
       return res.status(HttpStatus.OK).send(data)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: NovelCategoryMessages.GET_MANY_CATEGORIES })
+  async handleGetManyCategoriesMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const categories: IPagingResponse<ICategoryResponse> = await this.categoryService.find(data) as IPagingResponse<ICategoryResponse>;
+      return categories;
+    } catch (error) {
+      console.error('Error processing get many categories message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 
@@ -57,18 +82,42 @@ export class CategoriesController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: NovelCategoryMessages.GET_ALL_CATEGORIES })
+  async handleGetAllCategoriesMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const categories: IPagingResponse<ICategoryResponse> = await this.categoryService.find(data) as IPagingResponse<ICategoryResponse>;
+      return categories;
+    } catch (error) {
+      console.error('Error processing get many categories message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Post()
-  async createCategory(
+  async createPermisison(
     @Body()
-    createCategoryDto: CreateCategoryDto,
+    createPermisisonDto: CreateCategoryDto,
     @Res()
     res: Response
   ) {
     try {
-      const category = await this.categoryService.create(createCategoryDto);
+      const category = await this.categoryService.create(createPermisisonDto);
       return res.status(HttpStatus.OK).send(category);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: NovelCategoryMessages.CREATE_CATEGORY })
+  async handleCreateCategoryMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const categories: IPagingResponse<ICategoryResponse> = await this.categoryService.create(data) as IPagingResponse<ICategoryResponse>;
+      return categories;
+    } catch (error) {
+      console.error('Error processing get many categories message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 
@@ -89,6 +138,18 @@ export class CategoriesController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: NovelCategoryMessages.UPDATE_CATEGORY })
+  async handleUpdateCategoryMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const category = await this.categoryService.update(Number(data.categoryId), data.body);
+      return category;
+    } catch (error) {
+      console.error('Error processing get many categories message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Patch("/:categoryId")
   async patchUpdate(
     @Param('categoryId')
@@ -106,6 +167,18 @@ export class CategoriesController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: NovelCategoryMessages.PATCH_UPDATE_CATEGORY })
+  async handlePatchUpdateCategoryMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const category = await this.categoryService.patchUpdate(Number(data.categoryId), data.body);
+      return category;
+    } catch (error) {
+      console.error('Error processing get many categories message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Delete("/:categoryId")
   async delete(
     @Param('categoryId')
@@ -118,6 +191,18 @@ export class CategoriesController {
       return res.status(HttpStatus.OK).send(category);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: NovelCategoryMessages.DELETE_CATEGORY })
+  async handleDeleteCategory(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const category = await this.categoryService.delete(Number(data));
+      return category;
+    } catch (error) {
+      console.error('Error processing get many categories message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 

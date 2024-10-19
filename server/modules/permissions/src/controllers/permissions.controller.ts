@@ -1,11 +1,12 @@
 
 import { Response } from "express"
-import { NEST_COMMON } from "@core-api/nest-core";
+import { NEST_COMMON, NEST_MICRO_SERVICE } from "@core-api/nest-core";
 import { PermissionsService } from "../services/permissions.service";
 import { UpdatePermissionDto, CreatePermissionDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IPermissionFilter } from "../interfaces/IPermissionFilter";
 import { IPermissionResponse } from "../interfaces";
+import { PermissionMessages } from "@core-api/microservices-utils"
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -29,6 +30,18 @@ export class PermissionsController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: PermissionMessages.GET_ONE_PERMISSION })
+  async handleGetOnePermissionMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const permission = await this.permissionService.findOne(data.permissionId);
+      return permission;
+    } catch (error) {
+      console.error('Error processing get one permission message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Get()
   async getMany(
     @Query() query: ISearchQuery<IPermissionFilter>,
@@ -40,6 +53,18 @@ export class PermissionsController {
       return res.status(HttpStatus.OK).send(data)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: PermissionMessages.GET_MANY_PERMISSIONS })
+  async handleGetManyPermissionsMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const permissions: IPagingResponse<IPermissionResponse> = await this.permissionService.find(data) as IPagingResponse<IPermissionResponse>;
+      return permissions;
+    } catch (error) {
+      console.error('Error processing get many permissions message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 
@@ -57,6 +82,18 @@ export class PermissionsController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: PermissionMessages.GET_ALL_PERMISSIONS })
+  async handleGetAllPermissionsMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const permissions: IPagingResponse<IPermissionResponse> = await this.permissionService.find(data) as IPagingResponse<IPermissionResponse>;
+      return permissions;
+    } catch (error) {
+      console.error('Error processing get many permissions message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Post()
   async createPermisison(
     @Body()
@@ -69,6 +106,18 @@ export class PermissionsController {
       return res.status(HttpStatus.OK).send(permission);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: PermissionMessages.CREATE_PERMISSION })
+  async handleCreatePermissionMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const permissions: IPagingResponse<IPermissionResponse> = await this.permissionService.create(data) as IPagingResponse<IPermissionResponse>;
+      return permissions;
+    } catch (error) {
+      console.error('Error processing get many permissions message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 
@@ -89,6 +138,18 @@ export class PermissionsController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: PermissionMessages.UPDATE_PERMISSION })
+  async handleUpdatePermissionMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const permission = await this.permissionService.update(Number(data.permissionId), data.body);
+      return permission;
+    } catch (error) {
+      console.error('Error processing get many permissions message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Patch("/:permissionId")
   async patchUpdate(
     @Param('permissionId')
@@ -106,6 +167,18 @@ export class PermissionsController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: PermissionMessages.PATCH_UPDATE_PERMISSION })
+  async handlePatchUpdatePermissionMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const permission = await this.permissionService.patchUpdate(Number(data.permissionId), data.body);
+      return permission;
+    } catch (error) {
+      console.error('Error processing get many permissions message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Delete("/:permissionId")
   async delete(
     @Param('permissionId')
@@ -118,6 +191,18 @@ export class PermissionsController {
       return res.status(HttpStatus.OK).send(permission);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: PermissionMessages.DELETE_PERMISSION })
+  async handleDeletePermission(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const permission = await this.permissionService.delete(Number(data));
+      return permission;
+    } catch (error) {
+      console.error('Error processing get many permissions message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 

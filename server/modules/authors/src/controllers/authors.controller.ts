@@ -1,11 +1,12 @@
 
 import { Response } from "express"
-import { NEST_COMMON } from "@core-api/nest-core";
+import { NEST_COMMON, NEST_MICRO_SERVICE } from "@core-api/nest-core";
 import { AuthorsService } from "../services/authors.service";
-import { CreateAuthorDto, UpdateAuthorDto } from "../dtos";
+import { UpdateAuthorDto, CreateAuthorDto } from "../dtos";
 import { INonPagingResponse, ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 import { IAuthorFilter } from "../interfaces/IAuthorFilter";
 import { IAuthorResponse } from "../interfaces";
+import { AuthorMessages } from "@core-api/microservices-utils"
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -29,6 +30,18 @@ export class AuthorsController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthorMessages.GET_ONE_AUTHOR })
+  async handleGetOneAuthorMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const author = await this.authorService.findOne(data.authorId);
+      return author;
+    } catch (error) {
+      console.error('Error processing get one author message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Get()
   async getMany(
     @Query() query: ISearchQuery<IAuthorFilter>,
@@ -40,6 +53,18 @@ export class AuthorsController {
       return res.status(HttpStatus.OK).send(data)
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthorMessages.GET_MANY_AUTHORS })
+  async handleGetManyAuthorsMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const authors: IPagingResponse<IAuthorResponse> = await this.authorService.find(data) as IPagingResponse<IAuthorResponse>;
+      return authors;
+    } catch (error) {
+      console.error('Error processing get many authors message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 
@@ -57,18 +82,42 @@ export class AuthorsController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthorMessages.GET_ALL_AUTHORS })
+  async handleGetAllAuthorsMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const authors: IPagingResponse<IAuthorResponse> = await this.authorService.find(data) as IPagingResponse<IAuthorResponse>;
+      return authors;
+    } catch (error) {
+      console.error('Error processing get many authors message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Post()
-  async createAuthor(
+  async createPermisison(
     @Body()
-    createAuthorDto: CreateAuthorDto,
+    createPermisisonDto: CreateAuthorDto,
     @Res()
     res: Response
   ) {
     try {
-      const author = await this.authorService.create(createAuthorDto);
+      const author = await this.authorService.create(createPermisisonDto);
       return res.status(HttpStatus.OK).send(author);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthorMessages.CREATE_AUTHOR })
+  async handleCreateAuthorMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const authors: IPagingResponse<IAuthorResponse> = await this.authorService.create(data) as IPagingResponse<IAuthorResponse>;
+      return authors;
+    } catch (error) {
+      console.error('Error processing get many authors message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 
@@ -89,6 +138,18 @@ export class AuthorsController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthorMessages.UPDATE_AUTHOR })
+  async handleUpdateAuthorMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const author = await this.authorService.update(Number(data.authorId), data.body);
+      return author;
+    } catch (error) {
+      console.error('Error processing get many authors message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Patch("/:authorId")
   async patchUpdate(
     @Param('authorId')
@@ -106,6 +167,18 @@ export class AuthorsController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthorMessages.PATCH_UPDATE_AUTHOR })
+  async handlePatchUpdateAuthorMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const author = await this.authorService.patchUpdate(Number(data.authorId), data.body);
+      return author;
+    } catch (error) {
+      console.error('Error processing get many authors message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Delete("/:authorId")
   async delete(
     @Param('authorId')
@@ -118,6 +191,18 @@ export class AuthorsController {
       return res.status(HttpStatus.OK).send(author);
     } catch (error: any) {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthorMessages.DELETE_AUTHOR })
+  async handleDeleteAuthor(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const author = await this.authorService.delete(Number(data));
+      return author;
+    } catch (error) {
+      console.error('Error processing get many authors message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 
