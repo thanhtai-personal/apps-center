@@ -43,6 +43,7 @@
     "@core-modules/roles": "workspace:^",
     "@core-modules/users": "workspace:^",
     "@core-ui/jobs-listing-types": "workspace:^",
+    "@core-api/microservices-utils": "workspace:^",
     "@orbs-network/ton-access": "^2.3.3",
     "@ton/core": "^0.56.3",
     "@ton/ton": "^14.0.0",

@@ -1,10 +1,11 @@
+import { NEST_COMMON } from "@core-api/nest-core";
+import { AuthController } from "@/controllers/auth/auth.controller";
+import { NEST_MICRO_SERVICE } from "@core-api/nest-core";
 import { EnvironmentConfig } from "@/config";
-import { allModule } from '..';
-import { AppExceptionsFilter, NEST_COMMON, NEST_CORE, NEST_MICRO_SERVICE } from "@core-api/nest-core";
 import { UMS_SERVICE } from "@core-api/microservices-utils";
+import { AuthService } from "@/services/auth/auth.service";
 
-const { Module } = NEST_COMMON
-const { APP_FILTER } = NEST_CORE
+const { Module } = NEST_COMMON;
 
 @Module({
   imports: [
@@ -15,16 +16,12 @@ const { APP_FILTER } = NEST_CORE
         options: {
           host: EnvironmentConfig.REDIS_HOST,
           port: Number(EnvironmentConfig.REDIS_PORT),
-        }
+        },
       },
     ]),
-    ...(allModule || {})
   ],
-  providers: [{
-    provide: APP_FILTER,
-    useClass: AppExceptionsFilter,
-  }],
+  controllers: [AuthController],
+  providers: [AuthService],
+  exports: [AuthService]
 })
-export class AppModule {
-  constructor() { }
-}
+export class AuthModule {}

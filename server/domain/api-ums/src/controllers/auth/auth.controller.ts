@@ -4,6 +4,7 @@ import { Response, Request } from 'express';
 import { NEST_COMMON, NEST_MICRO_SERVICE } from "@core-api/nest-core";
 import { CatchExceptions } from "@/decorators";
 import { UserCreationDto } from "@/dtos";
+import { AuthMessages } from "@core-api/microservices-utils";
 
 
 const {
@@ -39,8 +40,9 @@ export class AuthController {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
     }
   }
-  @NEST_MICRO_SERVICE.MessagePattern('get_auth')
-  async handleAuthMessage(data: any) {
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthMessages.GET_AUTH })
+  async handleAuthMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
     try {
       const result = await this.authService.getAuthentication(data.token);
       return result;
@@ -49,7 +51,7 @@ export class AuthController {
       throw error; // Or handle the error appropriately
     }
   }
-  
+
   @Post('refresh-token')
   async refreshToken(
     @Req() req: Request,
@@ -58,12 +60,26 @@ export class AuthController {
     try {
       const refreshToken = req.cookies['refreshToken'];
       if (!refreshToken) {
-        throw res.status(HttpStatus.BAD_REQUEST).send({ message: 'Refresh token not found'});
+        throw res.status(HttpStatus.BAD_REQUEST).send({ message: 'Refresh token not found' });
       }
       const newToken = await this.authService.refreshToken(refreshToken);
       return res.status(HttpStatus.OK).send(newToken);
     } catch (error) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    }
+  }
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthMessages.REFRESH_TOKEN })
+  async handleRefreshTokenMessage(@NEST_MICRO_SERVICE.Payload() req: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const refreshToken = req.cookies['refreshToken'];
+      if (!refreshToken) {
+        throw new Error('Refresh token not found');
+      }
+      const newToken = await this.authService.refreshToken(refreshToken);
+      return newToken;
+    } catch (error) {
+      throw error;
     }
   }
 
@@ -81,6 +97,18 @@ export class AuthController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthMessages.SIGN_IN })
+  async handleSignInMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const result = await this.authService.login(data);
+      return result;
+    } catch (error) {
+      console.error('Error processing login message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Post('register')
   async register(
     @Body()
@@ -95,6 +123,18 @@ export class AuthController {
     }
   }
 
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthMessages.REGISTER })
+  async handleRegisterMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      const result = await this.authService.register(data);
+      return result;
+    } catch (error) {
+      console.error('Error processing register message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
   @Post('reset-password')
   async resetPassword(
     // @Body()
@@ -106,6 +146,19 @@ export class AuthController {
       return res.status(HttpStatus.OK).send({});
     } catch (error) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthMessages.RESET_PASSWORD })
+  async handleResetPasswordMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    console.log("payload==================================", data)
+    console.log(`Channel: ${context.getChannel()}`);
+    try {
+      // await this.authService.resetPassword(data);
+      return true;
+    } catch (error) {
+      console.error('Error processing reset password message', error);
+      throw error; // Or handle the error appropriately
     }
   }
 }
