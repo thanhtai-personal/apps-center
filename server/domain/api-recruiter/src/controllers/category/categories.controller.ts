@@ -53,7 +53,7 @@ export class CategoriesController extends CoreCategoriesController {
   async handleCreateCategoryMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
     console.log(`Channel: ${context.getChannel()}`);
     try {
-      const categories = await this.categoryService.create(data);
+      const categories: any = await this.categoryService.create(data);
       return categories;
     } catch (error) {
       console.error('Error processing get many categories message', error);

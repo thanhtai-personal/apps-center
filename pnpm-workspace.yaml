@@ -20,7 +20,7 @@ packages:
   # all packages in subdirs of components/
   - "server/libs/*"
   - "server/domain/api-authentication"
-  - "server/domain/api-gateway"
+  - "server/domain/api-appcenter-gateway"
   - "server/domain/api-goat-tap"
   - "server/domain/api-novels"
   - "server/domain/api-recruiter"

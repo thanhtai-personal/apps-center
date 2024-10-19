@@ -44,6 +44,7 @@
     "@core-modules/chapters": "workspace:^",
     "@core-modules/novels": "workspace:^",
     "@core-api/microservices-utils": "workspace:",
+    "@core-api/appcenter-materials": "workspace:^",
     "@core-modules/categories": "workspace:^",
     "@core-api/nest-core": "workspace:^",
     "@orbs-network/ton-access": "^2.3.3",
