@@ -1,10 +1,4 @@
-export interface IAuthorFilter {
-  name?: string;
-  description?: string;
-  avatar?: string;
-  userId?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
-}
+import { IAuthor } from "./IAuthor";
+
+export interface IAuthorFilter extends Partial<IAuthor> {}
   

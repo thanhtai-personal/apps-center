@@ -89,6 +89,7 @@ export class MeteorRain {
   }
 
   loop() {
+    if (!this?.context) return;
     this.context.fillStyle = 'rgba(0,0,0,0.2)';
     this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 

@@ -1,12 +1,5 @@
-export interface ICommentUpdating {
-  id?: number;
-  username?: string;
-  email?: string;
-  avatar?: string;
-  userId?: number;
-  novelId?: number;
-  chapterId?: number;
-  content?: string;
-  htmlContent?: string;
-}
-  
+import { IComment } from "./IComment";
+
+export interface ICommentUpdating extends Omit<IComment
+  , "createdAt" | "updatedAt" | "deletedAt"
+> { }

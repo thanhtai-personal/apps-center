@@ -1,14 +1,4 @@
-export interface ICommentFilter {
-  username?: string;
-  email?: string;
-  avatar?: string;
-  userId?: number;
-  novelId?: number;
-  chapterId?: number;
-  content?: string;
-  htmlContent?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
-}
+import { IComment } from "./IComment";
+
+export interface ICommentFilter extends Partial<IComment> {}
   

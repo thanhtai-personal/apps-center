@@ -51,6 +51,7 @@ export class AuthController {
     @Res() res: Response
   ) {
     try {
+      console.log("body", body)
       const data = await this.authService.login(body);
       return res.status(HttpStatus.OK).send(data);
     } catch (error) {

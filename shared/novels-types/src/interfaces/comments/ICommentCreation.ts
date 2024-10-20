@@ -1,11 +1,7 @@
-export interface ICommentCreation {
-  username?: string;
-  email?: string;
-  avatar?: string;
-  userId?: number;
-  novelId?: number;
-  chapterId?: number;
-  content?: string;
-  htmlContent?: string;
-}
+import { IComment } from "./IComment";
+
+export interface ICommentCreation extends Omit<
+  IComment,
+  "id" | "createdAt" | "updatedAt" | "deletedAt"
+> { }
   

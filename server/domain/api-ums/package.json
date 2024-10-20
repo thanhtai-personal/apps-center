@@ -42,6 +42,7 @@
     "@core-modules/permissions": "workspace:^",
     "@core-modules/roles": "workspace:^",
     "@core-modules/users": "workspace:^",
+    "@core-ui/ums-types": "workspace:^",
     "@core-ui/jobs-listing-types": "workspace:^",
     "@core-api/microservices-utils": "workspace:^",
     "@core-api/appcenter-materials": "workspace:^",

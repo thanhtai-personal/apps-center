@@ -217,6 +217,10 @@
   fill: currentColor;
 }
 
+.input-block input {
+  background-color: white;
+}
+
 @media (max-width: 750px) {
   .login_page .modal-container {
     width: 90%;

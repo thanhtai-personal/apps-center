@@ -1,11 +1,7 @@
-export interface ICategoryCreation {
-  name?: string;
-  description?: string;
-  image?: string;
-  icon?: string;
-  parentCategoryId?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
-}
+import { ICategory } from "./ICategory";
+
+export interface ICategoryCreation extends Omit<
+  ICategory,
+  "id" | "createdAt" | "updatedAt" | "deletedAt"
+> { }
   

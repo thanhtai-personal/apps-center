@@ -151,7 +151,6 @@ export class AuthController {
 
   @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthMessages.RESET_PASSWORD })
   async handleResetPasswordMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
-    console.log("payload==================================", data)
     console.log(`Channel: ${context.getChannel()}`);
     try {
       // await this.authService.resetPassword(data);

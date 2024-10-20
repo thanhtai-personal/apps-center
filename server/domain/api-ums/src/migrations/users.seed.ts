@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import csv from 'csv-parser';
 import { waitMs } from "./waitms";
-import { IRoleCreation, IUserCreation } from "@core-ui/jobs-listing-types";
+import { IRoleCreation, IUserCreation } from "@core-ui/ums-types";
 import * as bcrypt from "bcrypt"
 import { IPermissionCreation } from "@core-modules/permissions";
 

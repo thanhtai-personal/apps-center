@@ -1,4 +1,2 @@
-export * from "./common"
-export * from "./users"
-export * from "./roles"
+export * from "./job"
 export * from "./categories"

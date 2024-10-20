@@ -1,14 +1,7 @@
-export interface IChapterCreation {
-  name?: string;
-  shortDescription?: string;
-  fullDescription?: string;
-  chapterIndex?: number;
-  shortContent?: string;
-  content?: string;
-  htmlContent?: string;
-  referrence?: string;
-  thumb?: string;
-  view?: number;
-  novelId?: number;
-}
+import { IChapter } from "./IChapter";
+
+export interface IChapterCreation extends Omit<
+  IChapter,
+  "id" | "createdAt" | "updatedAt" | "deletedAt"
+> { }
   

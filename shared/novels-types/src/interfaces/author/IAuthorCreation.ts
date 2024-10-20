@@ -1,7 +1,7 @@
-export interface IAuthorCreation {
-  name?: string;
-  description?: string;
-  avatar?: string;
-  userId?: number;
-}
+import { IAuthor } from "./IAuthor";
+
+export interface IAuthorCreation extends Omit<
+  IAuthor,
+  "id" | "createdAt" | "updatedAt" | "deletedAt"
+> { }
   

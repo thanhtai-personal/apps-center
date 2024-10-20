@@ -1,11 +1,4 @@
-export interface ICategoryFilter {
-  name?: string;
-  description?: string;
-  image?: string;
-  icon?: string;
-  parentCategoryId?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
-}
+import { ICategory } from "./ICategory";
+
+export interface ICategoryFilter extends Partial<ICategory> {}
   
