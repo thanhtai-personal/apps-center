@@ -1,44 +1,84 @@
 import { useEffect } from "react";
-import { useNovelsStore } from "../store"
-import { NovelsSDK } from "@core-sdk/novels";
-import { INovelFilter, INovelResponse, IPagination, IPagingFilter } from "@core-ui/novels-types";
-
-type FilterParam = INovelFilter & IPagingFilter
+import { AppcenterSDK } from "@core-sdk/app-center";
+import { IPagingResponse } from "@core-ui/common-types";
+import { INovelResponse } from "@core-ui/novels-types";
+import { useNovelsStore } from "../store";
 
 export const useNovelsData = () => {
-  const { novelStore } = useNovelsStore();
+  const { novelStore, notiStore } = useNovelsStore();
 
   const refetch = async () => {
     try {
-      const novelsRs = await NovelsSDK.getInstance().getNovelControl().getMany((novelStore.filterData || {}) as FilterParam);
-      novelStore.novels = novelsRs as IPagination<INovelResponse>;
-    } catch (error) { }
+      novelStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getNovelControl?.().getMany?.((novelStore.filterData || {}) as IPagingResponse<INovelResponse>);
+      novelStore.novels = response;
+    } catch (error) { } finally {
+      novelStore.loading = false;
+    }
   }
 
-  const getRankingNovels = async () => {
+  const searchNovels = async (filter = {}) => {
     try {
-      const novelsRs: any = await NovelsSDK.getInstance().getRankingNovels(({
-        limit: 10,
-        offset: 0,
-      }) as FilterParam);
-      novelStore.topFollow = novelsRs.data.topFollow;
-      novelStore.topLike = novelsRs.data.topLike;
-      novelStore.topView = novelsRs.data.topView;
-      novelStore.topVote = novelsRs.data.topVote;
-    } catch (error) { }
+      novelStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getNovelControl?.().getMany?.({ ...(novelStore.filterData || {}), ...filter } as IPagingResponse<INovelResponse>);
+      novelStore.novels = response;
+    } catch (error) { } finally {
+      novelStore.loading = false;
+    }
+  }
+
+  const getNovelDetail = async (id: string | number) => {
+    try {
+      novelStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getNovelControl?.().getOne?.(id);
+      novelStore.novel = response;
+    } catch (error) { } finally {
+      novelStore.loading = false;
+    }
+  }
+
+  const deleteNovel = async (id: string | number) => {
+    try {
+      novelStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getNovelControl?.().delete?.(id);
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete Success",
+        variant: "success"
+      }]
+      await refetch();
+    } catch (error) {
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete failed",
+        variant: "error"
+      }]
+    } finally {
+      novelStore.loading = false;
+    }
+  }
+
+  const viewNovel = (novel: any) => {
+    novelStore.novel = novel;
   }
 
   return {
     refetch,
-    getRankingNovels
+    deleteNovel,
+    searchNovels,
+    getNovelDetail,
+    viewNovel,
   }
 }
 
-export const runNovelStore = () => {
-  const { refetch, getRankingNovels } = useNovelsData();
+export const runNovels = () => {
+  const { refetch } = useNovelsData();
 
   useEffect(() => {
     refetch();
-    getRankingNovels();
-  }, [])
+  }, []);
+
+  return {}
 }

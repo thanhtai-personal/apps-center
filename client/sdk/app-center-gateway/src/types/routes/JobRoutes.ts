@@ -1,24 +1,41 @@
-import { BaseRoutes, Pagination, IResponse } from "@core-sdk/core";
+import { BaseRoutes, IAPIResponse } from "@core-sdk/core";
+import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types";
+import {
+  IJobCreation, IJobFilter
+  , IJobResponse, IJobUpdating,
+} from "@core-ui/recruiter-types";
 
 export interface JobRoutes extends BaseRoutes {
   "/jobs": {
     get: {
       request: {
-        query: any;
+        query: IJobFilter;
       };
       responses: {
-        "200": IResponse<Pagination<any>>;
+        "200": IAPIResponse<IPagingResponse<IJobResponse>>;
       };
     };
     post: {
       request: {
-        query: any;
+        query: IJobCreation;
       };
       responses: {
-        "200": IResponse<any>;
+        "200": IAPIResponse<IJobResponse>;
       };
     };
   };
+
+  "/jobs/all": {
+    get: {
+      request: {
+        query: IJobFilter;
+      };
+      responses: {
+        "200": INonPagingResponse<IJobResponse>;
+      };
+    };
+  };
+
   "/jobs/{jobId}": {
     get: {
       request: {
@@ -27,7 +44,7 @@ export interface JobRoutes extends BaseRoutes {
         };
       };
       responses: {
-        "200": IResponse<any>;
+        "200": IAPIResponse<IJobResponse>;
       };
     };
     put: {
@@ -35,10 +52,10 @@ export interface JobRoutes extends BaseRoutes {
         params: {
           jobId: string | number;
         };
-        body: any;
+        body: IJobUpdating;
       };
       responses: {
-        "200": IResponse<any>;
+        "200": IAPIResponse<IJobResponse>;
       };
     };
     delete: {
@@ -48,7 +65,7 @@ export interface JobRoutes extends BaseRoutes {
         };
       };
       responses: {
-        "200": IResponse<string>;
+        "200": IAPIResponse<string>;
       };
     };
     patch: {
@@ -56,21 +73,10 @@ export interface JobRoutes extends BaseRoutes {
         params: {
           jobId: string | number;
         };
-        body: any;
+        body: Partial<IJobUpdating>;
       };
       responses: {
-        "200": IResponse<any>;
-      };
-    };
-  };
-
-  "/crawler/aniday": {
-    post: {
-      request: {
-        body: { htmlString: string; categoryId: number; jobId: string; };
-      };
-      responses: {
-        "200": IResponse<any>;
+        "200": IAPIResponse<IJobResponse>;
       };
     };
   };

@@ -1,20 +1,21 @@
-import { IUserFilter, IUserResponse, IPagination, IPagingFilter } from "@core-ui/recruiter-types";
 import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state";
+import { IUserFilter, IUserResponse } from "@core-ui/ums-types";
+import { ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 
 export interface IUserStore {
   error?: any;
-  users?: IPagination<IUserResponse>;
+  users?: IPagingResponse<IUserResponse>;
   user?: IUserResponse;
   loginData: any;
-  filterData?: IUserFilter & IPagingFilter;
+  filterData?: ISearchQuery<IUserFilter>;
   loading?: boolean;
 }
 
 export class UserStore extends BaseStore implements IUserStore {
   public error?: any = null;
-  public users?: IPagination<IUserResponse>;
+  public users?: IPagingResponse<IUserResponse>;
   public user?: IUserResponse;
-  public filterData?: IUserFilter & IPagingFilter;
+  public filterData?: ISearchQuery<IUserFilter>;
   public loginData: any = {};
   public loading: boolean = false;
 

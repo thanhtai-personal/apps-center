@@ -11,3 +11,5 @@ export * from "./useTitleUpdate";
 export * from "./useScrollTop";
 export * from "./useLocalStorageData";
 export * from "./useScriptTag"
+export * from "./useDeviceDetection";
+export * from "./useOnOff"

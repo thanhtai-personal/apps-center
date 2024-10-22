@@ -1,35 +1,29 @@
 import { createStore } from "@core-ui/react-mobx-state"
-import { UserStore } from "./UserStore"
-import { RoleStore } from "./RoleStore"
 import { CategoryStore } from "./CategoryStore"
 import { NotifyStore } from "./NotifyStore"
-import JobsListingSDK, { CreateApiConfig } from "@core-sdk/jobs-listing";
+import AppcenterSDK, { CreateApiConfig } from "@core-sdk/app-center";
 import { ReactNode, useEffect } from "react";
 import { JobStore } from "./JobStore";
 
-export class JobsListingStore {
-  public userStore: UserStore;
-  public roleStore: RoleStore;
+export class RecruiterStore {
   public categoryStore: CategoryStore;
   public notiStore: NotifyStore;
   public jobStore: JobStore;
 
   public constructor() {
-    this.userStore = new UserStore();
-    this.roleStore = new RoleStore();
     this.categoryStore = new CategoryStore();
     this.notiStore = new NotifyStore();
     this.jobStore = new JobStore();
   }
 }
 
-export const jobsListingStore = createStore<JobsListingStore>(new JobsListingStore());
+export const recruiterStore = createStore<RecruiterStore>(new RecruiterStore());
 
-export const useJobsListingStore = jobsListingStore.useStore as () => JobsListingStore;
+export const useRecruiterStore = recruiterStore.useStore as () => RecruiterStore;
 
-const Provider = jobsListingStore.Provider;
+const Provider = recruiterStore.Provider;
 
-export const JobsListingProvider = ({ children, config }: {
+export const RecruiterProvider = ({ children, config }: {
   children: ReactNode;
   config: {
     apiConfig: CreateApiConfig;
@@ -37,7 +31,7 @@ export const JobsListingProvider = ({ children, config }: {
 }) => {
   
   useEffect(() => {
-    JobsListingSDK.getInstance(config.apiConfig)
+    AppcenterSDK.getInstance(config.apiConfig)
   }, [])
 
   return <Provider>
@@ -45,8 +39,6 @@ export const JobsListingProvider = ({ children, config }: {
   </Provider>
 }
 
-export * from "./UserStore"
-export * from "./RoleStore"
 export * from "./CategoryStore"
 export * from "./NotifyStore"
 export * from "./JobStore"

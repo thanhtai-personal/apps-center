@@ -1,17 +1,20 @@
 import { useEffect, useMemo } from "react";
-import { JobsListingSDK } from "@core-sdk/jobs-listing";
+import { AppcenterSDK } from "@core-sdk/app-center";
 import { useLocalStorageData } from "@core-utils/react-hooks"
-import { useJobsListingStore } from "../store";
+import { useRecruiterStore } from "../store";
+import { IPagingResponse } from "@core-ui/common-types";
+import { IJobResponse } from "@core-ui/recruiter-types";
 
 export const useJobsData = () => {
-  const { jobStore, notiStore } = useJobsListingStore();
+  const { jobStore, notiStore } = useRecruiterStore();
   const [savedJobs, setSavedJobs] = useLocalStorageData("saved-jobs");
   const [selectedJobs, setSelectedJobs] = useLocalStorageData("selected-jobs");
 
   const refetch = async () => {
     try {
       jobStore.loading = true;
-      const response = await JobsListingSDK.getInstance().getJobControl().getMany((jobStore.filterData || {}) as any);
+      const response =
+        await AppcenterSDK.getInstance().getJobControl?.().getMany?.((jobStore.filterData || {}) as IPagingResponse<IJobResponse>);
       jobStore.jobs = response;
     } catch (error) { } finally {
       jobStore.loading = false;
@@ -21,7 +24,8 @@ export const useJobsData = () => {
   const searchJobs = async (filter = {}) => {
     try {
       jobStore.loading = true;
-      const response = await JobsListingSDK.getInstance().getJobControl().getMany({ ...(jobStore.filterData || {}), ...filter } as any);
+      const response =
+        await AppcenterSDK.getInstance().getJobControl?.().getMany?.({ ...(jobStore.filterData || {}), ...filter } as IPagingResponse<IJobResponse>);
       jobStore.jobs = response;
     } catch (error) { } finally {
       jobStore.loading = false;
@@ -31,8 +35,9 @@ export const useJobsData = () => {
   const getJobDetail = async (id: string | number) => {
     try {
       jobStore.loading = true;
-      const response = await JobsListingSDK.getInstance().getJobControl().getOne(id);
-      jobStore.job = response.data;
+      const response =
+        await AppcenterSDK.getInstance().getJobControl?.().getOne?.(id);
+      jobStore.job = response;
     } catch (error) { } finally {
       jobStore.loading = false;
     }
@@ -41,7 +46,8 @@ export const useJobsData = () => {
   const deleteJob = async (id: string | number) => {
     try {
       jobStore.loading = true;
-      const response = await JobsListingSDK.getInstance().getJobControl().delete(id);
+      const response =
+        await AppcenterSDK.getInstance().getJobControl?.().delete?.(id);
       notiStore.messageQueue = [...(notiStore.messageQueue || []), {
         children: "Delete Success",
         variant: "success"
@@ -117,7 +123,7 @@ export const useJobsData = () => {
 
 export const runJobs = () => {
   const { refetch } = useJobsData();
-  const { jobStore } = useJobsListingStore();
+  const { jobStore } = useRecruiterStore();
 
   useEffect(() => {
     refetch();

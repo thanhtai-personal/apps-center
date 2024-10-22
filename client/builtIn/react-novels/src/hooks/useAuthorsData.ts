@@ -1,29 +1,84 @@
 import { useEffect } from "react";
-import { NovelsSDK } from "@core-sdk/novels";
-import { IAuthorFilter, IAuthorResponse, IPagination, IPagingFilter } from "@core-ui/novels-types";
+import { AppcenterSDK } from "@core-sdk/app-center";
+import { IPagingResponse } from "@core-ui/common-types";
+import { IAuthorResponse } from "@core-ui/novels-types";
 import { useNovelsStore } from "../store";
 
-type FilterParam = IAuthorFilter & IPagingFilter
-
 export const useAuthorsData = () => {
-  const { authorStore } = useNovelsStore();
+  const { authorStore, notiStore } = useNovelsStore();
 
   const refetch = async () => {
     try {
-      const authorsRs = await NovelsSDK.getInstance().getAuthorControl().getMany((authorStore.filterData || {}) as FilterParam);
-      authorStore.authors = authorsRs as IPagination<IAuthorResponse>;
-    } catch (error) {}
+      authorStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getAuthorControl?.().getMany?.((authorStore.filterData || {}) as IPagingResponse<IAuthorResponse>);
+      authorStore.authors = response;
+    } catch (error) { } finally {
+      authorStore.loading = false;
+    }
+  }
+
+  const searchAuthors = async (filter = {}) => {
+    try {
+      authorStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getAuthorControl?.().getMany?.({ ...(authorStore.filterData || {}), ...filter } as IPagingResponse<IAuthorResponse>);
+      authorStore.authors = response;
+    } catch (error) { } finally {
+      authorStore.loading = false;
+    }
+  }
+
+  const getAuthorDetail = async (id: string | number) => {
+    try {
+      authorStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getAuthorControl?.().getOne?.(id);
+      authorStore.author = response;
+    } catch (error) { } finally {
+      authorStore.loading = false;
+    }
+  }
+
+  const deleteAuthor = async (id: string | number) => {
+    try {
+      authorStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getAuthorControl?.().delete?.(id);
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete Success",
+        variant: "success"
+      }]
+      await refetch();
+    } catch (error) {
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete failed",
+        variant: "error"
+      }]
+    } finally {
+      authorStore.loading = false;
+    }
+  }
+
+  const viewAuthor = (author: any) => {
+    authorStore.author = author;
   }
 
   return {
-    refetch
+    refetch,
+    deleteAuthor,
+    searchAuthors,
+    getAuthorDetail,
+    viewAuthor,
   }
 }
 
-export const runAuthorStore = () => {
+export const runAuthors = () => {
   const { refetch } = useAuthorsData();
 
   useEffect(() => {
     refetch();
-  }, [])
+  }, []);
+
+  return {}
 }

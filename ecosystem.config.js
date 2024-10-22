@@ -3,7 +3,7 @@ module.exports = {
     // {
     //   name: 'jobslistting-client',
     //   script: 'serve',
-    //   args: 'apps/jobs-listing/dist 5173 --spa',
+    //   args: 'apps/recruiter/dist 5173 --spa',
     //   env: {
     //     NODE_ENV: "production",
     //     VITE_BASE_URL: 'https://34.135.118.246:5173/',
@@ -37,7 +37,7 @@ module.exports = {
         CLIENT_URL: "https://34.135.118.246:5173",
         ENCRYPT_SECRET_KEY: "'usage you weird blood reject gift spawn food liberty'",
       },
-      cwd: './server/builtIn/jobs-listing-api',
+      cwd: './server/builtIn/recruiter-api',
     },
   ],
 };

@@ -1,53 +1,60 @@
 import { APIResult, BaseService, FetchApi } from "@core-ui/api-client";
-import { IAbstractService, IPagingFilter, IResponse, Pagination } from "@core-sdk/core";
+import { IAbstractService, IAPIResponse } from "@core-sdk/core";
 import {
   RoleRoutes,
 } from "../types";
 import { IRoleCreation, IRoleFilter, IRoleResponse, IRoleUpdating } from "@core-ui/ums-types";
+import { INonPagingResponse, IPagingResponse, ISearchQuery } from "@core-ui/common-types";
 
 export class RoleService
   extends BaseService<RoleRoutes>
-  implements IAbstractService<IRoleCreation, IRoleUpdating, IRoleResponse, IPagingFilter & IRoleFilter> {
+  implements IAbstractService<IRoleCreation, IRoleUpdating, IRoleResponse, ISearchQuery<IRoleFilter>> {
   constructor(api: FetchApi<RoleRoutes>) {
     super(api);
   }
-  create(createData: IRoleCreation): Promise<APIResult<IResponse<IRoleResponse>>> {
+  create(createData: IRoleCreation): Promise<APIResult<IAPIResponse<IRoleResponse>>> {
     return this.api.post("/roles", {}, createData) as Promise<
-      APIResult<IResponse<IRoleResponse>>
+      APIResult<IAPIResponse<IRoleResponse>>
     >;
   }
   update(
     id: string | number,
     updateData: IRoleUpdating,
-  ): Promise<APIResult<IResponse<IRoleResponse>>> {
+  ): Promise<APIResult<IAPIResponse<IRoleResponse>>> {
     return this.api.put("/roles/{roleId}", { roleId: id }, updateData) as Promise<
-      APIResult<IResponse<IRoleResponse>>
+      APIResult<IAPIResponse<IRoleResponse>>
     >;
   }
 
   patchUpdate(
     roleId: string | number,
     updateData: Partial<IRoleUpdating>
-  ): Promise<APIResult<IResponse<IRoleResponse>>> {
+  ): Promise<APIResult<IAPIResponse<IRoleResponse>>> {
     return this.api.patch("/roles/{roleId}", { roleId }, updateData) as Promise<
-      APIResult<IResponse<IRoleResponse>>
+      APIResult<IAPIResponse<IRoleResponse>>
     >;
   }
 
-  getOne(id: string | number): Promise<APIResult<IResponse<IRoleResponse>>> {
-    return this.api.get("/roles/{roleId}", { roleId: id }) as Promise<APIResult<IResponse<IRoleResponse>>>;
+  getOne(id: string | number): Promise<APIResult<IAPIResponse<IRoleResponse>>> {
+    return this.api.get("/roles/{roleId}", { roleId: id }) as Promise<APIResult<IAPIResponse<IRoleResponse>>>;
   }
 
-  getMany(filter: IPagingFilter & IRoleFilter): Promise<APIResult<IResponse<Pagination<IRoleResponse>>>> {
+  getMany(filter: ISearchQuery<IRoleFilter>): Promise<APIResult<IAPIResponse<IPagingResponse<IRoleResponse>>>> {
     return this.api.get("/roles", filter) as Promise<
-      APIResult<IResponse<Pagination<IRoleResponse>>>
+      APIResult<IAPIResponse<IPagingResponse<IRoleResponse>>>
+    >;
+  }
+
+  getAll(filter: ISearchQuery<IRoleFilter>): Promise<APIResult<IAPIResponse<INonPagingResponse<IRoleResponse>>>> {
+    return this.api.get("/roles/all", filter || {}) as Promise<
+      APIResult<IAPIResponse<INonPagingResponse<IRoleResponse>>>
     >;
   }
   delete(
     id: string | number,
-  ): Promise<APIResult<IResponse<void>>> {
+  ): Promise<APIResult<IAPIResponse<void>>> {
     return this.api.delete("/roles/{roleId}", { roleId: id }) as Promise<
-      APIResult<IResponse<void>>
+      APIResult<IAPIResponse<void>>
     >;
   }
 }

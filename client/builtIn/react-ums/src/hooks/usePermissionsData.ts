@@ -1,30 +1,84 @@
 import { useEffect } from "react";
-import { useEffect } from "react";
-import { AppCenterSDK } from "@core-sdk/app-center";
-import { IPermissionFilter, IPermissionResponse, IPagination, IPagingFilter } from "@core-ui/ums-types";
+import { AppcenterSDK } from "@core-sdk/app-center";
+import { IPagingResponse } from "@core-ui/common-types";
+import { IPermissionResponse } from "@core-ui/ums-types";
 import { useUMSStore } from "../store";
 
-type FilterParam = IPermissionFilter & IPagingFilter
-
 export const usePermissionsData = () => {
-  const { permissionStore } = useUMSStore();
+  const { permissionStore, notiStore } = useUMSStore();
 
   const refetch = async () => {
     try {
-      const permissionsRs = await AppCenterSDK.getInstance().getPermissionControl().getMany((permissionStore.filterData || {}) as FilterParam);
-      permissionStore.permissions = permissionsRs as IPagination<IPermissionResponse>;
-    } catch (error) {}
+      permissionStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getPermissionControl?.().getMany?.((permissionStore.filterData || {}) as IPagingResponse<IPermissionResponse>);
+      permissionStore.permissions = response;
+    } catch (error) { } finally {
+      permissionStore.loading = false;
+    }
+  }
+
+  const searchPermissions = async (filter = {}) => {
+    try {
+      permissionStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getPermissionControl?.().getMany?.({ ...(permissionStore.filterData || {}), ...filter } as IPagingResponse<IPermissionResponse>);
+      permissionStore.permissions = response;
+    } catch (error) { } finally {
+      permissionStore.loading = false;
+    }
+  }
+
+  const getPermissionDetail = async (id: string | number) => {
+    try {
+      permissionStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getPermissionControl?.().getOne?.(id);
+      permissionStore.permission = response;
+    } catch (error) { } finally {
+      permissionStore.loading = false;
+    }
+  }
+
+  const deletePermission = async (id: string | number) => {
+    try {
+      permissionStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getPermissionControl?.().delete?.(id);
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete Success",
+        variant: "success"
+      }]
+      await refetch();
+    } catch (error) {
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete failed",
+        variant: "error"
+      }]
+    } finally {
+      permissionStore.loading = false;
+    }
+  }
+
+  const viewPermission = (permission: any) => {
+    permissionStore.permission = permission;
   }
 
   return {
-    refetch
+    refetch,
+    deletePermission,
+    searchPermissions,
+    getPermissionDetail,
+    viewPermission,
   }
 }
 
-export const runPermissionStore = () => {
+export const runPermissions = () => {
   const { refetch } = usePermissionsData();
 
   useEffect(() => {
     refetch();
-  }, [])
+  }, []);
+
+  return {}
 }

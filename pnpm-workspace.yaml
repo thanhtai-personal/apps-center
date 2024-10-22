@@ -4,8 +4,9 @@ packages:
   - "client/lib/api-client"
   - "client/lib/react-hooks"
   - "client/lib/react-social-login"
+  # - "api-sdk/**"
   - "client/sdk/core"
-  - "client/sdk/app-center"
+  - "client/sdk/app-center-gateway"
   - "client/ui/mui/react-core-mui"
   - "client/ui/react-animates"
   - "client/ui/react-context"
@@ -22,7 +23,6 @@ packages:
   - "server/libs/*"
   - "server/domain/api-authentication"
   - "server/domain/api-appcenter-gateway"
-  # - "server/domain/api-goat-tap"
   - "server/domain/api-novels"
   - "server/domain/api-recruiter"
   - "server/domain/api-ums"
@@ -35,8 +35,7 @@ packages:
   # all packages in direct subdirs of packages/
   #- "apps/**"
   - "apps/novels"
-  # - "apps/goattap"
-  - "apps/jobs-listing"
+  - "apps/recruiter"
   
   # exclude packages that are inside test directories
   - "!**/test/**"

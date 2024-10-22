@@ -1,29 +1,84 @@
 import { useEffect } from "react";
-import { JobsListingSDK } from "@core-sdk/jobs-listing";
-import { IUserFilter, IUserResponse, IPagination, IPagingFilter } from "@core-ui/recruiter-types";
-import { useJobsListingStore } from "../store";
-
-type FilterParam = IUserFilter & IPagingFilter
+import { AppcenterSDK } from "@core-sdk/app-center";
+import { IPagingResponse } from "@core-ui/common-types";
+import { IUserResponse } from "@core-ui/ums-types";
+import { useUMSStore } from "../store";
 
 export const useUsersData = () => {
-  const { userStore } = useJobsListingStore();
+  const { userStore, notiStore } = useUMSStore();
 
   const refetch = async () => {
     try {
-      const usersRs = await JobsListingSDK.getInstance().getUserControl().getMany((userStore.filterData || {}) as FilterParam);
-      userStore.users = usersRs as IPagination<IUserResponse>;
-    } catch (error) { }
+      userStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getUserControl?.().getMany?.((userStore.filterData || {}) as IPagingResponse<IUserResponse>);
+      userStore.users = response;
+    } catch (error) { } finally {
+      userStore.loading = false;
+    }
+  }
+
+  const searchUsers = async (filter = {}) => {
+    try {
+      userStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getUserControl?.().getMany?.({ ...(userStore.filterData || {}), ...filter } as IPagingResponse<IUserResponse>);
+      userStore.users = response;
+    } catch (error) { } finally {
+      userStore.loading = false;
+    }
+  }
+
+  const getUserDetail = async (id: string | number) => {
+    try {
+      userStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getUserControl?.().getOne?.(id);
+      userStore.user = response;
+    } catch (error) { } finally {
+      userStore.loading = false;
+    }
+  }
+
+  const deleteUser = async (id: string | number) => {
+    try {
+      userStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getUserControl?.().delete?.(id);
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete Success",
+        variant: "success"
+      }]
+      await refetch();
+    } catch (error) {
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete failed",
+        variant: "error"
+      }]
+    } finally {
+      userStore.loading = false;
+    }
+  }
+
+  const viewUser = (user: any) => {
+    userStore.user = user;
   }
 
   return {
-    refetch
+    refetch,
+    deleteUser,
+    searchUsers,
+    getUserDetail,
+    viewUser,
   }
 }
 
-export const runUserStore = () => {
+export const runUsers = () => {
   const { refetch } = useUsersData();
 
   useEffect(() => {
     refetch();
-  }, [])
+  }, []);
+
+  return {}
 }

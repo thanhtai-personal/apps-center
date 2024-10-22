@@ -1,24 +1,31 @@
-import { IRoleFilter, IRoleResponse, IPagination, IPagingFilter } from "@core-ui/recruiter-types";
 import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state";
+import { IRoleFilter, IRoleResponse } from "@core-ui/ums-types";
+import { ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 
 export interface IRoleStore {
   error?: any;
-  roles?: IPagination<IRoleResponse>;
+  roles?: IPagingResponse<IRoleResponse>;
   role?: IRoleResponse;
-  filterData?: IRoleFilter & IPagingFilter;
+  loginData: any;
+  filterData?: ISearchQuery<IRoleFilter>;
+  loading?: boolean;
 }
 
 export class RoleStore extends BaseStore implements IRoleStore {
   public error?: any = null;
-  public roles?: IPagination<IRoleResponse>;
+  public roles?: IPagingResponse<IRoleResponse>;
   public role?: IRoleResponse;
-  public filterData?: IRoleFilter & IPagingFilter;
+  public filterData?: ISearchQuery<IRoleFilter>;
+  public loginData: any = {};
+  public loading: boolean = false;
 
   constructor() {
     super();
     makeObservable(this, {
       error: observable,
       roles: observable,
+      loading: observable,
+      loginData: observable,
       role: observable,
       filterData: observable,
     });

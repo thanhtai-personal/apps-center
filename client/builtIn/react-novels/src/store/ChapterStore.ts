@@ -1,24 +1,28 @@
-import { IChapterFilter, IChapterResponse, IPagination, IPagingFilter } from "@core-ui/novels-types";
 import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state";
+import { IChapterFilter, IChapterResponse } from "@core-ui/novels-types";
+import { ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 
 export interface IChapterStore {
   error?: any;
-  chapters?: IPagination<IChapterResponse>;
+  chapters?: IPagingResponse<IChapterResponse>;
   chapter?: IChapterResponse;
-  filterData?: IChapterFilter & IPagingFilter;
+  filterData?: ISearchQuery<IChapterFilter>;
+  loading?: boolean;
 }
 
 export class ChapterStore extends BaseStore implements IChapterStore {
   public error?: any = null;
-  public chapters?: IPagination<IChapterResponse>;
+  public chapters?: IPagingResponse<IChapterResponse>;
   public chapter?: IChapterResponse;
-  public filterData?: IChapterFilter & IPagingFilter;
+  public filterData?: ISearchQuery<IChapterFilter>;
+  public loading: boolean = false;
 
   constructor() {
     super();
     makeObservable(this, {
       error: observable,
       chapters: observable,
+      loading: observable,
       chapter: observable,
       filterData: observable,
     });

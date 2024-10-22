@@ -1,29 +1,84 @@
 import { useEffect } from "react";
-import { NovelsSDK } from "@core-sdk/novels";
-import { IChapterFilter, IChapterResponse, IPagination, IPagingFilter } from "@core-ui/novels-types";
+import { AppcenterSDK } from "@core-sdk/app-center";
+import { IPagingResponse } from "@core-ui/common-types";
+import { IChapterResponse } from "@core-ui/novels-types";
 import { useNovelsStore } from "../store";
 
-type FilterParam = IChapterFilter & IPagingFilter
-
 export const useChaptersData = () => {
-  const { chapterStore } = useNovelsStore();
+  const { chapterStore, notiStore } = useNovelsStore();
 
   const refetch = async () => {
     try {
-      const chaptersRs = await NovelsSDK.getInstance().getChapterControl().getMany((chapterStore.filterData || {}) as FilterParam);
-      chapterStore.chapters = chaptersRs as IPagination<IChapterResponse>;
-    } catch (error) {}
+      chapterStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getChapterControl?.().getMany?.((chapterStore.filterData || {}) as IPagingResponse<IChapterResponse>);
+      chapterStore.chapters = response;
+    } catch (error) { } finally {
+      chapterStore.loading = false;
+    }
+  }
+
+  const searchChapters = async (filter = {}) => {
+    try {
+      chapterStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getChapterControl?.().getMany?.({ ...(chapterStore.filterData || {}), ...filter } as IPagingResponse<IChapterResponse>);
+      chapterStore.chapters = response;
+    } catch (error) { } finally {
+      chapterStore.loading = false;
+    }
+  }
+
+  const getChapterDetail = async (id: string | number) => {
+    try {
+      chapterStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getChapterControl?.().getOne?.(id);
+      chapterStore.chapter = response;
+    } catch (error) { } finally {
+      chapterStore.loading = false;
+    }
+  }
+
+  const deleteChapter = async (id: string | number) => {
+    try {
+      chapterStore.loading = true;
+      const response =
+        await AppcenterSDK.getInstance().getChapterControl?.().delete?.(id);
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete Success",
+        variant: "success"
+      }]
+      await refetch();
+    } catch (error) {
+      notiStore.messageQueue = [...(notiStore.messageQueue || []), {
+        children: "Delete failed",
+        variant: "error"
+      }]
+    } finally {
+      chapterStore.loading = false;
+    }
+  }
+
+  const viewChapter = (chapter: any) => {
+    chapterStore.chapter = chapter;
   }
 
   return {
-    refetch
+    refetch,
+    deleteChapter,
+    searchChapters,
+    getChapterDetail,
+    viewChapter,
   }
 }
 
-export const runChapterStore = () => {
+export const runChapters = () => {
   const { refetch } = useChaptersData();
 
   useEffect(() => {
     refetch();
-  }, [])
+  }, []);
+
+  return {}
 }

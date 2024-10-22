@@ -1,11 +1,11 @@
 import { APIResult, ClientApi, CreateApiConfig, HttpErrorCode, TokenMethod, createApi } from "@core-ui/api-client";
 import {
   IAbstractService,
+  IAPIResponse,
   IBaseControl,
   IBaseSDK,
-  IResponse,
-  Pagination,
 } from "./types";
+import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types";
 
 
 export abstract class BaseSDK implements IBaseSDK {
@@ -20,7 +20,7 @@ export abstract class BaseSDK implements IBaseSDK {
     throw new Error(message);
   }
 
-  protected handleApiResult = <T>(dataReturn: APIResult<IResponse<T>>) => {
+  protected handleApiResult = <T>(dataReturn: APIResult<IAPIResponse<T>>) => {
     if (dataReturn.data) {
       return dataReturn.data as T;
     } else {
@@ -28,60 +28,69 @@ export abstract class BaseSDK implements IBaseSDK {
     }
   };
 
-  protected getBaseControl: <ICreationRequest, IUpdatingRequest, IDataResponse, IFilterRequest>
-    (service: IAbstractService<ICreationRequest, IUpdatingRequest, IDataResponse, IFilterRequest>) =>
-    IBaseControl<ICreationRequest, IUpdatingRequest, IDataResponse, IFilterRequest> = <ICreationRequest, IUpdatingRequest, IDataResponse, IFilterRequest>(service: IAbstractService<ICreationRequest, IUpdatingRequest, IDataResponse, IFilterRequest>) => {
+  protected getBaseControl: <T, K, P, Q>
+    (service: IAbstractService<T, K, P, Q>) =>
+    IBaseControl<T, K, P, Q> = <T, K, P, Q>(service: IAbstractService<T, K, P, Q>) => {
       return {
-        create: async (createData: ICreationRequest) => {
+        create: async (createData: T) => {
           try {
-            const rs: APIResult<IResponse<IDataResponse>> = await service.create(createData);
-            return this.handleApiResult(rs);
+            const rs: APIResult<IAPIResponse<P>> | undefined = await service.create?.(createData);
+            return rs ? this.handleApiResult(rs) : undefined;
           } catch (error) {
             this.handleErrorResult(error);
           }
         },
-        update: async (id: string | number, updateData: IUpdatingRequest) => {
+        update: async (id: string | number, updateData: K) => {
           try {
-            const rs: APIResult<IResponse<IDataResponse>> = await service.update(
+            const rs: APIResult<IAPIResponse<P>> | undefined = await service.update?.(
               id,
               updateData,
             );
-            return this.handleApiResult(rs);
+            return rs ? this.handleApiResult(rs) : undefined;
           } catch (error) {
             this.handleErrorResult(error);
           }
         },
-        patchUpdate: async (id: string | number, updateData: Partial<IUpdatingRequest>) => {
+        patchUpdate: async (id: string | number, updateData: Partial<K>) => {
           try {
-            const rs: APIResult<IResponse<IDataResponse>> = await service.patchUpdate(
+            const rs: APIResult<IAPIResponse<P>> | undefined = await service.patchUpdate?.(
               id,
               updateData,
             );
-            return this.handleApiResult(rs);
+            return rs ? this.handleApiResult(rs) : undefined;
           } catch (error) {
             this.handleErrorResult(error);
           }
         },
         getOne: async (id: string | number) => {
           try {
-            const rs: APIResult<IResponse<IDataResponse>> = await service.getOne(id);
-            return this.handleApiResult(rs);
+            const rs: APIResult<IAPIResponse<P>> | undefined = await service.getOne?.(id);
+            return rs ? this.handleApiResult(rs) : undefined;
           } catch (error) {
             this.handleErrorResult(error);
           }
         },
-        getMany: async (filter: IFilterRequest) => {
+        getMany: async (filter: Q) => {
           try {
-            const rs: APIResult<IResponse<Pagination<IDataResponse>>> =
-              await service.getMany(filter);
-            return this.handleApiResult(rs);
+            const rs: APIResult<IAPIResponse<IPagingResponse<P>>> | undefined =
+              await service.getMany?.(filter);
+            return rs ? this.handleApiResult(rs) : undefined;
+          } catch (error) {
+            this.handleErrorResult(error);
+          }
+        },
+        getAll: async (filter: Q) => {
+          try {
+            const rs: APIResult<IAPIResponse<INonPagingResponse<P>>> | undefined =
+              await service.getMany?.(filter);
+            return rs ? this.handleApiResult(rs) : undefined;
           } catch (error) {
             this.handleErrorResult(error);
           }
         },
         delete: async (id: string | number) => {
           try {
-            await service.delete(id);
+            await service.delete?.(id);
           } catch (error) {
             this.handleErrorResult(error);
           }

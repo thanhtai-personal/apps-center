@@ -1,18 +1,24 @@
+import { createStore } from "@core-ui/react-mobx-state";
 import { AuthStore } from "./AuthStore";
+import { NotifyStore } from "./NotifyStore";
+import { ReactNode, useEffect } from "react";
+import AppcenterSDK, { CreateApiConfig } from "@core-sdk/app-center";
 
-export class AuthStore {
+export class AuthenticationStore {
   public authStore: AuthStore;
+  public notiStore: NotifyStore;
 
   public constructor() {
     this.authStore = new AuthStore();
+    this.notiStore = new NotifyStore();
   }
 }
 
-export const authStore = createStore<AuthStore>(new AuthStore());
+export const authenticationStore = createStore<AuthenticationStore>(new AuthenticationStore());
 
-export const useAuthStore = authStore.useStore as () => AuthStore;
+export const useAuthenticationStore = authenticationStore.useStore as () => AuthenticationStore;
 
-const Provider = authStore.Provider;
+const Provider = authenticationStore.Provider;
 
 export const JobsListingProvider = ({ children, config }: {
   children: ReactNode;
@@ -22,7 +28,7 @@ export const JobsListingProvider = ({ children, config }: {
 }) => {
   
   useEffect(() => {
-    appCenterSDK.getInstance(config.apiConfig)
+    AppcenterSDK.getInstance(config.apiConfig)
   }, [])
 
   return <Provider>

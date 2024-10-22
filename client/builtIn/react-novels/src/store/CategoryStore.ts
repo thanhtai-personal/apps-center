@@ -1,24 +1,28 @@
-import { ICategoryFilter, ICategoryResponse, IPagination, IPagingFilter } from "@core-ui/novels-types";
 import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state";
+import { ICategoryFilter, ICategoryResponse } from "@core-ui/novels-types";
+import { ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 
 export interface ICategoryStore {
   error?: any;
-  categories?: IPagination<ICategoryResponse>;
+  categories?: IPagingResponse<ICategoryResponse>;
   category?: ICategoryResponse;
-  filterData?: ICategoryFilter  & IPagingFilter;
+  filterData?: ISearchQuery<ICategoryFilter>;
+  loading?: boolean;
 }
 
 export class CategoryStore extends BaseStore implements ICategoryStore {
   public error?: any = null;
-  public categories?: IPagination<ICategoryResponse>;
+  public categories?: IPagingResponse<ICategoryResponse>;
   public category?: ICategoryResponse;
-  public filterData?: ICategoryFilter  & IPagingFilter;
+  public filterData?: ISearchQuery<ICategoryFilter>;
+  public loading: boolean = false;
 
   constructor() {
     super();
     makeObservable(this, {
       error: observable,
       categories: observable,
+      loading: observable,
       category: observable,
       filterData: observable,
     });

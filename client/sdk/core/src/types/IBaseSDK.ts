@@ -1,19 +1,20 @@
 import { TokenMethod } from "@core-ui/api-client";
-import { Pagination } from "./Pagination";
+import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types";
 
-export interface IBaseControl<ICreationRequest, IUpdatingRequest, IDataResponse, IFilterRequest> {
-  create: (createData: ICreationRequest) => Promise<IDataResponse | undefined>;
-  update: (
+export interface IBaseControl<T, K, P, Q> {
+  create?: (createData: T) => Promise<P | undefined>;
+  update?: (
     id: string | number,
-    updateData: IUpdatingRequest,
-  ) => Promise<IDataResponse | undefined>;
-  patchUpdate: (
+    updateData: K,
+  ) => Promise<P | undefined>;
+  patchUpdate?: (
     id: string | number,
-    updateData: Partial<IUpdatingRequest>,
-  ) => Promise<IDataResponse | undefined>;
-  getOne: (id: string | number) => Promise<IDataResponse | undefined>;
-  getMany: (filter: IFilterRequest) => Promise<Pagination<IDataResponse> | undefined>;
-  delete: (
+    updateData: Partial<K>,
+  ) => Promise<P | undefined>;
+  getOne?: (id: string | number) => Promise<P | undefined>;
+  getMany?: (filter: Q) => Promise<IPagingResponse<P> | undefined>;
+  getAll?: (filter: Q) => Promise<INonPagingResponse<P> | undefined>;
+  delete?: (
     id: string | number,
   ) => Promise<void | undefined>;
 }

@@ -1,8 +1,9 @@
-import { BaseRoutes, Pagination, IResponse } from "@core-sdk/core";
+import { BaseRoutes, IAPIResponse } from "@core-sdk/core";
+import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types";
 import {
   IRoleCreation, IRoleFilter
   , IRoleResponse, IRoleUpdating,
-} from "@core-ui/recruiter-types";
+} from "@core-ui/ums-types";
 
 export interface RoleRoutes extends BaseRoutes {
   "/roles": {
@@ -11,7 +12,7 @@ export interface RoleRoutes extends BaseRoutes {
         query: IRoleFilter;
       };
       responses: {
-        "200": IResponse<Pagination<IRoleResponse>>;
+        "200": IAPIResponse<IPagingResponse<IRoleResponse>>;
       };
     };
     post: {
@@ -19,10 +20,22 @@ export interface RoleRoutes extends BaseRoutes {
         query: IRoleCreation;
       };
       responses: {
-        "200": IResponse<IRoleResponse>;
+        "200": IAPIResponse<IRoleResponse>;
       };
     };
   };
+
+  "/roles/all": {
+    get: {
+      request: {
+        query: IRoleFilter;
+      };
+      responses: {
+        "200": INonPagingResponse<IRoleResponse>;
+      };
+    };
+  };
+
   "/roles/{roleId}": {
     get: {
       request: {
@@ -31,7 +44,7 @@ export interface RoleRoutes extends BaseRoutes {
         };
       };
       responses: {
-        "200": IResponse<IRoleResponse>;
+        "200": IAPIResponse<IRoleResponse>;
       };
     };
     put: {
@@ -42,7 +55,7 @@ export interface RoleRoutes extends BaseRoutes {
         body: IRoleUpdating;
       };
       responses: {
-        "200": IResponse<IRoleResponse>;
+        "200": IAPIResponse<IRoleResponse>;
       };
     };
     delete: {
@@ -52,7 +65,7 @@ export interface RoleRoutes extends BaseRoutes {
         };
       };
       responses: {
-        "200": IResponse<string>;
+        "200": IAPIResponse<string>;
       };
     };
     patch: {
@@ -63,7 +76,7 @@ export interface RoleRoutes extends BaseRoutes {
         body: Partial<IRoleUpdating>;
       };
       responses: {
-        "200": IResponse<IRoleResponse>;
+        "200": IAPIResponse<IRoleResponse>;
       };
     };
   };

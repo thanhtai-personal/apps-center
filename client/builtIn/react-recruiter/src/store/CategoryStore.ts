@@ -1,20 +1,23 @@
-import { ICategoryFilter, ICategoryResponse, IPagination, IPagingFilter } from "@core-ui/recruiter-types";
+import { ICategoryFilter, ICategoryResponse } from "@core-ui/recruiter-types";
 import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state";
+import { ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 
 export interface ICategoryStore {
   error?: any;
-  categories?: IPagination<ICategoryResponse>;
+  categories?: IPagingResponse<ICategoryResponse>;
   category?: ICategoryResponse;
-  filterData?: ICategoryFilter  & IPagingFilter;
+  filterData?: ISearchQuery<ICategoryFilter>;
   activeCateId?: number;
+  loading?: boolean;
 }
 
 export class CategoryStore extends BaseStore implements ICategoryStore {
   public error?: any = null;
-  public categories?: IPagination<ICategoryResponse>;
+  public categories?: IPagingResponse<ICategoryResponse>;
   public category?: ICategoryResponse;
-  public filterData?: ICategoryFilter  & IPagingFilter;
+  public filterData?: ISearchQuery<ICategoryFilter>;
   public activeCateId?: number;
+  public loading: boolean = false;
 
   constructor() {
     super();
@@ -23,6 +26,7 @@ export class CategoryStore extends BaseStore implements ICategoryStore {
       categories: observable,
       category: observable,
       filterData: observable,
+      loading: observable,
       activeCateId: observable,
     });
   }

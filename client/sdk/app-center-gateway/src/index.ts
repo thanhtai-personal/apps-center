@@ -1,46 +1,106 @@
-import { BaseSDK, IPagingFilter, Pagination as PaginationCore } from "@core-sdk/core";
+import { BaseSDK } from "@core-sdk/core";
 import {
-  CategoryService,
+  NovelCategoryService,
+  RecruiterCategoryService,
+  ChapterService,
+  NovelService,
+  CommentService,
+  AuthorService,
   RoleService,
   UserService,
-  JobService
+  JobService,
+  PermissionService,
+  CrawlerService,
+  AuthService
 } from "./services";
 import {
   CreateApiConfig,
 } from "./types";
 import {
+  ICategoryCreation as IRecruiterCategoryCreation,
+  ICategoryFilter as IRecruiterCategoryFilter,
+  ICategoryResponse as IRecruiterCategoryResponse,
+  ICategoryUpdating as IRecruiterCategoryUpdating,
+  IJobCreation,
+  IJobFilter,
+  IJobResponse,
+  IJobUpdating,
+} from "@core-ui/recruiter-types"
+import {
+  ICategoryCreation as INovelsCategoryCreation,
+  ICategoryFilter as INovelsCategoryFilter,
+  ICategoryResponse as INovelsCategoryResponse,
+  ICategoryUpdating as INovelsCategoryUpdating,
+  IAuthorCreation,
+  IAuthorFilter,
+  IAuthorResponse,
+  IAuthorUpdating,
+  INovelCreation,
+  INovelFilter,
+  INovelResponse,
+  INovelUpdating,
+  IChapterCreation,
+  IChapterFilter,
+  IChapterResponse,
+  IChapterUpdating,
+  ICommentCreation,
+  ICommentFilter,
+  ICommentResponse,
+  ICommentUpdating,
+} from "@core-ui/novels-types"
+import {
   IUserResponse,
   IUserCreation,
   IUserUpdating,
   IUserFilter,
-  ICategoryCreation,
-  ICategoryFilter,
-  ICategoryResponse,
-  ICategoryUpdating,
   IRoleCreation,
   IRoleFilter,
   IRoleResponse,
   IRoleUpdating,
-} from "@core-ui/recruiter-types"
+  IPermissionCreation,
+  IPermissionFilter,
+  IPermissionResponse,
+  IPermissionUpdating,
+  ILoginRequest,
+  IResetPasswordRequest,
+  IRegisterRequest,
+} from "@core-ui/ums-types"
+import { ISearchQuery } from "@core-ui/common-types";
 
-export class JobsListingSDK extends BaseSDK {
-  private static instance: JobsListingSDK | null = null;
+export class AppcenterSDK extends BaseSDK {
+  private static instance: AppcenterSDK | null = null;
   private userService: UserService;
-  private categoryService: CategoryService;
+  private novelCategoryService: NovelCategoryService;
+  private recruiterCategoryService: RecruiterCategoryService;
   private roleService: RoleService;
+  private permissionService: PermissionService;
   private jobService: JobService;
+  private authorService: AuthorService;
+  private commentService: CommentService;
+  private novelService: NovelService;
+  private chapterService: ChapterService;
+  private crawlerService: CrawlerService;
+  private authService: AuthService;
 
   private constructor(config: CreateApiConfig) {
     super(config);
     this.userService = new UserService(this.api);
-    this.categoryService = new CategoryService(this.api);
+    this.novelCategoryService = new NovelCategoryService(this.api);
+    this.recruiterCategoryService = new RecruiterCategoryService(this.api);
     this.roleService = new RoleService(this.api);
+    this.permissionService = new PermissionService(this.api);
     this.jobService = new JobService(this.api);
+    this.authorService = new AuthorService(this.api);
+    this.commentService = new CommentService(this.api);
+    this.novelService = new NovelService(this.api);
+    this.chapterService = new ChapterService(this.api);
+    this.crawlerService = new CrawlerService(this.api);
+    this.authService = new AuthService(this.api);
   }
 
   public static getInstance = (config?: CreateApiConfig) => {
     if (!this.instance) {
-      this.instance = new JobsListingSDK(config || { apiEndpoint: "no-api-end-point" })
+      this.instance = new AppcenterSDK(config || { apiEndpoint: "no-api-end-point" })
     }
     return this.instance;
   }
@@ -51,19 +111,8 @@ export class JobsListingSDK extends BaseSDK {
         IUserCreation,
         IUserUpdating,
         IUserResponse,
-        IUserFilter & IPagingFilter
+        ISearchQuery<IUserFilter>
       >(this.userService),
-    };
-  }
-
-  getCategoryControl() {
-    return {
-      ...this.getBaseControl<
-        ICategoryCreation,
-        ICategoryUpdating,
-        ICategoryResponse,
-        ICategoryFilter & IPagingFilter
-      >(this.categoryService),
     };
   }
 
@@ -73,33 +122,128 @@ export class JobsListingSDK extends BaseSDK {
         IRoleCreation,
         IRoleUpdating,
         IRoleResponse,
-        IRoleFilter & IPagingFilter
+        ISearchQuery<IRoleFilter>
       >(this.roleService),
+    };
+  }
+
+  getPermissionControl() {
+    return {
+      ...this.getBaseControl<
+        IPermissionCreation,
+        IPermissionUpdating,
+        IPermissionResponse,
+        ISearchQuery<IPermissionFilter>
+      >(this.permissionService),
+    };
+  }
+
+  getRecruiterCategoryControl() {
+    return {
+      ...this.getBaseControl<
+        IRecruiterCategoryCreation,
+        IRecruiterCategoryUpdating,
+        IRecruiterCategoryResponse,
+        ISearchQuery<IRecruiterCategoryFilter>
+      >(this.recruiterCategoryService),
     };
   }
 
   getJobControl() {
     return {
       ...this.getBaseControl<
-        any,
-        any,
-        any,
-        any
+      IJobCreation,
+      IJobUpdating,
+      IJobResponse,
+      ISearchQuery<IJobFilter>
       >(this.jobService),
     };
   }
 
-  exportAnydayJob(jobId: string, categoryId: number, htmlString: string) {
-    return this.jobService.exportAnydayJob(jobId, categoryId, htmlString);
+  getAuthorControl() {
+    return {
+      ...this.getBaseControl<
+        IAuthorCreation,
+        IAuthorUpdating,
+        IAuthorResponse,
+        ISearchQuery<IAuthorFilter>
+      >(this.authorService),
+    };
   }
 
-  login(data: any) {
-    return this.userService.login(data);
+  getNovelsCategoryControl() {
+    return {
+      ...this.getBaseControl<
+        INovelsCategoryCreation,
+        INovelsCategoryUpdating,
+        INovelsCategoryResponse,
+        ISearchQuery<INovelsCategoryFilter>
+      >(this.novelCategoryService),
+    };
+  }
+
+  getNovelControl() {
+    return {
+      ...this.getBaseControl<
+        INovelCreation,
+        INovelUpdating,
+        INovelResponse,
+        ISearchQuery<INovelFilter>
+      >(this.novelService),
+    };
+  }
+
+  getChapterControl() {
+    return {
+      ...this.getBaseControl<
+        IChapterCreation,
+        IChapterUpdating,
+        IChapterResponse,
+        ISearchQuery<IChapterFilter>
+      >(this.chapterService),
+    };
+  }
+
+  getCommentControl() {
+    return {
+      ...this.getBaseControl<
+        ICommentCreation,
+        ICommentUpdating,
+        ICommentResponse,
+        ISearchQuery<ICommentFilter>
+      >(this.commentService),
+    };
+  }
+
+  crawlAnyday() {
+    return this.crawlerService.crawlAnyday();
+  }
+
+  addAnydatJobData(jobId: string, categoryId: number, htmlString: string) {
+    return this.crawlerService.addAnydayJobData(jobId, categoryId, htmlString);
+  }
+
+  login(data: ILoginRequest) {
+    return this.authService.login(data);
+  }
+
+  logout() {
+    return this.authService.logout();
+  }
+
+  resetPassword(data: IResetPasswordRequest) {
+    return this.authService.resetPassword(data);
+  }
+
+  register(data: IRegisterRequest) {
+    return this.authService.register(data);
+  }
+
+  refreshToken() {
+    return this.authService.refreshToken();
   }
 
 }
 
-export type Pagination<T> = PaginationCore<T>;
-
 export * from "./types";
-export default JobsListingSDK;
+export default AppcenterSDK;

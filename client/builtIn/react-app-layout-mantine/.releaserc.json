@@ -1,3 +1,0 @@
-{
-  "extends": ["@core-config/release/dist/npm.js"]
-}

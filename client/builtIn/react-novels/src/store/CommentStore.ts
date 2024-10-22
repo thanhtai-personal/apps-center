@@ -1,24 +1,28 @@
-import { ICommentFilter, ICommentResponse, IPagination, IPagingFilter } from "@core-ui/novels-types";
 import { BaseStore, makeObservable, observable } from "@core-ui/react-mobx-state";
+import { ICommentFilter, ICommentResponse } from "@core-ui/novels-types";
+import { ISearchQuery, IPagingResponse } from "@core-ui/common-types";
 
 export interface ICommentStore {
   error?: any;
-  comments?: IPagination<ICommentResponse>;
+  comments?: IPagingResponse<ICommentResponse>;
   comment?: ICommentResponse;
-  filterData?: ICommentFilter & IPagingFilter;
+  filterData?: ISearchQuery<ICommentFilter>;
+  loading?: boolean;
 }
 
 export class CommentStore extends BaseStore implements ICommentStore {
   public error?: any = null;
-  public comments?: IPagination<ICommentResponse>;
+  public comments?: IPagingResponse<ICommentResponse>;
   public comment?: ICommentResponse;
-  public filterData?: ICommentFilter & IPagingFilter;
+  public filterData?: ISearchQuery<ICommentFilter>;
+  public loading: boolean = false;
 
   constructor() {
     super();
     makeObservable(this, {
       error: observable,
       comments: observable,
+      loading: observable,
       comment: observable,
       filterData: observable,
     });

@@ -34,6 +34,7 @@
     "@core-ui/ums-types": "workspace:^",
     "@core-ui/novels-types": "workspace:^",
     "@core-ui/api-client": "workspace:^",
+    "@core-ui/common-types": "workspace:^",
     "urlcat": "^3.1.0"
   }
 }

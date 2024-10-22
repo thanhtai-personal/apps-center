@@ -1,8 +1,9 @@
-import { BaseRoutes, Pagination, IResponse } from "@core-sdk/core";
+import { BaseRoutes, IAPIResponse } from "@core-sdk/core";
+import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types";
 import {
   IUserCreation, IUserFilter
   , IUserResponse, IUserUpdating,
-} from "@core-ui/recruiter-types";
+} from "@core-ui/ums-types";
 
 export interface UserRoutes extends BaseRoutes {
   "/users": {
@@ -11,7 +12,7 @@ export interface UserRoutes extends BaseRoutes {
         query: IUserFilter;
       };
       responses: {
-        "200": IResponse<Pagination<IUserResponse>>;
+        "200": IAPIResponse<IPagingResponse<IUserResponse>>;
       };
     };
     post: {
@@ -19,10 +20,22 @@ export interface UserRoutes extends BaseRoutes {
         query: IUserCreation;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IAPIResponse<IUserResponse>;
       };
     };
   };
+
+  "/users/all": {
+    get: {
+      request: {
+        query: IUserFilter;
+      };
+      responses: {
+        "200": INonPagingResponse<IUserResponse>;
+      };
+    };
+  };
+
   "/users/{userId}": {
     get: {
       request: {
@@ -31,7 +44,7 @@ export interface UserRoutes extends BaseRoutes {
         };
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IAPIResponse<IUserResponse>;
       };
     };
     put: {
@@ -42,7 +55,7 @@ export interface UserRoutes extends BaseRoutes {
         body: IUserUpdating;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
+        "200": IAPIResponse<IUserResponse>;
       };
     };
     delete: {
@@ -52,7 +65,7 @@ export interface UserRoutes extends BaseRoutes {
         };
       };
       responses: {
-        "200": IResponse<string>;
+        "200": IAPIResponse<string>;
       };
     };
     patch: {
@@ -63,18 +76,7 @@ export interface UserRoutes extends BaseRoutes {
         body: Partial<IUserUpdating>;
       };
       responses: {
-        "200": IResponse<IUserResponse>;
-      };
-    };
-  };
-  "/auth/login": {
-    post: {
-      request: {
-        query: any;
-      };
-      body: any;
-      responses: {
-        "200": IResponse<any>;
+        "200": IAPIResponse<IUserResponse>;
       };
     };
   };

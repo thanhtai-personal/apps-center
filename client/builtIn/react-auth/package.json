@@ -1,5 +1,5 @@
 {
-  "name": "@core-ui/react-job-listing",
+  "name": "@core-ui/react-auth",
   "private": false,
   "version": "0.0.0",
   "type": "module",
@@ -17,18 +17,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "dependency": {
-    "@core-ui/react-core": "workspace:^"
-  },
   "devDependencies": {
     "@core-config/eslint-plugin": "workspace:^",
     "@core-config/release": "workspace:^",
     "@core-config/tsconfig": "workspace:^",
     "@core-config/typedoc": "workspace:^",
-    "@core-sdk/jobs-listing": "workspace:^",
-    "@core-ui/recruiter-types": "workspace:^",
-    "@core-utils/utils-helpers": "workspace:^",
-    "@core-utils/react-hooks": "workspace:^",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
@@ -47,9 +40,14 @@
     "@core-config/*"
   ],
   "dependencies": {
+    "@core-ui/react-core": "workspace:^",
     "@core-ui/react-mobx-state": "workspace:^",
+    "@core-ui/ums-types": "workspace:^",
+    "@core-ui/common-types": "workspace:^",
+    "@core-sdk/app-center": "workspace:^",
+    "@core-utils/utils-helpers": "workspace:^",
+    "@core-utils/react-hooks": "workspace:^",
     "@twa-dev/sdk": "^7.8.0",
-    "@twa-dev/types": "^7.8.0",
-    "use-local-storage": "^3.0.0"
+    "@twa-dev/types": "^7.8.0"
   }
 }
