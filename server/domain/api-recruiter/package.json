@@ -39,7 +39,7 @@
     "@core-config/tsconfig": "workspace:^",
     "@core-config/typedoc": "workspace:^",
     "@core-api/nest-core": "workspace:^",
-    "@core-ui/jobs-listing-types": "workspace:^",
+    "@core-ui/recruiter-types": "workspace:^",
     "@core-modules/categories": "workspace:^",
     "@core-modules/jobs": "workspace:^",
     "@core-api/microservices-utils": "workspace:^",

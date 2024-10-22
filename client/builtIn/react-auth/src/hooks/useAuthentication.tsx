@@ -4,12 +4,12 @@ import { useLayoutEffect } from "react";
 import { useLocalStorageData } from "@core-utils/react-hooks";
 
 export const useAuthen = (isAdmin?: boolean) => {
-  const { userStore, notiStore } = useJobsListingStore();
+  const { authStore, notiStore } = useJobsListingStore();
   const [token, setToken] = useLocalStorageData("token");
 
   const loginWithToken = async (token: string) => {
     try {
-      userStore.loading = true;
+      authStore.loading = true;
       JobsListingSDK.getInstance().setAccessToken(token);
       JobsListingSDK.getInstance().login({
         token
@@ -25,19 +25,19 @@ export const useAuthen = (isAdmin?: boolean) => {
         variant: "error"
       })
     } finally {
-      userStore.loading = false;
+      authStore.loading = false;
     }
   }
 
   const onLogin = async () => {
     try {
-      userStore.loading = true;
+      authStore.loading = true;
       const response: any = await JobsListingSDK.getInstance().login({
-        ...userStore.loginData,
+        ...authStore.loginData,
         isAdmin
       });
       setToken(response.data.access_token);
-      userStore.user = response.data.user;
+      authStore.user = response.data.user;
       notiStore.messageQueue?.push({
         children: "Login success",
         variant: "success"
@@ -54,7 +54,7 @@ export const useAuthen = (isAdmin?: boolean) => {
       })
     }
     finally {
-      userStore.loading = false;
+      authStore.loading = false;
     }
   }
 

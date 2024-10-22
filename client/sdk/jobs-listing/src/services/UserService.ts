@@ -3,7 +3,7 @@ import { IAbstractService, IPagingFilter, IResponse, Pagination } from "@core-sd
 import {
   UserRoutes,
 } from "../types";
-import { IUserCreation, IUserFilter, IUserResponse, IUserUpdating } from "@core-ui/jobs-listing-types";
+import { IUserCreation, IUserFilter, IUserResponse, IUserUpdating } from "@core-ui/recruiter-types";
 
 export class UserService
   extends BaseService<UserRoutes>

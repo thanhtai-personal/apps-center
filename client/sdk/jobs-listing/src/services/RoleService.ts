@@ -3,7 +3,7 @@ import { IAbstractService, IPagingFilter, IResponse, Pagination } from "@core-sd
 import {
   RoleRoutes,
 } from "../types";
-import { IRoleCreation, IRoleFilter, IRoleResponse, IRoleUpdating } from "@core-ui/jobs-listing-types";
+import { IRoleCreation, IRoleFilter, IRoleResponse, IRoleUpdating } from "@core-ui/recruiter-types";
 
 export class RoleService
   extends BaseService<RoleRoutes>

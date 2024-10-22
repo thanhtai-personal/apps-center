@@ -40,7 +40,7 @@
     "@core-config/tsconfig": "workspace:^",
     "@core-config/typedoc": "workspace:^",
     "@core-api/appcenter-materials": "workspace:^",
-    "@core-ui/jobs-listing-types": "workspace:^",
+    "@core-ui/recruiter-types": "workspace:^",
     "@core-ui/common-types": "workspace:^",
     "@core-api/microservices-utils": "workspace:^",
     "@nestjs/platform-socket.io": "^10.4.5",

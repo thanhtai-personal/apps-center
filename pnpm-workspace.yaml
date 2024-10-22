@@ -5,8 +5,7 @@ packages:
   - "client/lib/react-hooks"
   - "client/lib/react-social-login"
   - "client/sdk/core"
-  - "client/sdk/novels"
-  - "client/sdk/jobs-listing"
+  - "client/sdk/app-center"
   - "client/ui/mui/react-core-mui"
   - "client/ui/react-animates"
   - "client/ui/react-context"
@@ -15,13 +14,15 @@ packages:
   - "client/ui/react-viewFrames"
   - "client/ui/react-lazyload"
   - "client/builtIn/react-novels"
-  - "client/builtIn/react-jobs-listing"
+  - "client/builtIn/react-ums"
+  - "client/builtIn/react-auth"
+  - "client/builtIn/react-recruiter"
 
   # all packages in subdirs of components/
   - "server/libs/*"
   - "server/domain/api-authentication"
   - "server/domain/api-appcenter-gateway"
-  - "server/domain/api-goat-tap"
+  # - "server/domain/api-goat-tap"
   - "server/domain/api-novels"
   - "server/domain/api-recruiter"
   - "server/domain/api-ums"
@@ -34,7 +35,7 @@ packages:
   # all packages in direct subdirs of packages/
   #- "apps/**"
   - "apps/novels"
-  - "apps/goattap"
+  # - "apps/goattap"
   - "apps/jobs-listing"
   
   # exclude packages that are inside test directories

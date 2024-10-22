@@ -1,33 +1,18 @@
-import { createStore } from "@core-ui/react-mobx-state"
-import { UserStore } from "./UserStore"
-import { RoleStore } from "./RoleStore"
-import { CategoryStore } from "./CategoryStore"
-import { NotifyStore } from "./NotifyStore"
-import JobsListingSDK, { CreateApiConfig } from "@core-sdk/jobs-listing";
-import { ReactNode, useEffect } from "react";
-import { JobStore } from "./JobStore";
+import { AuthStore } from "./AuthStore";
 
-export class JobsListingStore {
-  public userStore: UserStore;
-  public roleStore: RoleStore;
-  public categoryStore: CategoryStore;
-  public notiStore: NotifyStore;
-  public jobStore: JobStore;
+export class AuthStore {
+  public authStore: AuthStore;
 
   public constructor() {
-    this.userStore = new UserStore();
-    this.roleStore = new RoleStore();
-    this.categoryStore = new CategoryStore();
-    this.notiStore = new NotifyStore();
-    this.jobStore = new JobStore();
+    this.authStore = new AuthStore();
   }
 }
 
-export const jobsListingStore = createStore<JobsListingStore>(new JobsListingStore());
+export const authStore = createStore<AuthStore>(new AuthStore());
 
-export const useJobsListingStore = jobsListingStore.useStore as () => JobsListingStore;
+export const useAuthStore = authStore.useStore as () => AuthStore;
 
-const Provider = jobsListingStore.Provider;
+const Provider = authStore.Provider;
 
 export const JobsListingProvider = ({ children, config }: {
   children: ReactNode;
@@ -37,16 +22,12 @@ export const JobsListingProvider = ({ children, config }: {
 }) => {
   
   useEffect(() => {
-    JobsListingSDK.getInstance(config.apiConfig)
+    appCenterSDK.getInstance(config.apiConfig)
   }, [])
 
   return <Provider>
     {children}
   </Provider>
 }
-
-export * from "./UserStore"
-export * from "./RoleStore"
-export * from "./CategoryStore"
 export * from "./NotifyStore"
-export * from "./JobStore"
+export * from "./AuthStore"

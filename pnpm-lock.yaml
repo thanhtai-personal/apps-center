@@ -41,7 +41,7 @@ importers:
         version: link:../../client/ui/react-core
       '@core-ui/react-job-listing':
         specifier: workspace:^
-        version: link:../../client/builtIn/react-jobs-listing
+        version: link:../../client/builtIn/react-recruiter
       '@core-ui/react-mobx-state':
         specifier: workspace:^
         version: link:../../client/ui/react-mobx-state
@@ -297,7 +297,7 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0(rollup@4.17.2)(typescript@5.4.5)(vite@5.2.11(@types/node@20.14.10)(sugarss@4.0.1(postcss@8.4.38))(terser@5.31.1))
 
-  client/builtIn/react-jobs-listing:
+  client/builtIn/react-recruiter:
     dependencies:
       '@core-ui/react-mobx-state':
         specifier: workspace:^
@@ -333,9 +333,9 @@ importers:
       '@core-sdk/jobs-listing':
         specifier: workspace:^
         version: link:../../sdk/jobs-listing
-      '@core-ui/jobs-listing-types':
+      '@core-ui/recruiter-types':
         specifier: workspace:^
-        version: link:../../../shared/jobs-listing-types
+        version: link:../../../shared/recruiter-types
       '@core-utils/react-hooks':
         specifier: workspace:^
         version: link:../../lib/react-hooks
@@ -629,9 +629,9 @@ importers:
       '@core-ui/api-client':
         specifier: workspace:^
         version: link:../../lib/api-client
-      '@core-ui/jobs-listing-types':
+      '@core-ui/recruiter-types':
         specifier: workspace:^
-        version: link:../../../shared/jobs-listing-types
+        version: link:../../../shared/recruiter-types
       '@core-utils/utils-helpers':
         specifier: workspace:^
         version: link:../../../shared/helpers
@@ -1232,9 +1232,9 @@ importers:
       '@core-ui/common-types':
         specifier: workspace:^
         version: link:../../../shared/common-types
-      '@core-ui/jobs-listing-types':
+      '@core-ui/recruiter-types':
         specifier: workspace:^
-        version: link:../../../shared/jobs-listing-types
+        version: link:../../../shared/recruiter-types
       '@nestjs/platform-socket.io':
         specifier: ^10.4.5
         version: 10.4.5(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/websockets@10.4.5)(rxjs@7.8.1)
@@ -1760,9 +1760,9 @@ importers:
       '@core-modules/jobs':
         specifier: workspace:^
         version: link:../../modules/jobs
-      '@core-ui/jobs-listing-types':
+      '@core-ui/recruiter-types':
         specifier: workspace:^
-        version: link:../../../shared/jobs-listing-types
+        version: link:../../../shared/recruiter-types
       '@orbs-network/ton-access':
         specifier: ^2.3.3
         version: 2.3.3
@@ -1938,9 +1938,9 @@ importers:
       '@core-modules/users':
         specifier: workspace:^
         version: link:../../modules/users
-      '@core-ui/jobs-listing-types':
+      '@core-ui/recruiter-types':
         specifier: workspace:^
-        version: link:../../../shared/jobs-listing-types
+        version: link:../../../shared/recruiter-types
       '@core-ui/ums-types':
         specifier: workspace:^
         version: link:../../../shared/ums-types
@@ -3692,7 +3692,7 @@ importers:
         specifier: ^5.3.3
         version: 5.4.5
 
-  shared/jobs-listing-types:
+  shared/recruiter-types:
     devDependencies:
       '@core-config/eslint-plugin':
         specifier: workspace:^

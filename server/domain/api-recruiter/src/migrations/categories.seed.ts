@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import csv from 'csv-parser';
 import { waitMs } from "./waitms";
-import { ICategoryCreation } from "@core-ui/jobs-listing-types";
+import { ICategoryCreation } from "@core-ui/recruiter-types";
 
 export class CategoriesDataSeed implements MigrationInterface {
   name = `CategoriesDataSeed${Date.now()}`
