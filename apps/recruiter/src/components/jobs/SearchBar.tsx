@@ -1,6 +1,6 @@
 import { useGlobalStyles } from "@/styles/globalStyle"
 import { PAGE_MAX_WIDTH } from "@/utils/constants"
-import { runCategoryStore, useJobsData, useJobsListingStore } from "@core-ui/react-recruiter"
+import { runCategories, useJobsData, useRecruiterStore } from "@core-logic-hooks/react-recruiter"
 import { observer } from "@core-ui/react-mobx-state"
 import { Flex, OutlinedButton, Text } from "@core-ui/react-mui-core"
 import { useEffect } from "react"
@@ -12,7 +12,7 @@ export interface ISearchBarProps {
 
 export const SearchBar = observer(({ }: ISearchBarProps) => {
   const globalStyle = useGlobalStyles();
-  const { categoryStore, jobStore } = useJobsListingStore();
+  const { categoryStore, jobStore } = useRecruiterStore();
   const [activeCategory, setActiveCategory] = useLocalStorageData("active-category");
 
   const { refetch } = useJobsData();
@@ -25,13 +25,15 @@ export const SearchBar = observer(({ }: ISearchBarProps) => {
   }, [categoryStore.categories, activeCategory])
 
   useEffect(() => {
-    categoryStore.activeCateId = activeCategory;
-    jobStore.filterData.category = activeCategory;
-    jobStore.filterData.offset = 0;
+    if (jobStore.filterData?.paging && jobStore.filterData?.filter) {
+      categoryStore.activeCateId = activeCategory;
+      jobStore.filterData.filter.categoryData = activeCategory;
+      jobStore.filterData.paging.offset = 0;
+    }
     refetch?.();
   }, [activeCategory])
 
-  runCategoryStore();
+  runCategories();
 
   return <Flex fullWidth my={1} center column>
     <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} border={"solid 1px rgba(255,255,255, 0.1)"} borderRadius={4} p={1} column>
@@ -55,14 +57,16 @@ export const SearchBar = observer(({ }: ISearchBarProps) => {
         <Flex ml={2} p={0.5} px={2} border={"solid 1px rgba(255,255,255,0.2)"} borderRadius={"8px"}>
           <Input placeholder="Tìm kiếm" fullWidth
             onChange={(event: any) => {
-              jobStore.filterData.query = event.target.value;
+              // jobStore.filterData.filter.query = event.target.value;
             }}
           />
           <OutlinedButton style={{ marginLeft: 8, padding: "8px 16px", border: "none" }}>
             <Text whiteSpace={"nowrap"} className={globalStyle.textKanitBold18}
               onClick={() => {
-                jobStore.filterData.offset = 0;
-                refetch?.()
+                if (jobStore.filterData?.paging) {
+                  jobStore.filterData.paging.offset = 0;
+                  refetch?.()
+                }
               }}
             >Tìm</Text>
           </OutlinedButton>

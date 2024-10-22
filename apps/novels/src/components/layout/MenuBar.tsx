@@ -6,7 +6,7 @@ import { Popover } from "@core-ui/react-mui-core/materials";
 import clsx from "@core-ui/react-mui-core/clsx";
 import menuIcon from "@/assets/icons/home/endless.svg"
 import { useStore } from "@/store/index";
-import { useNovelsStore } from "@core-ui/react-novels";
+import { useNovelsStore } from "@core-logic-hooks/react-novels";
 import { Link } from "@core-ui/react-core";
 import { useState } from "react";
 

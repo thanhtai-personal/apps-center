@@ -3,7 +3,7 @@ import { Layers } from "@/styles/layers"
 import { Animates } from "@core-ui/react-animates"
 import { observer } from "@core-ui/react-mobx-state"
 import { Flex } from "@core-ui/react-mui-core"
-import { useNovelsStore } from "@core-ui/react-novels"
+import { useNovelsStore } from "@core-logic-hooks/react-novels"
 import { SocialsLogin } from "@core-utils/react-social-login"
 
 export interface ILoginProps {

@@ -6,7 +6,7 @@ import { Popover } from "@core-ui/react-mui-core/materials";
 import clsx from "@core-ui/react-mui-core/clsx";
 import menuIcon from "@/assets/icons/home/endless.svg"
 import { useStore } from "@/store/index";
-import { useJobsListingStore } from "@core-ui/react-recruiter";
+import { useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { Link } from "@core-ui/react-core";
 import { useState } from "react";
 
@@ -55,7 +55,7 @@ const MenuItem = observer(({ text, icon, to, className, onClick, target }: any) 
 
 // Thêm component CategoryList
 const CategoryList = observer(() => {
-  const { categoryStore } = useJobsListingStore();
+  const { categoryStore } = useRecruiterStore();
   const globalStyles = useGlobalStyles();
 
   return (

@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { LazyImage } from "@core-ui/react-mui-core";
 import { useLanguage } from "@/hooks/useLanguage";
 import loginBg from "@/assets/images/bg/login_bg.png"
-import { useJobsListingStore, useAuthen } from "@core-ui/react-recruiter";
+import { useUMSStore } from "@core-logic-hooks/react-ums";
+import { useAuthen } from "@core-logic-hooks/react-auth";
 
 export const LoginForm = observer(({
   isAdmin
@@ -12,7 +13,7 @@ export const LoginForm = observer(({
   isAdmin?: boolean
 }) => {
   const { getText } = useLanguage(loginTextsObj);
-  const { userStore } = useJobsListingStore();
+  const { userStore } = useUMSStore();
   const { onLogin } = useAuthen(isAdmin);
 
   const openModal = () => {

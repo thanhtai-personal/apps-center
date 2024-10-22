@@ -1,7 +1,7 @@
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, LazyImage, ResponsiveFlex4Column, Text, useResponsive } from "@core-ui/react-mui-core";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
-import { useNovelsStore } from "@core-ui/react-novels";
+import { useNovelsStore } from "@core-logic-hooks/react-novels";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { useStore } from "@/store/index";
 import { INovelResponse } from "@core-ui/novels-types";

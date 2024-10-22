@@ -2,7 +2,7 @@ import { observer } from "@core-ui/react-mobx-state";
 import { AppTheme, Flex, LazyImage, OutlinedButton, Text, useResponsive } from "@core-ui/react-mui-core";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import Carousel from 'react-material-ui-carousel';
-import { useNovelsStore } from "@core-ui/react-novels";
+import { useNovelsStore } from "@core-logic-hooks/react-novels";
 import { Link } from "@core-ui/react-core";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import clsx from "@core-ui/react-mui-core/clsx";

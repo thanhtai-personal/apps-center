@@ -14,7 +14,7 @@ import { TopMenu } from "./TopMenu";
 import { SkillsSet } from "./SkillSet";
 import { useStore } from "@/store/index";
 import { useLanguage } from "@/hooks/useLanguage";
-import { useDeviceDetection } from "@core-ui/react-recruiter";
+import { useDeviceDetection } from "@core-utils/react-hooks";
 
 export const Banner = observer(() => {
   const { isIOS } = useDeviceDetection();

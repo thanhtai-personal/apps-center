@@ -2,7 +2,7 @@ import { useStore } from "@/store/index";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, Text, useResponsive } from "@core-ui/react-mui-core";
 import { Drawer } from "@core-ui/react-mui-core/materials";
-import { runJobs, useJobsListingStore, useJobsData, runCategoryStore } from "@core-ui/react-recruiter";
+import { runJobs, useRecruiterStore, useJobsData, runCategories } from "@core-logic-hooks/react-recruiter";
 import { useEffect, useLayoutEffect } from "react";
 import { JobDetail } from "@/components/JobDetail";
 import { JobInputForm } from "./JobInputForm";
@@ -15,19 +15,30 @@ import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { useGlobalStyles } from "@/styles/globalStyle";
 
 export const JobsCrawlerPageContent = observer(() => {
-  const { jobStore } = useJobsListingStore();
+  const { jobStore } = useRecruiterStore();
   const { uiStore } = useStore();
   const { tabletSizeDown } = useResponsive();
   const { refetch } = useJobsData();
   const globalStyles = useGlobalStyles();
 
   useEffect(() => {
-    jobStore.filterData.limit = 99999;
+    if (jobStore.filterData?.paging) {
+      jobStore.filterData.paging.limit = 9999;
+    } else {
+      jobStore.filterData = {
+        paging: {
+          limit: 99999,
+          offset: 0,
+          total: 0
+        },
+        ...(jobStore.filterData || {})
+      }
+    }
     refetch?.();
   }, [])
 
   runJobs();
-  runCategoryStore();
+  runCategories();
   useLayoutEffect(() => {
     uiStore.useHeader = false;
     uiStore.useFooter = false;
@@ -66,7 +77,9 @@ export const JobsCrawlerPageContent = observer(() => {
       <Drawer
         anchor={"right"}
         open={!!jobStore.job}
-        onClose={() => { jobStore.job = null }}
+        onClose={() => {
+          jobStore.job = undefined
+        }}
       >
         <Flex fullSize column p={2} bgcolor={"rgba(0,0,0,1)"} width={600} maxHeight={"100vh"}
           style={{

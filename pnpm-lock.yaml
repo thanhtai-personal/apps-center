@@ -30,6 +30,9 @@ importers:
 
   apps/novels:
     dependencies:
+      '@core-logic-hooks/react-novels':
+        specifier: workspace:^
+        version: link:../../client/builtIn/react-novels
       '@core-ui/react-animates':
         specifier: workspace:^
         version: link:../../client/ui/react-animates
@@ -45,9 +48,6 @@ importers:
       '@core-ui/react-mui-core':
         specifier: workspace:^
         version: link:../../client/ui/mui/react-core-mui
-      '@core-ui/react-novels':
-        specifier: workspace:^
-        version: link:../../client/builtIn/react-novels
       '@core-ui/react-viewframe':
         specifier: workspace:^
         version: link:../../client/ui/react-viewFrames
@@ -163,6 +163,15 @@ importers:
 
   apps/recruiter:
     dependencies:
+      '@core-logic-hooks/react-auth':
+        specifier: workspace:^
+        version: link:../../client/builtIn/react-auth
+      '@core-logic-hooks/react-recruiter':
+        specifier: workspace:^
+        version: link:../../client/builtIn/react-recruiter
+      '@core-logic-hooks/react-ums':
+        specifier: workspace:^
+        version: link:../../client/builtIn/react-ums
       '@core-ui/react-animates':
         specifier: workspace:^
         version: link:../../client/ui/react-animates
@@ -178,9 +187,6 @@ importers:
       '@core-ui/react-mui-core':
         specifier: workspace:^
         version: link:../../client/ui/mui/react-core-mui
-      '@core-ui/react-recruiter':
-        specifier: workspace:^
-        version: link:../../client/builtIn/react-recruiter
       '@core-ui/react-viewframe':
         specifier: workspace:^
         version: link:../../client/ui/react-viewFrames

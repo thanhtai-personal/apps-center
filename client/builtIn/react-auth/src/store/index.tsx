@@ -20,7 +20,7 @@ export const useAuthenticationStore = authenticationStore.useStore as () => Auth
 
 const Provider = authenticationStore.Provider;
 
-export const JobsListingProvider = ({ children, config }: {
+export const AuthProvider = ({ children, config }: {
   children: ReactNode;
   config: {
     apiConfig: CreateApiConfig;

@@ -3,7 +3,7 @@ import { AppLayout } from "@/layout/index"
 import "./reset.css";
 import "./index.css";
 import { AppStoreProvider } from "./store";
-import { NovelsProvider } from "@core-ui/react-novels";
+import { NovelsProvider } from "@core-logic-hooks/react-novels";
 import { SocialProvider } from "@core-utils/react-social-login";
 
 export const App = ({ children }: { children: ReactNode }) => {

@@ -1,6 +1,6 @@
 import { observer } from "@core-ui/react-mobx-state";
 import { NotiStackInstance } from "@core-ui/react-mui-core";
-import { useNovelsStore } from "@core-ui/react-novels";
+import { useNovelsStore } from "@core-logic-hooks/react-novels";
 import { ReactNode, useEffect } from "react"
 
 export const MessageQueueBoundary = observer(({

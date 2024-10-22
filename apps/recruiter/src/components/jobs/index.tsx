@@ -1,4 +1,4 @@
-import { runJobs, useJobsData, useJobsListingStore } from "@core-ui/react-recruiter";
+import { runJobs, useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, Text } from "@core-ui/react-mui-core";
 import { SearchBar } from "./SearchBar";
@@ -16,7 +16,7 @@ import { TopBar } from "./TopBar";
 export interface IJobsPageContentProps { }
 
 export const JobsPageContent = observer(({ }: IJobsPageContentProps) => {
-  const { jobStore } = useJobsListingStore();
+  const { jobStore } = useRecruiterStore();
   const globalStyles = useGlobalStyles();
   const { todayJobs = [], currentWeekJobs = [] } = runJobs();
 
@@ -39,7 +39,7 @@ export const JobsPageContent = observer(({ }: IJobsPageContentProps) => {
           </Link>
         </Flex>
       </Flex>
-      <JobsGridView data={jobStore.jobs?.data} paging={jobStore.pagingFilterData} title={"Việc mới đăng"} />
+      <JobsGridView data={jobStore.jobs?.data || []} paging={jobStore.pagingFilterData} title={"Việc mới đăng"} />
       <Flex position={"absolute"} bottom={0} right={0} p={2} column>
         <FacebookChat />
         <Flex my={1}></Flex>

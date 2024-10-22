@@ -1,6 +1,6 @@
 import { Flex } from "@core-ui/react-mui-core"
-import { MOBILE_SIZE } from "../../../goat-tap/src/utils"
 import "@core-ui/react-animates/dist/loadingIcon.style.css"
+import { MOBILE_SIZE } from "../utils";
 
 export const LoadingPage = ({ isStrongPlatform }: {
   isStrongPlatform?: boolean;

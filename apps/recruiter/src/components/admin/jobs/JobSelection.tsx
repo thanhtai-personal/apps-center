@@ -1,13 +1,13 @@
 import { SearchBar } from "@/components/jobs/SearchBar";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { Link } from "@core-ui/react-core";
-import { useJobsData, useJobsListingStore } from "@core-ui/react-recruiter";
+import { useJobsData, useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, OutlinedButton, Text } from "@core-ui/react-mui-core";
 import { useMemo } from "react";
 
 export const JobSelection = observer(() => {
-  const { jobStore } = useJobsListingStore();
+  const { jobStore } = useRecruiterStore();
   const globalStyles = useGlobalStyles();
   const { viewJob, selectJob, deleteJob } = useJobsData();
 

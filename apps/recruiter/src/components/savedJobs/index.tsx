@@ -3,7 +3,7 @@ import { Flex } from "@core-ui/react-mui-core";
 import ZaloChat from "../ZaloChat";
 import FacebookChat from "../FacebookChat";
 import TelegramChat from "../TelegramChat";
-import { useJobsListingStore } from "@core-ui/react-recruiter";
+import { useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { JobsGridView } from "../jobs/JobsGridView";
 import { Link } from "@core-ui/react-core";
 import { ArrowBack as ArrowBackIcon } from "@core-ui/react-mui-core/icons";
@@ -12,7 +12,7 @@ import { PAGE_MAX_WIDTH } from "@/utils/constants";
 export interface ISavedJobsContentProps { }
 
 export const SavedJobsContent = observer(({ }: ISavedJobsContentProps) => {
-  const { jobStore } = useJobsListingStore();
+  const { jobStore } = useRecruiterStore();
 
   return (
     <Flex fullWidth center>
@@ -22,7 +22,7 @@ export const SavedJobsContent = observer(({ }: ISavedJobsContentProps) => {
             <ArrowBackIcon style={{ color: "rgb(255, 255, 255)" }}  />
           </Link>
         </Flex>
-        <JobsGridView data={jobStore.savedJobs} title={"Kho dự trữ của bạn"} />
+        <JobsGridView data={jobStore.savedJobs || []} title={"Kho dự trữ của bạn"} />
         <Flex position={"absolute"} bottom={0} right={0} p={2} column>
           <FacebookChat />
           <Flex my={1}></Flex>

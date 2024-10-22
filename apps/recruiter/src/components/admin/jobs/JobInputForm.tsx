@@ -1,5 +1,5 @@
 import { useGlobalStyles } from "@/styles/globalStyle";
-import { useCrawler, useJobsData, useJobsListingStore } from "@core-ui/react-recruiter";
+import { useCrawler, useJobsData, useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { observer, useLocalObservable } from "@core-ui/react-mobx-state";
 import { Flex, OutlinedButton, Text } from "@core-ui/react-mui-core";
 import { waitMs } from "@core-utils/utils-helpers";
@@ -9,7 +9,7 @@ export const JobInputForm = observer(({ }: any) => {
   const state = useLocalObservable(() => ({
     loading: false,
   }))
-  const { categoryStore } = useJobsListingStore();
+  const { categoryStore } = useRecruiterStore();
   const globalStyles = useGlobalStyles();
   const { refetch } = useJobsData();
 

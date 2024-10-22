@@ -1,12 +1,12 @@
 import { useGlobalStyles } from "@/styles/globalStyle";
-import { useJobsData, useJobsListingStore } from "@core-ui/react-recruiter";
+import { useJobsData, useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, Loading, OutlinedButton, Text } from "@core-ui/react-mui-core";
 import { formatFullDate } from "@core-utils/utils-helpers";
 import { toPng } from 'html-to-image';
 
 export const ImageExport = observer(() => {
-  const { jobStore } = useJobsListingStore();
+  const { jobStore } = useRecruiterStore();
   const globalStyles = useGlobalStyles();
   const { clearSelectedJobs } = useJobsData();
 
@@ -44,7 +44,7 @@ export const ImageExport = observer(() => {
             day: "2-digit",
           })}</Text>
         </Flex>
-        {jobStore.selectedJobs.map((job: any, index: number) => {
+        {jobStore.selectedJobs?.map((job: any, index: number) => {
           return <div key={job.id} style={{
             width: "100%",
             display: "flex",

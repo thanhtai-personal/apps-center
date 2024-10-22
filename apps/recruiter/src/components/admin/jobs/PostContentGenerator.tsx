@@ -1,12 +1,12 @@
 import { useGlobalStyles } from "@/styles/globalStyle";
-import { useJobsListingStore } from "@core-ui/react-recruiter";
+import { useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, OutlinedButton, Text } from "@core-ui/react-mui-core";
 import { useEffect, useRef } from "react";
 
 export const PostContentGenerator = observer(() => {
   const globalStyles = useGlobalStyles();
-  const { notiStore, jobStore } = useJobsListingStore();
+  const { notiStore, jobStore } = useRecruiterStore();
   const postContentRef = useRef<any>(null)
 
   const handleCopy = () => {
@@ -22,7 +22,7 @@ export const PostContentGenerator = observer(() => {
       let text = `Bên mình đang tuyển dụng các vị trí sau`
 
       for (const jobIndex in jobStore.selectedJobs) {
-        const job = jobStore.selectedJobs[jobIndex];
+        const job = jobStore.selectedJobs[jobIndex] || {};
         text += `\n\n${parseInt(jobIndex) + 1}. ${job.name}\n - Gross salary: ${job.grossSalary}`
       }
 

@@ -7,20 +7,21 @@ import {
 } from "@core-ui/react-mui-core/icons";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { useGlobalStyles } from "@/styles/globalStyle";
-import { useJobsData, useJobsListingStore } from "@core-ui/react-recruiter";
+import { useJobsData, useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { JobDetail } from "../JobDetail";
 import { formatFullDate } from "@core-utils/utils-helpers";
 import { useMemo } from "react";
+import { IJobResponse } from "@core-ui/recruiter-types";
 
 export interface IJobsGridViewProps {
-  data: any[];
+  data: IJobResponse[];
   paging?: any;
   title?: string;
 }
 
 export const JobsGridView = observer(({ data, title }: IJobsGridViewProps) => {
   const globalStyles = useGlobalStyles();
-  const { jobStore } = useJobsListingStore();
+  const { jobStore } = useRecruiterStore();
   const { refetch, handleSavedJob } = useJobsData()
 
   const handleSaveJob = (job: any) => (e) => {
@@ -133,11 +134,21 @@ export const JobsGridView = observer(({ data, title }: IJobsGridViewProps) => {
         </Grid>)}
       </Grid>
       <Flex fullWidth center mx={2} my={3}>
-        <Pagination count={jobStore.jobs?.total > 0 && jobStore.jobs?.limit > 0
-          ? Math.floor((((jobStore.jobs?.total - 1) / jobStore.jobs?.limit) || 1)) + 1 : 1}
+        <Pagination count={(jobStore.jobs?.paging?.total || 0) > 0 && (jobStore.jobs?.paging?.limit || 0) > 0
+          ? Math.floor(((((jobStore.jobs?.paging?.total || 0) - 1) / (jobStore.jobs?.paging?.limit || 1)) || 1)) + 1 : 1}
           color="primary"
           onChange={(_, page) => {
-            jobStore.filterData.offset = (page - 1) * jobStore.filterData.limit;
+            if (jobStore.filterData?.paging) {
+              jobStore.filterData.paging.offset = (page - 1) * jobStore.filterData?.paging?.limit;
+            } else {
+              jobStore.filterData = {
+                paging: {
+                  offset: (page - 1) * (jobStore.filterData?.paging?.limit || 10),
+                  limit: (jobStore.filterData?.paging?.limit || 10),
+                  total: 0,
+                }
+              }
+            }
             refetch?.();
           }}
         />
@@ -147,7 +158,7 @@ export const JobsGridView = observer(({ data, title }: IJobsGridViewProps) => {
     <Drawer
       anchor={"right"}
       open={!!jobStore.job}
-      onClose={() => { jobStore.job = null }}
+      onClose={() => { jobStore.job = undefined }}
     >
       <Flex fullSize column p={2} bgcolor={"rgba(0,0,0,1)"} width={600} maxHeight={"100vh"}
         style={{
