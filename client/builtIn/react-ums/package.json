@@ -17,9 +17,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "dependency": {
-    "@core-ui/react-core": "workspace:^"
-  },
   "devDependencies": {
     "@core-config/eslint-plugin": "workspace:^",
     "@core-config/release": "workspace:^",
@@ -35,14 +32,8 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   },
-  "workspaces": [
-    "@core-api/*",
-    "@core-ui/*",
-    "@core-utils/*",
-    "@core-sdk/*",
-    "@core-config/*"
-  ],
   "dependencies": {
+    "@core-ui/react-core": "workspace:^",
     "@core-ui/react-mobx-state": "workspace:^",
     "@core-utils/utils-helpers": "workspace:^",
     "@core-utils/react-hooks": "workspace:^",

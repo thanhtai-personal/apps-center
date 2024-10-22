@@ -25,13 +25,6 @@
     "migration:run": "npm run typeorm migration:run",
     "docker": "docker-compose up -d"
   },
-  "workspaces": [
-    "@core-api/*",
-    "@core-ui/*",
-    "@core-utils/*",
-    "@core-sdk/*",
-    "@core-config/*"
-  ],
   "dependencies": {
     "@core-api/nest-core": "workspace:^",
     "@core-api/nest-typeorm-postgres": "workspace:^",

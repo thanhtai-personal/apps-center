@@ -20,13 +20,6 @@
     "@core-config/typedoc": "workspace:^",
     "typescript": "^5.3.2"
   },
-  "workspaces": [
-    "@core-api/*",
-    "@core-ui/*",
-    "@core-utils/*",
-    "@core-sdk/*",
-    "@core-config/*"
-  ],
   "dependencies": {
     "@core-utils/utils-helpers": "workspace:^",
     "@core-sdk/core": "workspace:^",

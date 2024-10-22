@@ -13,11 +13,6 @@
     "release": "pnpm i && pnpm build && npm version patch && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "peerDependencies": {
-    "@core-utils/utils-helpers": "workspace:^",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
   "devDependencies": {
     "@core-config/eslint-plugin": "workspace:^",
     "@core-config/release": "workspace:^",
@@ -27,19 +22,15 @@
     "tslib": "^2.6.2",
     "typescript": "^5.3.2"
   },
-  "workspaces": [
-    "@core-api/*",
-    "@core-ui/*",
-    "@core-utils/*",
-    "@core-sdk/*",
-    "@core-config/*"
-  ],
   "dependencies": {
     "@metamask/sdk-react-ui": "^0.20.2",
     "@core-ui/react-context": "workspace:^",
     "@core-ui/react-core": "workspace:^",
     "add": "^2.0.6",
     "axios": "^1.6.5",
-    "urlcat": "^3.1.0"
+    "urlcat": "^3.1.0",
+    "@core-utils/utils-helpers": "workspace:^",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

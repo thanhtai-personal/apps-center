@@ -9,7 +9,7 @@
     "docs": "typedoc --out docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@core-ui/react-core": "workspace:*",
     "@core-ui/react-context": "workspace:*",
     "react": "^18.2.0",

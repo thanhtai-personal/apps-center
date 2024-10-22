@@ -32,13 +32,6 @@
     "typedoc": "^0.25.11",
     "fs-extra": "^11.2.0"
   },
-  "workspaces": [
-    "@core-api/*",
-    "@core-ui/*",
-    "@core-utils/*",
-    "@core-sdk/*",
-    "@core-config/*"
-  ],
   "dependencies": {
     "turbo": "^1.13.2"
   },

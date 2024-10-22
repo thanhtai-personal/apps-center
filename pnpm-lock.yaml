@@ -184,6 +184,12 @@ importers:
       '@core-ui/react-viewframe':
         specifier: workspace:^
         version: link:../../client/ui/react-viewFrames
+      '@core-ui/recruiter-types':
+        specifier: workspace:^
+        version: link:../../shared/recruiter-types
+      '@core-ui/ums-types':
+        specifier: workspace:^
+        version: link:../../shared/ums-types
       '@core-utils/react-hooks':
         specifier: workspace:^
         version: link:../../client/lib/react-hooks
@@ -384,6 +390,9 @@ importers:
       '@core-ui/novels-types':
         specifier: workspace:^
         version: link:../../../shared/novels-types
+      '@core-ui/react-core':
+        specifier: workspace:^
+        version: link:../../ui/react-core
       '@core-ui/react-mobx-state':
         specifier: workspace:^
         version: link:../../ui/react-mobx-state
@@ -454,6 +463,9 @@ importers:
       '@core-ui/common-types':
         specifier: workspace:^
         version: link:../../../shared/common-types
+      '@core-ui/react-core':
+        specifier: workspace:^
+        version: link:../../ui/react-core
       '@core-ui/react-mobx-state':
         specifier: workspace:^
         version: link:../../ui/react-mobx-state
@@ -498,7 +510,7 @@ importers:
         specifier: ^20.11.24
         version: 20.14.10
       '@types/react':
-        specifier: ^18.2.66
+        specifier: ^18.2.56
         version: 18.3.1
       '@types/react-dom':
         specifier: ^18.2.22
@@ -530,6 +542,9 @@ importers:
       '@core-ui/common-types':
         specifier: workspace:^
         version: link:../../../shared/common-types
+      '@core-ui/react-core':
+        specifier: workspace:^
+        version: link:../../ui/react-core
       '@core-ui/react-mobx-state':
         specifier: workspace:^
         version: link:../../ui/react-mobx-state
@@ -600,6 +615,9 @@ importers:
 
   client/lib/api-client:
     dependencies:
+      '@core-utils/utils-helpers':
+        specifier: workspace:^
+        version: link:../../../shared/helpers
       axios:
         specifier: ^1.6.5
         version: 1.6.8
@@ -619,9 +637,6 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../../../shared/config-typedoc
-      '@core-utils/utils-helpers':
-        specifier: workspace:^
-        version: link:../../../shared/helpers
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2113,6 +2128,10 @@ importers:
         version: 5.5.4
 
   server/libs/microservices-utils:
+    dependencies:
+      '@core-utils/utils-helpers':
+        specifier: workspace:^
+        version: link:../../../shared/helpers
     devDependencies:
       '@core-config/eslint-plugin':
         specifier: workspace:^
@@ -2126,9 +2145,6 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../../../shared/config-typedoc
-      '@core-utils/utils-helpers':
-        specifier: workspace:^
-        version: link:../../../shared/helpers
       '@nestjs/common':
         specifier: ^10.0.0
         version: 10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -3314,6 +3330,9 @@ importers:
       '@core-api/nest-core':
         specifier: workspace:^
         version: link:../core
+      '@core-utils/utils-helpers':
+        specifier: workspace:^
+        version: link:../../../shared/helpers
       kafkajs:
         specifier: ^2.2.4
         version: 2.2.4
@@ -3330,9 +3349,6 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../../../shared/config-typedoc
-      '@core-utils/utils-helpers':
-        specifier: workspace:^
-        version: link:../../../shared/helpers
       '@nestjs/common':
         specifier: ^10.0.0
         version: 10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -3351,6 +3367,12 @@ importers:
 
   server/nestjs/typeorm-postgres:
     dependencies:
+      '@core-utils/utils-helpers':
+        specifier: workspace:^
+        version: link:../../../shared/helpers
+      '@nestjs/common':
+        specifier: ^10.0.0
+        version: 10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@nestjs/typeorm':
         specifier: ^10.0.2
         version: 10.0.2(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.10(@nestjs/common@10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/microservices@10.4.5)(@nestjs/platform-express@10.3.10)(@nestjs/websockets@10.4.5)(reflect-metadata@0.2.2)(rxjs@7.8.1))(reflect-metadata@0.2.2)(rxjs@7.8.1)(typeorm@0.3.20(ioredis@5.4.1)(pg@8.12.0)(ts-node@10.9.2(@types/node@20.14.10)(typescript@5.5.4)))
@@ -3373,12 +3395,6 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../../../shared/config-typedoc
-      '@core-utils/utils-helpers':
-        specifier: workspace:^
-        version: link:../../../shared/helpers
-      '@nestjs/common':
-        specifier: ^10.0.0
-        version: 10.3.10(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
       '@types/node':
         specifier: ^20.14.10
         version: 20.14.10
@@ -3466,6 +3482,10 @@ importers:
         version: 5.4.5
 
   shared/common-types:
+    dependencies:
+      '@core-utils/utils-helpers':
+        specifier: workspace:^
+        version: link:../helpers
     devDependencies:
       '@core-config/eslint-plugin':
         specifier: workspace:^
@@ -3479,9 +3499,6 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../config-typedoc
-      '@core-utils/utils-helpers':
-        specifier: workspace:^
-        version: link:../helpers
       tslib:
         specifier: ^2.6.2
         version: 2.7.0
@@ -3663,6 +3680,10 @@ importers:
         version: 5.4.5
 
   shared/novels-types:
+    dependencies:
+      '@core-utils/utils-helpers':
+        specifier: workspace:^
+        version: link:../helpers
     devDependencies:
       '@core-config/eslint-plugin':
         specifier: workspace:^
@@ -3676,9 +3697,6 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../config-typedoc
-      '@core-utils/utils-helpers':
-        specifier: workspace:^
-        version: link:../helpers
       tslib:
         specifier: ^2.6.2
         version: 2.6.3
@@ -3687,6 +3705,10 @@ importers:
         version: 5.4.5
 
   shared/recruiter-types:
+    dependencies:
+      '@core-utils/utils-helpers':
+        specifier: workspace:^
+        version: link:../helpers
     devDependencies:
       '@core-config/eslint-plugin':
         specifier: workspace:^
@@ -3700,9 +3722,6 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../config-typedoc
-      '@core-utils/utils-helpers':
-        specifier: workspace:^
-        version: link:../helpers
       tslib:
         specifier: ^2.6.2
         version: 2.7.0
@@ -3711,6 +3730,10 @@ importers:
         version: 5.5.4
 
   shared/ums-types:
+    dependencies:
+      '@core-utils/utils-helpers':
+        specifier: workspace:^
+        version: link:../helpers
     devDependencies:
       '@core-config/eslint-plugin':
         specifier: workspace:^
@@ -3724,9 +3747,6 @@ importers:
       '@core-config/typedoc':
         specifier: workspace:^
         version: link:../config-typedoc
-      '@core-utils/utils-helpers':
-        specifier: workspace:^
-        version: link:../helpers
       tslib:
         specifier: ^2.6.2
         version: 2.7.0

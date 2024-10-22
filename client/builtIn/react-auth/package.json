@@ -13,10 +13,6 @@
     "preview": "vite preview",
     "release": "pnpm i && pnpm build && npm version patch && npm publish"
   },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
   "devDependencies": {
     "@core-config/eslint-plugin": "workspace:^",
     "@core-config/release": "workspace:^",
@@ -32,14 +28,9 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   },
-  "workspaces": [
-    "@core-api/*",
-    "@core-ui/*",
-    "@core-utils/*",
-    "@core-sdk/*",
-    "@core-config/*"
-  ],
   "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "@core-ui/react-core": "workspace:^",
     "@core-ui/react-mobx-state": "workspace:^",
     "@core-ui/ums-types": "workspace:^",

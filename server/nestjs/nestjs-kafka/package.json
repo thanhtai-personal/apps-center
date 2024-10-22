@@ -12,9 +12,10 @@
     "release": "pnpm i && pnpm build && npm version patch && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@core-utils/utils-helpers": "workspace:^",
-    "@core-api/nest-core": "workspace:^"
+    "@core-api/nest-core": "workspace:^",
+    "kafkajs": "^2.2.4"
   },
   "devDependencies": {
     "@core-config/eslint-plugin": "workspace:^",
@@ -27,15 +28,5 @@
     "@types/pg": "^8.11.6",
     "tslib": "^2.6.2",
     "typescript": "^5.3.2"
-  },
-  "workspaces": [
-    "@core-api/*",
-    "@core-ui/*",
-    "@core-utils/*",
-    "@core-sdk/*",
-    "@core-config/*"
-  ],
-  "dependencies": {
-    "kafkajs": "^2.2.4"
   }
 }

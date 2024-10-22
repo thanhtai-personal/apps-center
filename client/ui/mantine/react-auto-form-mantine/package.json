@@ -20,13 +20,6 @@
     "@core-utils/utils-helpers": "workspace:^",
     "react": "18.2.0"
   },
-  "workspaces": [
-    "@core-api/*",
-    "@core-ui/*",
-    "@core-utils/*",
-    "@core-sdk/*",
-    "@core-config/*"
-  ],
   "dependencies": {
     "@core-ui/react-mantine-core": "workspace:^"
   },

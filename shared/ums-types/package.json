@@ -13,7 +13,7 @@
     "release": "pnpm i && pnpm build && npm version patch && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@core-utils/utils-helpers": "workspace:^"
   },
   "devDependencies": {
@@ -21,15 +21,7 @@
     "@core-config/release": "workspace:^",
     "@core-config/tsconfig": "workspace:^",
     "@core-config/typedoc": "workspace:^",
-    "@core-utils/utils-helpers": "workspace:^",
     "tslib": "^2.6.2",
     "typescript": "^5.3.2"
-  },
-  "workspaces": [
-    "@core-api/*",
-    "@core-ui/*",
-    "@core-utils/*",
-    "@core-sdk/*",
-    "@core-config/*"
-  ]
+  }
 }
