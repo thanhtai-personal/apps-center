@@ -2,17 +2,22 @@ import AppCenterSDK from "@core-sdk/app-center";
 import { useAuthenticationStore } from "../store"
 import { useLayoutEffect } from "react";
 import { useLocalStorageData } from "@core-utils/react-hooks";
+import Cookies from 'universal-cookie';
 
 export const useAuthen = (isAdmin?: boolean) => {
   const { authStore, notiStore } = useAuthenticationStore();
   const [token, setToken] = useLocalStorageData("token");
+  const cookies = new Cookies(null, { path: '/' });
 
   const onLogin = async (redirect?: string) => {
     try {
       if (!authStore.loginData) return;
       authStore.loading = true;
       const response: any = await AppCenterSDK.getInstance().login?.(authStore.loginData);
+      
       setToken(response.data.access_token);
+      cookies.set('refreshToken', response.data.refresh_token);
+
       authStore.authData = response.data;
       notiStore.messageQueue?.push({
         children: "Login success",

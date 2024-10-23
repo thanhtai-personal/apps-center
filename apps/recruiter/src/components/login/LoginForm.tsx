@@ -4,8 +4,7 @@ import { useEffect } from "react";
 import { LazyImage } from "@core-ui/react-mui-core";
 import { useLanguage } from "@/hooks/useLanguage";
 import loginBg from "@/assets/images/bg/login_bg.png"
-import { useUMSStore } from "@core-logic-hooks/react-ums";
-import { useAuthen } from "@core-logic-hooks/react-auth";
+import { useAuthen, useAuthenticationStore } from "@core-logic-hooks/react-auth";
 
 export const LoginForm = observer(({
   isAdmin
@@ -13,8 +12,8 @@ export const LoginForm = observer(({
   isAdmin?: boolean
 }) => {
   const { getText } = useLanguage(loginTextsObj);
-  const { userStore } = useUMSStore();
-  const { onLogin } = useAuthen(isAdmin);
+  const { authStore } = useAuthenticationStore();
+  const { onLogin } = useAuthen();
 
   const openModal = () => {
     const modal: any = document.querySelector(".modal");
@@ -56,17 +55,18 @@ export const LoginForm = observer(({
           </p>
           <div className="input-block">
             <label htmlFor="email" className="input-label">{getText("Email")}</label>
-            <input onChange={(e) => userStore.loginData.email = e.target.value} type="email" name="email" id="email" placeholder={getText("Email")} />
+            <input onChange={(e) => authStore.loginData.email = e.target.value} type="email" name="email" id="email" placeholder={getText("Email")} />
           </div>
           <div className="input-block">
             <label htmlFor="password" className="input-label">{getText("Password")}</label>
-            <input onChange={(e) => userStore.loginData.password = e.target.value} type="password" name="password" id="password" placeholder={getText("Password")} />
+            <input onChange={(e) => authStore.loginData.password = e.target.value} type="password" name="password" id="password" placeholder={getText("Password")} />
           </div>
           <div className="modal-buttons">
             <a href="#" className="">{getText("Forgot your password?")}</a>
             <button className="input-button" onClick={
               () => {
-                onLogin?.()
+                console.log("onLogin", onLogin)
+                onLogin?.("/admin/data")
               }
             }>{getText("Login")}</button>
           </div>

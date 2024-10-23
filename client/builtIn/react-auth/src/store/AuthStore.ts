@@ -5,16 +5,16 @@ export interface IAuthStore {
   error?: any;
   loading?: boolean;
   authData?: any;
-  loginData?: ILoginRequest;
-  registerData?: IRegisterRequest;
+  loginData: ILoginRequest;
+  registerData: IRegisterRequest;
   resetPasswordData?: IResetPasswordRequest;
 }
 
 export class AuthStore extends BaseStore implements IAuthStore {
   public error?: any = null;
-  public authData?: any;
-  public loginData?: ILoginRequest;
-  public registerData?: IRegisterRequest;
+  public authData: any;
+  public loginData: ILoginRequest = {} as ILoginRequest;
+  public registerData: IRegisterRequest = {} as IRegisterRequest;
   public resetPasswordData?: IResetPasswordRequest;
   public loading?: boolean = false; 
 

@@ -29,16 +29,17 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@core-sdk/app-center": "workspace:^",
+    "@core-ui/common-types": "workspace:^",
     "@core-ui/react-core": "workspace:^",
     "@core-ui/react-mobx-state": "workspace:^",
     "@core-ui/ums-types": "workspace:^",
-    "@core-ui/common-types": "workspace:^",
-    "@core-sdk/app-center": "workspace:^",
-    "@core-utils/utils-helpers": "workspace:^",
     "@core-utils/react-hooks": "workspace:^",
+    "@core-utils/utils-helpers": "workspace:^",
     "@twa-dev/sdk": "^7.8.0",
-    "@twa-dev/types": "^7.8.0"
+    "@twa-dev/types": "^7.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "universal-cookie": "^7.2.1"
   }
 }
