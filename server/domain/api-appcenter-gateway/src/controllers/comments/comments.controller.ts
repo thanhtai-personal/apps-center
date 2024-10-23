@@ -4,6 +4,7 @@ import { NEST_COMMON } from "@core-api/nest-core";
 import { CommentsService } from "@/services/comments/comments.service";
 import { CreateCommentDto, IAppCenterCommentFilter, IAppCenterCommentResponse, UpdateCommentDto } from "@core-api/appcenter-materials";
 import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types"
+import { AuthGuard } from "@/guards/auth.guard";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -56,6 +57,7 @@ export class CommentsController {
   }
 
   @Post()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async createComment(
     @Body()
     createCommentDto: CreateCommentDto,
@@ -71,6 +73,7 @@ export class CommentsController {
   }
 
   @Put("/:commentId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async updateComment(
     @Param('commentId')
     commentId: number,
@@ -88,6 +91,7 @@ export class CommentsController {
   }
 
   @Patch("/:commentId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async patchUpdate(
     @Param('commentId')
     commentId: number,
@@ -105,6 +109,7 @@ export class CommentsController {
   }
 
   @Delete("/:commentId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async delete(
     @Param('commentId')
     commentId: number,

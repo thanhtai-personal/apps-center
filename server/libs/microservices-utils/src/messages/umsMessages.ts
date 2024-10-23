@@ -8,6 +8,7 @@ export const AuthMessages = {
   REGISTER: "register",
   LOGOUT: "logout",
   RESET_PASSWORD: "reset_password",
+  VALIDATE_TOKEN: "validate_token",
 }
 
 export const UserMessages = {

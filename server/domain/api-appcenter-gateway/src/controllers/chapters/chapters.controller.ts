@@ -4,6 +4,7 @@ import { NEST_COMMON } from "@core-api/nest-core";
 import { ChaptersService } from "@/services/chapters/chapters.service";
 import { CreateChapterDto, IAppCenterChapterFilter, IAppCenterChapterResponse, UpdateChapterDto } from "@core-api/appcenter-materials";
 import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types"
+import { AuthGuard } from "@/guards/auth.guard";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -56,6 +57,7 @@ export class ChaptersController {
   }
 
   @Post()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async createChapter(
     @Body()
     createChapterDto: CreateChapterDto,
@@ -71,6 +73,7 @@ export class ChaptersController {
   }
 
   @Put("/:chapterId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async updateChapter(
     @Param('chapterId')
     chapterId: number,
@@ -88,6 +91,7 @@ export class ChaptersController {
   }
 
   @Patch("/:chapterId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async patchUpdate(
     @Param('chapterId')
     chapterId: number,
@@ -105,6 +109,7 @@ export class ChaptersController {
   }
 
   @Delete("/:chapterId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async delete(
     @Param('chapterId')
     chapterId: number,

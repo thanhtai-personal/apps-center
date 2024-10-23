@@ -51,6 +51,7 @@ export class AuthController {
       throw error; // Or handle the error appropriately
     }
   }
+  
 
   @Post('refresh-token')
   async refreshToken(
@@ -153,6 +154,17 @@ export class AuthController {
       return true;
     } catch (error) {
       console.error('Error processing reset password message', error);
+      throw error; // Or handle the error appropriately
+    }
+  }
+
+  @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthMessages.VALIDATE_TOKEN })
+  async provideAuthenID(@NEST_MICRO_SERVICE.Payload() data: { token: string, refreshToken?: string }, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+    try {
+      const result = await this.authService.getAuthentication(data.token, data.refreshToken);
+      return result;
+    } catch (error) {
+      console.error('Error processing auth message', error);
       throw error; // Or handle the error appropriately
     }
   }

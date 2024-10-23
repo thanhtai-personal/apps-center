@@ -3,6 +3,7 @@ import { Response, Request } from 'express';
 import { NEST_COMMON } from "@core-api/nest-core";
 import { CatchExceptions } from "@/decorators";
 import Cookies from 'universal-cookie';
+import { AuthGuard } from "@/guards/auth.guard";
 
 const {
   Body,
@@ -20,6 +21,7 @@ export class AuthController {
   constructor(private authService: AuthService) { }
 
   @Get()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async getAuth(
     @Req() req: Request & { authUser: any },
     @Res() res: Response,
@@ -36,6 +38,7 @@ export class AuthController {
   }
 
   @Post('refresh-token')
+  @NEST_COMMON.UseGuards(AuthGuard)
   async refreshToken(
     @Req() req: Request,
     @Res() res: Response

@@ -4,6 +4,7 @@ import { NEST_COMMON } from "@core-api/nest-core";
 import { UsersService } from "@/services/users/users.service";
 import { CreateUserDto, IAppCenterUserFilter, IAppCenterUserResponse, UpdateUserDto } from "@core-api/appcenter-materials";
 import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types"
+import { AuthGuard } from "@/guards/auth.guard";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -56,6 +57,7 @@ export class UsersController {
   }
 
   @Post()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async createUser(
     @Body()
     createUserDto: CreateUserDto,
@@ -71,6 +73,7 @@ export class UsersController {
   }
 
   @Put("/:userId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async updateUser(
     @Param('userId')
     userId: number,
@@ -88,6 +91,7 @@ export class UsersController {
   }
 
   @Patch("/:userId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async patchUpdate(
     @Param('userId')
     userId: number,
@@ -105,6 +109,7 @@ export class UsersController {
   }
 
   @Delete("/:userId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async delete(
     @Param('userId')
     userId: number,

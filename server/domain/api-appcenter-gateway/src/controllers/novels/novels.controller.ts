@@ -4,6 +4,7 @@ import { NEST_COMMON } from "@core-api/nest-core";
 import { NovelsService } from "@/services/novels/novels.service";
 import { CreateNovelDto, IAppCenterNovelFilter, IAppCenterNovelResponse, UpdateNovelDto } from "@core-api/appcenter-materials";
 import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types"
+import { AuthGuard } from "@/guards/auth.guard";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -42,6 +43,7 @@ export class NovelsController {
   }
 
   @Get("/all")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async getAll(
     @Query() query: IAppCenterNovelFilter,
     @Res()
@@ -56,6 +58,7 @@ export class NovelsController {
   }
 
   @Post()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async createNovel(
     @Body()
     createNovelDto: CreateNovelDto,
@@ -71,6 +74,7 @@ export class NovelsController {
   }
 
   @Put("/:novelId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async updateNovel(
     @Param('novelId')
     novelId: number,
@@ -88,6 +92,7 @@ export class NovelsController {
   }
 
   @Patch("/:novelId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async patchUpdate(
     @Param('novelId')
     novelId: number,
@@ -105,6 +110,7 @@ export class NovelsController {
   }
 
   @Delete("/:novelId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async delete(
     @Param('novelId')
     novelId: number,

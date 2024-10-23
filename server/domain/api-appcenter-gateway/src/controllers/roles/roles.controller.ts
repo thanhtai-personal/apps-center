@@ -4,6 +4,7 @@ import { NEST_COMMON } from "@core-api/nest-core";
 import { RolesService } from "@/services/roles/roles.service";
 import { CreateRoleDto, IAppCenterRoleFilter, IAppCenterRoleResponse, UpdateRoleDto } from "@core-api/appcenter-materials";
 import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types"
+import { AuthGuard } from "@/guards/auth.guard";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -56,6 +57,7 @@ export class RolesController {
   }
 
   @Post()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async createRole(
     @Body()
     createRoleDto: CreateRoleDto,
@@ -71,6 +73,7 @@ export class RolesController {
   }
 
   @Put("/:roleId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async updateRole(
     @Param('roleId')
     roleId: number,
@@ -88,6 +91,7 @@ export class RolesController {
   }
 
   @Patch("/:roleId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async patchUpdate(
     @Param('roleId')
     roleId: number,
@@ -105,6 +109,7 @@ export class RolesController {
   }
 
   @Delete("/:roleId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async delete(
     @Param('roleId')
     roleId: number,

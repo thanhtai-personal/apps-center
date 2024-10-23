@@ -4,6 +4,7 @@ import { NEST_COMMON } from "@core-api/nest-core";
 import { AuthorsService } from "@/services/authors/authors.service";
 import { CreateAuthorDto, IAppCenterAuthorFilter, IAppCenterAuthorResponse, UpdateAuthorDto } from "@core-api/appcenter-materials";
 import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types"
+import { AuthGuard } from "@/guards/auth.guard";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -56,6 +57,7 @@ export class AuthorsController {
   }
 
   @Post()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async createAuthor(
     @Body()
     createAuthorDto: CreateAuthorDto,
@@ -71,6 +73,7 @@ export class AuthorsController {
   }
 
   @Put("/:authorId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async updateAuthor(
     @Param('authorId')
     authorId: number,
@@ -88,6 +91,7 @@ export class AuthorsController {
   }
 
   @Patch("/:authorId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async patchUpdate(
     @Param('authorId')
     authorId: number,
@@ -105,6 +109,7 @@ export class AuthorsController {
   }
 
   @Delete("/:authorId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async delete(
     @Param('authorId')
     authorId: number,

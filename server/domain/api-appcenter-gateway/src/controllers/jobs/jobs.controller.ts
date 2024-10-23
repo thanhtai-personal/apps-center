@@ -4,6 +4,7 @@ import { NEST_COMMON } from "@core-api/nest-core";
 import { JobsService } from "@/services/jobs/jobs.service";
 import { CreateJobDto, IAppCenterJobFilter, IAppCenterJobResponse, UpdateJobDto } from "@core-api/appcenter-materials";
 import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types"
+import { AuthGuard } from "@/guards/auth.guard";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -56,6 +57,7 @@ export class JobsController {
   }
 
   @Post()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async createJob(
     @Body()
     createJobDto: CreateJobDto,
@@ -71,6 +73,7 @@ export class JobsController {
   }
 
   @Put("/:jobId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async updateJob(
     @Param('jobId')
     jobId: number,
@@ -88,6 +91,7 @@ export class JobsController {
   }
 
   @Patch("/:jobId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async patchUpdate(
     @Param('jobId')
     jobId: number,
@@ -105,6 +109,7 @@ export class JobsController {
   }
 
   @Delete("/:jobId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async delete(
     @Param('jobId')
     jobId: number,

@@ -4,6 +4,7 @@ import { NEST_COMMON } from "@core-api/nest-core";
 import { PermissionsService } from "@/services/permissions/permissions.service";
 import { CreatePermissionDto, IAppCenterPermissionFilter, IAppCenterPermissionResponse, UpdatePermissionDto } from "@core-api/appcenter-materials";
 import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types"
+import { AuthGuard } from "@/guards/auth.guard";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -56,6 +57,7 @@ export class PermissionsController {
   }
 
   @Post()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async createPermission(
     @Body()
     createPermissionDto: CreatePermissionDto,
@@ -71,6 +73,7 @@ export class PermissionsController {
   }
 
   @Put("/:permissionId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async updatePermission(
     @Param('permissionId')
     permissionId: number,
@@ -88,6 +91,7 @@ export class PermissionsController {
   }
 
   @Patch("/:permissionId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async patchUpdate(
     @Param('permissionId')
     permissionId: number,
@@ -105,6 +109,7 @@ export class PermissionsController {
   }
 
   @Delete("/:permissionId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async delete(
     @Param('permissionId')
     permissionId: number,

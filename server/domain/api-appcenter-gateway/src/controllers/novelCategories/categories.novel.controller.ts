@@ -4,6 +4,7 @@ import { NEST_COMMON } from "@core-api/nest-core";
 import { NovelCategoriesService } from "@/services/novelCategories/categories.novel.service";
 import { CreateCategoryDto, IAppCenterCategoryFilter, IAppCenterCategoryResponse, UpdateCategoryDto } from "@core-api/appcenter-materials";
 import { INonPagingResponse, IPagingResponse } from "@core-ui/common-types"
+import { AuthGuard } from "@/guards/auth.guard";
 
 const { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Put, Query, Res, Delete, Post } = NEST_COMMON;
 
@@ -56,6 +57,7 @@ export class NovelCategoriesController {
   }
 
   @Post()
+  @NEST_COMMON.UseGuards(AuthGuard)
   async createCategory(
     @Body()
     createCategoryDto: CreateCategoryDto,
@@ -71,6 +73,7 @@ export class NovelCategoriesController {
   }
 
   @Put("/:categoryId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async updateCategory(
     @Param('categoryId')
     categoryId: number,
@@ -88,6 +91,7 @@ export class NovelCategoriesController {
   }
 
   @Patch("/:categoryId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async patchUpdate(
     @Param('categoryId')
     categoryId: number,
@@ -105,6 +109,7 @@ export class NovelCategoriesController {
   }
 
   @Delete("/:categoryId")
+  @NEST_COMMON.UseGuards(AuthGuard)
   async delete(
     @Param('categoryId')
     categoryId: number,
