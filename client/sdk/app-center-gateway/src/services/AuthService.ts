@@ -44,6 +44,10 @@ export class AuthService
     throw new Error("function not implemented");
   }
 
+  validateToken = () => {
+    return this.api.get("/auth", {}) as Promise<APIResult<IAPIResponse<any>>>;
+  }
+
   login = (data: ILoginRequest) => {
     return this.api.post("/auth/login", {}, data) as Promise<APIResult<IAPIResponse<any>>>;
   }

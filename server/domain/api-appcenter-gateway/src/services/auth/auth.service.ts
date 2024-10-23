@@ -29,9 +29,9 @@ export class AuthService {
     }
   }
 
-  async getAuthentication(data: any): Promise<any> {
+  async getAuthentication(token: string, refreshToken?: string): Promise<any> {
     try {
-      const response = await this.umsClient.send({ cmd: AuthMessages.GET_AUTH }, data || {}).toPromise();
+      const response = await this.umsClient.send({ cmd: AuthMessages.GET_AUTH }, { token, refreshToken }).toPromise();
       return response
     } catch (error) {
       throw new NEST_COMMON.UnauthorizedException();
@@ -39,9 +39,9 @@ export class AuthService {
   }
 
 
-  async refreshToken(data: any) {
+  async refreshToken(refreshToken: string) {
     try {
-      const response = await this.umsClient.send({ cmd: AuthMessages.REFRESH_TOKEN }, data || {}).toPromise();
+      const response = await this.umsClient.send({ cmd: AuthMessages.REFRESH_TOKEN },  { refreshToken }).toPromise();
       return response
     } catch (error) {
       throw new NEST_COMMON.UnauthorizedException();

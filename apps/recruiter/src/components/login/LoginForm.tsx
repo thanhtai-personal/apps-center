@@ -65,7 +65,6 @@ export const LoginForm = observer(({
             <a href="#" className="">{getText("Forgot your password?")}</a>
             <button className="input-button" onClick={
               () => {
-                console.log("onLogin", onLogin)
                 onLogin?.("/admin/data")
               }
             }>{getText("Login")}</button>

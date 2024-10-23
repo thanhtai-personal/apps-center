@@ -26,16 +26,16 @@
     "docker": "docker-compose up -d"
   },
   "dependencies": {
+    "@core-api/appcenter-materials": "workspace:^",
+    "@core-api/microservices-utils": "workspace:^",
     "@core-api/nest-core": "workspace:^",
     "@core-api/nest-typeorm-postgres": "workspace:^",
     "@core-config/eslint-plugin": "workspace:^",
     "@core-config/release": "workspace:^",
     "@core-config/tsconfig": "workspace:^",
     "@core-config/typedoc": "workspace:^",
-    "@core-api/appcenter-materials": "workspace:^",
-    "@core-ui/recruiter-types": "workspace:^",
     "@core-ui/common-types": "workspace:^",
-    "@core-api/microservices-utils": "workspace:^",
+    "@core-ui/recruiter-types": "workspace:^",
     "@nestjs/platform-socket.io": "^10.4.5",
     "@nestjs/websockets": "^10.4.5",
     "@orbs-network/ton-access": "^2.3.3",
@@ -54,6 +54,8 @@
     "pg": "^8.12.0",
     "rxjs": "^7.8.1",
     "telegraf": "^4.16.3",
+    "universal-cookie": "^7.2.1",
+    "universal-cookie-express": "^7.2.1",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

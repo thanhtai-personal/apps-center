@@ -42,19 +42,57 @@ export class AuthService {
     }
 
     return {
-      access_token: this.jwtService.sign({ user }, { expiresIn: JwtConfig.TOKEN_ALIVE_TIME }),
-      refreshToken: this.jwtService.sign({ user }, { expiresIn: JwtConfig.REFRESH_TOKEN_ALIVE_TIME }),
+      access_token: this.jwtService.sign({ user }, {
+        secret: JwtConfig.JWT_SECRET,
+        expiresIn: JwtConfig.TOKEN_ALIVE_TIME
+      }),
+      refreshToken: this.jwtService.sign({ user }, {
+        secret: JwtConfig.JWT_SECRET,
+        expiresIn: JwtConfig.REFRESH_TOKEN_ALIVE_TIME
+      }),
       user
     }
   }
 
-  async getAuthentication(accessToken: string): Promise<{ user: any, accessToken: string } | null> {
+  async getAuthentication(accessToken: string, refreshToken?: string): Promise<{ user: any, accessToken: string } | null> {
     try {
       // Try verifying the access token
-      const payload = await this.jwtService.verifyAsync(accessToken, { secret: JwtConfig.JWT_SECRET });
-
+      const payload = await this.jwtService.verifyAsync(this.extractToken(accessToken) || ""
+        , { secret: JwtConfig.JWT_SECRET });
       // If verification succeeds, return the user and new access token (optional)
-      const newToken = await this.jwtService.signAsync(payload, {
+      const newToken = await this.jwtService.signAsync({
+        user: payload.user,
+      }, {
+        secret: JwtConfig.JWT_SECRET,
+        expiresIn: JwtConfig.TOKEN_ALIVE_TIME
+      });
+      return {
+        user: payload.user,
+        accessToken: newToken,
+      };
+
+    } catch (error: any) {
+      if (refreshToken) {
+        try {
+          return await this.refreshToken(refreshToken);
+        } catch (error) {
+          throw new NEST_COMMON.UnauthorizedException('Invalid or expired refresh token');
+        }
+      } else {
+        console.log("error", error)
+        throw new NEST_COMMON.UnauthorizedException('Invalid access token');
+      }
+    }
+  }
+
+
+  async refreshToken(refresh_token: string) {
+    try {
+      const payload = await this.jwtService.verifyAsync(refresh_token || ""
+        , { secret: JwtConfig.JWT_SECRET });
+
+      // Use only the necessary parts of the payload for the new token
+      const newToken = await this.jwtService.signAsync({ user: payload.user }, {
         secret: JwtConfig.JWT_SECRET,
         expiresIn: JwtConfig.TOKEN_ALIVE_TIME
       });
@@ -63,21 +101,6 @@ export class AuthService {
         user: payload.user,
         accessToken: newToken,
       };
-
-    } catch (error: any) {
-      throw new NEST_COMMON.UnauthorizedException('Invalid access token');
-    }
-  }
-
-
-  async refreshToken(refresh_token: string) {
-    try {
-      const payload = await this.jwtService.verifyAsync(refresh_token, { secret: JwtConfig.JWT_SECRET });
-
-      // Use only the necessary parts of the payload for the new token
-      const newToken = await this.jwtService.signAsync({ user: payload.user }, { secret: JwtConfig.JWT_SECRET, expiresIn: JwtConfig.TOKEN_ALIVE_TIME });
-
-      return newToken;
     } catch (error) {
       throw new NEST_COMMON.UnauthorizedException('Invalid or expired refresh token');
     }
@@ -90,6 +113,11 @@ export class AuthService {
     } catch (error) {
       return false;
     }
+  }
+
+  private extractToken(requestToken: string): string | undefined {
+    const [type, token] = requestToken.split(' ') ?? [];
+    return type === 'Bearer' ? token : undefined;
   }
 
 }

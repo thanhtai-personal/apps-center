@@ -39,6 +39,7 @@ export const JobsCrawlerPageContent = observer(() => {
 
   runJobs();
   runCategories();
+  
   useLayoutEffect(() => {
     uiStore.useHeader = false;
     uiStore.useFooter = false;

@@ -2,6 +2,7 @@ import { AuthModule } from "./auth/auth.module";
 import { AuthorModule } from "./author/author.module";
 import { ChapterModule } from "./chapter/chapter.module";
 import { CommentModule } from "./comment/comment.module";
+import { JobModule } from "./job/job.module";
 import { NovelModule } from "./novel/novel.module";
 import { NovelCategoryModule } from "./novelCategory/category.novel.module";
 import { PermissionModule } from "./permission/permission.module";
@@ -20,4 +21,5 @@ export const allModule = [
   RecruiterCategoryModule,
   RoleModule,
   UserModule,
+  JobModule
 ]

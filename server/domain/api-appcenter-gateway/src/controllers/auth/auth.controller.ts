@@ -2,6 +2,7 @@ import { AuthService } from '@/services/auth/auth.service';
 import { Response, Request } from 'express';
 import { NEST_COMMON } from "@core-api/nest-core";
 import { CatchExceptions } from "@/decorators";
+import Cookies from 'universal-cookie';
 
 const {
   Body,
@@ -24,7 +25,10 @@ export class AuthController {
     @Res() res: Response,
   ) {
     try {
-      const authData = await this.authService.getAuthentication(req)
+      const token = req.headers["authorization"] || ""
+      const cookies = new Cookies(req.headers.cookie, { path: '/' });
+      const refreshToken = cookies.get('refreshToken')
+      const authData = await this.authService.getAuthentication(token, refreshToken)
       return res.status(HttpStatus.OK).send(authData);
     } catch (error) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
@@ -37,7 +41,12 @@ export class AuthController {
     @Res() res: Response
   ) {
     try {
-      const data = await this.authService.refreshToken(req);
+      const cookies = new Cookies(req.headers.cookie, { path: '/' });
+      const refreshToken = cookies.get('refreshToken')
+      if (!refreshToken) {
+        throw new Error('Refresh token not found');
+      }
+      const data = await this.authService.refreshToken(refreshToken);
       return res.status(HttpStatus.OK).send(data);
     } catch (error) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
@@ -51,9 +60,20 @@ export class AuthController {
     @Res() res: Response
   ) {
     try {
-      console.log("body", body)
       const data = await this.authService.login(body);
       return res.status(HttpStatus.OK).send(data);
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    }
+  }
+
+  @Post('logout')
+  async signOut(
+    @Res() res: Response
+  ) {
+    try {
+      // const data = await this.authService.signOut();
+      return res.status(HttpStatus.OK).send(true);
     } catch (error) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
     }

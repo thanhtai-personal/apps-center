@@ -96,7 +96,7 @@ export const router: IRouter[] = [
     path: '/login'
   },
   {
-    element: makeSuspense(AdminJobsBoard), //requiredAuthen(AdminJobsBoard),
+    element: requiredAuthen(AdminJobsBoard),
     path: '/admin/data'
   },
   {

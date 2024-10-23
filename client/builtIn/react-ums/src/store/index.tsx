@@ -3,7 +3,7 @@ import { UserStore } from "./UserStore"
 import { RoleStore } from "./RoleStore"
 import { NotifyStore } from "./NotifyStore"
 import { AppcenterSDK, CreateApiConfig } from "@core-sdk/app-center";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useLayoutEffect } from "react";
 import { PermissionStore } from "./PermissionStore";
 
 export class UMSStore {
@@ -33,9 +33,11 @@ export const UMSProvider = ({ children, config }: {
   }
 }) => {
   
-  useEffect(() => {
-    AppcenterSDK.getInstance(config.apiConfig)
-  }, [])
+  useLayoutEffect(() => {
+    if (config) {
+      AppcenterSDK.getInstance(config.apiConfig)
+    }
+  }, [config])
 
   return <Provider>
     {children}

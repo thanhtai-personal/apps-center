@@ -2,7 +2,7 @@ import { createStore } from "@core-ui/react-mobx-state"
 import { CategoryStore } from "./CategoryStore"
 import { NotifyStore } from "./NotifyStore"
 import AppcenterSDK, { CreateApiConfig } from "@core-sdk/app-center";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useLayoutEffect } from "react";
 import { JobStore } from "./JobStore";
 
 export class RecruiterStore {
@@ -30,9 +30,11 @@ export const RecruiterProvider = ({ children, config }: {
   }
 }) => {
   
-  useEffect(() => {
-    AppcenterSDK.getInstance(config.apiConfig)
-  }, [])
+  useLayoutEffect(() => {
+    if (config) {
+      AppcenterSDK.getInstance(config.apiConfig)
+    }
+  }, [config])
 
   return <Provider>
     {children}

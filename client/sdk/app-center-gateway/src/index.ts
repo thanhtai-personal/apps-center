@@ -243,6 +243,10 @@ export class AppcenterSDK extends BaseSDK {
     return this.authService.refreshToken();
   }
 
+  validateToken() {
+    return this.authService.validateToken();
+  }
+
 }
 
 export * from "./types";

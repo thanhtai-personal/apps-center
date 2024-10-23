@@ -42,9 +42,9 @@ export class AuthController {
   }
 
   @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthMessages.GET_AUTH })
-  async handleAuthMessage(@NEST_MICRO_SERVICE.Payload() data: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+  async handleAuthMessage(@NEST_MICRO_SERVICE.Payload() data: { token: string, refreshToken?: string }, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
     try {
-      const result = await this.authService.getAuthentication(data.token);
+      const result = await this.authService.getAuthentication(data.token, data.refreshToken);
       return result;
     } catch (error) {
       console.error('Error processing auth message', error);
@@ -69,14 +69,10 @@ export class AuthController {
     }
   }
   @NEST_MICRO_SERVICE.MessagePattern({ cmd: AuthMessages.REFRESH_TOKEN })
-  async handleRefreshTokenMessage(@NEST_MICRO_SERVICE.Payload() req: any, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
+  async handleRefreshTokenMessage(@NEST_MICRO_SERVICE.Payload() req: { refreshToken: string }, @NEST_MICRO_SERVICE.Ctx() context: NEST_MICRO_SERVICE.RedisContext) {
     console.log(`Channel: ${context.getChannel()}`);
     try {
-      const refreshToken = req.cookies['refreshToken'];
-      if (!refreshToken) {
-        throw new Error('Refresh token not found');
-      }
-      const newToken = await this.authService.refreshToken(refreshToken);
+      const newToken = await this.authService.refreshToken(req.refreshToken);
       return newToken;
     } catch (error) {
       throw error;

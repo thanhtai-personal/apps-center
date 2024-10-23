@@ -1,7 +1,7 @@
 import { createStore } from "@core-ui/react-mobx-state";
 import { AuthStore } from "./AuthStore";
 import { NotifyStore } from "./NotifyStore";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useLayoutEffect } from "react";
 import AppcenterSDK, { CreateApiConfig } from "@core-sdk/app-center";
 
 export class AuthenticationStore {
@@ -27,9 +27,11 @@ export const AuthProvider = ({ children, config }: {
   }
 }) => {
   
-  useEffect(() => {
-    AppcenterSDK.getInstance(config.apiConfig)
-  }, [])
+  useLayoutEffect(() => {
+    if (config) {
+      AppcenterSDK.getInstance(config.apiConfig)
+    }
+  }, [config])
 
   return <Provider>
     {children}

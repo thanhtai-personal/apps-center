@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useLayoutEffect } from "react";
+import { ReactNode, useLayoutEffect } from "react";
 import { useStore } from "../store";
 import { observer } from "@core-ui/react-mobx-state";
 import { Header } from "./Header";

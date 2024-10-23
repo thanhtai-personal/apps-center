@@ -8,6 +8,7 @@ export interface IAuthStore {
   loginData: ILoginRequest;
   registerData: IRegisterRequest;
   resetPasswordData?: IResetPasswordRequest;
+  wasFinishedValidate?: boolean;
 }
 
 export class AuthStore extends BaseStore implements IAuthStore {
@@ -17,6 +18,7 @@ export class AuthStore extends BaseStore implements IAuthStore {
   public registerData: IRegisterRequest = {} as IRegisterRequest;
   public resetPasswordData?: IResetPasswordRequest;
   public loading?: boolean = false; 
+  public wasFinishedValidate?: boolean = false; 
 
   constructor() {
     super();
@@ -27,6 +29,7 @@ export class AuthStore extends BaseStore implements IAuthStore {
       loginData: observable,
       registerData: observable,
       resetPasswordData: observable,
+      wasFinishedValidate: observable,
     });
   }
 }
