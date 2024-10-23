@@ -215,10 +215,6 @@ export class AppcenterSDK extends BaseSDK {
     };
   }
 
-  crawlAnyday() {
-    return this.crawlerService.crawlAnyday();
-  }
-
   addAnydatJobData(jobId: string, categoryId: number, htmlString: string) {
     return this.crawlerService.addAnydayJobData(jobId, categoryId, htmlString);
   }

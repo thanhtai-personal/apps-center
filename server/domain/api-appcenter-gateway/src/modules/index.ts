@@ -9,6 +9,7 @@ import { PermissionModule } from "./permission/permission.module";
 import { RecruiterCategoryModule } from "./recruiterCategory/category.recruiter.module";
 import { RoleModule } from "./role/role.module";
 import { UserModule } from "./user/user.module";
+import { CrawlerModule } from "./crawler/crawler.module";
 
 export const allModule = [
   AuthModule,
@@ -21,5 +22,6 @@ export const allModule = [
   RecruiterCategoryModule,
   RoleModule,
   UserModule,
-  JobModule
+  JobModule,
+  CrawlerModule
 ]

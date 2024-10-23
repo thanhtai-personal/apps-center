@@ -42,6 +42,7 @@ export const NovelMessages = {
   UPDATE_NOVEL: "update_novel",
   PATCH_UPDATE_NOVEL: "patch_update_novel",
   DELETE_NOVEL: "delete_novel",
+  CRAWL_TTV: "crawl_ttv"
 }
 
 export const ChapterMessages = {

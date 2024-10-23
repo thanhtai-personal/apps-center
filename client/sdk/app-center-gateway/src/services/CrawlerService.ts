@@ -42,14 +42,18 @@ export class CrawlerService
     throw new Error("function not implemented");
   }
 
-  crawlAnyday(): Promise<APIResult<IAPIResponse<any>>> {
-    return this.api.post("/anidays", {}) as Promise<
+  addAnydayJobData(jobId: string, categoryId: number, htmlString: string): Promise<APIResult<IAPIResponse<any>>> {
+    return this.api.post("/crawler/anidays", {}, {
+      jobId,
+      categoryId,
+      htmlString
+    }) as Promise<
       APIResult<IAPIResponse<any>>
     >;
   }
 
-  addAnydayJobData(jobId: string, categoryId: number, htmlString: string): Promise<APIResult<IAPIResponse<any>>> {
-    return this.api.post("/anidays", {
+  addNovelsFromTTV(jobId: string, categoryId: number, htmlString: string): Promise<APIResult<IAPIResponse<any>>> {
+    return this.api.post("/crawler/tangthuvien", {
       jobId,
       categoryId,
       htmlString

@@ -9,6 +9,7 @@ export const JobMessages = {
   UPDATE_JOB: "update_job",
   PATCH_UPDATE_JOB: "patch_update_job",
   DELETE_JOB: "delete_job",
+  CRAWL_ANIDAY: "crawl_aniday",
 }
 
 export const RecruiterCategoryMessages = {

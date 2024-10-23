@@ -1,9 +1,9 @@
 import { NEST_COMMON } from "@core-api/nest-core";
-import { JobsController } from "@/controllers/jobs/jobs.controller";
+import { CrawlerController } from "@/controllers/crawler/crawler.controller";
 import { NEST_MICRO_SERVICE } from "@core-api/nest-core";
 import { EnvironmentConfig } from "@/config";
-import { RECRUITER_SERVICE, UMS_SERVICE } from "@core-api/microservices-utils";
-import { JobsService } from "@/services/jobs/jobs.service";
+import { RECRUITER_SERVICE, NOVEL_SERVICE, UMS_SERVICE } from "@core-api/microservices-utils";
+import { CrawlerService } from "@/services/crawler/crawler.service";
 
 const { Module } = NEST_COMMON;
 
@@ -26,10 +26,18 @@ const { Module } = NEST_COMMON;
           port: Number(EnvironmentConfig.REDIS_PORT),
         },
       },
+      {
+        name: NOVEL_SERVICE,
+        transport: NEST_MICRO_SERVICE.Transport.REDIS,
+        options: {
+          host: EnvironmentConfig.REDIS_HOST,
+          port: Number(EnvironmentConfig.REDIS_PORT),
+        },
+      },
     ]),
   ],
-  controllers: [JobsController],
-  providers: [JobsService],
-  exports: [JobsService]
+  controllers: [CrawlerController],
+  providers: [CrawlerService],
+  exports: [CrawlerService]
 })
-export class JobModule {}
+export class CrawlerModule {}
