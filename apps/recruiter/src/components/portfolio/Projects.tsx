@@ -9,7 +9,7 @@ import tgminiapp from "@/assets/images/tgminiapp.jpg"
 import flymore from "@/assets/images/plane.png"
 import titan from "@/assets/images/titan.png"
 import commandcenter from "@/assets/images/command_center.png"
-import { Animates, HexagonMask } from "@core-ui/react-animates";
+import { Animates } from "@core-ui/react-animates";
 import { Layers } from "@/styles/layers";
 import { Grid } from "@core-ui/react-mui-core/materials";
 import oxtoolLogo from "@/assets/images/projects/0xtool.png"
@@ -28,27 +28,7 @@ export const Projects = observer(() => {
       <Flex position={"absolute"} bottom={19} left={-150} zIndex={Layers.layer2}>
         <Animates.GlowingBallAnim id="light-2" width={40} />
       </Flex>
-      {!tabletSizeDown && <Flex position={"absolute"} top={"50%"} left={"50%"} zIndex={Layers.layer2}>
-        <Animates.GlowingBallAnim id="light-2" width={1}
-          center={{
-            width: 1,
-            height: 1,
-          }}
-          middle={{
-            width: 5,
-            height: 5,
-            color: "#FF0000"
-          }}
-          farest={{
-            width: 15,
-            height: 15
-          }}
-        />
-      </Flex>}
-
-      {tabletSizeDown ? <ProjectsContent /> : <HexagonMask id="projects-bg" config={{}} resetTime={10000}>
-        <ProjectsContent />
-      </HexagonMask>}
+      <ProjectsContent />
     </Flex>
   )
 })
@@ -62,7 +42,6 @@ const ProjectsContent = observer(() => {
     <Flex fullWidth column center>
       <Flex mt={tabletSizeDown ? 10 : 20} fullWidth center maxWidth={PAGE_MAX_WIDTH}
         data-aos="fade-up"
-        data-aos-anchor-placement="center-center"
       >
         <Text textAlign={"center"} className={tabletSizeDown ? globalStyles.textOrbiBold24
           : globalStyles.textOrbiBold32}>
@@ -72,7 +51,7 @@ const ProjectsContent = observer(() => {
 
       <Flex mt={1} fullWidth center maxWidth={PAGE_MAX_WIDTH}
         data-aos="fade-up"
-        data-aos-anchor-placement="center-center">
+      >
         <Text className={tabletSizeDown ? globalStyles.textKanit16
           : globalStyles.textKanit18}
           color={"#FFFFDD"}
@@ -98,7 +77,7 @@ const GridContent = ({ projects, getText }) => {
   return (
     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
       {projects.map((project, index) => (
-        <Grid item sm={12} md={6} lg={4} key={project.id || `p-${index}`} >
+        <Grid item sm={12} md={4} lg={3} key={project.id || `p-${index}`} >
           <Flex fullSize my={4}>
             <ProjectItem data={project} getText={getText} index={index} />
           </Flex>

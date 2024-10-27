@@ -26,6 +26,10 @@ const menuItems = [{
   label: 'Introduce',
   targetContent: "section-introduce"
 }, {
+  id: 6,
+  label: 'Skills',
+  targetContent: "section-skills"
+}, {
   id: 3,
   label: 'Projects',
   targetContent: "section-projects"
@@ -44,6 +48,7 @@ const languageTexts = {
   VI: {
     Welcome: "Welcome",
     Introduce: "Giới thiệu",
+    Skills: "Kỹ năng",
     Projects: "Dự án",
     Products: "Sản phẩm",
     Contact: "Liên hệ",

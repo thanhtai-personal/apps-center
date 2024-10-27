@@ -44,7 +44,6 @@ export const Contact = observer(() => {
                     WebkitBackdropFilter: "blur(2px)"
                   }}
                   data-aos={"fade-up"}
-                  data-aos-anchor-placement="top-center"
                   data-aos-duration="400"
                 >
                   <Flex fullWidth column center={tabletSizeDown}

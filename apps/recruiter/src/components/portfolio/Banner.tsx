@@ -188,8 +188,8 @@ const contextTexts = {
   "VI": {
     "Available for opportunities": "Sẵn sàng cho các cơ hội mới!",
     "Welcome to \nmy digital humble abode": `Chào mừng bạn đến \nnơi trú ẩn kỹ thuật số của mình`,
-    "I’m an independent developer.\nMy interest lies in user experience."
-      : "Mình là một lập trình viên độc lập. \nMình quan tâm đến trải nghiệm người dùng."
+    "I’m an independent developer.\nMy interest lies in building project structures and research UI animation"
+      : "Mình là một lập trình viên độc lập. \nMình thích xây dựng cấu trúc dự án tốt và nghiên cứu hiệu ứng trên giao diện."
   }
 }
 
@@ -245,7 +245,7 @@ const Content = observer(() => {
                 whiteSpace={"pre-line"}
                 style={{ lineHeight: "135%", marginTop: "16px" }}>
                 {
-                  getText("I’m an independent developer.\nMy interest lies in user experience.")
+                  getText("I’m an independent developer.\nMy interest lies in building project structures and research UI animation.")
                 }
               </Text>
             </Flex>

@@ -100,7 +100,6 @@ export const Products = observer(() => {
                     backdropFilter: "blur(4px)"
                   }}
                   data-aos="fade-up"
-                  data-aos-anchor-placement="center-center"
                   data-aos-duration="800"
                 >
                   <Flex fullWidth center>

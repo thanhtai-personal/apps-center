@@ -1,7 +1,7 @@
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, Text, useResponsive } from "@core-ui/react-mui-core";
-import { BubbleMask } from "@core-ui/react-animates"
+// import { BubbleMask } from "@core-ui/react-animates"
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { useLanguage } from "@/hooks/useLanguage";
 
@@ -19,53 +19,39 @@ export const Introduce = observer(() => {
   const { getText } = useLanguage(contentTexts);
 
   return (
-    <Flex fullWidth center position={"relative"} minHeight={600}>
-      <Flex fullSize column borderRadius={2}
+    <Flex fullWidth center position={"relative"} minHeight={450}>
+      <Flex fullSize center column borderRadius={2}
         overflow={"hidden"}
       >
-        <BubbleMask id="introduce-content" config={{
-          "background": {
-            "color": {
-              "value": "rgba(0,0,0, 0.25)"
-            },
-            "image": "",
-            "position": "",
-            "repeat": "",
-            "size": "",
-            "opacity": 1
-          },
-        }}>
-          <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} p={2} center minHeight={600}>
-            <Flex column fullSize
-              bgcolor={"#000"}
-              borderRadius={2} p={2}
-              data-aos="fade-up"
-              data-aos-anchor-placement="center-center"
-              style={{
-                boxShadow: "0 0 20px rgba(255, 105, 180, 0.5)"
-              }}
-            >
-              <Flex fullWidth center>
-                <Text className={tabletSizeDown ? globalStyles.textOrbiBold24
-                  : globalStyles.textOrbiBold32}>{getText("Introduce")}</Text>
-              </Flex>
-              <Flex fullWidth center mt={2}>
-                <Text
-                  color={"#FFFFDD"}
-                  className={tabletSizeDown ? globalStyles.textKanit16
-                    : globalStyles.textKanit18}
-                  whiteSpace={"pre-line"}
-                  textAlign="left"
-                  style={{
-                    lineHeight: "125%"
-                  }}
-                >
-                  {getText("🎉I have experience in developing web applications using ReactJS for the front end and NestJS for the back end.\n I enjoy building project structures to ensure resource management that facilitates easy reuse and scalability, as well as researching CSS to enhance the aesthetics of web interfaces.\n\n In terms of technical skills, I have a relatively comprehensive understanding of the various stages involved in software creation, along with some knowledge of other stages in software development.\n I possess the necessary skills to design and build a web application, starting from database design—typically using PostgreSQL—to creating APIs in a microservice architecture or a modular design.\n For APIs, I usually use NestJS.\n On the client side, I use ReactJS, breaking down functionalities into individually packaged components that allow for easy reuse and feature expansion.\n In terms of dev-ops skills, I can deploy applications to several supported servers, such as Google Cloud virtual machines, Vercel, and Heroku.\n\n I am a full-stack developer.🚀")}
-                </Text>
-              </Flex>
+        <Flex fullWidth maxWidth={PAGE_MAX_WIDTH} p={2} center minHeight={450}>
+          <Flex column fullSize
+            bgcolor={"#000"}
+            borderRadius={2} p={2}
+            data-aos="fade-up"
+            style={{
+              boxShadow: "0 0 20px rgba(255, 105, 180, 0.5)"
+            }}
+          >
+            <Flex fullWidth center>
+              <Text className={tabletSizeDown ? globalStyles.textOrbiBold24
+                : globalStyles.textOrbiBold32}>{getText("Introduce")}</Text>
+            </Flex>
+            <Flex fullWidth center mt={2}>
+              <Text
+                color={"#FFFFDD"}
+                className={tabletSizeDown ? globalStyles.textKanit16
+                  : globalStyles.textKanit18}
+                whiteSpace={"pre-line"}
+                textAlign="left"
+                style={{
+                  lineHeight: "125%"
+                }}
+              >
+                {getText("🎉I have experience in developing web applications using ReactJS for the front end and NestJS for the back end.\n I enjoy building project structures to ensure resource management that facilitates easy reuse and scalability, as well as researching CSS to enhance the aesthetics of web interfaces.\n\n In terms of technical skills, I have a relatively comprehensive understanding of the various stages involved in software creation, along with some knowledge of other stages in software development.\n I possess the necessary skills to design and build a web application, starting from database design—typically using PostgreSQL—to creating APIs in a microservice architecture or a modular design.\n For APIs, I usually use NestJS.\n On the client side, I use ReactJS, breaking down functionalities into individually packaged components that allow for easy reuse and feature expansion.\n In terms of dev-ops skills, I can deploy applications to several supported servers, such as Google Cloud virtual machines, Vercel, and Heroku.\n\n I am a full-stack developer.🚀")}
+              </Text>
             </Flex>
           </Flex>
-        </BubbleMask>
+        </Flex>
       </Flex>
     </Flex>
   )

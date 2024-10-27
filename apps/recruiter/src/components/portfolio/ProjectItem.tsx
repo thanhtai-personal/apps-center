@@ -27,8 +27,7 @@ export const ProjectItem = observer(({
 
   return (
     <Flex fullSize p={2}
-      data-aos={index % 2 === 0 ? "zoom-in-right" : "zoom-in-left"}
-      data-aos-anchor-placement="top-center"
+      data-aos={"zoom-in"}
       data-aos-duration="800"
       onMouseEnter={() => state.hovered = true}
       onMouseLeave={() => state.hovered = false}
@@ -51,13 +50,12 @@ export const ProjectItem = observer(({
             }}>
             <Flex px={tabletSizeDown ? 0 : 4} fullWidth center>
               <Flex
-                data-aos={index % 2 === 0 ? "flip-right" : "flip-left"}
-                data-aos-anchor-placement="top-center"
+                data-aos={"flip"}
                 data-aos-duration="400"
               >
                 {data.iframe ? data.iframe(tabletSizeDown) :
-                  <LazyImage src={data.image} alt={data.name} style={{ height: "250px" }}
-                    imgStyle={{ height: "250px" }} />
+                  <LazyImage src={data.image} alt={data.name} style={{ height: "150px" }}
+                    imgStyle={{ height: "150px" }} />
                 }
               </Flex>
             </Flex>
@@ -74,7 +72,12 @@ export const ProjectItem = observer(({
                   : globalStyles.textKanit18}
                 whiteSpace={"pre-line"}
                 style={{
-                  lineHeight: "125%"
+                  lineHeight: "125%",
+                  width: "100%",
+                  overflow: "hidden",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical"
                 }}>{getText(data.description)}
               </Text>
             </Flex>

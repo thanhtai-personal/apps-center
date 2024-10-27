@@ -8,6 +8,7 @@ import nodejsIcon from "@/assets/icons/nodejs.png";
 import cssIcon from "@/assets/icons/css.png";
 import postgresqlIcon from "@/assets/icons/postgresql.png";
 import gcloudIcon from "@/assets/icons/gcloud.png";
+import { goToSection } from "@/utils/index";
 
 const skills = [
   {
@@ -65,8 +66,10 @@ export const SkillsSet = () => {
         maskImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 40.5%, rgb(0, 0, 0) 60.5%, rgba(0, 0, 0, 0) 100%)'
         , overflow: 'hidden'
       }}>
-        <Flex fullSize center>
-          <marquee loop onMouseOver={(e) => { e.target.stop() }} onMouseOut={(e) => { e.target.start() }}>
+        <Flex fullSize center cursorPointer>
+          <marquee loop onMouseOver={(e) => { e.target.stop() }} onMouseOut={(e) => { e.target.start() }}
+            onClick={() => { goToSection("section-skills") }}
+          >
             <Flex centerY style={{ pointerEvents: "none" }}>
               {[...skills, ...skills, ...skills, ...skills, ...skills, ...skills].map((item, index) => (
                 <Flex mx={2} key={item.id} title={item.title}>

@@ -9,6 +9,7 @@ import { Introduce } from "./Introduce";
 import { Animates } from "@core-ui/react-animates";
 import { useStore } from "@/store/index";
 import { Projects } from "./Projects";
+import { Skills } from "./Skills";
 import { Contact } from "./Contact";
 import { Layers } from "@/styles/layers";
 import { Products } from "./Products";
@@ -46,6 +47,14 @@ export const PortfolioContent = observer(({ }: IPortfolioContentProps) => {
         <IntersectionObserverView>
           <Animates.GrowUpAppear>
             <Introduce />
+          </Animates.GrowUpAppear>
+        </IntersectionObserverView>
+      </Flex>
+      <div id="section-skills"></div>
+      <Flex fullWidth minHeight={600}>
+        <IntersectionObserverView>
+          <Animates.GrowUpAppear>
+            <Skills />
           </Animates.GrowUpAppear>
         </IntersectionObserverView>
       </Flex>

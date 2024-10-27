@@ -15,6 +15,7 @@
     "@core-ui/react-context": "workspace:^",
     "@core-ui/react-core": "workspace:^",
     "@core-logic-hooks/react-recruiter": "workspace:^",
+    "@core-ui/react-charts": "workspace:^",
     "@core-logic-hooks/react-auth": "workspace:^",
     "@core-logic-hooks/react-ums": "workspace:^",
     "@core-ui/ums-types": "workspace:^",
