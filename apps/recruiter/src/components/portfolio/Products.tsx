@@ -50,7 +50,7 @@ export const Products = observer(() => {
           audio: {
             ping: pingAudio,
             shoot: shootAudio,
-            water: waterAudio
+            water: "", //waterAudio
           },
           images: {
             cave: cavePng,
