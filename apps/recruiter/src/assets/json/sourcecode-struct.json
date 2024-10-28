@@ -759,7 +759,7 @@
       "target": "uiPackages",
       "type": "smoothstep",
       "animated": false,
-      "style": { "stroke": "#fff" }
+      "style": { "stroke": "#fff", "display": "flex" }
     },
 
     {
@@ -768,7 +768,7 @@
       "target": "redisServer",
       "type": "smoothstep",
       "animated": false,
-      "style": { "stroke": "#fff" }
+      "style": { "stroke": "#fff", "display": "flex" }
     },
     {
       "id": "edge-redisServer-apiGateway",
@@ -776,8 +776,7 @@
       "target": "apiGateway",
       "type": "smoothstep",
       "animated": true,
-      "style": { "stroke": "#fff" }
+      "style": { "stroke": "#fff", "display": "flex" }
     }
-
   ]
 }

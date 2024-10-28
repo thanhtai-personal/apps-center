@@ -26,7 +26,7 @@ export const useReactFlowController = (
   onEdgesChange: OnEdgesChange;
   onNodesDelete: OnNodesDelete;
   onChangeThemeMode: ChangeEventHandler<HTMLSelectElement>;
-  onConnect: (params: any) => void;
+  onConnect: OnConnect;
 } => {
 
   const [colorMode, setColorMode] = useState<ColorMode>('dark');
