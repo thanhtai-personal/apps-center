@@ -13,6 +13,7 @@ import { Skills } from "./Skills";
 import { Contact } from "./Contact";
 import { Layers } from "@/styles/layers";
 import { Products } from "./Products";
+import { BestPractice } from "./BestPractice"
 import menuIcon from "@/assets/icons/menu.svg"
 import { useGlobalStyles } from "@/styles/globalStyle";
 
@@ -68,6 +69,16 @@ export const PortfolioContent = observer(({ }: IPortfolioContentProps) => {
           </Animates.GrowUpAppear>
         </IntersectionObserverView>
       </Flex>
+      <Flex fullWidth minHeight={600} height={"110vh"} justifyContent={"flex-start"}>
+        <IntersectionObserverView>
+          <Animates.GrowUpAppear>
+            <Flex fullWidth justifyContent={"flex-start"}>
+              <BestPractice />
+            </Flex>
+          </Animates.GrowUpAppear>
+        </IntersectionObserverView>
+      </Flex>
+
       <div id="section-products"></div>
       <Flex fullWidth minHeight={800}>
         <IntersectionObserverView>

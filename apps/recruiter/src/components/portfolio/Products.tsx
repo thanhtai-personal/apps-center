@@ -33,7 +33,7 @@ import meteorGif from "@/assets/game/images/meteor.gif";
 export const Products = observer(() => {
   const { tabletSizeDown, md1160 } = useResponsive({ md1160: 1160 });
   const globalStyles = useGlobalStyles();
-  const { getText } = useLanguage(productsTextObj)
+  const { getText } = useLanguage(productsTextObj);
 
   return (
     <Flex column fullSize position={"relative"}

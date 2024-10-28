@@ -13,8 +13,6 @@ export class MeteorRain {
 
   constructor(canvas: any) {
     this.canvas = canvas;
-    // canvas = document.querySelector("canvas");
-
     if (canvas && canvas.getContext) {
       this.context = this.canvas.getContext('2d');
 
@@ -22,9 +20,9 @@ export class MeteorRain {
       document.addEventListener('mousedown', this.documentMouseDownHandler, false);
       window.addEventListener('resize', this.windowResizeHandler, false);
 
-      this.createCursor();
+      this.createCursor?.();
 
-      this.windowResizeHandler();
+      this.windowResizeHandler?.();
 
       setInterval(this.loop, 1000 / 100);
     }

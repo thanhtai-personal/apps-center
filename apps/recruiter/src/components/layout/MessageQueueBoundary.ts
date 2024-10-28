@@ -4,6 +4,7 @@ import { useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { ReactNode, useEffect } from "react"
 import { useUMSStore } from "@core-logic-hooks/react-ums";
 import { useAuthenticationStore } from "@core-logic-hooks/react-auth";
+import { useStore } from "@/store/index";
 
 export const MessageQueueBoundary = observer(({
   children,
@@ -13,6 +14,17 @@ export const MessageQueueBoundary = observer(({
   const { notiStore: recruiterNoti } = useRecruiterStore();
   const { notiStore: umsNoti } = useUMSStore();
   const { notiStore: authNoti } = useAuthenticationStore();
+  const { notiStore } = useStore();
+
+  useEffect(() => {
+    const message = notiStore.messageQueue?.shift();
+    if (message) {
+      NotiStackInstance.push({
+        children: message.children,
+        variant: message.variant as "success" | "error" | "info" | "warning"
+      })
+    }
+  }, [notiStore.messageQueue?.[0]])
 
   useEffect(() => {
     const message = recruiterNoti.messageQueue?.shift();

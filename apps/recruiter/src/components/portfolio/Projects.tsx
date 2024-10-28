@@ -73,11 +73,12 @@ const ProjectsContent = observer(() => {
 })
 
 const GridContent = ({ projects, getText }) => {
+  const { down1080 } = useResponsive({ down1080: 1080 });
 
   return (
     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12, sm: 12, md: 12 }}>
       {projects.map((project, index) => (
-        <Grid item sm={12} md={4} lg={3} key={project.id || `p-${index}`} >
+        <Grid item sm={12} md={down1080 ? 6 : 4} key={project.id || `p-${index}`} >
           <Flex fullSize my={4}>
             <ProjectItem data={project} getText={getText} index={index} />
           </Flex>

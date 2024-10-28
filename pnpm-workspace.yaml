@@ -15,6 +15,7 @@ packages:
   - "client/ui/react-viewFrames"
   - "client/ui/react-lazyload"
   - "client/ui/react-charts"
+  - "client/ui/react-flow"
   - "client/builtIn/react-novels"
   - "client/builtIn/react-ums"
   - "client/builtIn/react-auth"

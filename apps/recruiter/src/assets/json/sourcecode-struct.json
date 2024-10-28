@@ -1,0 +1,783 @@
+{
+  "nodes": [
+    {
+      "id": "frontend",
+      "type": "frame",
+      "data": {
+        "label": "Frontend"
+      },
+      "position": {
+        "x": -252.35434782608695,
+        "y": -18.963043478260943
+      },
+      "style": {
+        "width": 1500,
+        "height": 800,
+        "padding": 20
+      },
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 1500,
+        "height": 800
+      }
+    },
+    {
+      "id": "apps",
+      "type": "frame",
+      "data": {
+        "label": "Applications"
+      },
+      "position": {
+        "x": 131.84486909262762,
+        "y": 34.0745245746692
+      },
+      "parentNode": "frontend",
+      "style": {
+        "width": 400,
+        "height": 200,
+        "padding": 10
+      },
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 400,
+        "height": 200
+      }
+    },
+    {
+      "id": "novelsWebApp",
+      "data": {
+        "label": "Novels web application"
+      },
+      "position": {
+        "x": 155.17718879962194,
+        "y": 111.10874598298676
+      },
+      "parentNode": "apps",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 52
+      }
+    },
+    {
+      "id": "recruiterWebApp",
+      "data": {
+        "label": "Recruiter web application"
+      },
+      "position": {
+        "x": 371.0996233459358,
+        "y": 112.59011483931948
+      },
+      "parentNode": "apps",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 52
+      }
+    },
+    {
+      "id": "businessLogics",
+      "type": "frame",
+      "data": {
+        "label": "Business logics"
+      },
+      "position": {
+        "x": 642.2114102079395,
+        "y": 42.962737712665415
+      },
+      "parentNode": "frontend",
+      "style": {
+        "width": 500,
+        "height": 200,
+        "padding": 10
+      },
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 500,
+        "height": 200
+      }
+    },
+    {
+      "id": "novelsLogic",
+      "data": {
+        "label": "Novels logic"
+      },
+      "position": {
+        "x": 671.8418282136106,
+        "y": 100.73916398865782
+      },
+      "parentNode": "businessLogics",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "umsLogic",
+      "data": {
+        "label": "UMS logic"
+      },
+      "position": {
+        "x": 970.3543775992441,
+        "y": 106.66463941398862
+      },
+      "parentNode": "businessLogics",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "authenticationLogic",
+      "data": {
+        "label": "Authentication logic"
+      },
+      "position": {
+        "x": 674.804565926276,
+        "y": 169.99695912098298
+      },
+      "parentNode": "businessLogics",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 52
+      }
+    },
+    {
+      "id": "recruiterLogic",
+      "data": {
+        "label": "Recruiter logic"
+      },
+      "position": {
+        "x": 971.8357464555766,
+        "y": 186.2920165406427
+      },
+      "parentNode": "businessLogics",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "sdks",
+      "type": "frame",
+      "data": {
+        "label": "SDKs"
+      },
+      "position": {
+        "x": 127.4007625236294,
+        "y": 551.8631143667296
+      },
+      "style": {
+        "width": 300,
+        "height": 200,
+        "padding": 10
+      },
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 300,
+        "height": 200
+      }
+    },
+    {
+      "id": "gateway-sdk",
+      "data": {
+        "label": "Gateway SDK"
+      },
+      "position": {
+        "x": 199.98783648393197,
+        "y": 665.192393194707
+      },
+      "parentNode": "sdks",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "uiPackages",
+      "type": "frame",
+      "data": {
+        "label": "UI libraries"
+      },
+      "position": {
+        "x": -236.66768029300556,
+        "y": 28.149049149338367
+      },
+      "parentNode": "frontend",
+      "style": {
+        "width": 250,
+        "height": 520,
+        "padding": 10
+      },
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 250,
+        "height": 520
+      }
+    },
+    {
+      "id": "reactAnimations",
+      "data": {
+        "label": "React animations"
+      },
+      "position": {
+        "x": -210.8586956521739,
+        "y": 80
+      },
+      "parentNode": "uiPackages",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "react-charts",
+      "data": {
+        "label": "React Charts"
+      },
+      "position": {
+        "x": -210.8586956521739,
+        "y": 130
+      },
+      "parentNode": "uiPackages",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "react-flow",
+      "data": {
+        "label": "React Flow"
+      },
+      "position": {
+        "x": -210.8586956521739,
+        "y": 180
+      },
+      "parentNode": "uiPackages",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "react-mantine",
+      "data": {
+        "label": "React mantine"
+      },
+      "position": {
+        "x": -210.8586956521739,
+        "y": 230
+      },
+      "parentNode": "uiPackages",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "react-core",
+      "data": {
+        "label": "React core"
+      },
+      "position": {
+        "x": -210.8586956521739,
+        "y": 280
+      },
+      "parentNode": "uiPackages",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "react-form",
+      "data": {
+        "label": "React Form"
+      },
+      "position": {
+        "x": -210.8586956521739,
+        "y": 330
+      },
+      "parentNode": "uiPackages",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "react-mobx-state",
+      "data": {
+        "label": "React Mobx state"
+      },
+      "position": {
+        "x": -210.8586956521739,
+        "y": 380
+      },
+      "parentNode": "uiPackages",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "react-table",
+      "data": {
+        "label": "React table"
+      },
+      "position": {
+        "x": -210.8586956521739,
+        "y": 430
+      },
+      "parentNode": "uiPackages",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "react-web3",
+      "data": {
+        "label": "React web3"
+      },
+      "position": {
+        "x": -210.8586956521739,
+        "y": 480
+      },
+      "parentNode": "uiPackages",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "backend",
+      "type": "frame",
+      "data": {
+        "label": "Backend"
+      },
+      "position": {
+        "x": -251.60913185255208,
+        "y": 836.9444924385634
+      },
+      "style": {
+        "width": 1300,
+        "height": 1200,
+        "padding": 20
+      },
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 1300,
+        "height": 1200
+      }
+    },
+    {
+      "id": "domains",
+      "type": "frame",
+      "data": {
+        "label": "Domains"
+      },
+      "position": {
+        "x": -187.09658246691902,
+        "y": 881.3885990075614
+      },
+      "parentNode": "backend",
+      "style": {
+        "width": 960,
+        "height": 500,
+        "padding": 10
+      },
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 960,
+        "height": 500
+      }
+    },
+    {
+      "id": "apiGateway",
+      "data": {
+        "label": "API Gateway"
+      },
+      "position": {
+        "x": 134.0714836956522,
+        "y": 914.795443289225
+      },
+      "parentNode": "domains",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "redisServer",
+      "data": {
+        "label": "Redis server (Messages queue)"
+      },
+      "position": {
+        "x": 133.35360586011348,
+        "y": 1012.5657878071834
+      },
+      "parentNode": "domains",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 52
+      }
+    },
+    {
+      "id": "apiNovels",
+      "data": {
+        "label": "API - Novels"
+      },
+      "position": {
+        "x": -125.16806616257094,
+        "y": 1154.0471566635163
+      },
+      "parentNode": "domains",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "novels-database",
+      "data": {
+        "label": "Database - Novels"
+      },
+      "position": {
+        "x": -121.168066162571,
+        "y": 1286.0471566635163
+      },
+      "parentNode": "domains",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "apiRecruiter",
+      "data": {
+        "label": "API - Recruiter"
+      },
+      "position": {
+        "x": 392.59315571833645,
+        "y": 1146.6403123818525
+      },
+      "parentNode": "domains",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "recruiter-database",
+      "data": {
+        "label": "Database - Recruiter"
+      },
+      "position": {
+        "x": 385.831933837429,
+        "y": 1262.0471566635163
+      },
+      "parentNode": "domains",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 52
+      }
+    },
+    {
+      "id": "apiAuthUMS",
+      "data": {
+        "label": "API - Authentication and User management"
+      },
+      "position": {
+        "x": 129.6729903119093,
+        "y": 1139.233468100189
+      },
+      "parentNode": "domains",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 76
+      }
+    },
+    {
+      "id": "ums-database",
+      "data": {
+        "label": "Database - UMS"
+      },
+      "position": {
+        "x": 136.168066162571,
+        "y": 1288.0471566635163
+      },
+      "parentNode": "domains",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "modules",
+      "type": "frame",
+      "data": {
+        "label": "Modules"
+      },
+      "position": {
+        "x": -181.02205789224945,
+        "y": 1545.0129352551983
+      },
+      "parentNode": "backend",
+      "style": {
+        "width": 960,
+        "height": 350,
+        "padding": 10
+      },
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 960,
+        "height": 350
+      }
+    },
+    {
+      "id": "authors",
+      "data": {
+        "label": "Authors"
+      },
+      "position": {
+        "x": -124.5003858695652,
+        "y": 1659.3049517958411
+      },
+      "type": "default",
+      "parentNode": "modules",
+      "selected": true,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "chapters",
+      "data": {
+        "label": "Chapters"
+      },
+      "position": {
+        "x": 58.53079465973531,
+        "y": 1657.3049517958411
+      },
+      "type": "default",
+      "parentNode": "modules",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "novels",
+      "data": {
+        "label": "Novels"
+      },
+      "position": {
+        "x": -128.5003858695652,
+        "y": 1785.3049517958411
+      },
+      "type": "default",
+      "parentNode": "modules",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "comments",
+      "data": {
+        "label": "Comments"
+      },
+      "position": {
+        "x": 54.53079465973531,
+        "y": 1783.3049517958411
+      },
+      "type": "default",
+      "parentNode": "modules",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "categories",
+      "data": {
+        "label": "Categories"
+      },
+      "position": {
+        "x": 229.69581994328917,
+        "y": 1781.3049517958411
+      },
+      "type": "default",
+      "parentNode": "modules",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "jobs",
+      "data": {
+        "label": "Jobs"
+      },
+      "position": {
+        "x": 407.71710609640843,
+        "y": 1649.1009594901939
+      },
+      "type": "default",
+      "parentNode": "modules",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "roles",
+      "data": {
+        "label": "Roles"
+      },
+      "position": {
+        "x": 409.69581994328917,
+        "y": 1781.3049517958411
+      },
+      "type": "default",
+      "parentNode": "modules",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "users",
+      "data": {
+        "label": "Users"
+      },
+      "position": {
+        "x": 594.5125493856333,
+        "y": 1644.3422140831758
+      },
+      "type": "default",
+      "parentNode": "modules",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    },
+    {
+      "id": "permissions",
+      "data": {
+        "label": "Permisisons"
+      },
+      "position": {
+        "x": 598.5125493856333,
+        "y": 1784.3422140831758
+      },
+      "type": "default",
+      "parentNode": "modules",
+      "selected": false,
+      "dragging": false,
+      "measured": {
+        "width": 150,
+        "height": 28
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-apps-uiPackages",
+      "source": "apps",
+      "target": "uiPackages",
+      "type": "smoothstep",
+      "animated": false,
+      "style": { "stroke": "#fff" }
+    },
+
+    {
+      "id": "edge-apiGateway-redisServer",
+      "source": "apiGateway",
+      "target": "redisServer",
+      "type": "smoothstep",
+      "animated": false,
+      "style": { "stroke": "#fff" }
+    },
+    {
+      "id": "edge-redisServer-apiGateway",
+      "source": "redisServer",
+      "target": "apiGateway",
+      "type": "smoothstep",
+      "animated": true,
+      "style": { "stroke": "#fff" }
+    }
+
+  ]
+}
