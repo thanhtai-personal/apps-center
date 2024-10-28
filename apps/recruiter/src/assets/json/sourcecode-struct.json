@@ -7,8 +7,8 @@
         "label": "Frontend"
       },
       "position": {
-        "x": -252.35434782608695,
-        "y": -18.963043478260943
+        "x": -254.35434782608695,
+        "y": -12.963043478260943
       },
       "style": {
         "width": 1500,
@@ -29,20 +29,20 @@
         "label": "Applications"
       },
       "position": {
-        "x": 131.84486909262762,
-        "y": 34.0745245746692
+        "x": 115.84486909262762,
+        "y": 36.0745245746692
       },
       "parentNode": "frontend",
       "style": {
         "width": 400,
-        "height": 200,
+        "height": 380,
         "padding": 10
       },
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 400,
-        "height": 200
+        "height": 380
       }
     },
     {
@@ -51,15 +51,15 @@
         "label": "Novels web application"
       },
       "position": {
-        "x": 155.17718879962194,
-        "y": 111.10874598298676
+        "x": 125.25219041668237,
+        "y": 334.12665971313925
       },
       "parentNode": "apps",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 52
+        "height": 51
       }
     },
     {
@@ -68,15 +68,15 @@
         "label": "Recruiter web application"
       },
       "position": {
-        "x": 371.0996233459358,
-        "y": 112.59011483931948
+        "x": 330.6473825126063,
+        "y": 67.30727839090798
       },
       "parentNode": "apps",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 52
+        "height": 51
       }
     },
     {
@@ -86,20 +86,20 @@
         "label": "Business logics"
       },
       "position": {
-        "x": 642.2114102079395,
-        "y": 42.962737712665415
+        "x": 637.8718577277813,
+        "y": 272.16945697853305
       },
       "parentNode": "frontend",
       "style": {
         "width": 500,
-        "height": 200,
+        "height": 420,
         "padding": 10
       },
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 500,
-        "height": 200
+        "height": 420
       }
     },
     {
@@ -108,15 +108,15 @@
         "label": "Novels logic"
       },
       "position": {
-        "x": 671.8418282136106,
-        "y": 100.73916398865782
+        "x": 659.4638452870191,
+        "y": 644.1346887902406
       },
       "parentNode": "businessLogics",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -125,15 +125,15 @@
         "label": "UMS logic"
       },
       "position": {
-        "x": 970.3543775992441,
-        "y": 106.66463941398862
+        "x": 937.1476583333765,
+        "y": 399.4933757532649
       },
       "parentNode": "businessLogics",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -142,15 +142,15 @@
         "label": "Authentication logic"
       },
       "position": {
-        "x": 674.804565926276,
-        "y": 169.99695912098298
+        "x": 938.4265829996846,
+        "y": 565.3924839225658
       },
       "parentNode": "businessLogics",
-      "selected": false,
+      "selected": true,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 52
+        "height": 51
       }
     },
     {
@@ -159,15 +159,15 @@
         "label": "Recruiter logic"
       },
       "position": {
-        "x": 971.8357464555766,
-        "y": 186.2920165406427
+        "x": 935.2393914204573,
+        "y": 299.7443825959739
       },
       "parentNode": "businessLogics",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -177,8 +177,8 @@
         "label": "SDKs"
       },
       "position": {
-        "x": 127.4007625236294,
-        "y": 551.8631143667296
+        "x": -92.5992374763706,
+        "y": 579.8631143667296
       },
       "style": {
         "width": 300,
@@ -198,15 +198,15 @@
         "label": "Gateway SDK"
       },
       "position": {
-        "x": 199.98783648393197,
-        "y": 665.192393194707
+        "x": -26.01216351606803,
+        "y": 667.192393194707
       },
       "parentNode": "sdks",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -246,7 +246,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -263,7 +263,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -280,7 +280,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -297,7 +297,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -314,7 +314,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -331,7 +331,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -348,7 +348,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -365,7 +365,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -382,7 +382,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -444,7 +444,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -453,15 +453,15 @@
         "label": "Redis server (Messages queue)"
       },
       "position": {
-        "x": 133.35360586011348,
-        "y": 1012.5657878071834
+        "x": 262.1895140134973,
+        "y": 1033.0279614550736
       },
       "parentNode": "domains",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 52
+        "height": 51
       }
     },
     {
@@ -478,7 +478,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -487,15 +487,15 @@
         "label": "Database - Novels"
       },
       "position": {
-        "x": -121.168066162571,
-        "y": 1286.0471566635163
+        "x": 36.250188865711834,
+        "y": 1315.4985107878183
       },
       "parentNode": "domains",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -512,7 +512,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -521,19 +521,19 @@
         "label": "Database - Recruiter"
       },
       "position": {
-        "x": 385.831933837429,
-        "y": 1262.0471566635163
+        "x": 597.3143815210891,
+        "y": 1282.8749734808466
       },
       "parentNode": "domains",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 52
+        "height": 51
       }
     },
     {
-      "id": "apiAuthUMS",
+      "id": "apiUMS",
       "data": {
         "label": "API - Authentication and User management"
       },
@@ -546,7 +546,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 76
+        "height": 75
       }
     },
     {
@@ -555,15 +555,15 @@
         "label": "Database - UMS"
       },
       "position": {
-        "x": 136.168066162571,
-        "y": 1288.0471566635163
+        "x": 314.0055789874671,
+        "y": 1299.2621349497708
       },
       "parentNode": "domains",
       "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -600,11 +600,11 @@
       },
       "type": "default",
       "parentNode": "modules",
-      "selected": true,
+      "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -622,7 +622,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -640,7 +640,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -658,7 +658,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -676,7 +676,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -685,8 +685,8 @@
         "label": "Jobs"
       },
       "position": {
-        "x": 407.71710609640843,
-        "y": 1649.1009594901939
+        "x": 410.3561219179543,
+        "y": 1643.8229278471022
       },
       "type": "default",
       "parentNode": "modules",
@@ -694,7 +694,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -712,7 +712,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -730,7 +730,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     },
     {
@@ -748,7 +748,7 @@
       "dragging": false,
       "measured": {
         "width": 150,
-        "height": 28
+        "height": 27
       }
     }
   ],
@@ -759,16 +759,19 @@
       "target": "uiPackages",
       "type": "smoothstep",
       "animated": false,
-      "style": { "stroke": "#fff", "display": "flex" }
+      "style": {
+        "stroke": "#ffffff"
+      }
     },
-
     {
       "id": "edge-apiGateway-redisServer",
       "source": "apiGateway",
       "target": "redisServer",
       "type": "smoothstep",
       "animated": false,
-      "style": { "stroke": "#fff", "display": "flex" }
+      "style": {
+        "stroke": "#ffffff"
+      }
     },
     {
       "id": "edge-redisServer-apiGateway",
@@ -776,7 +779,453 @@
       "target": "apiGateway",
       "type": "smoothstep",
       "animated": true,
-      "style": { "stroke": "#fff", "display": "flex" }
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "apiUMS",
+      "target": "redisServer",
+      "id": "xy-edge__apiUMS-redisServer",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "redisServer",
+      "target": "apiUMS",
+      "id": "xy-edge__redisServer-apiUMS",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "redisServer",
+      "target": "apiRecruiter",
+      "id": "xy-edge__redisServer-apiRecruiter",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "apiRecruiter",
+      "target": "redisServer",
+      "id": "xy-edge__apiRecruiter-redisServer",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "redisServer",
+      "target": "apiNovels",
+      "id": "xy-edge__redisServer-apiNovels",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "apiNovels",
+      "target": "redisServer",
+      "id": "xy-edge__apiNovels-redisServer",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "apiUMS",
+      "target": "ums-database",
+      "id": "xy-edge__apiUMS-ums-database",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "ums-database",
+      "target": "apiUMS",
+      "id": "xy-edge__ums-database-apiUMS",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "apiNovels",
+      "target": "novels-database",
+      "id": "xy-edge__apiNovels-novels-database",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "novels-database",
+      "target": "apiNovels",
+      "id": "xy-edge__novels-database-apiNovels",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "apiRecruiter",
+      "target": "recruiter-database",
+      "id": "xy-edge__apiRecruiter-recruiter-database",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "recruiter-database",
+      "target": "apiRecruiter",
+      "id": "xy-edge__recruiter-database-apiRecruiter",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "apiNovels",
+      "target": "authors",
+      "id": "xy-edge__apiNovels-authors",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "apiNovels",
+      "target": "chapters",
+      "id": "xy-edge__apiNovels-chapters",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "apiNovels",
+      "target": "novels",
+      "id": "xy-edge__apiNovels-novels",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "apiNovels",
+      "target": "comments",
+      "id": "xy-edge__apiNovels-comments",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "apiNovels",
+      "target": "categories",
+      "id": "xy-edge__apiNovels-categories",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "apiRecruiter",
+      "target": "jobs",
+      "id": "xy-edge__apiRecruiter-jobs",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "apiRecruiter",
+      "target": "categories",
+      "id": "xy-edge__apiRecruiter-categories",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "apiUMS",
+      "target": "roles",
+      "id": "xy-edge__apiUMS-roles",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "apiUMS",
+      "target": "users",
+      "id": "xy-edge__apiUMS-users",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "apiUMS",
+      "target": "permissions",
+      "id": "xy-edge__apiUMS-permissions",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "gateway-sdk",
+      "target": "apiGateway",
+      "id": "xy-edge__gateway-sdk-apiGateway",
+      "animated": true,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "apiGateway",
+      "target": "gateway-sdk",
+      "id": "xy-edge__apiGateway-gateway-sdk",
+      "animated": false,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "recruiterLogic",
+      "target": "gateway-sdk",
+      "id": "xy-edge__recruiterLogic-gateway-sdk",
+      "animated": true,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "gateway-sdk",
+      "target": "recruiterLogic",
+      "id": "xy-edge__gateway-sdk-recruiterLogic",
+      "animated": false,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "gateway-sdk",
+      "target": "umsLogic",
+      "id": "xy-edge__gateway-sdk-umsLogic",
+      "animated": true,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "umsLogic",
+      "target": "gateway-sdk",
+      "id": "xy-edge__umsLogic-gateway-sdk",
+      "animated": false,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "gateway-sdk",
+      "target": "authenticationLogic",
+      "id": "xy-edge__gateway-sdk-authenticationLogic",
+      "animated": true,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "authenticationLogic",
+      "target": "gateway-sdk",
+      "id": "xy-edge__authenticationLogic-gateway-sdk",
+      "animated": false,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "gateway-sdk",
+      "target": "novelsLogic",
+      "id": "xy-edge__gateway-sdk-novelsLogic",
+      "animated": true,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "novelsLogic",
+      "target": "gateway-sdk",
+      "id": "xy-edge__novelsLogic-gateway-sdk",
+      "animated": false,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "novelsLogic",
+      "target": "novelsWebApp",
+      "id": "xy-edge__novelsLogic-novelsWebApp",
+      "animated": false,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "novelsWebApp",
+      "target": "novelsLogic",
+      "id": "xy-edge__novelsWebApp-novelsLogic",
+      "animated": true,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "novelsWebApp",
+      "target": "authenticationLogic",
+      "id": "xy-edge__novelsWebApp-authenticationLogic",
+      "animated": false,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "authenticationLogic",
+      "target": "novelsWebApp",
+      "id": "xy-edge__authenticationLogic-novelsWebApp",
+      "animated": true,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "recruiterWebApp",
+      "target": "authenticationLogic",
+      "id": "xy-edge__recruiterWebApp-authenticationLogic",
+      "animated": false,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "authenticationLogic",
+      "target": "recruiterWebApp",
+      "id": "xy-edge__authenticationLogic-recruiterWebApp",
+      "animated": true,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "recruiterLogic",
+      "target": "recruiterWebApp",
+      "id": "xy-edge__recruiterLogic-recruiterWebApp",
+      "animated": false,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "source": "recruiterWebApp",
+      "target": "recruiterLogic",
+      "id": "xy-edge__recruiterWebApp-recruiterLogic",
+      "animated": true,
+      "type": "smoothstep",
+      "style": {
+        "stroke": "#ff0000"
+      }
+    },
+    {
+      "source": "recruiterWebApp",
+      "target": "react-charts",
+      "id": "xy-edge__recruiterWebApp-react-charts",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "recruiterWebApp",
+      "target": "react-flow",
+      "id": "xy-edge__recruiterWebApp-react-flow",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "novelsWebApp",
+      "target": "react-core",
+      "id": "xy-edge__novelsWebApp-react-core",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "recruiterWebApp",
+      "target": "react-core",
+      "id": "xy-edge__recruiterWebApp-react-core",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "novelsWebApp",
+      "target": "react-form",
+      "id": "xy-edge__novelsWebApp-react-form",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "recruiterWebApp",
+      "target": "react-form",
+      "id": "xy-edge__recruiterWebApp-react-form",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "novelsWebApp",
+      "target": "react-mobx-state",
+      "id": "xy-edge__novelsWebApp-react-mobx-state",
+      "style": {
+        "stroke": "#ffff00"
+      }
+    },
+    {
+      "source": "recruiterWebApp",
+      "target": "react-mobx-state",
+      "id": "xy-edge__recruiterWebApp-react-mobx-state",
+      "style": {
+        "stroke": "#ffff00"
+      }
     }
   ]
 }

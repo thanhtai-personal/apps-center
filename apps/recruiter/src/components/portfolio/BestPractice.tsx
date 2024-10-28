@@ -66,6 +66,10 @@ export const BestPractice = observer(() => {
           colorMode={colorMode}
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
+          elementsSelectable={false}
+          nodesConnectable={false}
+          nodesDraggable={false}
+          attributionPosition="top-right"
           configFlags={{
             useMinimap: !tabletSizeDown,
             useControls: !tabletSizeDown,

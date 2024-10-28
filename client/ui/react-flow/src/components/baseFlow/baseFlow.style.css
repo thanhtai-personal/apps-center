@@ -247,10 +247,6 @@
   transition-duration: 100ms;
 }
 
-.intersection-flow .react-flow__handle {
-  display: none;
-}
-
 /* packages */
 .react-flow__node-package .package-wrapper {
   position: relative;
