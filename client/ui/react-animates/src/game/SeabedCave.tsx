@@ -64,7 +64,7 @@ export const SeabedCave = ({
         <div id="character" ref={characterRef} style={{ backgroundImage: `url(${resources.images.sub})` }}></div>
         <div id="img1" ref={img1Ref}></div>
       </div>
-      <audio id="buzzer1" ref={buzzer1AudioRef} src={resources.audio.water} preload="auto" loop></audio>
+      <audio id="buzzer1" muted ref={buzzer1AudioRef} src={resources.audio.water} preload="auto" loop></audio>
     </div>
   );
 };
