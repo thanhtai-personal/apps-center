@@ -60,6 +60,20 @@ export const ProjectItem = observer(({
               </Flex>
             </Flex>
 
+            <Flex fullWidth mt={4} flexWrap={"wrap"}>
+              {data.tags?.map((tag) => (
+                <Flex key={tag} py={0.5} m={0.5}
+                  borderRadius={8}
+                  px={2}
+                  border={"solid 1px rgba(0,0,0, 0.5)"}
+                >
+                  <Text whiteSpace={"nowrap"} color={"red"}>
+                    {tag}
+                  </Text>
+                </Flex>
+              ))}
+            </Flex>
+
             <Flex center mt={4}>
               <Text color={"#000"} className={tabletSizeDown ? globalStyles.textOrbiBold24
                 : globalStyles.textOrbiBold32}>{getText(data.name)}</Text>

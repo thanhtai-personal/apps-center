@@ -114,6 +114,8 @@ const projectsLangObj = {
       : "TankVN là một dự án vừa hoài cổ vừa đổi mới, lấy cảm hứng từ trò chơi cổ điển Battle City. Với giao diện người dùng mới mẻ và các tính năng thú vị, TankVN mang trải nghiệm chơi game retro yêu thích vào thời đại hiện đại.\n\nTankVN được phát triển bởi một đội ngũ nhỏ gồm tôi và một người khác, sử dụng công nghệ Microsoft XNA 4.0 và kỹ thuật AI cho các đối tượng kẻ thù trong trò chơi (tìm đường ngắn nhất để tiếp cận và tiêu diệt người chơi). Cốt lõi của TankVN vẫn giữ nguyên bản chất của Battle City, nơi người chơi điều khiển một trận địa giống như mê cung, khéo léo di chuyển xe tăng của mình để tiêu diệt lực lượng kẻ thù và bảo vệ căn cứ. Tuy nhiên, TankVN không chỉ đơn thuần là một sự tri ân, mà còn giới thiệu các yếu tố mới hấp dẫn, bao gồm đồ họa ấn tượng và những trận đánh boss đầy thử thách.",
     "HP Tool — Online Shopping is a learning project of mine, aimed at utilizing Next.js to construct an e-commerce website. Data is crawled through the Cheerio tool and stored in an Atlas database powered by MongoDB.\n\nThe user interface comprises a products page, showcasing and facilitating the search of all available products. Additionally, an admin page is included to manage operations such as posting new content or editing crawled data."
       : "HP Tool — Mua sắm trực tuyến là một dự án học tập của tôi, nhằm mục đích luyện tập sử dụng Next.js để xây dựng một trang web thương mại điện tử. Dữ liệu được thu thập thông qua công cụ Cheerio và lưu trữ trong cơ sở dữ liệu Atlas do MongoDB cung cấp.\n\nGiao diện người dùng bao gồm một trang sản phẩm, hiển thị và hỗ trợ tìm kiếm tất cả các sản phẩm có sẵn. Ngoài ra, còn có một trang quản trị để quản lý các hoạt động như đăng nội dung mới hoặc chỉnh sửa dữ liệu đã thu thập.",
+    "My Apps Center will include an online novels page, a recruiter page, my portfolio page, and an HTML templates page.\nThis project is designed to showcase some of my products and serve as a demo for my code structure, as well as to explore interesting UI animations.\nProject Architecture for my practice.":
+    "My Apps Center sẽ bao gồm một trang tiểu thuyết trực tuyến, một trang tuyển dụng, một trang hồ sơ cá nhân và một trang mẫu HTML. \nDự án này được thiết kế để giới thiệu một số sản phẩm của tôi và làm mẫu cho cấu trúc mã của tôi, đồng thời khám phá các hiệu ứng UI thú vị.\nKiến trúc dự án dành cho việc thực hành của tôi.",
   }
 }
 
@@ -122,17 +124,20 @@ const projects = [
     id: 5,
     name: "Auvenir/Deloitte Auditing platform",
     image: auvenirLogo,
+    tags: [".Net", "ReactJS", "Micro-service", "Financial"],
     description: "Developed by more than 200 developers, this is a significant outsourced project and the flagship endeavor of TiTan. The backend is built on .Net Core microservices, the database is a SQL project, and the frontend is developed in ReactJS.\n\nMy responsibility in this project is to implement new features and fix bugs. Some of the features I have worked on include creating an engagement screen, handling logout in multi-tab, multi-browser scenarios, and managing content updates,...",
   },
   {
     id: 3,
     name: "Flymore",
     image: flymore,
+    tags: ["NestJS", "ReactJS", "Ecommercial"],
     description: "Flymore is another project of TiTan. It is developed by approximately 20 developers and is a TypeScript full-stack e-commerce application available on both web and mobile platforms, utilizing PostgreSQL.\n\nThis project employs a microservices architecture communicated by event-driven in its structure.\n\nMy responsibility in this project is to implement new features and fix bugs. Some of the features I have worked on include creating agreements and handling the bidding system, and creating a migrated database script",
   },
   {
     id: 4,
     name: "Titan core",
+    tags: ["NestJS", "ReactJS"],
     image: titan,
     description: "TiTan Core is a pivotal project within TiTan, designed to create modular bases for utilization across various other projects within the typescript stack. This monorepo source encompasses several tiers, including client modules, SDKs, applications, and domains. Clients aggregate all UI packages, applications encapsulate business logic packages, domains provide API packages, and SDKs consolidate all SDK packages that facilitate the connection and usage of API packages by UI packages.\n\nIn this project, my primary responsibility lies in implementing all UI packages and SDK packages for the initial phase. This includes React-core, unittest-vitest, SDKs for user management and authentication, as well as UI packages for authentication and user management. Additionally, I am tasked with documenting each component thoroughly.",
   },
@@ -140,35 +145,41 @@ const projects = [
     id: 1,
     name: "Goat games",
     image: tgminiapp,
+    tags: ["NestJS", "ReactJS", "Telegram bot"],
     description: `Goat Tap is a Telegram mini-app that creates 'Tap to earn' games. The main content of the game involves clicking on the Goat avatar to accumulate points.\n\nGoat Tap is part of the Goat games system, along with other games such as Wheel Lottery, Up and Down, and Trust Battle.\n\nIn Wheel Lottery, a prize wheel is used to randomly select a winner from all participants. The more value a player contributes to the prize pool, the higher their chance of winning.\n\nUp and Down involves predicting whether the token price will go up or down after 30 seconds. Trust Battle pits two teams against each other in a 24-hour competition over token amounts. After 24 hours, the team with the larger total token amount wins. Participants on the winning team will receive rewards proportional to the percentages of tokens they contributed.`,
   },
   {
     id: 2,
     name: "0xtool",
+    tags: ["ReactJS", "Block-chain"],
     image: oxtoolLogo,
     description: "This on-chain analytics tool enhances trading with high-utility features like a Safety Checklist, Smart Money, and Trading Strategy. The product secured $200,000 in funding from the Google Cloud's Startup Program.",
   },
   {
     id: 6,
     name: "Command center",
+    tags: ["Java", "ReactJS", "Medical tech"],
     image: commandcenter,
     description: "The Command Center project in the medical field serves as an operational hub within a hospital. It connects to another Electronic Medical Record project of ISOFH to display patient records, manage inpatient and outpatient information, and oversee medical record management.\n\nThis project utilizes Java for the backend and ReactJS with Redux for the frontend. My primary responsibility in this project is to implement all UI features",
   },
   {
     id: 7,
     name: "Maestro",
+    tags: [".Net", "ReactJS"],
     image: meastroPng,
     description: "The Maestro Celebrity Event Planning Platform, developed by approximately 20 developers, utilizes .NET for the backend and ReactJS for the frontend.\n\nIn this project, my role as a frontend developer entails implementing various features on ReactJS. Specifically, I focus on functionalities like calendar event management and report printing services",
   },
   {
     id: 8,
     name: "Swallow",
+    tags: ["ScalaJS", "ReactJS"],
     image: swallowPng,
     description: "Swallow, a product of CityNow, focuses on Japan Study & Job Recruitment, offering insights into job and study opportunities in Japan. Following Delorean, this project is built by a small team of 7 developers, utilizing a JavaScript stack.\n\nMy role in this project involves implementing full features from backend to frontend. A notable contribution of mine is the development of a rich text editor, facilitating the posting of content on public sites.",
   },
   {
     id: 9,
     name: "TankVN (Battle city)",
+    tags: ["Ms XNA 4.0", "Game"],
     iframe: (mdDown) => <iframe width={mdDown ? "320" : "560"} height="250"
       src="https://www.youtube.com/embed/LwJa69CBARk?si=ucWNqCT_9KFzBGZ9"
       title="YouTube video player"
@@ -178,5 +189,12 @@ const projects = [
       allowfullscreen
     ></iframe>,
     description: "TankVN is a nostalgic yet innovative project inspired by the classic Battle City game. With a fresh user interface and exciting new features, TankVN brings the beloved retro gaming experience into the modern era.",
+  },
+  {
+    id: 9,
+    name: "App center",
+    tags: ["NestJS", "ReactJS", "Micro-service"],
+    image: swallowPng,
+    description: `My Apps Center will include an online novels page, a recruiter page, my portfolio page, and an HTML templates page.\nThis project is designed to showcase some of my products and serve as a demo for my code structure, as well as to explore interesting UI animations.\nProject Architecture for my practice.`,
   }
 ]

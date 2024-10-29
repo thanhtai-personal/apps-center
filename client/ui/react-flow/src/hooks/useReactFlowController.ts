@@ -29,7 +29,7 @@ export const useReactFlowController = (
   onConnect: OnConnect;
 } => {
 
-  const [colorMode, setColorMode] = useState<ColorMode>('dark');
+  const [colorMode, setColorMode] = useState<ColorMode>('light');
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
