@@ -6,7 +6,8 @@ import {
   , useReactFlowController,
   FrameNode,
   AnimatedNodeEdge1,
-  AnimatedSVGEdge
+  AnimatedSVGEdge,
+  ThreeLineEdge
 } from "@core-ui/react-flow";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, Text, useResponsive } from "@core-ui/react-mui-core";
@@ -30,6 +31,7 @@ const edgeTypes: any = {
   button: ButtonEdge,
   animate1: AnimatedNodeEdge1,
   svg: AnimatedSVGEdge,
+  threeLine: ThreeLineEdge,
 };
 
 const nodeClassName = (node) => node.type;

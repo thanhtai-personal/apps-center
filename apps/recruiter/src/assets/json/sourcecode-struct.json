@@ -51,11 +51,11 @@
         "label": "Novels web application"
       },
       "position": {
-        "x": 125.25219041668237,
-        "y": 334.12665971313925
+        "x": 147.25219041668237,
+        "y": 130.12665971313925
       },
       "parentNode": "apps",
-      "selected": false,
+      "selected": true,
       "dragging": false,
       "measured": {
         "width": 150,
@@ -68,8 +68,8 @@
         "label": "Recruiter web application"
       },
       "position": {
-        "x": 330.6473825126063,
-        "y": 67.30727839090798
+        "x": 376.6473825126063,
+        "y": 49.30727839090798
       },
       "parentNode": "apps",
       "selected": false,
@@ -86,8 +86,8 @@
         "label": "Business logics"
       },
       "position": {
-        "x": 637.8718577277813,
-        "y": 272.16945697853305
+        "x": 703.8718577277813,
+        "y": 132.16945697853305
       },
       "parentNode": "frontend",
       "style": {
@@ -108,8 +108,8 @@
         "label": "Novels logic"
       },
       "position": {
-        "x": 659.4638452870191,
-        "y": 644.1346887902406
+        "x": 753.4638452870191,
+        "y": 374.1346887902406
       },
       "parentNode": "businessLogics",
       "selected": false,
@@ -125,8 +125,8 @@
         "label": "UMS logic"
       },
       "position": {
-        "x": 937.1476583333765,
-        "y": 399.4933757532649
+        "x": 841.1476583333765,
+        "y": 297.4933757532649
       },
       "parentNode": "businessLogics",
       "selected": false,
@@ -142,11 +142,11 @@
         "label": "Authentication logic"
       },
       "position": {
-        "x": 938.4265829996846,
-        "y": 565.3924839225658
+        "x": 930.4265829996846,
+        "y": 223.39248392256582
       },
       "parentNode": "businessLogics",
-      "selected": true,
+      "selected": false,
       "dragging": false,
       "measured": {
         "width": 150,
@@ -159,8 +159,8 @@
         "label": "Recruiter logic"
       },
       "position": {
-        "x": 935.2393914204573,
-        "y": 299.7443825959739
+        "x": 1035.2393914204572,
+        "y": 153.7443825959739
       },
       "parentNode": "businessLogics",
       "selected": false,
@@ -757,150 +757,88 @@
       "id": "edge-apps-uiPackages",
       "source": "apps",
       "target": "uiPackages",
-      "type": "smoothstep",
       "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "id": "edge-apiGateway-redisServer",
       "source": "apiGateway",
       "target": "redisServer",
-      "type": "smoothstep",
       "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "id": "edge-redisServer-apiGateway",
-      "source": "redisServer",
-      "target": "apiGateway",
-      "type": "smoothstep",
-      "animated": true,
-      "style": {
-        "stroke": "#ff0000"
-      }
-    },
-    {
-      "source": "apiUMS",
-      "target": "redisServer",
-      "id": "xy-edge__apiUMS-redisServer",
-      "type": "smoothstep",
-      "animated": false,
-      "style": {
-        "stroke": "#ffffff"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "source": "redisServer",
       "target": "apiUMS",
       "id": "xy-edge__redisServer-apiUMS",
-      "type": "smoothstep",
-      "animated": true,
+      "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "source": "redisServer",
       "target": "apiRecruiter",
       "id": "xy-edge__redisServer-apiRecruiter",
-      "type": "smoothstep",
       "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "apiRecruiter",
-      "target": "redisServer",
-      "id": "xy-edge__apiRecruiter-redisServer",
-      "type": "smoothstep",
-      "animated": true,
-      "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "source": "redisServer",
       "target": "apiNovels",
       "id": "xy-edge__redisServer-apiNovels",
-      "type": "smoothstep",
       "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "apiNovels",
-      "target": "redisServer",
-      "id": "xy-edge__apiNovels-redisServer",
-      "type": "smoothstep",
-      "animated": true,
-      "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "source": "apiUMS",
       "target": "ums-database",
       "id": "xy-edge__apiUMS-ums-database",
-      "type": "smoothstep",
       "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "ums-database",
-      "target": "apiUMS",
-      "id": "xy-edge__ums-database-apiUMS",
-      "type": "smoothstep",
-      "animated": true,
-      "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "source": "apiNovels",
       "target": "novels-database",
       "id": "xy-edge__apiNovels-novels-database",
-      "type": "smoothstep",
       "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "novels-database",
-      "target": "apiNovels",
-      "id": "xy-edge__novels-database-apiNovels",
-      "type": "smoothstep",
-      "animated": true,
-      "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "source": "apiRecruiter",
       "target": "recruiter-database",
       "id": "xy-edge__apiRecruiter-recruiter-database",
-      "type": "smoothstep",
       "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "recruiter-database",
-      "target": "apiRecruiter",
-      "id": "xy-edge__recruiter-database-apiRecruiter",
-      "type": "smoothstep",
-      "animated": true,
-      "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
@@ -908,7 +846,7 @@
       "target": "authors",
       "id": "xy-edge__apiNovels-authors",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -916,7 +854,7 @@
       "target": "chapters",
       "id": "xy-edge__apiNovels-chapters",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -924,7 +862,7 @@
       "target": "novels",
       "id": "xy-edge__apiNovels-novels",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -932,7 +870,7 @@
       "target": "comments",
       "id": "xy-edge__apiNovels-comments",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -940,7 +878,7 @@
       "target": "categories",
       "id": "xy-edge__apiNovels-categories",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -948,7 +886,7 @@
       "target": "jobs",
       "id": "xy-edge__apiRecruiter-jobs",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -956,7 +894,7 @@
       "target": "categories",
       "id": "xy-edge__apiRecruiter-categories",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -964,7 +902,7 @@
       "target": "roles",
       "id": "xy-edge__apiUMS-roles",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -972,7 +910,7 @@
       "target": "users",
       "id": "xy-edge__apiUMS-users",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -980,57 +918,29 @@
       "target": "permissions",
       "id": "xy-edge__apiUMS-permissions",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
       "source": "gateway-sdk",
       "target": "apiGateway",
       "id": "xy-edge__gateway-sdk-apiGateway",
-      "animated": true,
-      "type": "smoothstep",
-      "style": {
-        "stroke": "#ff0000"
-      }
-    },
-    {
-      "source": "apiGateway",
-      "target": "gateway-sdk",
-      "id": "xy-edge__apiGateway-gateway-sdk",
       "animated": false,
-      "type": "smoothstep",
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "source": "recruiterLogic",
       "target": "gateway-sdk",
-      "id": "xy-edge__recruiterLogic-gateway-sdk",
-      "animated": true,
-      "type": "smoothstep",
-      "style": {
-        "stroke": "#ff0000"
-      }
-    },
-    {
-      "source": "gateway-sdk",
-      "target": "recruiterLogic",
       "id": "xy-edge__gateway-sdk-recruiterLogic",
       "animated": false,
-      "type": "smoothstep",
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "gateway-sdk",
-      "target": "umsLogic",
-      "id": "xy-edge__gateway-sdk-umsLogic",
-      "animated": true,
-      "type": "smoothstep",
-      "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
@@ -1038,19 +948,10 @@
       "target": "gateway-sdk",
       "id": "xy-edge__umsLogic-gateway-sdk",
       "animated": false,
-      "type": "smoothstep",
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "gateway-sdk",
-      "target": "authenticationLogic",
-      "id": "xy-edge__gateway-sdk-authenticationLogic",
-      "animated": true,
-      "type": "smoothstep",
-      "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
@@ -1058,19 +959,10 @@
       "target": "gateway-sdk",
       "id": "xy-edge__authenticationLogic-gateway-sdk",
       "animated": false,
-      "type": "smoothstep",
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "gateway-sdk",
-      "target": "novelsLogic",
-      "id": "xy-edge__gateway-sdk-novelsLogic",
-      "animated": true,
-      "type": "smoothstep",
-      "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
@@ -1078,29 +970,43 @@
       "target": "gateway-sdk",
       "id": "xy-edge__novelsLogic-gateway-sdk",
       "animated": false,
-      "type": "smoothstep",
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "novelsLogic",
-      "target": "novelsWebApp",
-      "id": "xy-edge__novelsLogic-novelsWebApp",
-      "animated": false,
-      "type": "smoothstep",
-      "style": {
-        "stroke": "#ffffff"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "source": "novelsWebApp",
       "target": "novelsLogic",
       "id": "xy-edge__novelsWebApp-novelsLogic",
-      "animated": true,
-      "type": "smoothstep",
+      "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
+      }
+    },
+    {
+      "source": "novelsWebApp",
+      "target": "umsLogic",
+      "id": "xy-edge__novelsWebApp-umsLogic",
+      "animated": false,
+      "type": "svg",
+      "style": {
+        "stroke": "#ffff00",
+        "display": "flex"
+      }
+    },
+    {
+      "source": "recruiterWebApp",
+      "target": "umsLogic",
+      "id": "xy-edge__recruiterWebApp-umsLogic",
+      "animated": false,
+      "type": "svg",
+      "style": {
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
@@ -1108,19 +1014,10 @@
       "target": "authenticationLogic",
       "id": "xy-edge__novelsWebApp-authenticationLogic",
       "animated": false,
-      "type": "smoothstep",
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "authenticationLogic",
-      "target": "novelsWebApp",
-      "id": "xy-edge__authenticationLogic-novelsWebApp",
-      "animated": true,
-      "type": "smoothstep",
-      "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
@@ -1128,39 +1025,21 @@
       "target": "authenticationLogic",
       "id": "xy-edge__recruiterWebApp-authenticationLogic",
       "animated": false,
-      "type": "smoothstep",
+      "type": "svg",
       "style": {
-        "stroke": "#ffffff"
-      }
-    },
-    {
-      "source": "authenticationLogic",
-      "target": "recruiterWebApp",
-      "id": "xy-edge__authenticationLogic-recruiterWebApp",
-      "animated": true,
-      "type": "smoothstep",
-      "style": {
-        "stroke": "#ff0000"
-      }
-    },
-    {
-      "source": "recruiterLogic",
-      "target": "recruiterWebApp",
-      "id": "xy-edge__recruiterLogic-recruiterWebApp",
-      "animated": false,
-      "type": "smoothstep",
-      "style": {
-        "stroke": "#ffffff"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
       "source": "recruiterWebApp",
       "target": "recruiterLogic",
       "id": "xy-edge__recruiterWebApp-recruiterLogic",
-      "animated": true,
-      "type": "smoothstep",
+      "animated": false,
+      "type": "svg",
       "style": {
-        "stroke": "#ff0000"
+        "stroke": "#ffff00",
+        "display": "flex"
       }
     },
     {
@@ -1168,7 +1047,7 @@
       "target": "react-charts",
       "id": "xy-edge__recruiterWebApp-react-charts",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -1176,7 +1055,7 @@
       "target": "react-flow",
       "id": "xy-edge__recruiterWebApp-react-flow",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -1184,7 +1063,7 @@
       "target": "react-core",
       "id": "xy-edge__novelsWebApp-react-core",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -1192,7 +1071,7 @@
       "target": "react-core",
       "id": "xy-edge__recruiterWebApp-react-core",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -1200,7 +1079,7 @@
       "target": "react-form",
       "id": "xy-edge__novelsWebApp-react-form",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -1208,7 +1087,7 @@
       "target": "react-form",
       "id": "xy-edge__recruiterWebApp-react-form",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -1216,7 +1095,7 @@
       "target": "react-mobx-state",
       "id": "xy-edge__novelsWebApp-react-mobx-state",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
       }
     },
     {
@@ -1224,7 +1103,71 @@
       "target": "react-mobx-state",
       "id": "xy-edge__recruiterWebApp-react-mobx-state",
       "style": {
-        "stroke": "#ffff00"
+        "stroke": "#fff"
+      }
+    },
+    {
+      "source": "recruiterLogic",
+      "target": "react-mobx-state",
+      "id": "xy-edge__recruiterLogic-react-mobx-state",
+      "style": {
+        "stroke": "#fff"
+      }
+    },
+    {
+      "source": "umsLogic",
+      "target": "react-mobx-state",
+      "id": "xy-edge__umsLogic-react-mobx-state",
+      "style": {
+        "stroke": "#fff"
+      }
+    },
+    {
+      "source": "authenticationLogic",
+      "target": "react-mobx-state",
+      "id": "xy-edge__authenticationLogic-react-mobx-state",
+      "style": {
+        "stroke": "#fff"
+      }
+    },
+    {
+      "source": "novelsLogic",
+      "target": "react-mobx-state",
+      "id": "xy-edge__novelsLogic-react-mobx-state",
+      "style": {
+        "stroke": "#fff"
+      }
+    },
+    {
+      "source": "authenticationLogic",
+      "target": "react-core",
+      "id": "xy-edge__authenticationLogic-react-core",
+      "style": {
+        "stroke": "#fff"
+      }
+    },
+    {
+      "source": "novelsLogic",
+      "target": "react-core",
+      "id": "xy-edge__novelsLogic-react-core",
+      "style": {
+        "stroke": "#fff"
+      }
+    },
+    {
+      "source": "umsLogic",
+      "target": "react-core",
+      "id": "xy-edge__umsLogic-react-core",
+      "style": {
+        "stroke": "#fff"
+      }
+    },
+    {
+      "source": "recruiterLogic",
+      "target": "react-core",
+      "id": "xy-edge__recruiterLogic-react-core",
+      "style": {
+        "stroke": "#fff"
       }
     }
   ]
