@@ -4,9 +4,11 @@ packages:
   - "client/lib/api-client"
   - "client/lib/react-hooks"
   - "client/lib/react-social-login"
+
   # - "api-sdk/**"
   - "client/sdk/core"
-  - "client/sdk/app-center-gateway"
+
+  # client packages
   - "client/ui/mui/react-core-mui"
   - "client/ui/react-animates"
   - "client/ui/react-context"
@@ -16,28 +18,18 @@ packages:
   - "client/ui/react-lazyload"
   - "client/ui/react-charts"
   - "client/ui/react-flow"
+  
+  # business logic package
   - "client/builtIn/react-novels"
   - "client/builtIn/react-ums"
   - "client/builtIn/react-auth"
   - "client/builtIn/react-recruiter"
 
-  # all packages in subdirs of components/
-  - "server/libs/*"
-  - "server/domain/api-authentication"
-  - "server/domain/api-appcenter-gateway"
-  - "server/domain/api-novels"
-  - "server/domain/api-recruiter"
-  - "server/domain/api-ums"
-  - "server/modules/**"
-  - "server/nestjs/**"
-
   # all packages in subdirs of shared/
   - "shared/**"
 
   # all packages in direct subdirs of packages/
-  # - "apps/**"
-  # - "apps/novels"
-  - "apps/recruiter"
-  
+  - "apps/demo"
+
   # exclude packages that are inside test directories
   - "!**/test/**"
