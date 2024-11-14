@@ -15,7 +15,7 @@ import jsonData from "@/assets/json/sourcecode-struct.json";
 import { useStore } from "@/store/index";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { useLanguage } from "@/hooks/useLanguage";
-import { Button } from "@core-ui/react-mui-core/materials";
+import { Button } from "@core-ui/react-mui-core/dist/base/materials";
 
 const nodeTypes = {
   annotation: AnnotationNode,

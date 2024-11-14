@@ -1,6 +1,6 @@
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { observer } from "@core-ui/react-mobx-state";
-import { Grid } from "@core-ui/react-mui-core/materials"
+import { Grid } from "@core-ui/react-mui-core/dist/base/materials"
 import { Flex, LazyImage } from "@core-ui/react-mui-core";
 import recruiterBg from "@/assets/images/bg/recruiter_bg.png"
 import Carousel from 'react-material-ui-carousel';

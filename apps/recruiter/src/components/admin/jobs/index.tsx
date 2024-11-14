@@ -1,7 +1,7 @@
 import { useStore } from "@/store/index";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, Text, useResponsive } from "@core-ui/react-mui-core";
-import { Drawer } from "@core-ui/react-mui-core/materials";
+import { Drawer } from "@core-ui/react-mui-core/dist/base/materials";
 import { runJobs, useRecruiterStore, useJobsData, runCategories } from "@core-logic-hooks/react-recruiter";
 import { useEffect, useLayoutEffect } from "react";
 import { JobDetail } from "@/components/JobDetail";

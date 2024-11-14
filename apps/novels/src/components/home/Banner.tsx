@@ -5,12 +5,12 @@ import Carousel from 'react-material-ui-carousel';
 import { useNovelsStore } from "@core-logic-hooks/react-novels";
 import { Link } from "@core-ui/react-core";
 import { useGlobalStyles } from "@/styles/globalStyle";
-import clsx from "@core-ui/react-mui-core/clsx";
-import { Grid } from "@core-ui/react-mui-core/materials";
+import clsx from "@core-ui/react-mui-core/dist/base/clsx";
+import { Grid } from "@core-ui/react-mui-core/dist/base/materials";
 import { useStore } from "@/store/index";
 import { Animates } from "@core-ui/react-animates";
 import sword2 from "@/assets/icons/sword2.png"
-import { makeStyles, createStyles } from "@core-ui/react-mui-core/style"
+import { makeStyles, createStyles } from "@core-ui/react-mui-core/dist/base/style"
 
 const images = [
   "https://truyen.tangthuvien.vn/images/slide3.jpg",

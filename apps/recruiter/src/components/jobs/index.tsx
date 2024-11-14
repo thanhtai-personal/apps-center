@@ -8,7 +8,7 @@ import ZaloChat from "../ZaloChat";
 import FacebookChat from "../FacebookChat";
 import TelegramChat from "../TelegramChat";
 import { Link } from "@core-ui/react-core";
-import { VolunteerActivism as VolunteerActivismIcon } from "@core-ui/react-mui-core/icons"
+import { VolunteerActivism as VolunteerActivismIcon } from "@core-ui/react-mui-core/dist/base/icons"
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { TopBar } from "./TopBar";

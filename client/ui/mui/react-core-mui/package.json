@@ -14,16 +14,6 @@
     "preview": "vite preview",
     "release": "pnpm i && pnpm build && npm version patch && npm publish"
   },
-  "exports": {
-    ".": "./dist/index.js",
-    "./clsx": "./dist/base/clsx.js",
-    "./date": "./dist/base/date.js",
-    "./lab": "./dist/base/lab.js",
-    "./materials": "./dist/base/materials.js",
-    "./moment": "./dist/base/moment.js",
-    "./style": "./dist/base/style.js",
-    "./icons": "./dist/base/icons.js"
-  },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

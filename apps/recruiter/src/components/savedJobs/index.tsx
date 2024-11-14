@@ -6,7 +6,7 @@ import TelegramChat from "../TelegramChat";
 import { useRecruiterStore } from "@core-logic-hooks/react-recruiter";
 import { JobsGridView } from "../jobs/JobsGridView";
 import { Link } from "@core-ui/react-core";
-import { ArrowBack as ArrowBackIcon } from "@core-ui/react-mui-core/icons";
+import { ArrowBack as ArrowBackIcon } from "@core-ui/react-mui-core/dist/base/icons";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 
 export interface ISavedJobsContentProps { }

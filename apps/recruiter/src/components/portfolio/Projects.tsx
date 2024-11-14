@@ -11,7 +11,7 @@ import titan from "@/assets/images/titan.png"
 import commandcenter from "@/assets/images/command_center.png"
 import { Animates } from "@core-ui/react-animates";
 import { Layers } from "@/styles/layers";
-import { Grid } from "@core-ui/react-mui-core/materials";
+import { Grid } from "@core-ui/react-mui-core/dist/base/materials";
 import oxtoolLogo from "@/assets/images/projects/0xtool.png"
 import auvenirLogo from "@/assets/images/projects/auvenir.png"
 import meastroPng from "@/assets/images/projects/meastro.png"

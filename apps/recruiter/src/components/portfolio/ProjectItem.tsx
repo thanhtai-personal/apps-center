@@ -2,7 +2,7 @@ import { useGlobalStyles } from "@/styles/globalStyle";
 import { AnimateCard, AOS } from "@core-ui/react-animates";
 import { observer, useLocalStore } from "@core-ui/react-mobx-state";
 import { AppTheme, Flex, LazyImage, Text, useResponsive } from "@core-ui/react-mui-core";
-import { makeStyles, createStyles } from "@core-ui/react-mui-core/style"
+import { makeStyles, createStyles } from "@core-ui/react-mui-core/dist/base/style"
 import { useEffect } from "react";
 
 export const ProjectItem = observer(({

@@ -1,6 +1,6 @@
 //globalStyle.ts
 import { AppTheme } from "@core-ui/react-mui-core";
-import { makeStyles, createStyles } from "@core-ui/react-mui-core/style"
+import { makeStyles, createStyles } from "@core-ui/react-mui-core/dist/base/style"
 
 export const useGlobalStyles = makeStyles((_theme: AppTheme) =>
   createStyles({

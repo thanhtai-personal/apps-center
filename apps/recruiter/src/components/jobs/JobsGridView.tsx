@@ -1,10 +1,10 @@
 import { observer } from "@core-ui/react-mobx-state"
 import { Flex, Text } from "@core-ui/react-mui-core"
-import { Grid, Drawer, Pagination } from "@core-ui/react-mui-core/materials";
+import { Grid, Drawer, Pagination } from "@core-ui/react-mui-core/dist/base/materials";
 import {
   Favorite as FavoriteIcon,
   FavoriteBorder as FavoriteBorderIcon
-} from "@core-ui/react-mui-core/icons";
+} from "@core-ui/react-mui-core/dist/base/icons";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { useJobsData, useRecruiterStore } from "@core-logic-hooks/react-recruiter";

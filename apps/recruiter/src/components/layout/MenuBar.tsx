@@ -2,8 +2,8 @@ import { useGlobalStyles } from "@/styles/globalStyle";
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { observer } from "@core-ui/react-mobx-state";
 import { Flex, Text } from "@core-ui/react-mui-core";
-import { Popover } from "@core-ui/react-mui-core/materials";
-import clsx from "@core-ui/react-mui-core/clsx";
+import { Popover } from "@core-ui/react-mui-core/dist/base/materials";
+import clsx from "@core-ui/react-mui-core/dist/base/clsx";
 import menuIcon from "@/assets/icons/home/endless.svg"
 import { useStore } from "@/store/index";
 import { useRecruiterStore } from "@core-logic-hooks/react-recruiter";

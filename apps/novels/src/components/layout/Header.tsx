@@ -4,7 +4,7 @@ import logo from "@/assets/images/tth_logo.png"
 import { Animates } from "@core-ui/react-animates";
 import { useGlobalStyles } from "@/styles/globalStyle";
 import { useStore } from "@/store/index";
-import { Input } from "@core-ui/react-mui-core/materials"
+import { Input } from "@core-ui/react-mui-core/dist/base/materials"
 import { PAGE_MAX_WIDTH } from "@/utils/constants";
 import { LoginSection } from "@/components/authen/LoginSection";
 

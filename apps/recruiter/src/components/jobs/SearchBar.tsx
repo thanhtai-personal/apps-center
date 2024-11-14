@@ -4,7 +4,7 @@ import { runCategories, useJobsData, useRecruiterStore } from "@core-logic-hooks
 import { observer } from "@core-ui/react-mobx-state"
 import { Flex, OutlinedButton, Text } from "@core-ui/react-mui-core"
 import { useEffect } from "react"
-import { Input } from "@core-ui/react-mui-core/materials"
+import { Input } from "@core-ui/react-mui-core/dist/base/materials"
 import { useLocalStorageData } from "@core-utils/react-hooks"
 
 export interface ISearchBarProps {

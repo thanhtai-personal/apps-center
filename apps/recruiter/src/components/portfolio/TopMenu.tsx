@@ -2,8 +2,8 @@ import { useGlobalStyles } from "@/styles/globalStyle";
 import { Flex, Text, useResponsive } from "@core-ui/react-mui-core";
 import { goToSection } from "@/utils/index";
 import { AppTheme } from "@core-ui/react-mui-core";
-import { makeStyles, createStyles } from "@core-ui/react-mui-core/style"
-import clsx from "@core-ui/react-mui-core/clsx";
+import { makeStyles, createStyles } from "@core-ui/react-mui-core/dist/base/style"
+import clsx from "@core-ui/react-mui-core/dist/base/clsx";
 import { Animates } from "@core-ui/react-animates";
 import { useStore } from "@/store/index";
 import { observer } from "@core-ui/react-mobx-state";
@@ -11,7 +11,7 @@ import { useEffect, useMemo } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
 import {
   Drawer, Box, List, ListItem
-} from "@core-ui/react-mui-core/materials";
+} from "@core-ui/react-mui-core/dist/base/materials";
 import closeIcon from "@/assets/icons/close.svg"
 import FacebookChat from "../FacebookChat";
 import ZaloChat from "../ZaloChat";

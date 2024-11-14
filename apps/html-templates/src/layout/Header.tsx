@@ -11,12 +11,12 @@ import {
   Button,
   Tooltip,
   MenuItem,
-} from "@core-ui/react-mui-core/materials"
+} from "@core-ui/react-mui-core/dist/base/materials"
 
 import {
   Menu as MenuIcon,
   Adb as AdbIcon
-} from "@core-ui/react-mui-core/icons"
+} from "@core-ui/react-mui-core/dist/base/icons"
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -44,7 +44,6 @@ export const Header = () => {
   return <AppBar position="static">
     <Container maxWidth="xl">
       <Toolbar disableGutters>
-        {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
         <Typography
           variant="h6"
           noWrap
@@ -62,7 +61,6 @@ export const Header = () => {
         >
           LOGO
         </Typography>
-
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
           <IconButton
             size="large"
