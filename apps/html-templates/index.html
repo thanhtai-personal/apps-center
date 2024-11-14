@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Mua và tải HTML templates chuyên nghiệp, dễ dàng tùy chỉnh cho website của bạn. Bộ sưu tập đa dạng từ blog, portfolio đến thương mại điện tử.">
+  <meta name="keywords" content="HTML templates, mẫu website, thiết kế web, blog, portfolio, thương mại điện tử, bán template">
+  <meta name="author" content="HTML Template Store">
+  <link rel="icon" type="image/png" href="/store_logo.png">
+  <title>HTML Template Store - Bộ sưu tập mẫu website chuyên nghiệp cho mọi nhu cầu</title>
+
+  <!-- Preconnect to improve performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+  <!-- Additional meta tags for social sharing -->
+  <meta property="og:title" content="HTML Template Store - Mẫu website chất lượng cao, dễ dàng tùy chỉnh">
+  <meta property="og:description" content="Khám phá các mẫu HTML chuyên nghiệp cho blog, portfolio, thương mại điện tử và nhiều loại website khác.">
+  <meta property="og:image" content="/store_logo.png">
+  <meta property="og:url" content="https://yourtemplatewebsite.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HTML Template Store - Mẫu website chất lượng cao, dễ dàng tùy chỉnh">
+  <meta name="twitter:description" content="Khám phá các mẫu HTML chuyên nghiệp cho blog, portfolio, thương mại điện tử và nhiều loại website khác.">
+  <meta name="twitter:image" content="/store_logo.png">
+</head>
+
+<body>
+  <div id="root" style="width: 100%"></div>
+  <script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk')
+    );
+
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '1058569359238393',
+        xfbml: true,
+        version: 'v20.0',
+        permissions: 'pages_read_engagement,pages_show_list,pages_manage_posts,public_profile',
+        localStorage: true,
+      });
+    };
+  </script>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

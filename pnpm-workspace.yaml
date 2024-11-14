@@ -4,11 +4,13 @@ packages:
   - "client/lib/api-client"
   - "client/lib/react-hooks"
   - "client/lib/react-social-login"
+  - "client/lib/react-unittest"
   # - "api-sdk/**"
   - "client/sdk/core"
   - "client/sdk/app-center-gateway"
   - "client/ui/mui/react-core-mui"
   - "client/ui/react-animates"
+  - "client/ui/react-performance-utilities"
   - "client/ui/react-context"
   - "client/ui/react-core"
   - "client/ui/react-mobx-state"
@@ -16,6 +18,8 @@ packages:
   - "client/ui/react-lazyload"
   - "client/ui/react-charts"
   - "client/ui/react-flow"
+
+  # business logic
   - "client/builtIn/react-novels"
   - "client/builtIn/react-ums"
   - "client/builtIn/react-auth"
@@ -37,7 +41,8 @@ packages:
   # all packages in direct subdirs of packages/
   # - "apps/**"
   # - "apps/novels"
-  - "apps/recruiter"
+  # - "apps/recruiter"
+  - "apps/html-templates"
   
   # exclude packages that are inside test directories
   - "!**/test/**"
