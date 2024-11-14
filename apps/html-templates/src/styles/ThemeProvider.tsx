@@ -1,43 +1,20 @@
-import { MuiActionType, MuiContext, MuiProvider } from "@core-ui/react-mui-core";
 import { ReactNode, useEffect } from "react"
-import { appTheme } from "./appTheme";
 import { observer } from "@core-ui/react-mobx-state";
-import { useStore } from "@/store/index";
+import { useMuiCoreStore } from "@core-ui/react-mui-core";
+import { darkTheme } from "./darkTheme";
 
-export const ThemeWrapper = observer(({ children }: {
-  children: ReactNode;
-}) => {
-  const { uiStore } = useStore();
-  const themeDispatcher = MuiContext.useDataDispatchContext();
-  
-
-  useEffect(() => {
-    themeDispatcher?.({
-      type: MuiActionType.ADD_THEME,
-      payload: {
-        newKey: "appTheme",
-        newTheme: appTheme,
-      }
-    })
-    themeDispatcher?.({
-      type: MuiActionType.UPDATE_THEME,
-      payload: {
-        themeKey: "appTheme",
-      }
-    })
-    uiStore.colors = appTheme.colors;
-  }, [])
-
-  return children
-})
 
 export const ThemeProvider = observer(({ children }: {
   children: ReactNode;
 }) => {
+  const { themeStore } = useMuiCoreStore();
 
-  return <MuiProvider>
-    <ThemeWrapper>
-      {children}
-    </ThemeWrapper>
-  </MuiProvider>
+  useEffect(() => {
+    themeStore.themeMapper = {
+      dark: darkTheme
+    }
+    themeStore.themeKey = "dark"
+  }, [])
+
+  return children
 })

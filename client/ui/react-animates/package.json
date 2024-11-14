@@ -17,8 +17,8 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@core-utils/react-hooks": "workspace:*",
-    "@core-utils/utils-helpers": "workspace:*",
+    "@core-utils/react-hooks": "workspace:^",
+    "@core-utils/utils-helpers": "workspace:^",
     "@gsap/react": "^2.1.1",
     "@tailwindcss/forms": "^0.5.7",
     "@tsparticles/all": "^3.5.0",
@@ -41,10 +41,10 @@
     "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
-    "@core-config/eslint-plugin": "workspace:*",
-    "@core-config/release": "workspace:*",
-    "@core-config/tsconfig": "workspace:*",
-    "@core-config/typedoc": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:^",
+    "@core-config/release": "workspace:^",
+    "@core-config/tsconfig": "workspace:^",
+    "@core-config/typedoc": "workspace:^",
     "@types/aos": "^3.0.7",
     "@types/jquery": "^3.5.31",
     "@types/node": "^20.11.24",

@@ -23,10 +23,10 @@
     "./name": "./dist/name.js"
   },
   "devDependencies": {
-    "@core-config/eslint-plugin": "workspace:*",
-    "@core-config/release": "workspace:*",
-    "@core-config/tsconfig": "workspace:*",
-    "@core-config/typedoc": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:^",
+    "@core-config/release": "workspace:^",
+    "@core-config/tsconfig": "workspace:^",
+    "@core-config/typedoc": "workspace:^",
     "@types/assert": "^1.5.10",
     "@types/node": "^20.11.24",
     "semantic-release": "^23.0.2",

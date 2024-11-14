@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@core-ui/react-core": "workspace:^",
-    "@core-ui/react-context": "workspace:^",
     "@core-ui/react-mantine-core": "workspace:^"
   },
   "devDependencies": {

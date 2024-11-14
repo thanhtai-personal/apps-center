@@ -15,18 +15,18 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@core-ui/react-mui-core": "workspace:*",
+    "@core-ui/react-mui-core": "workspace:^",
     "@react-oauth/google": "^0.12.1",
     "react-device-detect": "^2.2.3",
     "react-social-login-buttons": "^4.1.0",
     "reactjs-social-login": "^2.6.3"
   },
   "devDependencies": {
-    "@core-config/eslint-plugin": "workspace:*",
-    "@core-config/release": "workspace:*",
-    "@core-config/tsconfig": "workspace:*",
-    "@core-config/typedoc": "workspace:*",
-    "@core-utils/utils-helpers": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:^",
+    "@core-config/release": "workspace:^",
+    "@core-config/tsconfig": "workspace:^",
+    "@core-config/typedoc": "workspace:^",
+    "@core-utils/utils-helpers": "workspace:^",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

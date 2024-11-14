@@ -13,8 +13,8 @@
     "dist"
   ],
   "devDependencies": {
-    "@core-config/eslint-plugin": "workspace:*",
-    "@core-config/tsconfig": "workspace:*",
+    "@core-config/eslint-plugin": "workspace:^",
+    "@core-config/tsconfig": "workspace:^",
     "@types/assert": "^1.5.10",
     "@types/node": "^20.11.24",
     "tsc-alias": "^1.8.8",
@@ -24,7 +24,7 @@
   "dependencies": {
     "class-validator": "^0.14.1",
     "typedoc": "^0.25.11",
-    "@core-ui/common-types": "workspace:*",
-    "@core-api/nest-typeorm-postgres": "workspace:*"
+    "@core-ui/common-types": "workspace:^",
+    "@core-api/nest-typeorm-postgres": "workspace:^"
   }
 }

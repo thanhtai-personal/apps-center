@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@core-ui/react-animates": "workspace:^",
-    "@core-ui/react-context": "workspace:^",
     "@core-ui/react-core": "workspace:^",
     "@core-logic-hooks/react-recruiter": "workspace:^",
     "@core-ui/react-charts": "workspace:^",

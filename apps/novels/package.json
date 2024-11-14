@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@core-ui/react-animates": "workspace:^",
-    "@core-ui/react-context": "workspace:^",
     "@core-ui/react-core": "workspace:^",
     "@core-ui/react-mobx-state": "workspace:^",
     "@core-ui/react-mui-core": "workspace:^",
