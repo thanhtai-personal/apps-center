@@ -24,8 +24,8 @@ if (buildinFeatures) {
 }
 
 // App providers area (A provider is a HOC component, which wrapped your application main components (all of your router))
-reactApp.addProviders(allProviders || []);
 reactApp.addProvider(App);
+reactApp.addProviders(allProviders || []);
 
 // Render your app into root element here!
 disabledStrictMode();
