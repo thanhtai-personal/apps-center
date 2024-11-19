@@ -1,5 +1,4 @@
 import "./tailwind.css"
-export * from "./GridView"
 export * from "./ListView"
 export * from "./Accordion"
 export * from "./ScreenSection"

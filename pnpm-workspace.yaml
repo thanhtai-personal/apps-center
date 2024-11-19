@@ -41,7 +41,8 @@ packages:
   # - "apps/**"
   # - "apps/novels"
   # - "apps/recruiter"
-  - "apps/html-templates"
-  
+  # - "apps/html-templates"
+  # - "apps/nextjs-best-practice"
+  - "apps/nextjs-with-nextui"
   # exclude packages that are inside test directories
   - "!**/test/**"
